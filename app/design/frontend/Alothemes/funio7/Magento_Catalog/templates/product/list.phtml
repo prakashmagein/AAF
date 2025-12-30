@@ -18,7 +18,6 @@ use Magento\Framework\App\Action\Action;
  */
 ?>
 <?php
-$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
 $_productCollection = $block->getLoadedProductCollection();
 $_helper = $this->helper('Magento\Catalog\Helper\Output');
 $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
@@ -191,35 +190,7 @@ $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
                                     <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
                                         <?php echo $productImage->toHtml(); ?>
                                     </a>
-                                    
-                                <div class="custom-slider-product-list slick-slider">
-                                <?php
-                                    $product = $objectManager->create('Magento\Catalog\Model\Product')->load($_product->getId());
-
-                                    $imageUrl = $block->getImage($product, 'category_page_list')->getImageUrl();
-
-                                        
-                                    $images = $product->getMediaGalleryImages();
-                                    if ($images && $images->getSize()) {    
-                                    foreach($images as $child){ ?>
-                                        <div class="slick-slide">
-                                        <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
-                                        <img src="<?php echo $child->getUrl(); ?>" />
-                                        </a>
-                                    </div>
-                                <?php } } else { ?>
-                                    <div class="slick-slide">
-                                        <a href="<?php /* @escapeNotVerified */ echo $_product->getProductUrl() ?>" class="product photo product-item-photo" tabindex="-1">
-                                        <img src="<?php echo $imageUrl; ?>" />
-                                        </a>
-                                    </div>
-                                <?php } ?>
-
                                 </div>
-                                    
-
-
-
                                 </div>
                             </div>
                             <div class="product details details-container products-textlink">
@@ -321,66 +292,3 @@ $_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
         </script>
     <?php endif; ?>
 <?php endif; ?>
-
-
-
-<script type="text/javascript">
-    require(['jquery', 'slick'], function($){
-        var isRtl = $('html').hasClass('rtl');
-    $('.custom-slider-product-list').slick({
-        rtl: isRtl,
-        autoplay: false,
-        autoplaySpeed: 2000,
-        dots: true,
-        arrows: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 1
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 1
-                }
-            }
-        ]
-    });
-});
-
- require(['jquery'],
-    function($) {
-        $(document).ready(function() {
-            if($(window).width() < 769){
-            $('.grid-mode.grid-1').on('click', function() {
-             $('.custom-slider-product-list .slick-dots li:first-child').trigger('click');
-               $('html, body').scrollTop(0);
-             });
-            $('.grid-mode.grid-2').on('click', function() {
-            $('.custom-slider-product-list .slick-dots li:first-child').trigger('click');
-               $('html, body').scrollTop(0);
-            });
-        }
-    });
- });
-
-</script>
-<style type="text/css">
-    .product-hover .custom-slider-product-list{
-            display: none;
-        }
-    @media only screen and (max-width: 768px){
-        .product-hover .custom-slider-product-list{
-            display: block !important;
-        }
-        .product-hover .product-image-container{
-            display: none;
-        }
-    }
-</style>
