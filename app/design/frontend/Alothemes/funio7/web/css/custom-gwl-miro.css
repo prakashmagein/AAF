@@ -8932,6 +8932,14 @@ a.pagebuilder-button-primary, button.pagebuilder-button-primary, div.pagebuilder
 .catalog-category-view .category-products .item.product.product-item {
     height: 100%!important;
 }
+.category-products.custom-products-list.products.wrapper.grid .product-items {
+    display: flex;
+    flex-wrap: wrap;
+}
+.category-products.custom-products-list.products.wrapper.grid .product-items .product-item {
+    box-sizing: border-box;
+    width: 50%;
+}
 }
 .checkout-index-index .new-shipping-address-modal input[name="custom_checkbox_company"]:checked + label:after {
     top: -1px!important;
