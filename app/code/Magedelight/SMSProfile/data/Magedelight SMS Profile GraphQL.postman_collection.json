@@ -1,0 +1,394 @@
+{
+	"info": {
+		"_postman_id": "34458b07-e749-4925-82c0-211d91d5475b",
+		"name": "Magedelight SMS Profile GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Send OTP To Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n    sendOtpToCustomer(\n        resend:1\n\t    storeId:1\n        mobile:\"9033395466\"\n        eventType:\"cod_otp\"\n    ){\n        message\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232/graphql?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232",
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer Token With OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "",
+						"value": "",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation\n{\n    createCustomerTokenWithOtp(\n        mobile:\"9033395466\"\n        otp:\"6343\"\n        websiteId:1\n    ){\n        message\n        token\n    }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232/graphql",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232",
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Customer Token With OTP Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "1rtrh57ds6cb1ful8uzv2a8fn2km9qiv",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation\n{\n    createCustomerTokenWithOtpPassword(\n        mobile:\"9033395466\"\n        otp:\"2462\"\n        password:\"test@123\"\n        websiteId:1\n    ){\n        message\n        token\n  }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232/graphql?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232",
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Account With Otp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation\n{\n    createCustomerWithOtp(\n\t\tinput:{\n            firstname:\"Ravi T\"\n            lastname:\"Dudhara T\"\n            email: \"ravigraph7@yopmail.com\"\n        }\n        password:\"test@123\"\n        mobile:\"9898989897\"\n        otp: \"1212\"\n    ){\n        customer\n        {\n            email\n            firstname\n            lastname\n        }\n    }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232/graphql?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232",
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Account With Otp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation\n{\n    createCustomerWithOtp(\n\t\tinput:{\n            firstname:\"Ravi T\"\n            lastname:\"Dudhara T\"\n            email: \"ravigraph7@yopmail.com\"\n        }\n        password:\"test@123\"\n        mobile:\"9898989897\"\n        otp: \"1212\"\n    ){\n        customer\n        {\n            email\n            firstname\n            lastname\n        }\n    }\n}\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232/graphql?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232",
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Initiate Password Reset With OTP",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "    mutation\n    {\n       initiatePasswordResetWithOTP(\n            mobile:\"9033395466\"\n            otp: \"9832\"\n            template: \"email_reset\"\n            websiteId: 1\n        ){\n            message\n        }\n    }\n",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232/graphql?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232",
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Payment Information & Place Order With Otp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n  savePaymentInformationAndPlaceOrderWithOtp(\n\tguestCartId:\"zExzbM11do5o3Mgd2oXstdOHF219uVtu\"\n    emailId:\"jdoeg@example.com\"\n    mobile:\"9033395466\"\n    otp:\"8556\"\n    paymentInformation:{\n        paymentMethod: {\n            method: \"checkmo\"\n        },\n        billing_address:{\n           region:\"New York\",\n           region_id:43,\n           region_code:\"NY\",\n           country_id:\"US\",\n           street:[\n              \"123 Oak Ave\"\n           ],\n           postcode:\"10577\",\n           city:\"Purchase\",\n           firstname:\"Jane\",\n           lastname:\"Doe\",\n           email:\"jdoeg@example.com\",\n           telephone:\"9033395466\"\n        }\n    }\n  ){\n    orderId\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232/graphql?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232",
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Payment Information & Place Order With Otp For Customer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "vgxjtjhnjz1urvytkdynbzaitgmlpbp8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "",
+						"type": "text",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation{\n    savePaymentInformationAndPlaceOrderWithOtpForCustomer(\n\t\tcartId:\"336\"\n        mobile:\"9033395466\"\n        otp:\"1790\"\n        paymentInformation:{\n\t\t\tpaymentMethod: {\n\t\t\t\tmethod: \"cashondelivery\"\n\t\t\t},\n            billing_address:{\n                region:\"New York\",\n                region_id:43,\n                region_code:\"NY\",\n                country_id:\"US\",\n                street:[\n                    \"123 Oak Ave\"\n                ],\n                postcode:\"10577\",\n                city:\"Purchase\",\n                firstname:\"Jane\",\n                lastname:\"Doe\",\n                email:\"jdoeg@example.com\",\n                telephone:\"9033395466\"\n            }\n        }\n\t)\n    {\n        orderId\n    }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1/m232/graphql?XDEBUG_SESSION_START=PHPSTORM",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"m232",
+						"graphql"
+					],
+					"query": [
+						{
+							"key": "XDEBUG_SESSION_START",
+							"value": "PHPSTORM"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

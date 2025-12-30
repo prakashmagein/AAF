@@ -1,0 +1,36 @@
+diff --git a/view/base/templates/export/pdf/submitted_data/document.phtml b/view/base/templates/export/pdf/submitted_data/document.phtml
+index 3c3821e..ffc9e35 100644
+--- a/view/base/templates/export/pdf/submitted_data/document.phtml
++++ b/view/base/templates/export/pdf/submitted_data/document.phtml
+@@ -9,6 +9,9 @@ $answerId = $viewModel->getAnswer()->getAnswerId();
+ ?>
+ 
+ <header class="amform-pdf-header">
++    <link rel="preconnect" href="https://fonts.googleapis.com">
++    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+     <img class="amform-pdf-logo"
+          src="<?= $escaper->escapeUrl($viewModel->getLogoSrc()) ?>"
+          alt="<?= $escaper->escapeHtmlAttr(__('Logo')) ?>">
+diff --git a/view/base/web/css/external/export/pdf/external_styles.css b/view/base/web/css/external/export/pdf/external_styles.css
+index e384a20..bb5bf89 100644
+--- a/view/base/web/css/external/export/pdf/external_styles.css
++++ b/view/base/web/css/external/export/pdf/external_styles.css
+@@ -6,10 +6,16 @@ html {
+     margin: 50px
+ }
+ 
++* {
++    font-family: "Amiri", serif !important;
++    font-weight: 400;
++    font-style: normal;
++}
++
+ body {
+     color: #171737;
+     font-size: 16px;
+-    font-family: Roboto, sans-serif;
++    font-family: "Amiri", Roboto, sans-serif !important;
+ }
+ 
+ .amform-pdf-header {

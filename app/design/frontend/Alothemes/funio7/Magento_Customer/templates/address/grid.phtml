@@ -1,0 +1,97 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Magento\Customer\Block\Address\Grid $block */
+$customerAddressView = $block->getData('customer_address');
+?>
+
+<div class="block block-addresses-list">
+    <div class="block-title"><strong><?= $block->escapeHtml(__('Additional Address Entries')) ?></strong>
+
+    <div class="custom-actions-toolbar">
+        <div class="primary">
+            <button type="button" role="add-address" title="<?= $block->escapeHtmlAttr(__('Add New Address')) ?>" class="action primary add"><span><?= $block->escapeHtml(__('Add New Address')) ?></span></button>
+        </div>
+    </div>
+    </div>
+
+
+
+    <div class="block-content">
+        <?php if ($_pAddsses = $block->getAdditionalAddresses()) : ?>
+
+            <div class="table-wrapper additional-addresses">
+                <table class="data table table-additional-addresses-items history" id="additional-addresses-table">
+                    <caption class="table-caption"><?= $block->escapeHtml(__('Additional addresses')) ?></caption>
+                    <thead>
+                    <tr>
+                        <th scope="col" class="col firstname"><?= $block->escapeHtml(__('First Name')) ?></th>
+                        <th scope="col" class="col lastname"><?= $block->escapeHtml(__('Last Name')) ?></th>
+                        <th scope="col" class="col streetaddress"><?= $block->escapeHtml(__('Street')) ?></th>
+                        <th scope="col" class="col city"><?= $block->escapeHtml(__('City')) ?></th>
+                        <th scope="col" class="col country"><?= $block->escapeHtml(__('Country')) ?></th>
+                        <th scope="col" class="col state"><?= $block->escapeHtml(__('State')) ?></th>
+                        <th scope="col" class="col zip"><?= $block->escapeHtml(__('Zip/Postal Code')) ?></th>
+                        <th scope="col" class="col phone"><?= $block->escapeHtml(__('Phone')) ?></th>
+                        <th scope="col" class="col actions"><?= $block->escapeHtml(__('Action')) ?></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($_pAddsses as $address) : ?>
+                        <tr>
+                            <td data-th="<?= $block->escapeHtml(__('First Name')) ?>" class="col firstname"><?= $block->escapeHtml($address->getFirstname()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Last Name')) ?>" class="col lastname"><?= $block->escapeHtml($address->getLastname()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Street Address')) ?>" class="col streetaddress"><?= $block->escapeHtml($block->getStreetAddress($address)) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('City')) ?>" class="col city"><?= $block->escapeHtml($address->getCity()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Country')) ?>" class="col country"><?= $block->escapeHtml($block->getCountryByCode($address->getCountryId())) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('State')) ?>" class="col state"><?= $block->escapeHtml($address->getRegion()->getRegion()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Zip/Postal Code')) ?>" class="col zip"><?= $block->escapeHtml($address->getPostcode()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Phone')) ?>" class="col phone"><?= $block->escapeHtml($address->getTelephone()) ?></td>
+                            <td data-th="<?= $block->escapeHtml(__('Actions')) ?>" class="col actions">
+                                <a class="action edit" href="<?= $block->escapeUrl($block->getUrl('customer/address/edit', ['id' => $address->getId()])) ?>"><span class="edit-text-content"><?= $block->escapeHtml(__('Edit')) ?></span>
+                                    <span class="edit-icon-content"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                        <g clip-path="url(#clip0_1299_2967)">
+                                        <path d="M9.17187 3.33334H3.33854C2.89651 3.33334 2.47259 3.50894 2.16003 3.8215C1.84747 4.13406 1.67188 4.55798 1.67188 5.00001V16.6667C1.67188 17.1087 1.84747 17.5326 2.16003 17.8452C2.47259 18.1577 2.89651 18.3333 3.33854 18.3333H15.0052C15.4472 18.3333 15.8712 18.1577 16.1837 17.8452C16.4963 17.5326 16.6719 17.1087 16.6719 16.6667V10.8333" stroke="#7E828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M15.4219 2.08332C15.7534 1.7518 16.203 1.56555 16.6719 1.56555C17.1407 1.56555 17.5904 1.7518 17.9219 2.08332C18.2534 2.41484 18.4396 2.86448 18.4396 3.33332C18.4396 3.80216 18.2534 4.2518 17.9219 4.58332L10.0052 12.5L6.67188 13.3333L7.50521 9.99999L15.4219 2.08332Z" stroke="#7E828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </g>
+                                        <defs>
+                                        <clipPath id="clip0_1299_2967">
+                                        <rect width="20" height="20" fill="white"/>
+                                        </clipPath>
+                                        </defs>
+                                        </svg>
+                                    </span>
+                                </a>
+                                <a class="action delete" href="#" role="delete-address" data-address="<?= $block->escapeHtmlAttr($address->getId()) ?>">
+                                    <span class="delete-text-contents"></span></a>
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php if ($block->getChildHtml('pager')) : ?>
+                <div class="customer-addresses-toolbar toolbar bottom"><?= $block->getChildHtml('pager') ?></div>
+            <?php endif ?>
+        <?php else : ?>
+            <p class="empty"><?= $block->escapeHtml(__('You have no other address entries in your address book.')) ?></p>
+        <?php endif ?>
+    </div>
+</div>
+
+
+<script type="text/x-magento-init">
+    {
+        ".page-main": {
+            "address": {
+                "deleteAddress": "td a[role='delete-address']",
+                "deleteUrlPrefix": "<?= $block->escapeJs($block->escapeUrl($block->getDeleteUrl())) ?>id/",
+                "addAddress": "button[role='add-address']",
+                "addAddressLocation": "<?= $block->escapeJs($block->escapeUrl($block->getAddAddressUrl())) ?>"
+            }
+        }
+    }
+</script>

@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * Product view template
+ *
+ * @see \Magento\Catalog\Block\Product\View\Description
+ */
+?>
+<?php
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$_product = $block->getProduct();
+$_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
+$_soldHelper = $this->helper('Magiccart\Alothemes\Helper\Sold');
+$layout = '<div class="timer-box"><div class="timer-box-content"><span class="day">%%D%%</span><span class="title">' . __('Days') .  '</span></div></div><div class="timer-box"><div class="timer-box-content"><span class="hour">%%H%%</span><span class="title">' . __('Hours')  . '</span></div></div><div class="timer-box"><div class="timer-box-content"><span class="min">%%M%%</span><span  class="title">' . __('Mins') . '</span></div></div><div class="timer-box"><div class="timer-box-content"><span class="sec">%%S%%</span><span  class="title">' . __('Secs') . '</span></div></div>';
+$timer = $_aloHelper->getTimer($_product, $layout);
+if (!$timer) return;
+?>
+<div class="offer-product">
+	<ul class="offer-items list-unstyled">
+		<li class="offer-item">Only 12 Left in Stock</li>
+		<li class="offer-item">Estimated delivery time 14-30 days</li>
+		<li class="offer-item">Sale 30% Off Use Code : Neoo20</li>
+	</ul>
+</div>
+<div class="countdown-container">
+	<h3 class="slogan-countdown"><span><?php echo __("Hungry up ! Deal end in :") ?></span></h3>
+	<?php echo $timer; ?>
+
+	
+	<?php
+	$sold 	= $_soldHelper->getSoldQty($_product);
+	$stockItem = $_product->getExtensionAttributes()->getStockItem();
+	$qty 	= (int) $stockItem->getQty();
+	$total_sale = $qty + $sold;
+	$percent = $qty > 0 ? round(($qty / $total_sale) * 100) : 0;
+	?>
+
+	<div class="product-deal-special-progress">
+		<div class="deal-progress">
+			<span class="deal-progress-bar" style="width:<?php echo $percent ?>%"><?php echo $percent ?></span>
+		</div>
+		<div class="deal-stock-label">
+			<span class="stock-available text-left"><?php echo __('Available') ?>: <strong><?php echo $qty ?></strong></span>
+			<span class="stock-sold text-right"><?php echo __('Already Sold') ?>: <strong><?php echo $sold ?></strong></span>
+		</div>
+	</div>
+</div>

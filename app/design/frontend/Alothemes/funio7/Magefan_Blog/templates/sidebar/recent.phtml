@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * See LICENSE.txt for license details (http://opensource.org/licenses/osl-3.0.php).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog sidebar recent posts template
+ *
+ * @var $block \Magefan\Blog\Block\Sidebar\Recent
+ */
+?>
+
+<?php
+$_post = $this->getPost();
+$_postCollection = $block->getPostCollection();
+$baseUrl = $this->helper('\Magento\Cms\Helper\Wysiwyg\Images')->getBaseUrl();
+?>
+<?php if ($_postCollection->count()) { ?>
+    <div class="widget block block-recent-posts" data-bind="scope: 'recemt-posts'">
+        <div class="block-title">
+            <strong><?php echo __('Recent Posts') ?></strong>
+        </div>
+        <div class="block-content">
+            <?php foreach ($_postCollection as $_post) { ?>
+                <div class="item">
+                    <a class="post-ftimg-hld" href="<?php echo $_post->getPostUrl() ?>">
+                        <?php if ($galleryImage = $_post->getData('media_gallery')) { ?>
+                            <?php 
+                                $galleryImage = explode(';',$galleryImage);
+                            ?>
+                            <img src="<?php echo $baseUrl.'/blog/cache/200x/'.$galleryImage[0] ?>" alt="<?php echo $block->escapeHtml($_post->getTitle()) ?>" />
+                        <?php } elseif($featuredImage = $_post->getFeaturedImage()){ ?>
+                            <img src="<?php echo $featuredImage ?>" alt="<?php echo $block->escapeHtml($_post->getTitle()) ?>" />
+                        <?php } ?>
+                    </a>
+                    <div class="post-item-content">
+                        <?php if ($_categoriesCount = $_post->getCategoriesCount()) { ?>
+                            <div class="item post-categories">
+                                <?php $n = 0;
+                                foreach ($_post->getParentCategories() as $ct) {
+                                    $n++; ?>
+                                    <a title="<?php echo $block->escapeHtml($ct->getTitle()) ?>" href="<?php echo $ct->getCategoryUrl() ?>"><?php echo $block->escapeHtml($ct->getTitle()) ?></a>
+                            <?php } ?>
+                            </div>
+                        <?php } ?>
+                        <h3><a class="post-item-link" href="<?php echo $_post->getPostUrl() ?>"><?php echo $block->escapeHtml($_post->getTitle()) ?></a></h3>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+    </div>
+<?php } ?>
+
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('newsletter_sidebar')->toHtml();?>

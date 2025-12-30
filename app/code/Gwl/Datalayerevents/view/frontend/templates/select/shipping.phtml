@@ -1,0 +1,22 @@
+<?php
+$escaper = $block->escaper();
+?>
+<?php if ($block->getListItems()): ?>
+    <script class="gwl_add_shipping_info">
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        event: "add_shipping_info",
+        ecommerce: {
+            currency: "<?=$escaper->escapeHtml($block->getCurrencyCode())?>",
+            value: "<?=$escaper->escapeHtml($block->getValue())?>",
+            coupon: "<?=$escaper->escapeHtml($block->getCouponCode())?>",
+            gift_card: "<?=$escaper->escapeHtml($block->getAppliedGiftCards())?>",
+            shipping_fee:"<?=$escaper->escapeHtml($block->getShippingAmount())?>",
+            country:"<?=$escaper->escapeHtml($block->getShippingCountry())?>",
+            shipping_tier: "<?=$escaper->escapeHtml($block->getShippingType())?>",
+            items: <?= /** @noEscape */ $block->serializeItem($block->getListItems())?>
+        }
+    });
+    </script>
+
+<?php endif; ?>

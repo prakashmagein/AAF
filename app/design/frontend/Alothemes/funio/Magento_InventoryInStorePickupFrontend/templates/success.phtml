@@ -1,0 +1,54 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$salesOrderCheck = $objectManager->get('Magento\Sales\Model\Order');
+$salesOrder = $salesOrderCheck->loadByIncrementId($block->getOrderId());
+$orderId  = (int) floatval($block->getOrderId());
+
+$order = $salesOrderCheck->load($orderId);
+$orderSales = $order->getInvoiceCollection();
+
+
+?>
+<div class="checkout-success">
+    <div class="success-title">
+        <h2 class="title"><?php echo __('YOUR ORDER HAS BEEN RECEIVED!') ?></h2>
+    </div>
+    <div class="checkout-success-content">
+        <div class="success-content">
+            <div class="success-content-item order-info">
+                <div class="cms-title">
+                    <h3 class="title"><?php echo __('Thank you for your order') ?></h3>
+                </div>
+                <div class="cms-content">
+                    <?php if ($block->getOrderId()) : ?>
+                        <?php if ($block->getCanViewOrder()) : ?>
+                            <p><?= $block->escapeHtml(__('Your order number: %1', sprintf('<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></p>
+                            <p><?= $block->escapeHtml(__('Total Amount to be paid: ')) ?><strong><?= $salesOrder->formatPrice($salesOrder->getGrandTotal()) ?></strong></p>
+                        <?php else : ?>
+                            <p><?= $block->escapeHtml(__('Your order number: %1', sprintf('#<a href="%s" class="order-number"><strong>%s</strong></a>', $block->escapeUrl($block->getViewOrderUrl()), $block->getOrderId())), ['a', 'strong']) ?></p>
+                            <p><?= $block->escapeHtml(__('Total Amount to be paid: ')) ?><strong><?= $salesOrder->formatPrice($salesOrder->getGrandTotal()) ?></strong></p>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div>
+                <p class="note">We'll email you an order confirmation with details and tracking info.</p>
+            </div>
+        </div>
+        <div class="actions-toolbar">
+            <div class="cms-title">
+                <h3 class="title"><?php echo __('What can you do next?') ?></h3>
+            </div>
+            <div class="primary">
+                <a class="action primary continue" href="<?= $block->escapeUrl($block->getContinueUrl()) ?>"><span><?= $block->escapeHtml(__('Continue Shopping')) ?></span></a>
+                <a class="action primary toaccount" href="<?= $block->escapeUrl($block->getContinueUrl()) . 'customer/account/' ?>"><span><?= $block->escapeHtml(__('Go to my account')) ?></span></a>
+            </div>
+        </div>
+    </div>
+</div>

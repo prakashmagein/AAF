@@ -1,0 +1,79 @@
+<?php
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Language switcher template
+ */
+?>
+<?php if (count($block->getStores())>1): ?>
+<?php $flags = $block->getFlags();?>
+<?php $id = $block->getIdModifier() ? '-' . $block->getIdModifier() : ''?>
+<?php 
+    $flag = isset($flags[$block->getCurrentStoreId()]) ? $flags[$block->getCurrentStoreId()] :  $block->getViewFileUrl(('images/flags/'. $block->getStoreCode() .'.jpg'));
+    $flag = 'style="background-image:url('. $flag .');background-repeat:no-repeat;"'; 
+?>
+<div class="top-form-language">
+<div class="switcher language switcher-language" data-ui-id="language-switcher" id="switcher-language<?php /* @escapeNotVerified */ echo $id?>">
+    <strong class="label switcher-label"><span><?php /* @escapeNotVerified */ echo __('Language') ?></span></strong>
+    <div class="actions dropdown options switcher-options">
+        <div class="action toggle switcher-trigger" id="switcher-language-trigger<?php /* @escapeNotVerified */ echo $id?>">
+            <strong class="view-<?php echo $block->escapeHtml($block->getCurrentStoreCode()) ?>">
+
+                <?php
+                    $store_code = $block->getStoreCode();
+                    if (str_contains($store_code, 'en')) { 
+                        $store_code = "en";
+                    }
+                    if (str_contains($store_code, 'ar')) { 
+                        $store_code = "ar";
+                    }
+                    ?>
+
+                <span class="flagdata"><svg class="language-icon" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1.125 2.625H7.875M4.5 1.5V2.625M6.375 10.5L8.625 5.25L10.875 10.5M7.06641 9H10.1836M6.59297 2.625C6.59297 2.625 6.02344 4.82812 4.66406 6.49219C3.30469 8.15625 1.875 9 1.875 9" stroke="#4C4F58" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+                          <path d="M6 7.875C6 7.875 5.17969 7.24219 4.3125 6.11719C3.44531 4.99219 3 4.125 3 4.125" stroke="#4C4F58" stroke-width="0.75" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg> <?php echo $block->escapeHtml($store_code) ?></span>
+            </strong>
+        </div>
+        <ul class="dropdown switcher-dropdown"
+            data-mage-init='{"dropdownDialog":{
+                "appendTo":"#switcher-language<?php /* @escapeNotVerified */ echo $id ?> > .options",
+                "triggerTarget":"#switcher-language-trigger<?php /* @escapeNotVerified */ echo $id ?>",
+                "closeOnMouseLeave": false,
+                "triggerClass":"active",
+                "parentClass":"active",
+                "buttons":null}}'>
+            <?php foreach ($block->getStores() as $_lang): ?>
+                <?php if ($_lang->getId() != $block->getCurrentStoreId()): ?>
+                    <?php
+                        $flag = isset($flags[$_lang->getStoreId()]) ? $flags[$_lang->getId()] :  $block->getViewFileUrl(('images/flags/'. $_lang->getCode() .'.jpg'));
+                        $flag = 'style="background-image:url('. $flag .');background-repeat:"no-repeat;"'; 
+                    ?>
+
+                    <?php
+                    $lang_code = $_lang->getCode();
+                    if(str_contains($lang_code, 'en')){
+                        $lang_code = "en";
+                    }
+                    if(str_contains($lang_code, 'ar')){
+                        $lang_code = "ar";
+                    }
+                    ?>
+                    <li class="view-<?php echo $block->escapeHtml($_lang->getCode()); ?> switcher-option">
+                        <a href="#" data-post='<?php /* @escapeNotVerified */ echo $block->getTargetStorePostData($_lang); ?>'>
+                            <?php echo $block->escapeHtml($lang_code) ?></a>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>
+</div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,24 @@
+a:29:{s:4:"name";s:16:"eBay Product XML";s:8:"filename";s:12:"eBayProducts";s:9:"feed_type";s:3:"xml";s:8:"store_id";s:1:"1";s:9:"is_active";s:1:"1";s:8:"compress";s:0:"";s:15:"parent_priority";s:0:"";s:16:"exclude_disabled";s:1:"0";s:20:"exclude_out_of_stock";s:1:"0";s:19:"exclude_not_visible";s:1:"0";s:10:"xml_header";s:55:"<?xml version="1.0" encoding="UTF-8"?>
+<productRequest>";s:8:"xml_item";s:7:"product";s:11:"xml_content";s:1190:"<SKU>{attribute="basic|sku" format="as_is" parent="no" optional="no" modify="html_escape"}</SKU>
+<productInformation localizedFor="en_US">
+	<title>{attribute="product|name" format="as_is" parent="no" optional="yes" modify="html_escape"}</title>
+    < placeholder: subtitle >
+	<description>
+		<productDescription>{attribute="product|description" format="as_is" parent="no" optional="yes" modify="html_escape|length:500"}</productDescription>
+        < placeholder: additionalInfo >
+	</description>
+    < placeholder: UPC >
+    < placeholder: ISBN >
+    < placeholder: EAN >
+    < placeholder: MPN >
+	<Brand>{attribute="product|manufacturer" format="as_is" parent="no" optional="yes" modify="html_escape"}</Brand>
+    < placeholder: ePID >
+	<pictureURL>{attribute="gallery|image_1" format="as_is" parent="no" optional="yes" modify="html_escape"}</pictureURL>
+	<pictureURL>{attribute="gallery|image_2" format="as_is" parent="no" optional="yes" modify="html_escape"}</pictureURL>
+	<conditionInfo>
+		<condition>New</condition>
+        < placeholder: conditionDescription >
+        < placeholder: conditionDescriptors >
+	</conditionInfo>
+    < placeholder: shippingDetails >
+</productInformation>";s:10:"xml_footer";s:17:"</productRequest>";s:21:"format_price_currency";s:3:"USD";s:26:"format_price_currency_show";s:1:"1";s:21:"format_price_decimals";s:3:"two";s:26:"format_price_decimal_point";s:3:"dot";s:32:"format_price_thousands_separator";s:5:"comma";s:11:"format_date";s:5:"Y-m-d";s:12:"execute_mode";s:6:"manual";s:16:"delivery_enabled";s:1:"0";s:10:"utm_source";s:0:"";s:10:"utm_medium";s:0:"";s:8:"utm_term";s:0:"";s:11:"utm_content";s:0:"";s:12:"utm_campaign";s:0:"";s:21:"conditions_serialized";N;s:13:"template_code";s:16:"ebay_product_xml";}

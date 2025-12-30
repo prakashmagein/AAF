@@ -1,0 +1,146 @@
+<?php
+/**
+* Copyright © Magento, Inc. All rights reserved.
+* See COPYING.txt for license details.
+*/
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Catalog\Block\Product\View */
+?>
+<?php $product = $block->getProduct(); ?>
+<?php $buttonTitle = __('Add to Cart'); ?>
+<?php if ($product->isSaleable()): ?>
+    <?php
+
+    // is the Recurring Product feature enabled?
+    $isRecurringEnabled = (int)$this->helper(Amazonpaymentservices\Fort\Helper\Data::class)->getConfig('payment/aps_recurring/active') === 1;
+
+    $isSubscriptionsProduct = false;
+
+    if ($isRecurringEnabled) {
+        /** @var \Magento\Framework\App\ObjectManager $objectManager */
+        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+        /** @var \Magento\Framework\App\ResourceConnection $resource */
+        $resource = $objectManager->get('Magento\Framework\App\ResourceConnection');
+
+        /** @var / getConnection function from resounce $connection */
+        $connection = $resource->getConnection();
+
+        /** @var / get id of aps_sub_enabled product attribute $apsSubEnabled */
+        $query = $connection->select()->from(['table' => 'eav_attribute'], ['attribute_id'])->where('table.attribute_code=?', 'aps_sub_enabled');
+        $apsSubEnabled = $connection->fetchRow($query);
+
+        /** @var / get id of aps_sub_interval product attribute $apsSubInterval */
+        $query = $connection->select()->from(['table' => 'eav_attribute'], ['attribute_id'])->where('table.attribute_code=?', 'aps_sub_interval');
+        $apsSubInterval = $connection->fetchRow($query);
+
+        /** @var / get id of aps_sub_interval_count product attribute $apsSubIntervalCount */
+        $query = $connection->select()->from(['table' => 'eav_attribute'], ['attribute_id'])->where('table.attribute_code=?', 'aps_sub_interval_count');
+        $apsSubIntervalCount = $connection->fetchRow($query);
+
+        /* @isSubscriptionProduct */
+        $query = $connection->select()->from(['table' => 'catalog_product_entity_int'], ['value'])->where('table.attribute_id=?', $apsSubEnabled['attribute_id'])->where('table.entity_id=?', $product->getId());
+        $prodApsSubEnabled = $connection->fetchRow($query);
+
+        $context = $objectManager->get('Magento\Framework\App\Http\Context');
+        /** @var bool $isLoggedIn */
+        $isLoggedIn = $context->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+
+        if (!empty($prodApsSubEnabled)) {
+
+            $query = $connection->select()->from(['table' => 'catalog_product_entity_varchar'], ['value'])->where('table.attribute_id=?', $apsSubInterval['attribute_id'])->where('table.entity_id=?', $product->getId());
+            $prodApsSubInterval = $connection->fetchRow($query);
+
+            $query = $connection->select()->from(['table' => 'catalog_product_entity_varchar'], ['value'])->where('table.attribute_id=?', $apsSubIntervalCount['attribute_id'])->where('table.entity_id=?', $product->getId());
+            $prodApsSubIntervalCount = $connection->fetchRow($query);
+
+            if (!empty($prodApsSubInterval) && !empty($prodApsSubIntervalCount)) {
+                $isSubscriptionsProduct = true;
+            }
+        }
+    }
+    ?>
+<div class="box-tocart">
+   <div class="">
+       <?php if ($block->shouldRenderQuantity()): ?>
+       <div class="field qty">
+           <!-- <label class="label" for="qty"><span><?= /* @escapeNotVerified */ __('Qty') ?></span></label> -->
+           <div class="product-qty">
+               <!-- <input type="number"
+                      name="qty"
+                      id="qty"
+                      value="<?= /* @escapeNotVerified */ $block->getProductDefaultQty() * 1 ?>"
+                      title="<?= /* @escapeNotVerified */ __('Qty') ?>"
+                      class="input-text qty"
+                      data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                      /> -->
+                
+                <div class="control custom-qty">
+                    <div class="btn-plus">  
+                        <button  type="button" class="reduced items" onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty ) && qty > 1 ) result.value--;return false;">
+                            <i class="fa fa-minus"></i>
+                        </button> 
+                    </div>
+                    <input type="number"
+                           name="qty"
+                           id="qty"
+                           maxlength="12"
+                           value="<?php /* @escapeNotVerified */ echo $block->getProductDefaultQty() * 1 ?>"
+                           title="<?php /* @escapeNotVerified */ echo __('Qty') ?>" class="input-text qty"
+                           data-validate="<?php echo $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
+                           />
+                    <div class="btn-plus">         
+                        <button  type="button" class="increase items" onclick="var result = document.getElementById('qty'); var qty = result.value; if( !isNaN( qty )) result.value++;return false;">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div> 
+                                    
+           </div>
+       </div>
+       <?php endif; ?>
+       <?php if (!$isRecurringEnabled || !$isSubscriptionsProduct || ($isLoggedIn)): ?>
+            <div class="custom-add-to-cart-button">
+                <div class="actions add-to-cart">
+                    <button type="submit"
+                            title="<?= /* @escapeNotVerified */ $buttonTitle ?>"
+                            class="action primary tocartnewcolor tocart btn-cart"
+                            id="product-addtocart-button">
+                        <span><?= /* @escapeNotVerified */ $buttonTitle ?></span>
+                    </button>
+                    <?= $block->getChildHtml('', true) ?>
+                </div>
+            </div>
+       <?php else: ?>
+            <a href="<?= $this->getUrl('customer/account/login'); ?>">Sign IN</a>
+        <?php endif; ?>
+   </div>
+</div>
+<?php endif; ?>
+<?php if ($block->isRedirectToCartEnabled()) : ?>
+<script type="text/x-magento-init">
+   {
+       "#product_addtocart_form": {
+           "Magento_Catalog/product/view/validation": {
+               "radioCheckboxClosest": ".nested"
+           }
+       }
+   }
+</script>
+<?php else : ?>
+<script type="text/x-magento-init">
+   {
+       "#product_addtocart_form": {
+           "Magento_Catalog/js/validate-product": {}
+       }
+   }
+</script>
+<?php endif; ?>
+
+<style type="text/css">
+.product-add-form .custom-add-to-cart-button {
+    margin-bottom: 15px;
+}
+</style>

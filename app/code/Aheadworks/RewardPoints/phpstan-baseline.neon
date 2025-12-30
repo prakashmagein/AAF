@@ -1,0 +1,43 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Access to undefined constant Aheadworks\\\\RewardPoints\\\\Model\\\\Source\\\\Coupon\\\\Status\\\\Enum\\:\\:ENABLED\\.$#"
+			count: 1
+			path: Model/Coupon/Generate/Consumer.php
+
+		-
+			message: "#^Access to undefined constant Aheadworks\\\\RewardPoints\\\\Model\\\\Source\\\\Coupon\\\\Status\\\\Enum\\:\\:DISABLED\\.$#"
+			count: 1
+			path: Model/Coupon/MassAction/Disable.php
+
+		-
+			message: "#^Access to undefined constant Aheadworks\\\\RewardPoints\\\\Model\\\\Source\\\\Coupon\\\\Status\\\\Enum\\:\\:ENABLED\\.$#"
+			count: 1
+			path: Model/Coupon/MassAction/Enable.php
+
+		-
+			message: "#^Access to undefined constant Aheadworks\\\\RewardPoints\\\\Model\\\\Source\\\\Coupon\\\\Status\\\\Enum\\:\\:DISABLED\\.$#"
+			count: 1
+			path: Model/CouponManagement.php
+
+		-
+			message: "#^Access to undefined constant Aheadworks\\\\RewardPoints\\\\Model\\\\Source\\\\Coupon\\\\Status\\\\Enum\\:\\:DISABLED\\.$#"
+			count: 1
+			path: Model/Source/Coupon/Status.php
+
+		-
+			message: "#^Access to undefined constant Aheadworks\\\\RewardPoints\\\\Model\\\\Source\\\\Coupon\\\\Status\\\\Enum\\:\\:ENABLED\\.$#"
+			count: 1
+			path: Model/Source/Coupon/Status.php
+
+		-
+			message: "#^Access to constant APPROVED on an unknown class Aheadworks\\\\AdvancedReviews\\\\Model\\\\Source\\\\Review\\\\Status\\.$#"
+			count: 2
+			path: Plugin/Model/Service/ReviewServicePlugin.php
+
+		-
+			message: "#^Class Aheadworks\\\\AdvancedReviews\\\\Api\\\\ReviewRepositoryInterface not found\\.$#"
+			count: 1
+			path: Plugin/Model/Service/ReviewServicePlugin.php
+
+

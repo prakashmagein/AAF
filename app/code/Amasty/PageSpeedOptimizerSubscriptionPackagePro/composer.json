@@ -1,0 +1,25 @@
+{
+    "name": "amasty/module-page-speed-optimizer-subscription-package-pro",
+    "description": "Page Speed Optimizer Subscription Package Pro",
+    "require": {
+        "php": ">=7.3",
+        "amasty/base": ">=1.14.7",
+        "amasty/module-optimizer-pro": ">=3.2.0"
+    },
+    "suggest": {
+        "amasty/module-page-speed-optimizer-hyva": "Install this package to insure Page Speed Optimizer extension works with Hyv\u00e4 Theme.",
+        "amasty/module-avif-image-optimizer": "Install this package to enable AVIF optimization support."
+    },
+    "homepage": "https://amasty.com/",
+    "type": "magento2-module",
+    "version": "3.2.0",
+    "license": "proprietary",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\PageSpeedOptimizerSubscriptionPackagePro\\": ""
+        }
+    }
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mforderedit>
+            <general>
+                <enabled>0</enabled>
+                <mfmodule>OrderEdit</mfmodule>
+                <allow_edit_orders_with_status>any</allow_edit_orders_with_status>
+                <allow_edit_invoiced_orders>1</allow_edit_invoiced_orders>
+                <allow_edit_shipped_orders>1</allow_edit_shipped_orders>
+                <allow_edit_refunded_orders>1</allow_edit_refunded_orders>
+                <restrict_by_super_users>0</restrict_by_super_users>
+            </general>
+        </mforderedit>
+    </default>
+</config>

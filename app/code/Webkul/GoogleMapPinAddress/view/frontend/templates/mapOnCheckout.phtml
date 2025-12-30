@@ -1,0 +1,106 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_GoogleMapPinAddress
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$helperData = $block->getWkMapHelper();
+if ($helperData->getModuleStatus()) {
+    if ($helperData->getApiKey()) {
+        ?>
+<style>
+  #opc-new-shipping-address .form.form-shipping-address .fieldset >
+   .field:last-child, .fieldset > .fields > .field:last-child {
+  margin-top: 44%;
+}
+  .modal-popup._inner-scroll .modal-inner-wrap .modal-content #opc-new-shipping-address
+   .form.form-shipping-address .fieldset > .field:last-child, .fieldset > .fields > .field:last-child {
+  margin-top: 1vh;
+}
+  .payment-method._active .payment-method-billing-address .checkout-billing-address
+   .fieldset .billing-address-form .fieldset > .choice.field {
+  margin-top: 282px;
+  }
+  /* .checkout-agreements.fieldset {
+    display: block !important;
+  } */
+  .checkout-payment-method .payment-method._active .payment-method-content {
+    margin-bottom: 54px;
+}
+#locatorButton {
+        background-color: #000;
+        color: white;
+        border: none;
+        padding: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        position: absolute;
+        top: 75px;
+        width: 41px;
+        right: 10px;
+        z-index: 5;
+      }
+ #locatorButton svg {
+    stroke: #fff;
+    fill: #fff;
+    margin-left: 7px;
+}
+#locatorTooltip {
+    margin-left: 8px;
+    display: none; /* Hidden by default, shows on hover */
+    font-size: 14px;
+    color: #2867D9;
+}
+</style>
+ <div class="mapContainer">
+          <div id="map"></div>
+          <div id="locatorButton" title="Locate Me" ><svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 5.64286C6.42843 5.64286 5.14282 6.92857 5.14282 8.5C5.14282 10.0716 6.42843 11.3571 8 11.3571C9.57161 11.3571 10.8571 10.0716 10.8571 8.5C10.8571 6.92857 9.57161 5.64286 8 5.64286ZM14.8192 7.73811C14.4762 4.57629 11.9237 2.02382 8.76189 1.681V0.5H7.23811V1.68096C4.07629 2.02379 1.52382 4.57625 1.18082 7.73807H0V9.26189H1.18079C1.52379 12.4237 4.07621 14.9762 7.23807 15.3192V16.5H8.76186V15.3192C11.9237 14.9762 14.4761 12.4238 14.8192 9.26193H16V7.73811H14.8192ZM8 13.8333C5.06654 13.8333 2.66664 11.4334 2.66664 8.5C2.66664 5.56657 5.06654 3.16668 8 3.16668C10.9334 3.16668 13.3333 5.56661 13.3333 8.5C13.3333 11.4334 10.9334 13.8333 8 13.8333Z" fill="#2867D9"></path></svg></div>
+          <span id="locatorTooltip">Locate Me</span>
+          <span class="current_location" >Live location</span>
+        </div>
+        <div class="mapContainerBilling">
+          <div id="mapbilling"></div>
+        </div>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<?= /* @noEscape */ $helperData
+        ->getApiKey();?>&libraries=places" async defer></script>      
+    <?php }
+}
+?>
+
+
+<style type="text/css">
+.hidden-latitude-field {
+    display: none !important;
+}
+div[name='shippingAddress.custom_attributes.latitude']{
+  display: none !important;
+}
+div[name='shippingAddress.custom_attributes.longitude']{
+  display: none !important;
+}
+
+div[name='billingAddress.custom_attributes.latitude']{
+  display: none !important;
+}
+div[name='billingAddress.custom_attributes.longitude']{
+  display: none !important;
+}
+</style>
+
+<script type="text/javascript">
+  require(['jquery'], function ($) {
+    $(document).ready(function () {
+      setTimeout(function() {
+        $('input[name="custom_attributes[latitude]"]').closest('.field').addClass('hidden-latitude-field');
+
+        $('input[name="custom_attributes[longitude]"]').closest('.field').addClass('hidden-latitude-field');
+      }, 5000);
+    });
+});
+</script>

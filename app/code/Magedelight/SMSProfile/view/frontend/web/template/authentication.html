@@ -1,0 +1,185 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<div class="authentication-wrapper" data-block="authentication" data-bind="visible: isActive()">
+    <button
+        type="button"
+        class="action action-auth-toggle"
+        data-trigger="authentication">
+        <span data-bind="i18n: 'Sign In'"></span>
+    </button>
+    <div class="block-authentication"
+         style="display: none"
+         data-bind="mageInit: {
+            'Magento_Ui/js/modal/modal':{
+                'type': 'custom',
+                'modalClass': 'authentication-dropdown',
+                'trigger': '[data-trigger=authentication]',
+                'wrapperClass': 'authentication-wrapper',
+                'parentModalClass': '_has-modal-custom _has-auth-shown',
+                'responsive': true,
+                'responsiveClass': 'custom-slide',
+                'overlayClass': 'dropdown-overlay modal-custom-overlay',
+                'buttons': []
+            }}">
+        <!-- ko foreach: getRegion('before') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <div class="block block-customer-login"
+             data-bind="attr: {'data-label': $t('or')}">
+            <div class="block-title">
+                <strong id="block-customer-login-heading"
+                    role="heading"
+                    aria-level="2"
+                    data-bind="i18n: 'Sign In'"></strong>
+            </div>
+            <!-- ko foreach: getRegion('messages') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <div class="block-content" aria-labelledby="block-customer-login-heading">
+                <form data-role="login"
+                      data-bind="submit:login"
+                      method="post"
+                      novalidate="novalidate">
+                    <div class="fieldset"
+                              data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+                        <!-- ko if: (window.checkoutConfig.enable_on_checkoutpage == 1) -->
+                          <!-- ko if: (window.checkoutConfig.otplogin == 'login_otp' || window.checkoutConfig.otplogin == 'login_both') -->
+                            <div class="field field-mobile required">
+                              <label class="label" for="login-email"><span data-bind="i18n: 'Please Enter Email or Mobile Number'"></span></label>
+                              <input type="hidden" value="" id="countryreg" name="countryreg" />
+                              <input type="hidden" value="" id="countryregcode" name="countryregcode" />
+                              <div class="control">
+                                  <input name="mobile"
+                                         id="login_mobile"
+                                         type="text"
+                                         class="input-text popup required-entry"
+                                         data-bind="afterRender: MageMobileRenderCompletePopup"
+                                  />
+                                  <p class="profile-notice-phone"><!-- ko text: window.checkoutConfig.otpnote --><!-- /ko --></p>
+                              </div>
+                              <div class="field" style="margin-top: 15px;">    
+                                <button class="send_otp_login action primary popup"  style="display: none" type="button"><span data-bind="i18n: 'Generate Otp'"></span></button>
+                                <span class="otp_generatenote">&nbsp;</span>
+                                <div class="control">
+                                  <input class="input-text verifiedotp"
+                                         type="hidden"
+                                         name="otp"
+                                         id="customer-otp"
+                                         value="0" />                    
+                                </div>
+                              </div>
+                              <div class="resendotp-block popup" style="display: none">
+                                <p class="resend-wait"><span data-bind="i18n: 'Resend In'"></span> 
+                                    <span class="time" data-bind="text: window.checkoutConfig.resend_limit_time"></span>
+                                    <span data-bind="text:'Seconds'"></span>
+                                </p>
+                                
+                                <div class="resendlink" style="display: none;">
+                                     <button class="resendotp" type="button"><span data-bind="i18n: 'Resend OTP'"></span></button>
+                                </div>
+                                
+                                <div class="resend-link-attempt" style="display: none"></div>
+                                <div class="field field-name-otp required">
+                                    <label class="label" for="otp">
+                                        <span><span data-bind="i18n: 'Please enter verification code here'"></span></span>
+                                    </label>
+                                    <div class="control">
+                                        <input id="otp" name="otp" value="" title="otp"
+                                               class="input-text required-entry popup"
+                                               autocomplete="off" aria-required="true" type="text"
+                                               novalidate="novalidate" required=true style="width: 200px;">
+                                        <button class="verif_otp_login action primary"
+                                                type="button"><span data-bind="i18n: 'Verify OTP'"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="otp_text"></span>
+                          </div>
+                          
+                          <input type='hidden' name='form_type' id="form_type" data-bind="value: 'checkout-login'" />
+                          <input type='hidden' name='auto_verify_otp' id="auto_verify_otp" data-bind="value: window.checkoutConfig.auto_verify_otp" />
+                          <input type='hidden' name='resend_limit' id="resend_limit" data-bind="value: window.checkoutConfig.resend_limit"/>
+                          <input type='hidden' name='resend_limit_time' id="resend_limit_time" data-bind="value: window.checkoutConfig.resend_limit_time"/>
+                          <input type='hidden' name='resend_link_disable' id="resend_link_disable" data-bind="value: window.checkoutConfig.resend_link_disable"/>
+                          <input type='hidden' name='verifyotp' class='verifiedotp' data-bind="value: '0'"/>
+                          <!-- ko if: (window.checkoutConfig.customer_country_enabled == 0) -->
+                          <input type='hidden' id="default_mobile_validation" data-bind="value: window.checkoutConfig.mobile_default_validation"/>
+                          <!-- /ko -->
+                          <!-- /ko -->
+                          <!-- ko if: (window.checkoutConfig.otplogin == 'login_pwd') -->
+                          <div class="field field-email required">
+                              <label class="label" for="login-email"><span data-bind="i18n: 'Please Enter Email or Mobile Number'"></span></label>
+                              <div class="control">
+                                  <input name="username"
+                                         id="login-email"
+                                         type="text"
+                                         class="input-text"
+                                         data-bind="attr: {autocomplete: autocomplete}"
+                                         data-validate="{required:true}"
+                                  />
+                              </div>
+                          </div>
+                          <div class="field field-password required">
+                              <label for="login-password" class="label"><span data-bind="i18n: 'Password'"></span></label>
+                              <div class="control">
+                                  <input type="password"
+                                         class="input-text"
+                                         id="login-password"
+                                         name="password"
+                                         data-bind="attr: {autocomplete: autocomplete}"
+                                         data-validate="{required:true}"
+                                         autocomplete="off"/>
+                              </div>
+                          </div>
+                          <!-- /ko -->
+                        <!-- /ko -->
+                        <!-- ko if: (window.checkoutConfig.enable_on_checkoutpage == 0) -->
+                          <div class="field field-email required">
+                              <label class="label" for="login-email"><span data-bind="i18n: 'Email Address'"></span></label>
+                              <div class="control">
+                                  <input name="username"
+                                         id="login-email"
+                                         type="email"
+                                         class="input-text"
+                                         data-bind="attr: {autocomplete: autocomplete}"
+                                         data-validate="{required:true, 'validate-email':true}"
+                                  />
+                              </div>
+                          </div>
+                          <div class="field field-password required">
+                              <label for="login-password" class="label"><span data-bind="i18n: 'Password'"></span></label>
+                              <div class="control">
+                                  <input type="password"
+                                         class="input-text"
+                                         id="login-password"
+                                         name="password"
+                                         data-bind="attr: {autocomplete: autocomplete}"
+                                         data-validate="{required:true}"
+                                         autocomplete="off"/>
+                              </div>
+                          </div>
+                        <!-- /ko -->
+                        <!-- ko foreach: getRegion('additional-login-form-fields') -->
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <!-- /ko -->
+                    </div>
+                    <div class="actions-toolbar">
+                        <input name="context" type="hidden" value="checkout" />
+                        <div class="primary">
+                            <button type="submit" class="action action-login secondary" data-md-js="md-submit-button"><span data-bind="i18n: 'Sign In'"></span></button>
+                        </div>
+                        <div class="secondary">
+                            <a class="action action-remind" data-bind="attr: { href: forgotPasswordUrl }">
+                                <span data-bind="i18n: 'Forgot Your Password?'"></span>
+                            </a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

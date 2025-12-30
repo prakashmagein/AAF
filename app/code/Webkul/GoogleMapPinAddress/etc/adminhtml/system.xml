@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_GoogleMapPinAddress
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="webkul" translate="label" sortOrder="10" class="wk-config-tab-class">
+            <label>Webkul</label>
+        </tab>
+        <section id="googlemappinaddress" translate="label" type="text" sortOrder="502" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Google Map Pin Address Settings</label>
+            <tab>webkul</tab>
+            <resource>Webkul_GoogleMapPinAddress::config</resource>
+            <group id="gmpa_settings" translate="label" type="text" sortOrder="510" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="active" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <label>Active</label>
+                    <comment>Enable or disable module on frontend</comment>
+                </field>
+                <field id="api_key" translate="label comment" type="obscure" sortOrder="104" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+                    <comment>enter the Google map API key</comment>
+                     <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="default_latitude" translate="label comment" type="text" sortOrder="105" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <validate>required-entry validate-no-html-tags </validate>
+                    <label>Default Latitude for Map</label>
+                    <comment>enter the default latitude for google map</comment>
+                </field>
+                <field id="default_longitude" translate="label comment" type="text" sortOrder="106" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <validate>required-entry validate-no-html-tags </validate>
+                    <label>Default Longitude for Map</label>
+                    <comment>enter the default longitude for google map</comment>
+                </field>
+            </group>
+            <group id="product_information" translate="label" type="text" sortOrder="700" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Show Product Information</label>
+                <field id="author" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Webkul\GoogleMapPinAddress\Block\System\Config\SupportLinks</frontend_model>
+                </field>
+            </group>             
+        </section>
+    </system>
+</config>

@@ -1,0 +1,37 @@
+ <!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */ 
+ -->
+ 
+<!-- input field element and corresponding bindings -->
+<input class="input-text intlPhone" id="intlPhone" type="text"
+
+   data-bind="
+
+    value: value,
+
+    valueUpdate: 'keyup',
+
+    hasFocus: focused,
+
+    attr: {
+
+        name: inputName,
+
+        placeholder: placeholder,
+
+        'aria-describedby': noticeId,
+
+        id: uid,
+
+        disabled: disabled
+
+    }, afterRender: MegaTelePhoneRenderComplete" />

@@ -1,0 +1,49 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+
+/**
+ * @var $mfSecureRenderer \Magefan\Community\Api\SecureHtmlRendererInterface
+ */
+?>
+<?php
+use Magefan\OrderEdit\Block\Adminhtml\Order\Edit\Form;
+
+$actionUrl = 'mforderedit/order/edit';
+$orderId = $block->getRequest()->getParam('order_id');
+
+$orderInfoEditUrl = $block->getUrl($actionUrl, ['order_id' => $orderId, 'form_type' => Form::ORDER_INFO_EDIT_FORM]);
+$accountInfoEditUrl = $block->getUrl($actionUrl, ['order_id' => $orderId, 'form_type' => Form::ACCOUNT_INFO_EDIT_FORM]);
+$paymentMethodEditUrl = $block->getUrl($actionUrl, ['order_id' => $orderId, 'form_type' => Form::PAYMENT_METHOD_EDIT_FORM]);
+$shippingMethodEditUrl = $block->getUrl($actionUrl, ['order_id' => $orderId, 'form_type' => Form::SHIPPING_METHOD_EDIT_FORM]);
+$shippingMethodEditUrl = $block->getUrl($actionUrl, ['order_id' => $orderId, 'form_type' => Form::SHIPPING_METHOD_EDIT_FORM]);
+$itemsOrderedEditUrl = $block->getUrl($actionUrl, ['order_id' => $orderId, 'form_type' => Form::ITEMS_ORDERED_EDIT_FORM]);
+
+$wrapperStart = '<div class="actions"><a href="';
+$wrapperEnd = '">'. __("Edit") . '</a></div>';
+$script = '';
+?>
+
+<?php $script .= "
+    document.addEventListener('DOMContentLoaded',function() {
+        require(['jquery'], function($) {
+            $('.admin__page-section-item.order-information .admin__page-section-item-title')
+                .append('" . $wrapperStart . $orderInfoEditUrl . $wrapperEnd . "');
+
+            $('.admin__page-section-item.order-account-information .admin__page-section-item-title')
+                .append('" . $wrapperStart . $accountInfoEditUrl . $wrapperEnd . "');
+
+            $('.admin__page-section-item.order-payment-method .admin__page-section-item-title')
+                .append('" . $wrapperStart . $paymentMethodEditUrl . $wrapperEnd . "');
+
+            $('.admin__page-section-item.order-shipping-method .admin__page-section-item-title')
+                .append('" . $wrapperStart . $shippingMethodEditUrl . $wrapperEnd . "');
+
+            $('.edit-order-table').closest('.admin__page-section').find('.admin__page-section-title')
+                .append('" . $wrapperStart . $itemsOrderedEditUrl . $wrapperEnd . "');
+        });
+    })
+"; ?>
+<?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>

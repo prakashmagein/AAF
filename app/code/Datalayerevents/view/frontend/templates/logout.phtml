@@ -1,0 +1,19 @@
+<!-- customer Logout -->
+<?php 
+$customerdata = $block->getCustomerInformation();
+// var_dump($customerdata->getdata());
+// die("ddddd444");
+// $id = $customerdata->getId();
+// var_dump('dataaa');
+// var_dump($id);
+// die("dddddd");
+
+$customData = $this->getCustomData();
+
+?>
+<?php if ($customData): ?>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push(<?= json_encode($customData, JSON_HEX_TAG); ?>);
+    </script>
+<?php endif; ?>

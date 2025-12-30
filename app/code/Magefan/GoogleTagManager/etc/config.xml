@@ -1,0 +1,78 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mfgoogletagmanager>
+            <general>
+                <enabled>0</enabled>
+                <mfmodule>GoogleTagManager</mfmodule>
+                <mftype>1</mftype>
+            </general>
+            <web_container>
+                <install_gtm>use_public_id</install_gtm>
+                <script_content/>
+                <noscript_content/>
+                <enable>1</enable>
+                <account_id/>
+                <container_id/>
+                <public_id/>
+            </web_container>
+            <server_container>
+                <enabled>0</enabled>
+                <public_id/>
+                <account_id/>
+                <container_id/>
+                <tag_server_url/>
+            </server_container>
+            <analytics>
+                <enable>1</enable>
+                <measurement_id/>
+                <measurement_protocol>
+                    <measurement_enabled/>
+                    <api_secret backend_model="Magento\Config\Model\Config\Backend\Encrypted"/>
+
+                </measurement_protocol>
+            </analytics>
+            <ads>
+                <tag_id/>
+                <conversion>
+                    <enable>0</enable>
+                    <purchase>
+                        <conversion_id/>
+                        <conversion_label/>
+                    </purchase>
+                </conversion>
+                <remarketing>
+                    <enable>0</enable>
+                    <conversion_id/>
+                    <conversion_label/>
+                </remarketing>
+            </ads>
+            <server_side_tracking>
+                <headless_storefront>0</headless_storefront>
+                <track_missing_purchase_events_only>1</track_missing_purchase_events_only>
+            </server_side_tracking>
+            <attributes>
+                <product>sku</product>
+                <brand/>
+                <categories/>
+            </attributes>
+            <events>
+                <purchase>
+                    <tax_enabled>1</tax_enabled>
+                </purchase>
+            </events>
+            <page_speed_optimization>
+                <enabled>0</enabled>
+            </page_speed_optimization>
+            <customer_data>
+                <protect>0</protect>
+            </customer_data>
+        </mfgoogletagmanager>
+    </default>
+</config>

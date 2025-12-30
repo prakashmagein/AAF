@@ -1,0 +1,24 @@
+<?php
+$escaper = $block->escaper();
+$itemList = $block->getItemsEvent();
+?>
+<?php if ($itemList): ?>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "purchase",
+            ecommerce: {
+                transaction_id: "<?=$escaper->escapeHtml($block->getTransactionId())?>",
+                value: "<?=$escaper->escapeHtml($block->getValue())?>",
+                tax: "<?=$escaper->escapeHtml($block->getTaxAmount())?>",
+                shipping: "<?=$escaper->escapeHtml($block->getShippingAmount())?>",
+                currency: "<?=$escaper->escapeHtml($block->getCurrency())?>",
+                coupon: "<?=$escaper->escapeHtml($block->getCouponCode())?>",
+                gift_card:"<?=$escaper->escapeHtml($block->getAppliedGiftCards())?>",
+                payment_type:"<?=$escaper->escapeHtml($block->getPaymentMethod())?>",
+                items: <?= /** @noEscape  */ $block->serializeItem($itemList)?>
+            }
+        });
+    </script>
+
+<?php endif;?>

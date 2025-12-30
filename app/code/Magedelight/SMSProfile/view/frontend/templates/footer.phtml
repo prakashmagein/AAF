@@ -1,0 +1,80 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2023 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2023 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */
+?>
+
+<?php 
+$smsProfileHelper = $block->getData('view_model');
+$smsProfileHelper = $smsProfileHelper->getHelperData();
+$recaptchaStatus = $smsProfileHelper->getRecaptchaStatus();
+?>
+<?php if($recaptchaStatus):?>
+    <script type="text/javascript">
+      var verifyCallback = function(response) {
+        document.getElementById('captcha-response').value = response;
+		    document.querySelector('.md-forgot-content #captcha-response').value = response;
+        document.querySelector('.md-register-content #captcha-response').value = response;
+        document.querySelector('.md-login-content #captcha-response').value = response; 
+      };
+      var widgetId1;
+      var widgetId2;
+      var widgetId3;
+      var widgetId4;
+      var sitekey = "<?= $smsProfileHelper->getRecaptchaSiteKey();?>";
+      var onloadCallback = function() {
+        if(document.contains(document.querySelector("#login-captcha"))){
+          widgetId1 = grecaptcha.render('login-captcha', {
+            'sitekey' : sitekey,
+            'callback' : verifyCallback,
+          });
+          if(document.contains(document.querySelector("body.customer-account-login #captcha-widget-id"))){
+            document.querySelector('#captcha-widget-id').value = widgetId1;
+          }
+          if(document.contains(document.querySelector(".md-login-content #captcha-widget-id"))){
+            document.querySelector('.md-login-content #captcha-widget-id').value = widgetId1;
+          }
+        }
+        if(document.contains(document.querySelector("#register-captcha"))){
+          widgetId2 = grecaptcha.render(document.getElementById('register-captcha'), {
+            'sitekey' : sitekey,
+            'callback' : verifyCallback,
+          });
+          if(document.contains(document.querySelector("body.customer-account-create #captcha-widget-id"))){
+            document.querySelector('#captcha-widget-id').value = widgetId2;
+          }
+          if(document.contains(document.querySelector(".md-register-content #captcha-widget-id"))){
+            document.querySelector('.md-register-content #captcha-widget-id').value = widgetId2;
+          }
+        }
+        if(document.contains(document.querySelector("#forgot-captcha"))){
+          widgetId3 = grecaptcha.render('forgot-captcha', {
+            'sitekey' : sitekey,
+            'callback' : verifyCallback
+          });
+          if(document.contains(document.querySelector("body.customer-account-forgotpassword #captcha-widget-id"))){
+            document.querySelector('#captcha-widget-id').value = widgetId3;
+          }
+          if(document.contains(document.querySelector(".md-forgot-content #captcha-widget-id"))){
+            document.querySelector('.md-forgot-content #captcha-widget-id').value = widgetId3;
+          }
+        }
+        if(document.contains(document.querySelector("#edit-captcha"))){
+          widgetId4 = grecaptcha.render('edit-captcha', {
+            'sitekey' : sitekey,
+            'callback' : verifyCallback
+          });
+          document.querySelector('#captcha-widget-id').value = widgetId4;
+        }
+      };
+    </script>
+	<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    </script>
+<?php endif;?>

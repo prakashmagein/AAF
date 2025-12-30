@@ -1,0 +1,850 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2023 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2023 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var \Magento\Customer\Block\Form\Register $block */
+?>
+<?php 
+    $currentUrl = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+    $smsProfileHelper = $block->getData('view_model');
+    $smsProfileHelper = $smsProfileHelper->getHelperData();
+    $autoVerifyOTP = $smsProfileHelper->getAutoGenerateLogin();
+    $mobileNumberLimit = $smsProfileHelper->getMobileNumberLimit();
+    $otpLength = $smsProfileHelper->getOtpLength();
+    $resendLimitEnable=$smsProfileHelper->getOTPResendLimitEnable();
+    $resendLimit=$smsProfileHelper->getOTPResendLimit();
+    $resendLimitTime=$smsProfileHelper->getResendTime();
+    $smsDefault = $block->getLayout()->createBlock('Magedelight\SMSProfile\Block\SMSDefault');
+    $emailOptional = $smsProfileHelper->getSmsProfileEmailOptionalOnSignUp();
+    $mobileVerification = $smsProfileHelper->verifyMobileBeforeRegistration();
+    $class = "show";
+    $validateClass = '';
+    $required = 0;
+    $enableModule = $smsProfileHelper->getModuleStatus();
+    if ($enableModule && in_array($smsProfileHelper->getSendOtpVia(), ['sms', 'both'])){
+      $required = $smsProfileHelper->getSmsProfilePhoneRequiredOnSignUp();
+      $validateClass = $smsProfileHelper->getSmsProfilePhoneValidationClass();
+    }
+
+    $phoneValidation = $smsProfileHelper->getPhoneValidation();
+
+    $mobileNumberFieldClass = 10;
+    if(!$smsProfileHelper->isCustomerCountryEnabled()){
+        for ($i=0; $i < count($phoneValidation); $i++) { 
+            if ($phoneValidation[$i]['country']=='default') {
+                $mobileNumberFieldClass = $phoneValidation[$i]['digit'];
+            }  
+        }
+    }
+?>
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+use Magento\Customer\Helper\Address;
+
+/** @var \Magento\Customer\Block\Form\Register $block */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Magento\Framework\View\Helper\SecureHtmlRenderer $secureRenderer */
+
+/** @var Magento\Customer\Helper\Address $addressHelper */
+$addressHelper = $block->getData('addressHelper');
+/** @var \Magento\Directory\Helper\Data $directoryHelper */
+$directoryHelper = $block->getData('directoryHelper');
+/** @var \Magento\Customer\ViewModel\Address\RegionProvider $regionProvider */
+$regionProvider = $block->getRegionProvider();
+$formData = $block->getFormData();
+/** @var \Magento\Customer\ViewModel\CreateAccountButton $createAccountButtonViewModel */
+$createAccountButtonViewModel = $block->getData('create_account_button_view_model');
+?>
+<?php $displayAll = $block->getConfig('general/region/display_all'); ?>
+<?= $block->getChildHtml('form_fields_before') ?>
+<?php /* Extensions placeholder */ ?>
+<?= $block->getChildHtml('customer.form.register.extra') ?>
+<form class="form create account form-create-account"
+      action="<?= $escaper->escapeUrl($block->getPostActionUrl()) ?>"
+      method="post"
+      id="form-validate"
+      enctype="multipart/form-data"
+      autocomplete="off">
+    <?= /* @noEscape */ $block->getBlockHtml('formkey') ?>
+    <?php if($enableModule && in_array($smsProfileHelper->getSendOtpVia(), ['sms', 'both'])): ?>
+        <input type='hidden' name='form_type' id="form_type" value='<?= $escaper->escapeHtmlAttr('create') ?>'/>
+        <input type='hidden' name='auto_verify_otp' id="auto_verify_otp" value='<?= $escaper->escapeHtmlAttr($autoVerifyOTP) ?>'/>
+        <input type='hidden' name='mobile_number_limit' id="mobile_number_limit" value='<?= $escaper->escapeHtmlAttr($mobileNumberLimit) ?>'/>
+        <input type='hidden' name='opt_code_limit' id="opt_code_limit" value='<?= $escaper->escapeHtmlAttr($otpLength) ?>'/>
+        <input type='hidden' name='resend_limit' id="resend_limit" value='<?= $escaper->escapeHtmlAttr($resendLimit) ?>'/>
+        <input type='hidden' name='resend_limit_time' id="resend_limit_time" value='<?= $escaper->escapeHtmlAttr($resendLimitTime) ?>'/>
+        <input type="hidden" class="signupOtpValidation" name="signupOtpValidation" value="0" />
+        <input type='hidden' id="phone_validation" name="phone_validation" value="<?= $escaper->escapeHtmlAttr(json_encode($phoneValidation)) ?>"/>
+        <?php if(!$smsProfileHelper->isCustomerCountryEnabled()):?>
+            <input type="hidden" id="default_mobile_validation" value="<?= $escaper->escapeHtmlAttr($mobileNumberFieldClass);?>" />
+        <?php endif;?>
+        <?php if(str_contains($currentUrl,'customer/account/create/')):?>
+            <script type="text/x-magento-init">
+            {
+                "*": {
+                    "Magedelight_SMSProfile/js/custom-login" : {
+                    }
+                }
+            }
+            </script>
+        <?php endif;?>
+    <?php endif;?>
+    <?php if($mobileVerification && $enableModule && in_array($smsProfileHelper->getSendOtpVia(), ['sms', 'both'])): ?>
+      <?php $class="none";?>
+      <fieldset class="fieldset mobile-verification">
+            <legend class="legend"><span><?= $block->escapeHtml(__('Mobile Verification')) ?></span></legend>
+            <div class="field field-name-customer_mobile <?php if($required) {echo 'required'; }?>">
+                <label class="label" for="telephone"><span>Customer Mobile</span></label>
+                <div class="control">
+                  <?php if($smsProfileHelper->isCustomerCountryEnabled()): ?>
+                    <input type="hidden" value="" id="countryreg" name="countryreg" />
+                    <input type="hidden" value="" id="cus_mob" name="cus_mob" />
+                    <input type="hidden" value="" id="countryregcode" name="countryregcode" />
+                  <?php endif; ?>
+                  <input data-name="create" id="login_mobile" name="customer_mobile" value="" title="customer_mobile" class="input-text <?php if($required) {echo 'required-entry ';} ?>" data-validate="{'validate-number':true,'max_text_length':9}"autocomplete="off" aria-required="true" type="text" data-mage-init='{"validation":{}}' onkeypress="return event.keyCode != 13;"> 
+                  <div class="profile-notice-phone">
+                        <span><?= $smsProfileHelper->getPhoneNote(); ?></span>
+                  </div>
+                  <?php if (in_array($smsProfileHelper->getSendOtpVia(), ['sms', 'both'])):?>
+                    <?php if($autoVerifyOTP != 1): ?>
+                        <button class="send_otp_login action primary" style="display: none;" type="button"><?= __('Generate OTP');?>
+                        </button>
+                    <?php endif; ?>
+                    <span class="otp_generatenote">&nbsp;</span>
+                    <span class="smserror" style="color: red;">&nbsp;</span>
+                    <div class="resendotp-block" style="display: none">
+                            <?php if($resendLimitEnable == 1) : ?>
+                            <p class="resend-wait">
+                                <?= __('Resend In:'); ?>
+                                <span class="time"><?= ' '.$resendLimitTime; ?></span>
+                                <?= __('Seconds'); ?>
+                            </p>
+                            <div class="resendlink" style="display: none">
+                                <button class="resendotp"  type="button"><?= __('Resend OTP');?></button>
+                            </div>
+                            <div class="resend-link-attempt" style="display: none"></div>
+                        <?php endif; ?>
+                            <div class="field field-name-otp required">
+                                <label class="label" for="otp">
+                                    <span><?= __('Please enter verification code here'); ?></span>
+                                </label>
+                                <div class="control">
+                                    <input id="otp" maxlength="6" minlength="4" name="otp" value="" title="otp" class="input-text required-entry"
+                                        data-validate="{required:true}" autocomplete="off" aria-required="true"
+                                        type="text" novalidate="novalidate" style="width: 200px;" onkeypress="return event.keyCode != 13;">
+                                       
+                                    <button class="verif_otp_login action primary"
+                                            type="button"><?= __('Verify OTP'); ?></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <span class="otp_text"></span>
+                  <?php endif; ?>
+                </div>
+          </div>
+          <?php $recaptchaStatus = $smsProfileHelper->getRecaptchaStatus();
+                $recaptchaForms  = $smsProfileHelper->getRecaptchaForms();
+            ?>
+            <?php if($recaptchaStatus && in_array('create', $recaptchaForms)):?>
+                <!-- Google reCAPTCHA widget -->
+                <div id="register-captcha"></div>
+                <input type="hidden" id="captcha-response" name="captcha-response" />
+                <input type="hidden" id="captcha-widget-id" name="captcha-widget-id" />
+            <?php endif;?>
+        </fieldset>
+    <?php endif;?>
+    <div class="sms-profile-register" style="display: <?=$class;?>">
+        <div class="register_extra_div">
+      <fieldset class="fieldset create info">
+        <div class="custom_register_left">
+        <p class="heading"><?php //echo __('You can also create account via')?></p>
+        <!-- <button  type="button" class="Phone">
+         <a class="action back button_anchor" href="<?php //echo $block->getUrl('customer/account/create'); ?>">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18.3312 14.1V16.6C18.3322 16.8321 18.2846 17.0618 18.1917 17.2745C18.0987 17.4871 17.9623 17.678 17.7913 17.8349C17.6203 17.9918 17.4184 18.1113 17.1985 18.1856C16.9787 18.26 16.7457 18.2876 16.5146 18.2667C13.9503 17.9881 11.4871 17.1118 9.32291 15.7084C7.30943 14.4289 5.60236 12.7218 4.32291 10.7084C2.91456 8.53437 2.03811 6.05919 1.76458 3.48337C1.74375 3.25292 1.77114 3.02067 1.84499 2.80139C1.91885 2.58211 2.03755 2.38061 2.19355 2.20972C2.34954 2.03883 2.53941 1.90229 2.75107 1.8088C2.96272 1.71531 3.19153 1.66692 3.42291 1.6667H5.92291C6.32733 1.66272 6.7194 1.80593 7.02604 2.06964C7.33269 2.33335 7.53297 2.69957 7.58958 3.10003C7.6951 3.90009 7.89078 4.68564 8.17291 5.4417C8.28503 5.73997 8.30929 6.06413 8.24283 6.37577C8.17637 6.6874 8.02196 6.97346 7.79791 7.20003L6.73958 8.25837C7.92587 10.3447 9.65329 12.0721 11.7396 13.2584L12.7979 12.2C13.0245 11.976 13.3105 11.8216 13.6222 11.7551C13.9338 11.6886 14.258 11.7129 14.5562 11.825C15.3123 12.1072 16.0979 12.3028 16.8979 12.4084C17.3027 12.4655 17.6724 12.6694 17.9367 12.9813C18.201 13.2932 18.3414 13.6913 18.3312 14.1Z" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?php //echo __('Phone')?></span>
+</a>
+</button>
+        <button  type="button" class="Email">
+        <a class="action back button_anchor" href="<?php // echo $block->getUrl('customer/account/create'); ?>">    
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3.33073 3.33336H16.6641C17.5807 3.33336 18.3307 4.08336 18.3307 5.00003V15C18.3307 15.9167 17.5807 16.6667 16.6641 16.6667H3.33073C2.41406 16.6667 1.66406 15.9167 1.66406 15V5.00003C1.66406 4.08336 2.41406 3.33336 3.33073 3.33336Z" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18.3307 5.00003L9.9974 10.8334L1.66406 5.00003" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?php // echo __('Email')?></span>
+</a>
+</button> -->
+       <!--  <button class="Facebook"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M15.0026 1.66702H12.5026C11.3975 1.66702 10.3377 2.10601 9.55633 2.88741C8.77492 3.66881 8.33594 4.72862 8.33594 5.83369V8.33369H5.83594V11.667H8.33594V18.3337H11.6693V11.667H14.1693L15.0026 8.33369H11.6693V5.83369C11.6693 5.61268 11.7571 5.40071 11.9133 5.24443C12.0696 5.08815 12.2816 5.00036 12.5026 5.00036H15.0026V1.66702Z" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span>Facebook</span></button> -->
+      <!--  <button type="button" class="Apple"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8302 1.66702C12.9969 2.58369 12.5802 3.50036 12.0802 4.16702C11.5802 4.83369 10.6635 5.41702 9.74686 5.33369C9.5802 4.41702 9.99686 3.58369 10.4969 2.91702C11.0802 2.25036 11.9969 1.75036 12.8302 1.66702ZM15.4969 16.167C15.9135 15.5004 16.1635 15.0837 16.4969 14.3337C13.9135 13.3337 13.4969 9.66702 16.0802 8.33369C15.3302 7.33369 14.2469 6.83369 13.1635 6.83369C12.4135 6.83369 11.9135 7.00036 11.4135 7.16702C10.9969 7.33369 10.6635 7.41702 10.2469 7.41702C9.74686 7.41702 9.41353 7.25036 8.91353 7.08369C8.41353 6.91702 7.91353 6.75036 7.3302 6.75036C6.16353 6.75036 4.91353 7.41702 4.16353 8.66702C3.0802 10.3337 3.24686 13.5837 4.99686 16.2504C5.74686 17.2504 6.5802 18.3337 7.66353 18.3337C8.16353 18.3337 8.41353 18.167 8.74686 18.0837C9.16353 17.917 9.5802 17.7504 10.2469 17.7504C10.9969 17.7504 11.3302 17.917 11.7469 18.0837C12.0802 18.2504 12.3302 18.3337 12.8302 18.3337C13.9969 18.3337 14.8302 17.0837 15.4969 16.167Z" stroke="#9D782F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?php //echo __('Apple')?></span></button> -->
+        <!-- <button class="Google"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18.0026 8.50036H10.1693V11.5837H14.7526C14.6693 12.3337 14.1693 13.5004 13.0859 14.2504C12.4193 14.7504 11.4193 15.0837 10.1693 15.0837C8.0026 15.0837 6.08594 13.667 5.41927 11.5837C5.2526 11.0837 5.16927 10.5004 5.16927 9.91702C5.16927 9.33369 5.2526 8.75036 5.41927 8.25036C5.5026 8.08369 5.5026 7.91702 5.58594 7.83369C6.33594 6.08369 8.08594 4.83369 10.1693 4.83369C11.7526 4.83369 12.7526 5.50036 13.4193 6.08369L15.7526 3.75036C14.3359 2.50036 12.4193 1.66702 10.1693 1.66702C6.91927 1.66702 4.08594 3.50036 2.7526 6.25036C2.16927 7.41702 1.83594 8.66702 1.83594 10.0004C1.83594 11.3337 2.16927 12.5837 2.7526 13.7504C4.08594 16.5004 6.91927 18.3337 10.1693 18.3337C12.4193 18.3337 14.3359 17.5837 15.6693 16.3337C17.2526 14.917 18.1693 12.7504 18.1693 10.167C18.1693 9.50036 18.0859 9.00036 18.0026 8.50036Z" stroke="#9D782F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span>Google</span></button> -->
+<?php
+/*
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$yourBlock = $objectManager->get('Mageplaza\SocialLogin\Block\Popup\Social');
+
+$availableSocials = $yourBlock->getAvailableSocials();
+$childBlock = $yourBlock->getChildBlock('request.info');
+
+if ($yourBlock->canShow() && sizeof($availableSocials)):
+    ?>
+            <?php foreach ($availableSocials as $key => $social): ?>
+                <?php if($key=='google'): ?>
+                    <div  class="social_login_btn_div Google"><a class="Google"
+                       data-mage-init='{"socialProvider": {"url": "<?= $social['login_url'] ?>"}}'><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18.0026 8.50036H10.1693V11.5837H14.7526C14.6693 12.3337 14.1693 13.5004 13.0859 14.2504C12.4193 14.7504 11.4193 15.0837 10.1693 15.0837C8.0026 15.0837 6.08594 13.667 5.41927 11.5837C5.2526 11.0837 5.16927 10.5004 5.16927 9.91702C5.16927 9.33369 5.2526 8.75036 5.41927 8.25036C5.5026 8.08369 5.5026 7.91702 5.58594 7.83369C6.33594 6.08369 8.08594 4.83369 10.1693 4.83369C11.7526 4.83369 12.7526 5.50036 13.4193 6.08369L15.7526 3.75036C14.3359 2.50036 12.4193 1.66702 10.1693 1.66702C6.91927 1.66702 4.08594 3.50036 2.7526 6.25036C2.16927 7.41702 1.83594 8.66702 1.83594 10.0004C1.83594 11.3337 2.16927 12.5837 2.7526 13.7504C4.08594 16.5004 6.91927 18.3337 10.1693 18.3337C12.4193 18.3337 14.3359 17.5837 15.6693 16.3337C17.2526 14.917 18.1693 12.7504 18.1693 10.167C18.1693 9.50036 18.0859 9.00036 18.0026 8.50036Z" stroke="#9D782F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?= __('Google') ?></span></a></div>
+                 <?php endif; ?>
+                 <?php if($key=='facebook'): ?>
+                    <div  class="social_login_btn_div Facebook"><a class="Facebook"
+                       data-mage-init='{"socialProvider": {"url": "<?= $social['login_url'] ?>"}}'><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M15.0026 1.66702H12.5026C11.3975 1.66702 10.3377 2.10601 9.55633 2.88741C8.77492 3.66881 8.33594 4.72862 8.33594 5.83369V8.33369H5.83594V11.667H8.33594V18.3337H11.6693V11.667H14.1693L15.0026 8.33369H11.6693V5.83369C11.6693 5.61268 11.7571 5.40071 11.9133 5.24443C12.0696 5.08815 12.2816 5.00036 12.5026 5.00036H15.0026V1.66702Z" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?= __('Facebook') ?></span></a></div>
+                 <?php endif; ?>   
+            <?php endforeach; ?>
+<?php endif; */ ?>
+
+        <p class="heading-second" ><?php echo __('Create an account via?') ?></p>
+        <button type="button" id="make_email_require_btn" class="email-custom-button-emailoption account_button">
+            <?php echo __("Email"); ?>
+        </button>
+        <button style="display:none" type="button" id="make_phone_require_btn" class="phone-custom-button-emailoption account_button">
+            <?php echo __("Phone"); ?>
+        </button>
+
+
+        <p class="heading-second" ><?php echo __('Already have an account?') ?></p>
+        <button type="button" class="account_button">
+            <a class="action back button_anchor" href="<?php echo $block->getUrl('customer/account/login'); ?>"><span><?= $block->escapeHtml(__('Login')) ?></span></a></button>
+        </div>
+      </fieldset>
+     <fieldset class="fieldset create account">
+        <div class="cust-create-ac-error" style="color: red;"><span></span></div>
+        <input class="otp-value-verify" type="hidden" name="otp_value_verify" value="">
+    <fieldset class="fieldset create_ info_">
+        <legend class="legend"><span><?= $escaper->escapeHtml(__('Create Your Account')) ?></span></legend>
+        <input type="hidden" name="success_url" value="<?= $escaper->escapeUrl($block->getSuccessUrl()) ?>">
+        <input type="hidden" name="error_url" value="<?= $escaper->escapeUrl($block->getErrorUrl()) ?>">
+        <?= $block->getLayout()
+                ->createBlock(\Magento\Customer\Block\Widget\Name::class)
+                ->setObject($formData)
+                ->setForceUseCustomerAttributes(true)
+                ->toHtml() ?>
+
+
+
+       <?php if(!$mobileVerification && $enableModule && $required): ?>
+          <div class="field field-name-customer_mobile <?php if($required) {echo 'required'; }?>">
+                
+                <div class="control">
+                  <?php if($smsProfileHelper->isCustomerCountryEnabled()): ?>
+                    <input type="hidden" value="" id="countryreg" name="countryreg" />
+                    <input type="hidden" value="" id="cus_mob" name="cus_mob" />
+                    <input type="hidden" value="" id="countryregcode" name="countryregcode" />
+                  <?php endif; ?>
+                    <input data-name="create" placeholder="<?php echo __("Phone Number")?>" id="login_mobile" name="customer_mobile" value="" title="5xxxxxxxx"
+                               class="input-text <?php if($required) {echo 'required-entry ';} ?>"data-validate="{'required':true, 'validate-number':true}"
+                               autocomplete="off" aria-required="true" type="number" data-mage-init='{"validation":{}}'> 
+                    <label class="label" for="telephone"><span><?php echo __('Customer Mobile')?></span></label>           
+                  <div class="profile-notice-phone">
+                        <span><?= $smsProfileHelper->getPhoneNote(); ?></span>
+                  </div>
+                  <?php if (in_array($smsProfileHelper->getSendOtpVia(), ['sms', 'both'])):?>
+                    <?php if($autoVerifyOTP != 1): ?>
+                        <button class="send_otp_login action primary" style="display: none;" type="button"><?= __('Generate OTP');?>
+                        </button>
+                    <?php endif; ?>
+                    <span class="otp_generatenote"></span>
+                    <span class="smserror" style="color: red;"></span>
+                    <div class="resendotp-block" style="display: none">
+                            <?php if($resendLimitEnable == 1) : ?>
+                            <p class="resend-wait">
+                                <?= __('Resend In:'); ?>
+                                <span class="time"><?= ' '.$resendLimitTime; ?></span>
+                                <?= __('Seconds'); ?>
+                            </p>
+                            <div class="resendlink" style="display: none">
+                                <button class="resendotp"  type="button"><?= __('Resend OTP');?></button>
+                            </div>
+                            <div class="resend-link-attempt" style="display: none"></div>
+                        <?php endif; ?>
+                            <div class="field field-name-otp required">
+                                <label class="label" for="otp">
+                                    <span><?= __('Please enter verification code here'); ?></span>
+                                </label>
+                                <div class="control">
+                                    <input id="otp" maxlength="6" minlength="4" name="otp" value="" title="otp" class="input-text required-entry"
+                                        data-validate="{required:true}" autocomplete="off" aria-required="true"
+                                        type="text" novalidate="novalidate" style="width: 200px;" onkeypress="return event.keyCode != 13;">
+                                       
+                                    <button class="verif_otp_login action primary"
+                                            type="button"><?= __('Verify OTP'); ?></button>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <span class="otp_text"></span>
+                  <?php endif; ?>
+                </div>
+
+          </div>
+          <?php $recaptchaStatus = $smsProfileHelper->getRecaptchaStatus();
+                $recaptchaForms  = $smsProfileHelper->getRecaptchaForms();
+            ?>
+            <?php if($recaptchaStatus && in_array('create', $recaptchaForms)):?>
+                <!-- Google reCAPTCHA widget -->
+                <div id="register-captcha"></div>
+                <input type="hidden" id="captcha-response" name="captcha-response" />
+                <input type="hidden" id="captcha-widget-id" name="captcha-widget-id" />
+            <?php endif;?>
+        <?php endif;?>         
+
+        <?php if($emailOptional):?>
+            <div class="custom-email-optional-field" style='display: none;' class="field">
+                
+                <div class="control">
+                    <input type="email" name="email" autocomplete="email" id="email_address" value="<?= $block->escapeHtmlAttr($block->getFormData()->getEmail()) ?>" title="<?= $block->escapeHtmlAttr(__('Email Address')) ?>" data-mage-init='{"mage/trim-input":{}}' class="input-text" data-validate="{'validate-email':true}" disabled placeholder="<?= $escaper->escapeHtmlAttr(__('Email Address')) ?>">
+                    <label for="email_address" class="label"><span><?= $block->escapeHtml(__('Email Address')) ?></span></label>
+                    <span class="note-email-address-optional"><?php echo  __("Email Address Optional")?></span>
+                </div>
+            </div>
+        <?php else:?>
+        <div class="field required">
+            <div class="control">
+                <input type="email"
+                       name="email"
+                       autocomplete="email"
+                       id="email_address"
+                       value="<?= $escaper->escapeHtmlAttr($formData->getEmail()) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Email Address')) ?>"
+                       class="input-text"
+                       placeholder="<?= $escaper->escapeHtmlAttr(__('Email Address')) ?>"
+                       data-mage-init='{"mage/trim-input":{}}'
+                       data-validate="{required:true, 'validate-email':true}">
+                <label for="email_address" class="label"><span><?= $escaper->escapeHtml(__('Email Address')) ?></span></label>       
+            </div>
+        </div>
+        <?php endif; ?>
+
+        <div style="display:none;" class="email-custom-fileds-emailoption field required">
+            <div class="control">
+                <input type="email"
+                       name="email"
+                       autocomplete="email"
+                       id="email_address"
+                       value="<?= $escaper->escapeHtmlAttr($formData->getEmail()) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Email Address')) ?>"
+                       class="input-text"
+                       placeholder="<?= $escaper->escapeHtmlAttr(__('Email Address')) ?>"
+                       data-mage-init='{"mage/trim-input":{}}'
+                       data-validate="{required:true, 'validate-email':true}" disabled>
+                <label for="email_address" class="label"><span><?= $escaper->escapeHtml(__('Email Address')) ?></span></label>       
+            </div>
+        </div>
+        
+
+        <?php $_dob = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Dob::class) ?>
+        <?php if ($_dob->isEnabled()): ?>
+            <?= $_dob->setDate($formData->getDob())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_taxvat = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Taxvat::class) ?>
+        <?php if ($_taxvat->isEnabled()): ?>
+            <?= $_taxvat->setTaxvat($formData->getTaxvat())->toHtml() ?>
+        <?php endif ?>
+
+        <?php $_gender = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Gender::class) ?>
+        <?php if ($_gender->isEnabled()): ?>
+            <?= $_gender->setGender($formData->getGender())->toHtml() ?>
+        <?php endif ?>
+        <?= $block->getChildHtml('fieldset_create_info_additional') ?>
+    </fieldset>
+    <?php if ($block->getShowAddressFields()): ?>
+        <?php $cityValidationClass = $addressHelper->getAttributeValidationClass('city'); ?>
+        <?php $postcodeValidationClass = $addressHelper->getAttributeValidationClass('postcode'); ?>
+        <?php $regionValidationClass = $addressHelper->getAttributeValidationClass('region'); ?>
+        <fieldset class="fieldset address">
+            <legend class="legend"><span><?= $escaper->escapeHtml(__('Address Information')) ?></span></legend>
+            <input type="hidden" name="create_address" value="1" />
+
+            <?php $_company = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Company::class) ?>
+            <?php if ($_company->isEnabled()): ?>
+                <?= $_company->setCompany($formData->getCompany())->toHtml() ?>
+            <?php endif ?>
+
+            <?php $_telephone = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Telephone::class) ?>
+            <?php if ($_telephone->isEnabled()): ?>
+                <?= $_telephone->setTelephone($formData->getTelephone())->toHtml() ?>
+            <?php endif ?>
+
+            <?php $_fax = $block->getLayout()->createBlock(\Magento\Customer\Block\Widget\Fax::class) ?>
+            <?php if ($_fax->isEnabled()): ?>
+                <?= $_fax->setFax($formData->getFax())->toHtml() ?>
+            <?php endif ?>
+
+            <?php
+                $_streetValidationClass = $addressHelper->getAttributeValidationClass('street');
+            ?>
+
+            <div class="field street required">
+                <label for="street_1" class="label">
+                    <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?></span>
+                </label>
+                <div class="control">
+                    <input type="text"
+                           name="street[0]"
+                           value="<?= $escaper->escapeHtmlAttr($formData->getStreet(0)) ?>"
+                           title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('street') ?>"
+                           id="street_1"
+                           class="input-text <?= $escaper->escapeHtmlAttr($_streetValidationClass) ?>">
+                    <div class="nested">
+                        <?php
+                            $_streetValidationClass = $_streetValidationClass !== null ?
+                                trim(str_replace('required-entry', '', $_streetValidationClass)) : '';
+                            $streetLines = $addressHelper->getStreetLines();
+                        ?>
+                        <?php for ($_i = 2, $_n = $streetLines; $_i <= $_n; $_i++): ?>
+                            <div class="field additional">
+                                <label class="label" for="street_<?= /* @noEscape */ $_i ?>">
+                                    <span><?= $escaper->escapeHtml(__('Address')) ?></span>
+                                </label>
+                                <div class="control">
+                                    <input type="text"
+                                           name="street[<?= /* @noEscape */ $_i ?>]"
+                                           value="<?= $escaper->escapeHtml($formData->getStreetLine($_i - 1)) ?>"
+                                           title="<?= $escaper->escapeHtmlAttr(__('Street Address %1', $_i)) ?>"
+                                           id="street_<?= /* @noEscape */ $_i ?>"
+                                           class="input-text <?= $escaper->escapeHtmlAttr($_streetValidationClass) ?>">
+                                </div>
+                            </div>
+                        <?php endfor; ?>
+                    </div>
+                </div>
+            </div>
+
+            <?php if ($addressHelper->isVatAttributeVisible()): ?>
+                <?php $_vatidValidationClass = $addressHelper->getAttributeValidationClass('vat_id'); ?>
+                <div class="field taxvat">
+                    <label class="label" for="vat_id">
+                        <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('vat_id') ?></span>
+                    </label>
+                    <div class="control">
+                        <input type="text"
+                               name="vat_id"
+                               value="<?= $escaper->escapeHtmlAttr($formData->getVatId()) ?>"
+                               title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('vat_id') ?>"
+                               class="input-text <?= $escaper->escapeHtmlAttr($_vatidValidationClass) ?>"
+                               id="vat_id">
+                    </div>
+                </div>
+            <?php endif; ?>
+
+            <div class="field country required">
+                <label for="country" class="label">
+                    <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('country_id') ?></span>
+                </label>
+                <div class="control">
+                    <?= $block->getCountryHtmlSelect() ?>
+                </div>
+            </div>
+
+            <div class="field region required">
+                <label for="region_id" class="label">
+                    <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?></span>
+                </label>
+                <div class="control">
+                    <select id="region_id"
+                            name="region_id"
+                            title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?>"
+                            class="validate-select region_id">
+                        <option value="">
+                            <?= $escaper->escapeHtml(__('Please select a region, state or province.')) ?>
+                        </option>
+                    </select>
+                    <?= /* @noEscape */ $secureRenderer->renderStyleAsTag("display: none;", 'select#region_id') ?>
+                    <input type="text"
+                           id="region"
+                           name="region"
+                           value="<?= $escaper->escapeHtml($block->getRegion()) ?>"
+                           title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('region') ?>"
+                           class="input-text <?= $escaper->escapeHtmlAttr($regionValidationClass) ?>">
+                    <?= /* @noEscape */ $secureRenderer->renderStyleAsTag("display: none;", 'input#region') ?>
+                </div>
+            </div>
+
+            <div class="field required">
+                <label for="city" class="label">
+                    <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('city') ?></span>
+                </label>
+                <div class="control">
+                    <input type="text"
+                           name="city"
+                           value="<?= $escaper->escapeHtmlAttr($formData->getCity()) ?>"
+                           title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('city') ?>"
+                           class="input-text <?= $escaper->escapeHtmlAttr($cityValidationClass) ?>"
+                           id="city">
+                </div>
+            </div>
+
+            <div class="field zip required">
+                <label for="zip" class="label">
+                    <span><?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?></span>
+                </label>
+                <div class="control">
+                    <input type="text"
+                           name="postcode"
+                           value="<?= $escaper->escapeHtmlAttr($formData->getPostcode()) ?>"
+                           title="<?= /* @noEscape */ $block->getAttributeData()->getFrontendLabel('postcode') ?>"
+                           id="zip"
+                           class="input-text validate-zip-international
+                            <?= $escaper->escapeHtmlAttr($postcodeValidationClass) ?>">
+                </div>
+            </div>
+
+            <?php $addressAttributes = $block->getChildBlock('customer_form_address_user_attributes');?>
+            <?php if ($addressAttributes): ?>
+                <?php $addressAttributes->setEntityType('customer_address'); ?>
+                <?php $addressAttributes->setFieldIdFormat('address:%1$s')->setFieldNameFormat('address[%1$s]');?>
+                <?php $block->restoreSessionData($addressAttributes->getMetadataForm(), 'address');?>
+                <?= $addressAttributes->setShowContainer(false)->toHtml() ?>
+            <?php endif;?>
+            <input type="hidden" name="default_billing" value="1">
+            <input type="hidden" name="default_shipping" value="1">
+        </fieldset>
+
+    <?php endif; ?>
+    <fieldset class="fieldset create_ account_"
+              data-hasrequired="<?= $escaper->escapeHtmlAttr(__('* Required Fields')) ?>">
+        
+       
+
+        <fieldset class="fieldset additional_info">
+        <?= $block->getChildHtml('form_additional_info') ?>
+        </fieldset>
+
+        <?php if($emailOptional):?>
+        
+        <?php else:?>
+            <div class="field password required">
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?= $escaper->escapeHtmlAttr(__('Password')) ?>"
+                       class="input-text"
+                       placeholder="<?= $escaper->escapeHtmlAttr(__('Password')) ?>"
+                       data-password-min-length="<?=
+                        $escaper->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
+                       data-password-min-character-sets="<?=
+                        $escaper->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off">
+                <label for="password" class="label"><span><?= $escaper->escapeHtml(__('Password')) ?></span></label>       
+                <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?= $escaper->escapeHtml(__('Password Strength')) ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                            <?= $escaper->escapeHtml(__('No Password')) ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="field confirmation required">
+            <div class="control">
+                <input type="password"
+                       name="password_confirmation"
+                       placeholder="<?= $escaper->escapeHtmlAttr(__('Re-Enter Password')) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Re-Enter Password')) ?>"
+                       id="password-confirmation"
+                       class="input-text"
+                       data-validate="{required:true, equalTo:'#password'}"
+                       autocomplete="off">
+                <label for="password-confirmation" class="label">
+                <span><?= $escaper->escapeHtml(__('Re-Enter Password')) ?></span>
+                </label>       
+            </div>
+        </div>
+        <?php endif; ?>
+
+
+        <div style="display:none;" class="password-custom-fileds-emailoption field password required">
+            <div class="control">
+                <input type="password" name="password" id="password"
+                       title="<?= $escaper->escapeHtmlAttr(__('Password')) ?>"
+                       class="input-text"
+                       placeholder="<?= $escaper->escapeHtmlAttr(__('Password')) ?>"
+                       data-password-min-length="<?=
+                        $escaper->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
+                       data-password-min-character-sets="<?=
+                        $escaper->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
+                       data-validate="{required:true, 'validate-customer-password':true}"
+                       autocomplete="off" disabled>
+                <label for="password" class="label"><span><?= $escaper->escapeHtml(__('Password')) ?></span></label>       
+                <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
+                    <div id="password-strength-meter" class="password-strength-meter">
+                        <?= $escaper->escapeHtml(__('Password Strength')) ?>:
+                        <span id="password-strength-meter-label" data-role="password-strength-meter-label">
+                            <?= $escaper->escapeHtml(__('No Password')) ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div style="display:none;" class="confirmation-custom-fileds-emailoption field confirmation required">
+            <div class="control">
+                <input type="password"
+                       name="password_confirmation"
+                       placeholder="<?= $escaper->escapeHtmlAttr(__('Re-Enter Password')) ?>"
+                       title="<?= $escaper->escapeHtmlAttr(__('Re-Enter Password')) ?>"
+                       id="password-confirmation"
+                       class="input-text"
+                       data-validate="{required:true, equalTo:'#password'}"
+                       autocomplete="off" disabled>
+                <label for="password-confirmation" class="label">
+                <span><?= $escaper->escapeHtml(__('Re-Enter Password')) ?></span>
+                </label>       
+            </div>
+        </div>
+      
+    </fieldset>
+
+    
+
+    <?php if ($block->isNewsletterEnabled()): ?>
+            <div class="field choice newsletter">
+                <input type="checkbox"
+                       name="is_subscribed"
+                       title="<?= $escaper->escapeHtmlAttr(__('Sign Up for Newsletter')) ?>"
+                       value="1"
+                       id="is_subscribed"
+                       <?php if ($formData->getIsSubscribed()): ?>checked="checked"<?php endif; ?>
+                       class="checkbox">
+                <label for="is_subscribed" class="label">
+                    <span><?= $escaper->escapeHtml(__('Sign Up for Newsletter')) ?></span>
+                </label>
+            </div>
+            <?php /* Extensions placeholder */ ?>
+            <?= $block->getChildHtml('customer.form.register.newsletter') ?>
+        <?php endif ?>
+
+    <div class="actions-toolbar">
+        <div class="primary">
+            <button type="submit"
+                    class="action submit primary"
+                    title="<?= $escaper->escapeHtmlAttr(__('Create an Account')) ?>"
+                    id="send2"
+                    <?php if ($createAccountButtonViewModel->disabled()): ?> disabled="disabled" <?php endif; ?>>
+                <span><?= $escaper->escapeHtml(__('Create an Account')) ?></span>
+            </button>
+        </div>
+        <div class="secondary">
+            <a class="action back"
+               href="<?= $escaper->escapeUrl($block->getBackUrl()) ?>">
+                <span><?= $escaper->escapeHtml(__('Back')) ?></span>
+            </a>
+        </div>
+    </div>
+</fieldset>
+  </div>
+</div>
+</form>
+<?php $ignore = /* @noEscape */ $_dob->isEnabled() ? '\'input[id$="full"]\'' : 'null';
+$scriptString = <<<script
+require([
+    'jquery',
+    'mage/mage'
+], function($){
+
+    var dataForm = $('#form-validate');
+    var ignore = {$ignore};
+
+    dataForm.mage('validation', {
+script;
+if ($_dob->isEnabled()):
+    $scriptString .= <<<script
+        errorPlacement: function(error, element) {
+            if (element.prop('id').search('full') !== -1) {
+                var dobElement = $(element).parents('.customer-dob'),
+                    errorClass = error.prop('class');
+                error.insertAfter(element.parent());
+                dobElement.find('.validate-custom').addClass(errorClass)
+                    .after('<div class="' + errorClass + '"></div>');
+            }
+            else {
+                error.insertAfter(element);
+            }
+        },
+        ignore: ':hidden:not(' + ignore + ')'
+script;
+else:
+    $scriptString .= <<<script
+        ignore: ignore ? ':hidden:not(' + ignore + ')' : ':hidden'
+script;
+endif;
+$scriptString .= <<<script
+    }).find('input:text').attr('autocomplete', 'off');
+});
+script;
+?>
+<?= /* @noEscape */ $secureRenderer->renderTag('script', [], $scriptString, false) ?>
+<?php if ($block->getShowAddressFields()): ?>
+    <?php
+    $regionJson = /* @noEscape */ $regionProvider->getRegionJson();
+    $regionId = (int) $formData->getRegionId();
+    $countriesWithOptionalZip = /* @noEscape */ $directoryHelper->getCountriesWithOptionalZip(true);
+    ?>
+<?php // phpcs:ignore Magento2.Legacy.PhtmlTemplate ?>
+<script type="text/x-magento-init">
+    {
+        "#country": {
+            "directoryRegionUpdater": {
+                "optionalRegionAllowed": <?= /* @noEscape */ $displayAll ? 'true' : 'false' ?>,
+                "regionListId": "#region_id",
+                "regionInputId": "#region",
+                "postcodeId": "#zip",
+                "form": "#form-validate",
+                "regionJson": <?= /* @noEscape */ $regionJson ?>,
+                "defaultRegion": <?= /* @noEscape */ $regionId ?>,
+                "countriesWithOptionalZip": <?=  /* @noEscape */ $countriesWithOptionalZip ?>
+            }
+        }
+    }
+</script>
+<?php endif; ?>
+<?php // phpcs:ignore Magento2.Legacy.PhtmlTemplate ?>
+<script type="text/x-magento-init">
+    {
+        ".field.password": {
+            "passwordStrengthIndicator": {
+                "formSelector": "form.form-create-account"
+            }
+        },
+        "*": {
+            "Magento_Customer/js/block-submit-on-send": {
+                "formId": "form-validate"
+            },
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "showPassword": {
+                        "component": "Magento_Customer/js/show-password",
+                        "passwordSelector": "#password,#password-confirmation"
+                    }
+                }
+            }
+        }
+    }
+</script>
+<?php if ($enableModule && $smsProfileHelper->isCustomerCountryEnabled()):?>
+    <script type="text/x-magento-init">
+        {
+            "input[name='customer_mobile']": {
+            "Magedelight_SMSProfile/js/intlTelephoneInput":
+            {
+                "nationalMode":true,
+                "separateDialCode": true,
+                "utilsScript":"<?= $this->getViewFileUrl('Magedelight_SMSProfile::js/utils.js'); ?>",
+                "preferredCountries":["<?= $smsDefault->getDefaultCountry(); ?>"],
+                "onlyCountries":[<?= $smsDefault->getAvailableCountries(); ?>]
+            }
+        }
+    }
+    </script>
+<?php endif; ?>
+
+<style type="text/css">
+    #password-strength-meter-container{
+        display: none;
+    }
+    .create.account .field labcel{
+        display: none;
+    }
+    #assistance_allowed_checkbox{
+        display: none;
+    }
+    .fieldset.create_.info_ .field label{
+        display: none;
+    }
+    .fieldset.create_.account_ .field label{
+        display: none;
+    }
+    .fieldset.create_.account_{
+        margin-top: 0px;
+    }
+    .fieldset.additional_info{
+        margin-top: 0px;
+    }
+</style>
+
+<script type="text/javascript">
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        // Function to check if OTP is verified and update customer_mobile
+        $(".customer_mobile").hide();
+
+	 $('#login_mobile').on('input', function () {
+		  let val = $(this).val().replace(/\D/g, '').slice(0, 9);
+		  $(this).val(val);
+		});
+		$('#login_mobile').on('keydown', function(e) {
+		  if (e.key === 'Enter' || e.keyCode === 13) {
+		  $('.send_otp_login').click();
+		    e.preventDefault(); // prevent form submission
+		  }
+		});
+        // Enable and disable email passsword
+        $('#make_email_require_btn').on('click', function() {
+            $(this).hide();
+            $('.form.create.account.form-create-account').find('div.mage-error').remove();
+            $('#md-login-popup #md-register-content #make_email_require_btn').addClass('custom-tab-button-active');
+            $('#md-login-popup #md-register-content #make_phone_require_btn').removeClass('custom-tab-button-active');
+            $('#make_phone_require_btn').show();
+            $('.email-custom-fileds-emailoption').css('display', 'block');
+            $('.email-custom-fileds-emailoption input').prop('disabled', false);
+
+            $('.password-custom-fileds-emailoption').css('display', 'block');
+            $('.password-custom-fileds-emailoption input').prop('disabled', false);
+
+            $('.confirmation-custom-fileds-emailoption').css('display', 'block');
+            $('.confirmation-custom-fileds-emailoption input').prop('disabled', false);
+        });
+        $('#make_phone_require_btn').on('click', function() {
+            $(this).hide();
+            $('.form.create.account.form-create-account').find('div.mage-error').remove();
+            $('#md-login-popup #md-register-content #make_phone_require_btn').addClass('custom-tab-button-active');
+            $('#md-login-popup #md-register-content #make_email_require_btn').removeClass('custom-tab-button-active');
+            $('#make_email_require_btn').show();
+            $('.email-custom-fileds-emailoption').css('display', 'none');
+            $('.email-custom-fileds-emailoption input').prop('disabled', true);
+
+            $('.password-custom-fileds-emailoption').css('display', 'none');
+            $('.password-custom-fileds-emailoption input').prop('disabled', true);
+
+            $('.confirmation-custom-fileds-emailoption').css('display', 'none');
+            $('.confirmation-custom-fileds-emailoption input').prop('disabled', true);
+        });
+
+    });
+});
+
+</script> 

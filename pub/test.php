@@ -1,0 +1,1 @@
+<?php echo (int)function_exists('imagewebp');

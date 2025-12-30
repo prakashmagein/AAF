@@ -1,0 +1,48 @@
+
+<div class="onestepcheckout-place-order-block checkout-comment-block order-summary hoverable">
+    <div class="step-title" data-role="title">
+        <span data-bind="i18n: 'Promo Code'"></span>
+    </div>
+    <div class="field-row">
+        <div class="custom-discoun-checkout discount-code">
+        <div class="payment-option-content" data-role="content">
+            <!-- ko foreach: getRegion('messages') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+            <form class="form form-discount" id="discount-form" data-bind="blockLoader: (typeof isLoading === 'undefined') ? isBlockLoading : isLoading">
+                <div class="payment-option-inner">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input-text"
+                                   type="text"
+                                   id="discount-code"
+                                   name="discount_code"
+                                   data-validate="{'required-entry':true}"
+                                   data-bind="value: couponCode, attr:{placeholder: $t('Enter discount code')} "/>
+                            <label for="discount-code" data-bind="i18n: 'Coupon Code'"></label>                                       
+                        </div>
+                    </div>
+
+                    <div class="actions-toolbar">
+                    <div class="primary">
+                        <!-- ko ifnot: isApplied() -->
+                            <button class="action action-apply" type="submit" data-bind="'value': $t('Apply Discount'), click: apply">
+                                <span><!-- ko i18n: 'Apply'--><!-- /ko --></span>
+                            </button>
+                        <!-- /ko -->
+                        <!-- ko if: isApplied() -->
+                            <button class="action action-cancel" type="submit" data-bind="'value': $t('Cancel'), click: cancel">
+                                <span><!-- ko i18n: 'Cancel coupon'--><!-- /ko --></span>
+                            </button>
+                        <!-- /ko -->
+                    </div>
+                </div>
+
+                </div>
+                
+            </form>
+              
+        </div>
+        </div>
+    </div>
+</div>

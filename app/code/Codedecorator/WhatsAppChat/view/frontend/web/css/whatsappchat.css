@@ -1,0 +1,32 @@
+#whatsappchat.top-left {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+#whatsappchat.top-right {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+#whatsappchat.bottom-left {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    max-width: 50px;
+    z-index: 999;
+}
+#whatsappchat.bottom-right {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    max-width: 50px;
+    z-index: 999;
+}

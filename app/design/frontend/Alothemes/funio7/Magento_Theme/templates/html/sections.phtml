@@ -1,0 +1,103 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+
+/**
+ *  General template for displaying group of blocks devided into sections
+ */
+
+$group = $block->getGroupName();
+$groupCss = $block->getGroupCss();
+$groupBehavior = $block->getGroupBehaviour() ? $block->getGroupBehaviour() : '{"tabs":{"openedState":"active"}}';
+?>
+<?php if ($detailedInfoGroup = $block->getGroupChildNames($group, 'getChildHtml')) : ?>
+    <div class="sections <?= /* @escapeNotVerified */ $groupCss ?>">
+        <?php $layout = $block->getLayout(); ?>
+        <div class="section-items <?= /* @escapeNotVerified */ $groupCss ?>-items" data-mage-init='<?= /* @escapeNotVerified */ $groupBehavior ?>'>
+
+            
+            <?php foreach ($detailedInfoGroup as $name) : ?>
+                <?php
+                $html = $layout->renderElement($name);
+                if (!trim($html) && ($block->getUseForce() != true)) {
+                    continue;
+                }
+                $alias = $layout->getElementAlias($name);
+                $label = $block->getChildData($alias, 'title');
+                ?>
+                <?php if($name == "store.menu"){ ?>
+                <div class="shop-custom-title section-item-title <?= /* @escapeNotVerified */ $groupCss ?>-item-title" data-role="collapsible">
+                    <a class="<?= /* @escapeNotVerified */ $groupCss ?>-item-switch" data-toggle="switch" href="#shop-custom-nav"><?= /* @escapeNotVerified */ __("Shop") ?></a>
+                </div>
+                <div class="shop-custom-contents section-item-content <?= /* @escapeNotVerified */ $groupCss ?>-item-content" id="shop-custom-nav" data-role="content"><?= /* @escapeNotVerified */ $html ?></div>
+                <?php }?>
+            <?php endforeach; ?>
+            
+
+             <div class="custom-menu-title section-item-title <?= /* @escapeNotVerified */ $groupCss ?>-item-title" data-role="collapsible">
+                    <a class="<?= /* @escapeNotVerified */ $groupCss ?>-item-switch" data-toggle="switch" href="#custom-menu"><?= __("Menu"); ?></a>
+                </div>
+
+            <div class="custom-menu-contents section-item-content <?= /* @escapeNotVerified */ $groupCss ?>-item-content" id="custom-menu" data-role="content">    
+            <?php foreach ($detailedInfoGroup as $name) : ?>
+                <?php
+                $html = $layout->renderElement($name);
+                if (!trim($html) && ($block->getUseForce() != true)) {
+                    continue;
+                }
+                $alias = $layout->getElementAlias($name);
+                $label = $block->getChildData($alias, 'title');
+                ?>
+                <?php if(($name == "store.links") || ($name == "store.settings")) { ?>
+                <div class="<?php if(($name == "store.links")){echo "mobile-account-setting";}elseif(($name == "store.settings")){echo "nav-account-mb";} ?>">
+                    <span class="menu-custom-label"><?= /* @escapeNotVerified */ $label ?></span>
+                </div>
+                <?php } ?>
+
+                <div class="section-item-content -item-content" id="<?= /* @escapeNotVerified */ $alias ?>" ><?= /* @escapeNotVerified */ $html ?></div>
+
+                    <?php if($name == "store.menu") { ?>
+                        <div class="custom-top-links-head">
+                       <?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header-static-links')->toHtml(); ?>
+                        </div>
+                    <?php } ?>
+
+            <?php endforeach; ?>
+        </div>
+        <div class="close-custom-section">
+        <span class="close-menu close-menu-nav-open"><span><?php echo __('Close') ?></span><i class="icon-close pe-7s-close"></i></span>
+        </div>
+        </div>
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+    require(['jquery', 'magiccart/easing', 'magicmenu'], function($) {
+        $('.close-menu.close-menu-nav-open').on("click", function() {
+            $('.nav-toggle').trigger("click");
+        });
+        // document.getElementsByClassName("close-menu-nav-open")[0].addEventListener('click', function(){
+        //    $('.nav-toggle').trigger("click");
+
+        // });
+
+        $('.navigation-mobile .submenu li.level1').on("click", function() {
+            if($(this).hasClass('custom-active-mob')){
+                $(this).removeClass('custom-active-mob')
+            }else{
+                $('.navigation-mobile .submenu li.level1').removeClass("custom-active-mob");
+                $(this).addClass("custom-active-mob");
+            }
+        });
+
+    });
+
+
+</script>

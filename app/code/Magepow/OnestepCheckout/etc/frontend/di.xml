@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * di
+ *
+ * @copyright Copyright © 2020 Magepow. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Url\SecurityInfo">
+        <arguments>
+            <argument name="secureUrlList" xsi:type="array">
+                <item name="onestepcheckout_index_index" xsi:type="string">/onestepcheckout</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\Url">
+        <plugin name="RewriteUrl" type="Magepow\OnestepCheckout\Plugin\CheckoutLink"/>
+    </type>
+    <type name="Magento\Checkout\Block\Onepage">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="AddressForm" xsi:type="object">Magepow\OnestepCheckout\Block\LayoutOnestep\LayoutProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="onestepcheckout_default_config_provider" xsi:type="object">Magepow\OnestepCheckout\Model\DefaultConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Customer\Block\SectionConfig">
+        <arguments>
+            <argument name="clientSideSections" xsi:type="array">
+                <item name="one-step-checkout-data" xsi:type="string">one-step-checkout-data</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Eav\Model\Validator\Attribute\Data">
+        <plugin name="onestepcheckout_validator" type="Magepow\OnestepCheckout\Plugin\Eav\Model\Validator\Attribute\Data"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\Item\Processor">
+        <plugin name="CheckProductQty" type="Magepow\OnestepCheckout\Plugin\Quote\Processor"/>
+    </type>
+</config>

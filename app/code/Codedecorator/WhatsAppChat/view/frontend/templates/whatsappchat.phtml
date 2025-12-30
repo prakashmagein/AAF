@@ -1,0 +1,23 @@
+<?php
+/** @var $block Codedecorator\WhatsAppChat\Block\WhatsAppChat */
+$config = $block->getConfigData();
+?>
+<?php if ($config): ?>
+
+    <script type="text/x-magento-init">
+    {
+        "*":
+        {
+            "whatsAppChat":
+            {
+                "number": "<?= /* @escapeNotVerified */ $config['number'] ?>",
+                "message": "<?= /* @escapeNotVerified */ $config['message'] ?>",
+                "image": "<?= /* @escapeNotVerified */ $config['image'] ?>",
+                "product": "<?= /* @escapeNotVerified */ $config['product'] ?>",
+                "position": "<?= /* @escapeNotVerified */ $config['position'] ?>"
+            }
+        }
+     }
+    </script>
+
+<?php endif; ?>

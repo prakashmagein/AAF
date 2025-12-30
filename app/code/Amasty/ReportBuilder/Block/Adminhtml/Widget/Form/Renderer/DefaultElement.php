@@ -1,0 +1,44 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Custom Reports Builder for Magento 2
+ */
+
+namespace Amasty\ReportBuilder\Block\Adminhtml\Widget\Form\Renderer;
+
+use Magento\Backend\Block\Template;
+use Magento\Framework\Data\Form\Element\AbstractElement;
+use Magento\Framework\Data\Form\Element\Renderer\RendererInterface;
+
+class DefaultElement extends Template implements RendererInterface
+{
+    /**
+     * @var string
+     */
+    protected $_nameInLayout = 'amreportbuilder.report.toolbar.renderer';
+
+    /**
+     * @var AbstractElement
+     */
+    private $element;
+
+    public function render(AbstractElement $element)
+    {
+        $this->element = $element;
+        return $this->toHtml();
+    }
+
+    public function getElement(): AbstractElement
+    {
+        return $this->element;
+    }
+
+    public function getTemplate()
+    {
+        return 'Amasty_ReportBuilder::view/renderer/element.phtml';
+    }
+}

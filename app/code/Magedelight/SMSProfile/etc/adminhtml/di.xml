@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */ 
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+     <virtualType name="SMSPofileTemplatesFormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smsprofiletemplates_data" xsi:type="array">
+                    <item name="class" xsi:type="string">Magedelight\SMSProfile\Ui\DataProvider\SMSProfileTemplates\Form\Modifier\SMSProfileTemplatesData</item>
+                    <item name="sortOrder" xsi:type="number">11</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedelight\SMSProfile\Model\SMSProfileTemplates\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">SMSPofileTemplatesFormModifierPool</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="SmsPromotionalFormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smspromotional_data" xsi:type="array">
+                    <item name="class" xsi:type="string">Magedelight\SMSProfile\Ui\DataProvider\SmsPromotional\Form\Modifier\SmsPromotionalData</item>
+                    <item name="sortOrder" xsi:type="number">12</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedelight\SMSProfile\Model\SmsPromotional\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">SmsPromotionalFormModifierPool</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Backend\Model\Menu\Item">
+        <plugin name="md_smsprofile_menu_item_newtab" type="Magedelight\SMSProfile\Plugin\Magento\Backend\Model\Menu\Item" />
+    </type>
+    
+    <!-- SMS Notification -->
+    <virtualType name="SMSTemplatesFormModifierPool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="smstemplates_data" xsi:type="array">
+                    <item name="class" xsi:type="string">Magedelight\SMSProfile\Ui\DataProvider\SMSTemplates\Form\Modifier\SMSTemplatesData</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magedelight\SMSProfile\Model\SMSTemplates\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">SMSTemplatesFormModifierPool</argument>
+        </arguments>
+    </type>
+    <type name="Magedelight\SMSProfile\Model\SMSMailTemplates\DataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">SMSMailTemplatesFormModifierPool</argument>
+        </arguments>
+    </type>
+</config>

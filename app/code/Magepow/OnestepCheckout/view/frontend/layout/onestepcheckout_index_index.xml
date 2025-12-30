@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * onstepcheckout_index_index
+ *
+ * @copyright Copyright © 2020 Magepow. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_index_index"/>
+ 
+    <body>
+        <referenceContainer name="content">
+           <block class="Magento\Cms\Block\Block" name="custom_cms_block" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">checkout_page_banner_section</argument>
+                    </arguments>
+                </block>
+        </referenceContainer>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="config" xsi:type="array">
+                                <item name="template" xsi:type="string">Magepow_OnestepCheckout/3columns</item>
+                            </item>
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/shipping-method</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/form/element/email</item>
+                                                        </item>
+                                                        <item name="shippingAdditional" xsi:type="array">
+                                                            <item name="component" xsi:type="string">uiComponent</item>
+                                                            <item name="displayArea" xsi:type="string">shippingAdditional</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="delivery_date" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/delivery_date</item>
+                                                                    <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::enabledDeliveryTime"/>
+                                                                </item>
+                                                                <item name="place-order-comment" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/function/comment</item>
+                                                                    <item name="sortOrder" xsi:type="string">20</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::isDisabledComment"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="address-list" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="rendererTemplates" xsi:type="array">
+                                                                    <item name="customer-address" xsi:type="array">
+                                                                        <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/shipping-address/address-renderer/default</item>
+                                                                    </item>
+                                                                    <item name="new-customer-address" xsi:type="array">
+                                                                        <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/shipping-address/address-renderer/default</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="region_id" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/form/element/region</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                        <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                                                                        <item name="customEntry" xsi:type="string">shippingAddress.region</item>
+                                                                    </item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="required-entry" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                    <!-- Value of region_id field is filtered by the value of county_id attribute -->
+                                                                    <item name="filterBy" xsi:type="array">
+                                                                        <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.country_id]]></item>
+                                                                        <item name="field" xsi:type="string">country_id</item>
+                                                                    </item>
+                                                                </item>
+
+
+
+                                                                <item name="custom-checkbox" xsi:type="array">
+                                                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/abstract</item>
+                                                                <item name="config" xsi:type="array">
+                                                                    <item name="customScope" xsi:type="string">shippingAddress</item>
+                                                                    <item name="template" xsi:type="string">ui/form/field</item>
+                                                                    <item name="elementTmpl" xsi:type="string">ui/form/element/checkbox</item>
+                                                                    <item name="additionalClasses" xsi:type="string">custom-shipping-check-box-lb</item>
+                                                                </item>
+                                                                <item name="dataScope" xsi:type="string">shippingAddress.custom_checkbox_company</item>
+                                                                <item name="label" xsi:type="string" translate="true">Is Company</item>
+                                                                <item name="sortOrder" xsi:type="number">30</item>
+                                                            </item>
+                                                        
+
+
+
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                
+                                            </item>
+                                        </item>
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="billingAddress" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/billing-address</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="deps" xsi:type="array">
+                                                            <item name="0" xsi:type="string">checkoutProvider</item>
+                                                            <item name="1" xsi:type="string">checkout.steps.shipping-step.shippingAddress</item>
+                                                        </item>
+                                                    </item>
+                                                    <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/form/element/email</item>
+                                                            <item name="displayArea" xsi:type="string">customer-email</item>
+                                                            <!-- <item name="tooltip" xsi:type="array">
+                                                                <item name="description" xsi:type="string" translate="true">We'll send your order confirmation here.</item>
+                                                            </item> -->
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="before-login-form" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                                    <item name="displayArea" xsi:type="string">before-login-form</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <!-- before login form fields -->
+                                                                    </item>
+                                                                </item>
+                                                                <item name="additional-login-form-fields" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                                    <item name="displayArea" xsi:type="string">additional-login-form-fields</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <!-- additional login form fields -->
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="billing-address-fieldset" xsi:type="array">
+                                                            <item name="component" xsi:type="string">uiComponent</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="deps" xsi:type="array">
+                                                                    <item name="0" xsi:type="string">checkoutProvider</item>
+                                                                </item>
+                                                            </item>
+                                                            <item name="displayArea" xsi:type="string">additional-fieldsets</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <!-- The following items override configuration of corresponding address attributes -->
+                                                                <item name="firstname" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">1</item>
+                                                                     <item name="config" xsi:type="array">
+                                                                    <item name="placeholder" xsi:type="string">First Name</item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="min_text_length" xsi:type="number">0</item>
+                                                                    </item>
+                                                                    </item>
+                                                                     </item>
+                                                                     <item name="lastname" xsi:type="array">
+                                                                        <item name="sortOrder" xsi:type="string">2</item>
+                                                                     <item name="config" xsi:type="array">
+                                                                    <item name="placeholder" xsi:type="string">Last Name</item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="min_text_length" xsi:type="number">0</item>
+                                                                    </item>
+                                                                    </item>
+                                                                     </item>
+                                                                 <item name="city" xsi:type="array">
+                                                                <item name="sortOrder" xsi:type="string">5</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                    <item name="placeholder" xsi:type="string">City</item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="min_text_length" xsi:type="number">0</item>
+                                                                    </item>
+                                                                     </item>
+                                                                </item>
+                                                                <item name="region" xsi:type="array">
+                                                                   
+                                                                    <item name="config" xsi:type="array">
+                                    
+                                                                    <item name="visible" xsi:type="boolean">false</item>
+                                                                     </item>
+                                                                </item>
+                                                                <item name="region_id" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/form/element/region</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                        <item name="elementTmpl" xsi:type="string">ui/form/element/select</item>
+                                                                        <item name="customEntry" xsi:type="string">billingAddress.region</item>
+                                                                    </item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="required-entry" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                    <!-- Value of region_id field is filtered by the value of county_id attribute -->
+                                                                    <item name="filterBy" xsi:type="array">
+                                                                        <item name="target" xsi:type="string"><![CDATA[${ $.provider }:${ $.parentScope }.country_id]]></item>
+                                                                        <item name="field" xsi:type="string">country_id</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="postcode" xsi:type="array">
+                                                                    <!-- post-code field has custom UI component -->
+                                                                    <item name="config" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/post-code</item>
+                                                                     <item name="placeholder" xsi:type="string">Zip Code (Optional)</item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <!-- <item name="required-entry" xsi:type="string">true</item> -->
+                                                                    </item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="company" xsi:type="array">
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="min_text_length" xsi:type="number">0</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="fax" xsi:type="array">
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="min_text_length" xsi:type="number">0</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="country_id" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">4</item>
+                                                                </item>
+                                                                <item name="telephone" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">3</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="placeholder" xsi:type="string">Contact</item>
+                                                                        <!-- <item name="tooltip" xsi:type="array">
+                                                                            <item name="description" xsi:type="string" translate="true">For delivery questions.</item>
+                                                                        </item> -->
+                                                                    </item>
+                                                                </item>
+
+
+                                                                <item name="custom-checkbox" xsi:type="array">
+                                                                <item name="component" xsi:type="string">Magento_Ui/js/form/element/abstract</item>
+                                                                <item name="config" xsi:type="array">
+                                                                    <item name="customScope" xsi:type="string">billingAddress</item>
+                                                                    <item name="template" xsi:type="string">ui/form/field</item>
+                                                                    <item name="elementTmpl" xsi:type="string">ui/form/element/checkbox</item>
+                                                                    <item name="additionalClasses" xsi:type="string">custom-billing-check-box-lb</item>
+                                                                </item>
+                                                                <item name="dataScope" xsi:type="string">billingAddress.custom_checkbox_company</item>
+                                                                <item name="label" xsi:type="string" translate="true">Is Company</item>
+                                                                <item name="sortOrder" xsi:type="number">30</item>
+                                                            </item>
+                                                                
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/payment</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="additional-payment-validators" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="agreements-validator" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::disabledPaymentTOC"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="payments-list" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="before-place-order" xsi:type="array">
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="agreements" xsi:type="array">
+                                                                            <item name="config" xsi:type="array">
+                                                                                <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::disabledPaymentTOC"/>
+                                                                            </item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+
+                                    <item name="storecredit" xsi:type="array">
+                                            <item name="component" xsi:type="string">Amasty_StoreCredit/js/view/checkout/payment/store-credit</item>
+                                             <item name="displayArea" xsi:type="string">storecredit</item>
+                                            <item name="sortOrder" xsi:type="string">10</item>
+                                    </item>
+
+
+                                    <item name="aw-reward-points" xsi:type="array">
+                                            <item name="component" xsi:type="string">Aheadworks_RewardPoints/js/view/payment/reward-points</item>
+                                             <item name="displayArea" xsi:type="string">rewardpoints</item>
+                                            <item name="sortOrder" xsi:type="string">11</item>
+                                    </item>
+
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Magepow_OnestepCheckout/sidebar</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                        <item name="discount" xsi:type="array">
+                                            <item name="config" xsi:type="array">
+                                                <item name="title" xsi:type="string">gg</item>
+                                            </item>
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/payment/discount</item>
+                                                    <item name="displayArea" xsi:type="string">discount</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="errors" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">5</item>
+                                                            <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount-messages</item>
+                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                        <item name="summary" xsi:type="array">
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">Magepow_OnestepCheckout/summary</item>
+                                            </item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="itemsBefore" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">5</item>
+                                                </item>
+                                                
+                                                <item name="cart_items" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">10</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">Magepow_OnestepCheckout/summary/cart-items</item>
+                                                        <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::isDisabledReviewCartSection"/>
+                                                    </item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="details" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/summary/item/details</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="thumbnail" xsi:type="array">
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::isHideProductImage"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="itemsAfter" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">15</item>
+                                                </item>
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="sortOrder" xsi:type="string">20</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="before_grandtotal" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="comment" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/comments</item>
+                                                    <item name="displayArea" xsi:type="string">summary</item>
+                                                    <item name="sortOrder" xsi:type="string">220</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::isDisabledOrderComment"/>
+                                                    </item>
+                                                </item>
+                                                
+                                                <item name="newsletter" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/summary/newsletter</item>
+                                                    <item name="sortOrder" xsi:type="string">300</item>
+                                                    <item name="displayArea" xsi:type="string">summary</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::enabledChecknewletter"/>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="shipping-information" xsi:type="array">
+                                            <item name="config" xsi:type="array">
+                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                            </item>
+                                        </item>
+                                        <item name="place-order-information-left" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="displayArea" xsi:type="string">place-order-information-left</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="discount" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/payment/discount</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::disabledReviewCoupon"/>
+                                                    </item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="errors" xsi:type="array">
+                                                            <item name="sortOrder" xsi:type="string">0</item>
+                                                            <item name="component" xsi:type="string">Magento_SalesRule/js/view/payment/discount-messages</item>
+                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="addition-information" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/function/addition</item>
+                                                    <item name="sortOrder" xsi:type="string">20</item>
+                                                    <item name="children" xsi:type="array">
+
+                                                        <item name="gift-message" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/function/gift-message</item>
+                                                            <item name="sortOrder" xsi:type="string">40</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::isDisabledGiftMessage"/>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="place-order-information-right" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="displayArea" xsi:type="string">place-order-information-right</item>
+                                            <item name="children" xsi:type="array">
+                                               
+                                                <item name="place-order-button" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/function/placeOrder</item>
+                                                    <item name="sortOrder" xsi:type="string">99</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="agreements" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magepow_OnestepCheckout/js/view/function/checkout-agreements</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="componentDisabled" xsi:type="helper" helper="Magepow\OnestepCheckout\Helper\Data::disabledReviewTOC"/>
+                                                            </item>
+                                                            <item name="displayArea" xsi:type="string">checkout-agreements</item>
+                                                            <item name="dataScope" xsi:type="string">checkoutAgreements</item>
+                                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <attribute name="class" value="checkout-index-index"/>
+        <referenceBlock name="head.additional">
+            <block class="Magepow\OnestepCheckout\Block\LayoutOnestep\Design" name="onestepcheckout.design" as="onestepcheckout.generator.css" template="Magepow_OnestepCheckout::onepage/design.phtml"/>
+        </referenceBlock>
+        <referenceBlock name="page.main.title">
+            <block class="Magepow\OnestepCheckout\Block\LayoutOnestep\Container" name="page.main.description" template="Magepow_OnestepCheckout::onepage/description.phtml"/>
+        </referenceBlock>
+
+        <referenceContainer name="page.wrapper">
+            <container name="footer-container" as="footer" before="before.body.end" label="Page Footer Container" htmlTag="footer" htmlClass="page-footer"/>
+        </referenceContainer>
+
+    </body>
+</page>

@@ -1,0 +1,91 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+
+?>
+<?php
+$smsProfileHelper = $block->getData('view_model');
+$smsNotificationHelper = $smsProfileHelper->getHelperData(); ?>
+<form class="form contact"
+      action="<?= $block->escapeUrl($block->getFormAction()) ?>"
+      id="contact-form"
+      method="post"
+      data-hasrequired="<?= $block->escapeHtmlAttr(__('* Required Fields')) ?>"
+      data-mage-init='{"validation":{}}'>
+    <fieldset class="fieldset">
+        <legend class="legend"><span><?= $block->escapeHtml(__('Write Us')) ?></span></legend><br />
+        <div class="field note no-label"><?= $block->escapeHtml(__('Jot us a note and we’ll get back to you as quickly as possible.')) ?></div>
+        <div class="field name required">
+            <label class="label" for="name"><span><?= $block->escapeHtml(__('Name')) ?></span></label>
+            <div class="control">
+                <input name="name" id="name" title="<?= $block->escapeHtmlAttr(__('Name')) ?>" value="<?= $block->escapeHtmlAttr($smsProfileHelper->getContactHelper()->getPostValue('name') ?: $smsProfileHelper->getContactHelper()->getUserName()) ?>" class="input-text" type="text" data-validate="{required:true}"/>
+            </div>
+        </div>
+        <div class="field email required">
+            <label class="label" for="email"><span><?= $block->escapeHtml(__('Email')) ?></span></label>
+            <div class="control">
+                <input name="email" id="email" title="<?= $block->escapeHtmlAttr(__('Email')) ?>" value="<?= $block->escapeHtmlAttr($smsProfileHelper->getContactHelper()->getPostValue('email') ?: $smsProfileHelper->getContactHelper()->getUserEmail()) ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+            </div>
+        </div>
+        <?php
+            $validateClass = '';
+            $enableModule = $smsNotificationHelper->getModuleStatus($smsNotificationHelper->getCurrentStoreId());
+        if ($enableModule) {
+            $validateClass ='required-entry '.$smsNotificationHelper->getPhoneValidationClass();
+        }
+        ?>
+        <div class="field telephone required">
+            <label class="label" for="telephone"><span><?= $block->escapeHtml(__('Phone Number')) ?></span></label>
+            <div class="control">
+                <?php if ($smsNotificationHelper->isCustomerCountryEnabled()): ?>
+                    <input type="hidden" class="required-entry" value="<?= $block->escapeHtmlAttr($smsProfileHelper->getContactHelper()->getPostValue('countrycode')) ?>" id="countryreg" name="countrycode" />
+                    <input name="telephone" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>" value="<?= $block->escapeHtmlAttr($smsProfileHelper->getContactHelper()->getPostValue('countrycode')) ?><?= $block->escapeHtmlAttr($smsProfileHelper->getContactHelper()->getPostValue('telephone')) ?>" class="input-text <?php echo $validateClass;?>" type="number" />
+                <?php else: ?>
+                    <input name="telephone" id="telephone" title="<?= $block->escapeHtmlAttr(__('Phone Number')) ?>" value="<?= $block->escapeHtmlAttr($smsProfileHelper->getContactHelper()->getPostValue('telephone')) ?>" class="input-text <?php echo $validateClass;?>" type="number" />
+                <?php endif; ?>
+            </div>
+            <div class='notice-phone'>
+                <span><?php echo $smsNotificationHelper->getNoticeBelowTelephone(); ?></span>
+            </div>
+        </div>
+        <div class="field comment required">
+            <label class="label" for="comment"><span><?= $block->escapeHtml(__('What’s on your mind?')) ?></span></label>
+            <div class="control">
+                <textarea name="comment" id="comment" title="<?= $block->escapeHtmlAttr(__('What’s on your mind?')) ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"><?= $block->escapeHtml($smsProfileHelper->getContactHelper()->getPostValue('comment')) ?></textarea>
+            </div>
+        </div>
+        <?= $block->getChildHtml('form.additional.info') ?>
+    </fieldset>
+    <div class="actions-toolbar">
+        <div class="primary">
+            <input type="hidden" name="hideit" id="hideit" value="" />
+            <button type="submit" title="<?= $block->escapeHtmlAttr(__('Submit')) ?>" class="action submit primary">
+                <span><?= $block->escapeHtml(__('Submit')) ?></span>
+            </button>
+        </div>
+    </div>
+</form>
+<?php if ($enableModule && $smsNotificationHelper->isCustomerCountryEnabled()): ?>
+    <script type="text/x-magento-init">
+        {
+            "input[name='telephone']": {
+            "Magedelight_SMSProfile/js/intlTelephoneInput":
+            {
+                "nationalMode":true,
+                "separateDialCode": true,
+                "utilsScript":"<?= $this->getViewFileUrl('Magedelight_SMSProfile::js/utils.js'); ?>",
+                "preferredCountries":["<?= $smsNotificationHelper->getDefaultCustomerCountry(); ?>"],
+                "onlyCountries":[<?= $smsNotificationHelper->getAvailableCountries(); ?>]
+            }
+        }
+    }
+    </script>
+<?php endif;?>

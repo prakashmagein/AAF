@@ -1,0 +1,25 @@
+{
+    "name": "amasty/module-product-feed-subscription-package",
+    "description": "Product Feed Subscription Package by Amasty",
+    "require": {
+        "php": ">=7.3",
+        "amasty/base": ">=1.17.0",
+        "amasty/feed": ">=2.9.0"
+    },
+    "suggest": {
+        "amasty/module-product-feed-msi": "Install this package for MSI Sources Qty compatibility.",
+        "amasty/module-product-feed-templates": "Install this package for TikTok, eBay, Pinterest and Instagram templates compatibility."
+    },
+    "homepage": "https://amasty.com/",
+    "type": "magento2-module",
+    "version": "3.1.0",
+    "license": "proprietary",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\ProductFeedSubscriptionPackage\\": ""
+        }
+    }
+}

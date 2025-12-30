@@ -1,0 +1,259 @@
+// /**
+//  * Copyright © 2021 Aloteam. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+
+& when (@media-common =true) {
+    .store-contact {
+        .contact-info-title{
+            font-size: 30px;
+        }
+
+        .contact-info-description{
+            font-size: 15px;
+        }
+
+        .contact-info-item{
+            .contact-info-item-images{
+                max-width: 62px;
+
+                figure{
+                    margin: 0;
+                }
+            }
+
+            .contact-info-item-detail{
+                flex: 1;
+
+                p{
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .form {
+        &.contact{
+            margin: 0 auto;
+            padding: 60px 80px 125px 80px;
+            .box-shadow(0 28px 250px 0 rgba(0, 0, 0, 0.05));
+            margin-top: -265px;
+
+            .block-title{
+                font-size: 3rem;
+                font-weight: 500;
+                text-align: center;
+                margin-bottom: 38px;
+
+                &:before{
+                    content:"";
+                    background-image: url('../images/alothemes/email-2.png');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: cover;
+                    width: 60px;
+                    height: 60px;
+                    display: block;
+                    margin-bottom: 20px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+
+            .fieldset{
+                >.field {
+                    margin-bottom: 30px;
+
+                    &.info{
+                        .dflex();
+                        margin-left: -15px;
+                        margin-right: -15px;
+    
+                        .field {
+                            flex: 1;
+                            padding: 0 15px;
+                        }
+                    }
+                }
+            }
+
+            .actions-toolbar{
+                .primary{
+                    width: 100%;
+
+                    .action {
+                        &.submit{
+                            width: 100%;
+                            height: 55px;
+                            line-height: 55px;
+                            text-transform: uppercase;
+                            padding: 0 30px;
+                            letter-spacing: 3px;
+                            font-weight: 400;
+                            position: relative;
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .contact-index-index {
+        .column{
+            &:not(.sidebar-additional) {
+                .form{
+                    &.contact{
+                        width: 100%;
+                        max-width: 900px;
+                        min-width: auto !important;
+                    }
+                }
+            }
+
+            &.main{
+                padding-bottom: 60px;
+            }
+        }
+
+        .breadcrumbs{
+            margin-bottom: 0;
+            border-width: 1px 0 0;
+        }
+    }
+
+
+    /* responsive */
+    @media screen and (max-width: (@screen__xl-m - 1)) {
+        .form {
+            &.contact{
+                margin: 0 auto;
+                padding: 40px 20px;
+                margin-top: -107px;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xm - 1)) {
+        .cms-contact-top{
+            iframe{
+                height: 300px;
+            }
+        }
+
+        .store-contact{
+            .contact-info-item {
+                .contact-info-item-images{
+                    max-width: 40px;
+                    padding: 8px !important;
+                }
+
+                .contact-info-item-detail{
+                    margin-left: 10px;
+
+                    h3{
+                        font-size: 1.6rem;
+                        margin-bottom: 0;
+                    }
+
+                    p{
+                        font-size: 1.3rem;
+                    }
+                }
+            }
+        }
+
+        .form{
+            &.contact{
+                margin-top: 60px;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xs - 1)) {
+        .form{
+            &.contact {
+                padding: 15px;
+
+                .block-title{
+                    font-size: 2rem;
+                }
+
+                .fieldset {
+                    > .field{
+                        &.info {
+                            .field{
+                                flex: 0 0 100%;
+                                margin-bottom: 30px;
+                                &:last-child{
+                                    margin-bottom: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xs-m - 1)) {
+        .contact--store {
+            .contact__item__content{
+                padding: 50px 20px 40px;
+            }
+        }
+
+        .contact--social {
+            .social-profile {
+                li {
+                    &:not(:last-child){
+                        margin-right: 10px;
+                    }
+                    a{
+                        width: 35px;
+                        height: 35px;
+                        line-height: 33px;
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
+
+    /* rtl */
+    .rtl {
+        .contact--store{
+            .block__heading{
+                &:before{
+                    left: auto;
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    /* responsive rtl */
+    @media screen and (max-width: (@screen__xs-m - 1)) {
+        .rtl {
+            .contact--social {
+                .social-profile {
+                    li {
+                        &:not(:last-child){
+                            margin-right: 0;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

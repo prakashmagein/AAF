@@ -1,0 +1,418 @@
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_GoogleMapPinAddress
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+ define([
+    'jquery',
+    'uiComponent',
+    'ko',
+    'mage/translate',
+    'Magento_Ui/js/modal/alert',
+    'Magento_Ui/js/modal/modal',
+    'Webkul_GoogleMapPinAddress/js/model/map-config-provider',
+    'Magento_Customer/js/model/customer',
+], function($, Component, ko, $t, alert, modal, mapData, customer) {
+    'use strict';
+    var countryId = '';
+    var countryName = '';
+    var postalCode = '';
+    var stateName = '';
+    var addressData = '';
+    var mapDataValue = mapData.getMapData();
+    var defaultLatitude = mapDataValue['default_latitude'];
+    var defaulLongitude = mapDataValue['default_longitude'];
+    return Component.extend({
+
+        initialize: function() {
+            return this._super();
+
+        },
+        initCustomEvents: function() {
+            $(document).find("#shipping-new-address-form #custom_map_section").append($(".mapContainer"));
+            if (!$(document).find("#shipping-new-address-form").length) {
+                $(document).find("#custom_map_section").append($(".mapContainer"));
+                $(".mapContainer").css({
+                    'width': '500px',
+                    'margin-top': '10px',
+                    'border': '1px solid rgb(5, 162, 253)'
+                });
+            }
+            $(".mapContainerBilling").hide();
+
+        },
+        onElementRender: function() {
+            var self = this;
+            self.initCustomEvents();
+            if (mapDataValue['status'] != false) {
+               // $('#locatorButton').addCss('display','block');
+                if (mapDataValue['api_key'] != null && mapDataValue['api_key'] != "") {
+                    var shipLongitude = $(document).find("div[name = 'shippingAddress.custom_attributes.longitude'] input[name = 'custom_attributes[longitude]']").val();
+                    var shipLatitude = $(document).find("div[name = 'shippingAddress.custom_attributes.latitude'] input[name = 'custom_attributes[latitude]']").val();
+                    var myLatLng = { lat: shipLatitude ? parseFloat(shipLatitude) : parseFloat(defaultLatitude), lng: shipLongitude ? parseFloat(shipLongitude) : parseFloat(defaulLongitude) };
+                    if (!customer.isLoggedIn()) {
+                        geoCoderLocationGate(myLatLng);
+                    }
+                               
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                        center: myLatLng,
+                        zoom: 8,
+                        streetViewControl: false
+                    });
+                    if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+              $('#locationlatitude').val(position.coords.latitude);
+              $('#locationlongitude').val(position.coords.longitude);
+              //console.log(pos);
+              /*var marker = new google.maps.Marker({
+                position: pos,
+                map: map,
+                title: 'PinDrop',
+                        draggable: true
+              });
+
+              map.setCenter(pos);*/
+            },
+            function () {
+            //  handleLocationError(true, map.getCenter());
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+         // handleLocationError(false, map.getCenter());
+        }
+        
+         /* 
+          if (fieldValue) {
+            alert("The field has a value: " + fieldValue);
+          }  else {
+
+            alert("The field is empty.");
+          
+          }*/
+         /*setTimeout(function () {
+          console.log(fieldValue);
+          , 3000);*/
+        
+        /*var myLatLng = {
+                lat: fieldValue,
+                lng: fieldValue2
+              };
+              console.log(myLatLng);*/
+        
+              
+       //  });
+                   var marker = new google.maps.Marker({
+                        position: myLatLng,
+                        map: map,
+                        title: 'PinDrop',
+                        draggable: true
+                    });
+                          // Find user location and center the map
+      
+
+      $("#locatorButton").click(function () {
+        var fieldValue = $("#locationlatitude").val();
+        var fieldValue2 = $("#locationlongitude").val();
+    console.log(fieldValue);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        function (position) {
+          var myLatLng = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+         // geoCoderLocationGate(pos);
+         /* $('#locationlatitude').val(position.coords.latitude);
+          $('#locationlongitude').val(position.coords.longitude);*/
+
+          
+          marker.setPosition(myLatLng);
+          geoCoderLocationGate(myLatLng);
+          map.setCenter(myLatLng);
+
+        },
+        function (error) {
+            if (error.code === error.PERMISSION_DENIED) {
+                alert("Error: The geolocation service is blocked for this website. Please enable it to access your current location.");
+            }
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+     // handleLocationError(false, map.getCenter());
+    }
+    });     
+
+      // Add event listener to locator button
+
+$(".action-show-popup").click(function () {
+            var fieldValue = $("#locationlatitude").val();
+            var fieldValue2 = $("#locationlongitude").val();
+        console.log(fieldValue);
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            function (position) {
+              var myLatLng = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+             // geoCoderLocationGate(pos);
+             /* $('#locationlatitude').val(position.coords.latitude);
+              $('#locationlongitude').val(position.coords.longitude);*/
+
+              
+              marker.setPosition(myLatLng);
+              geoCoderLocationGate(myLatLng);
+              map.setCenter(myLatLng);
+
+            },
+            function () {
+             // handleLocationError(true, map.getCenter());
+            }
+          );
+        } else {
+          // Browser doesn't support Geolocation
+         // handleLocationError(false, map.getCenter());
+        }
+        });
+                    google.maps.event.addListener(marker, 'dragend', function(event) {
+                        var latitude = this.getPosition().lat();
+                        var longitude = this.getPosition().lng();
+                        var latLng = { lat: latitude, lng: longitude };
+                        $(document).find("div[name = 'shippingAddress.custom_attributes.longitude'] input[name = 'custom_attributes[longitude]']").val(longitude);
+                        $(document).find("div[name = 'shippingAddress.custom_attributes.longitude'] input[name = 'custom_attributes[longitude]']").trigger('change');
+                        $(document).find("div[name = 'shippingAddress.custom_attributes.latitude'] input[name = 'custom_attributes[latitude]']").val(latitude);
+                        $(document).find("div[name = 'shippingAddress.custom_attributes.latitude'] input[name = 'custom_attributes[latitude]']").trigger('change');
+                        geoCoderLocationGate(latLng);
+                    });
+
+                    function geoCoderLocationGate(latLng) {
+                        $("body").trigger('processStart');
+                        var geocoder = new google.maps.Geocoder();
+                        var streetAddress = '';
+                        geocoder.geocode({
+                            'latLng': latLng
+                        }, function(results, status) {
+                            if (status == google.maps.GeocoderStatus.OK) {
+                                if (results[0]) {
+                                    console.log(results[0].formatted_address);
+                                    console.log(results[0]);
+                                    var addrComp = results[0].address_components;
+                                    var addrComp1 = results[0].address_components;
+                                    $.each(results, function(index, value) {
+                                        $.each(value.address_components, function(i, address) {
+                                            if (address.types[0] == "locality") {
+                                                addrComp1 = value.address_components;  
+                                                
+                                            }
+                                            if (address.types[0] == "postal_code") {
+                                                addrComp = value.address_components;
+                                            } else {
+                                                $(document).find('div[name ="shippingAddress.postcode"] input[name="postcode"]').val("");
+                                                $(document).find('div[name ="shippingAddress.city"] input[name="city"]').trigger('keyup');
+                                                $(document).find('div[name ="shippingAddress.postcode"] input[name="postcode"]').trigger("change");
+                                            }
+                                        })
+                                    })
+                                    console.log(addrComp);
+                                    console.log(addrComp1);  
+                                    for (var i = addrComp.length - 1; i >= 0; i--) {
+                                        if (addrComp[i].types[0] == "country") {
+                                            var country = addrComp[i].short_name;
+                                            $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id'] option[value='" + country + "']").attr("selected", true);
+                                            $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").trigger('change');
+                                        } else if (addrComp[i].types[0] == "administrative_area_level_1") {
+                                            var state = addrComp[i].long_name;
+                                            if ($(document).find("div[name ='shippingAddress.region_id'] select[name = 'region_id']").is(':visible')) {
+                                                $(document).find('div[name ="shippingAddress.region_id"] select[name = "region_id"] option:contains("' + state + '")').attr("selected", true);
+                                                $(document).find("div[name ='shippingAddress.region'] input[name = region]").attr("value", '');
+                                                $(document).find('div[name ="shippingAddress.region_id"] select[name = "region_id"]').trigger('change');
+                                            } else {
+                                                $(document).find("div[name ='shippingAddress.region'] input[name = region]").val(state);
+                                                $(document).find("div[name ='shippingAddress.region'] input[name = region]").trigger('keyup');
+                                            }
+                                            console.log(addrComp[i].types);
+                                        } else if (addrComp[i].types[0] == "administrative_area_level_2") {
+                                            var city = addrComp[i].long_name;
+                                            console.log(city);
+                                            var city = $(document).find('div[name ="shippingAddress.city"] input[name="city"]').val(city);
+                                            $(document).find('div[name ="shippingAddress.city"] input[name="city"]').trigger('change');
+                                        } else if (addrComp[i].types[0] == "postal_code") {
+                                            var postal = addrComp[i].long_name;
+                                            var city = $(document).find('div[name ="shippingAddress.postcode"] input[name="postcode"]').val(postal);
+                                            $(document).find('div[name ="shippingAddress.postcode"] input[name="postcode"]').trigger('change');
+                                        } else if (addrComp[i].types[0] == 'street_number') {
+                                            streetAddress = addrComp[i].long_name + ", " + streetAddress;
+                                        } else if (addrComp[i].types[0] == 'route') {
+                                            streetAddress = addrComp[i].long_name + ", " + streetAddress;
+                                        } else if (addrComp[i].types[0] == 'neighborhood') {
+                                            streetAddress = addrComp[i].long_name + ", " + streetAddress;
+                                        } else if (addrComp[i].types[0] == 'sublocality_level_3') {
+                                            streetAddress = addrComp[i].long_name + ", " + streetAddress;
+                                        } else if (addrComp[i].types[0] == 'sublocality_level_2') {
+                                            streetAddress = addrComp[i].long_name + ", " + streetAddress;
+                                        } else if (addrComp[i].types[0] == 'sublocality_level_1') {
+                                            streetAddress = addrComp[i].long_name + ", " + streetAddress;
+                                        } else if (addrComp[i].types[0] == 'locality') {
+                                            var city = addrComp[i].long_name;
+                                           // var city = $(document).find('div[name ="shippingAddress.city"] input[name="city"]').val(city);
+                                           // $(document).find('div[name ="shippingAddress.city"] input[name="city"]').trigger('change');
+                                            streetAddress = addrComp[i].long_name + ", " + streetAddress;
+                                             if (typeof city === 'string' && city.length > 0) {
+                                                // Populate the city dropdown and select the correct city
+                                                var cityDropdown = $(document).find('div[name="shippingAddress.city"] select[name="city"]');
+                                                
+                                                // Check if the city is in the dropdown list
+                                                var cityOption = cityDropdown.find('option').filter(function() {
+                                                  return $(this).val().toLowerCase() === city.toLowerCase();
+                                                });
+                                    
+                                                if (cityOption.length) {
+                                                  // If the city exists, select it
+                                                  cityDropdown.val(cityOption.val()).trigger('change');
+                                                } else {
+                                                  // If the city doesn't exist, append it to the dropdown and select
+                                                /*  cityDropdown.append($('<option>', {
+                                                    value: city,
+                                                    text: city
+                                                  }));*/
+                                                  cityDropdown.val('').trigger('change');
+                                                 // console.log('ii');
+                                                }
+                                              }
+                                        }
+
+                                    }
+                                    if (streetAddress) {
+                                        streetAddress = results[0].formatted_address.trim();
+                                       // results[0].formatted_address;
+                                        streetAddress = streetAddress.substring(0, streetAddress.length - 1);
+                                        $(document).find("div[name = 'shippingAddress.street.0'] input[name = 'street[0]']").val(streetAddress)
+                                        $(document).find("div[name = 'shippingAddress.street.0'] input[name = 'street[0]']").trigger('change');
+                                    }
+                                } else {
+                                    alert({ content: $t("No results found.") });
+                                }
+                            }
+                            $("body").trigger('processStop');
+                        });
+                    }
+
+                    function geoCoderLocationGatebyCustomAddress(addressData) {
+                        var geocoder = new google.maps.Geocoder();
+                        geocoder.geocode({
+                            'address': addressData
+                        }, function(results, status) {
+                            if (status ==
+                                google.maps.GeocoderStatus.OK) {
+                                if (results[0]) {
+                                    var addrLatitude = results[0].geometry.location.lat();
+                                    var addrLongitude = results[0].geometry.location.lng();
+                                    var latLangByAddress = { lat: addrLatitude, lng: addrLongitude };
+                                    $("div[name = 'shippingAddress.custom_attributes.longitude'] input[name = 'custom_attributes[longitude]']").val(addrLongitude);
+                                    $("div[name = 'shippingAddress.custom_attributes.longitude'] input[name = 'custom_attributes[longitude]']").trigger('keyup');
+                                    $("div[name = 'shippingAddress.custom_attributes.latitude'] input[name = 'custom_attributes[latitude]']").val(addrLatitude);
+                                    $("div[name = 'shippingAddress.custom_attributes.latitude'] input[name = 'custom_attributes[latitude]']").trigger('keyup');
+                                    marker.setPosition(latLangByAddress);
+                                    map.setCenter(latLangByAddress);
+                                    geoCoderLocationGate(latLangByAddress);
+                                } else {
+                                    alert({ content: $t("No results found.") });
+                                }
+                            }
+                        });
+                    }
+
+                    function loadEvent() {
+                        $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").focusout(function() {
+                            countryId = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").val();
+                            countryName = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id'] option[value='" + countryId + "']").text();
+                            postalCode = $(document).find("div[name ='shippingAddress.postcode'] input[name='postcode']").val();
+                            stateName = $(document).find("div[name ='shippingAddress.region_id'] select[name='region_id'] option:selected").text();
+                            if (countryName && postalCode && stateName) {
+                                addressData = stateName + " " + postalCode + ", " + countryName;
+                                getAddressShipping(addressData);
+                            }
+                        });
+                        $(document).find("div[name ='shippingAddress.region_id'] select[name = 'region_id']").focusout(function() {
+                            countryId = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").val();
+                            countryName = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id'] option[value='" + countryId + "']").text();
+                            stateName = $(document).find("div[name ='shippingAddress.region_id'] select[name='region_id'] option:selected").text();
+                            postalCode = $(document).find("div[name ='shippingAddress.postcode'] input[name='postcode']").val();
+                            if (countryName && postalCode && stateName) {
+                                addressData = stateName + " " + postalCode + ", " + countryName;
+                                getAddressShipping(addressData);
+                            }
+                        });
+                        $(document).find("div[name ='shippingAddress.region'] input[name = 'region']").focusout(function() {
+                            stateName = $(document).find("div[name ='shippingAddress.region'] input[name='region']").val();
+                            countryId = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").val();
+                            countryName = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id'] option[value='" + countryId + "']").text();
+                            postalCode = $(document).find("div[name ='shippingAddress.postcode'] input[name='postcode']").val();
+                            if (countryName && postalCode && stateName) {
+                                addressData = stateName + " " + postalCode + ", " + countryName;
+                                getAddressShipping(addressData);
+                            }
+                        });
+                        $(document).find("div[name ='shippingAddress.postcode'] input[name = 'postcode']").focusout(function() {
+                            countryId = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").val();
+                            countryName = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id'] option[value='" + countryId + "']").text();
+                            stateName = $(document).find("div[name ='shippingAddress.region_id'] select[name='region_id'] option:selected").text();
+                            postalCode = $(document).find("div[name ='shippingAddress.postcode'] input[name='postcode']").val();
+                            if (countryName && postalCode && stateName) {
+                                addressData = stateName + " " + postalCode + ", " + countryName;
+                                getAddressShipping(addressData);
+                            }
+                        });
+                    }
+                    $(document).on('click', '.edit-address-link, .new-address-popup .action-show-popup', function() {
+                        loadEvent();
+                    });
+
+                    $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").focusout(function() {
+                        countryId = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").val();
+                        countryName = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id'] option[value='" + countryId + "']").text();
+                        postalCode = $(document).find("div[name ='shippingAddress.postcode'] input[name='postcode']").val();
+                        stateName = $(document).find("div[name ='shippingAddress.region_id'] select[name='region_id'] option:selected").text();
+                        if (countryName && postalCode && stateName) {
+                            addressData = stateName + " " + postalCode + ", " + countryName;
+                            getAddressShipping(addressData);
+                        }
+                    });
+                    $(document).find("div[name ='shippingAddress.postcode'] input[name = 'postcode']").focusout(function() {
+                        countryId = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").val();
+                        countryName = $(document).find("div[name ='shippingAddress.country_id'] select[name='country_id'] option[value='" + countryId + "']").text();
+                        stateName = $(document).find("div[name ='shippingAddress.region_id'] select[name='region_id'] option:selected").text();
+                        postalCode = $(document).find("div[name ='shippingAddress.postcode'] input[name='postcode']").val();
+                        if (countryName && postalCode && stateName) {
+                            addressData = stateName + " " + postalCode + ", " + countryName;
+                            geoCoderLocationGatebyCustomAddress(addressData);
+                        }
+                    });
+                    if ($(document).find("div[name ='shippingAddress.country_id'] select[name='country_id']").length) {
+                        loadEvent();
+                    }
+
+                    function getAddressShipping(addressData) {
+                        geoCoderLocationGatebyCustomAddress(addressData);
+                        countryId = '';
+                        countryName = '';
+                        postalCode = '';
+                        stateName = '';
+                        addressData = '';
+                    }
+                }
+            }
+        }
+    });
+});

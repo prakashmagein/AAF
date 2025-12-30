@@ -1,0 +1,13 @@
+<?php
+/**
+ * Render item for admin menu
+ *
+ * @var Aheadworks\RewardPoints\Block\Adminhtml\Page\Menu\Item $block
+ * @var Magento\Framework\Escaper $escaper
+ */
+?>
+<li>
+    <a <?= /* @noEscape */ $block->serializeLinkAttributes() ?>>
+        <?= $escaper->escapeHtml($block->getLabel()) ?>
+    </a>
+</li>

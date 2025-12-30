@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */ 
+ -->
+ 
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">smstemplates_form.smstemplates_form_data_source</item>
+           <!-- <item name="namespace" xsi:type="string">smstemplates_form</item> -->
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Magedelight\SMSProfile\Block\Adminhtml\SMSTemplates\Edit\Buttons\Back"/>
+            <button name="reset" class="Magedelight\SMSProfile\Block\Adminhtml\SMSTemplates\Edit\Buttons\Reset"/>
+            <button name="save" class="Magedelight\SMSProfile\Block\Adminhtml\SMSTemplates\Edit\Buttons\Save"/>
+        </buttons>
+        <ajaxSaveType>simple</ajaxSaveType> 
+        <namespace>smstemplates_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>smstemplates_form.smstemplates_form_data_source</dep>
+        </deps>
+    </settings>
+    
+    <dataSource name="smstemplates_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="smsprofile/smstemplates/save"/>
+        </settings>
+        <dataProvider class="Magedelight\SMSProfile\Model\SMSTemplates\DataProvider" name="smstemplates_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>                
+            </settings> 
+        </dataProvider>
+    </dataSource>
+    
+    <fieldset name="smstemplates">
+        <settings>
+            <collapsible>false</collapsible>
+            <label translate="true">Sms Templates Information</label>
+        </settings>   
+
+        <field name="template_name" sortOrder="10" formElement="input">
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Template Name</label>
+                <dataScope>template_name</dataScope>
+                <componentType>field</componentType>
+                <visible>true</visible>
+                <notice> This field is only for admin use. </notice>               
+            </settings>
+        </field>   
+
+        <field name="event_type" sortOrder="20" formElement="select">
+            <settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true">Event Type</label>
+                <dataScope>event_type</dataScope>
+                <componentType>field</componentType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Magedelight\SMSProfile\Model\Config\Source\EventOptions"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>     
+        
+        <field name="template_content" sortOrder="30" formElement="textarea">
+        	<settings>
+                <required>true</required>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="max_text_length" xsi:type="number">918</rule>
+                </validation>
+                <dataType>text</dataType>
+                <label translate="true"> Template Content </label>
+                <dataScope>template_content</dataScope>
+                <componentType>field</componentType>
+                <notice> Enter your default message. You can use {firstname} for Firstname, {lastname} for Lastname,{order_id} for Order Number, {total} for Total Amount and {orderitem} for Order Items.
+                If you have added template IDs then you will not need to add template content as content will be taken from your approved template from SMS Providers. </notice>
+                <tooltip>
+                    <description>Your Message Content, (Max 918 characters. Text over 160 characters may incurs multiple credit charges)</description>
+                </tooltip>
+            </settings>
+        </field> 
+
+        
+
+        <field name="store_id" sortOrder="40" formElement="multiselect">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">smstemplates</item>
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+                <dataType>int</dataType>
+                <label translate="true">Store View</label>
+                <dataScope>store_id</dataScope>
+            </settings>
+            <formElements>
+                <multiselect>
+                    <settings>
+                        <options class="Magento\Cms\Ui\Component\Listing\Column\Cms\Options"/>
+                    </settings>
+                </multiselect>
+            </formElements>
+        </field>
+        
+        <field name="notification_template" sortOrder="60" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Notification Templete</label>
+                <dataScope>notification_template</dataScope>
+                <componentType>field</componentType>
+                <visible>true</visible>
+            </settings>
+        </field> 
+    </fieldset>
+    
+</form>

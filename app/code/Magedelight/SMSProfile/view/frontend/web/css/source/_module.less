@@ -1,0 +1,439 @@
+ /**
+  * Magedelight
+  * Copyright (C) 2022 Magedelight <info@magedelight.com>
+  * @category  Magedelight
+  * @package   Magedelight_SMSProfile
+  * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+  * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+  * @author    Magedelight <info@magedelight.com>
+ */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true){
+    .register-popup{
+        .modal-inner-wrap {
+            width: 670px;
+            .modal-title{
+                font-weight: 500;
+            }
+        }
+        .sms-profile-register{
+            fieldset.additional_info {
+                margin: 0;
+            }
+        }
+    } 
+    .modal-inner-wrap.md-smsprofile-popup {
+        width: 500px;
+        .modal-title {
+            font-weight: 500;
+        }
+        .md-login-popup {
+            .md-tablist {
+                margin: 0 0 20px;
+                padding: 0;
+                list-style-type: none;
+                .lib-vendor-prefix-display();
+                justify-content: center;
+                .lib-vendor-prefix-flex-wrap ();
+                .md-title {
+                    flex-basis: 50%;
+                    text-align: center;
+                    border-bottom: 1px solid #ccc;
+                    margin: 0;
+                    &.active{
+                        border-color: #000;
+                        .md-link {
+                            color: #000;
+                        }
+                    }
+                    .md-link {
+                        font-size: 16px;
+                        font-weight: 600;
+                        padding: 10px;
+                        display: block;
+                        color: #c3c3c3;
+                        text-decoration: none;
+                    }
+                }
+            }
+            .sms-profile-login{
+                .login-option-tab{
+                    .lib-css(background, none);
+                    .lib-vendor-prefix-display(@_value: flex);
+                    .lib-vendor-prefix-flex-wrap (@_value: wrap);
+                    .lib-css(border,none);
+                    .lib-css(border-radius, 5px);
+                    padding: 0;
+                    .login-email,
+                    .login-mobile{
+                        .lib-vendor-prefix-flex-basis(@_value: 48%);
+                        input{
+                            .lib-css(width, 100%);
+                            .lib-css(background, transparent);
+                            .lib-font-size(16);
+                            font-weight: @font-weight__semibold;
+                            .lib-css(border, none);
+                            .lib-css(border-radius, 5px);
+                            padding: @indent__s + @indent__xs;
+                            &:focus{
+                                .lib-css(box-shadow, none);
+                            }
+                        }
+                        
+                        &.active{
+                            input{
+                                .lib-css(background, @color-blue1);
+                                .lib-css(box-shadow, 0 5px 10px 0px rgba(0,0,0,0.20));
+                                -webkit-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.20);
+                                -moz-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.20);
+                                .lib-css(color, @color-white);
+                            }
+                        }
+                        input{
+                            .lib-css(background, #f5f5f5);
+                            .lib-css(box-shadow, 0 5px 10px 0px rgba(0,0,0,0.20));
+                            -webkit-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.20);
+                            -moz-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.20);
+                            .lib-css(color, @color-black);
+                        }
+                    }
+                    .login-mobile{
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+        .md-register-content,
+        .md-forgot-content{
+            .form-create-account,
+            .md-forget-password{
+                min-width: auto;
+                width: 100%;
+                &.account .legend > span{
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #000;
+                }
+            }
+            .login-container{
+                .block {
+                    .block-title{
+                        padding: 0;
+                        h3{
+                            font-size: 14px;
+                            font-weight: 400;
+                            color: #000;
+                        }
+                    }
+                }
+                .fieldset{
+                    > .field {
+                        > .control{
+                            width: 100%;
+                        }
+                    }
+                } 
+            } 
+        }
+    }
+    .login-container,
+    .modal-body-content{
+        .lib-vendor-prefix-display(@_value: flex);
+        .lib-vendor-prefix-flex-wrap (@_value: wrap);
+        .lib-css(width, 100%);
+        justify-content: space-between;
+        .login-option-tab{
+            .lib-css(background, none);
+            .lib-vendor-prefix-display(@_value: flex);
+            .lib-vendor-prefix-flex-wrap (@_value: wrap);
+            .lib-css(border,none);
+            .lib-css(border-radius, 5px);
+            padding: 0;
+            .login-email,
+            .login-mobile{
+                .lib-vendor-prefix-flex-basis(@_value: 48%);
+            }
+        }
+    }
+    .block-customer-login{
+        .lib-css(width, 100%);
+        .lib-css(float, none);
+    }
+    .smsprofile-login-option{
+        margin-bottom: @indent__base + 5;
+        .block-title{
+            .lib-font-size(18);
+            .lib-css(border-bottom, solid 1px @color-gray91);
+            margin-bottom: @indent__s + @indent__xs;
+            padding-bottom: @indent__s - 2;
+            strong{
+                font-weight: @font-weight__regular;
+                font-size: 14px;
+                color: #000;
+            }
+        }
+    }
+    .modal-body-content{
+        display: block;
+    }
+    .login-container,
+    .modal-body-content{
+        .login-email,
+        .login-mobile{
+            input{
+                .lib-css(width, 100%);
+                .lib-css(background, transparent);
+                .lib-font-size(16);
+                font-weight: @font-weight__semibold;
+                .lib-css(border, none);
+                .lib-css(border-radius, 5px);
+                padding: @indent__s + @indent__xs;
+                &:focus{
+                    .lib-css(box-shadow, none);
+                }
+            }
+        }
+        .login-mobile{
+            margin-right: 15px;
+        }
+        .login-email,
+        .login-mobile{
+            &.active{
+                input{
+                    .lib-css(background, @color-blue1);
+                    .lib-css(box-shadow, 0 5px 10px 0px rgba(0,0,0,0.20));
+                    -webkit-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.20);
+                    -moz-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.20);
+                    .lib-css(color, @color-white);
+                }
+            }
+            input{
+                .lib-css(background, #f5f5f5);
+                .lib-css(box-shadow, 0 5px 10px 0px rgba(0,0,0,0.20));
+                -webkit-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.20);
+                -moz-box-shadow: 0 5px 10px 0px rgba(0,0,0,0.20);
+                .lib-css(color, @color-black);
+            }
+        }
+    }
+
+    .smsprofile-login-mobile{
+        .iti{
+            margin-bottom: 10px;
+        }
+        .fieldset{
+            > .field{
+                .send_otp_login {
+                    margin-bottom: 10px;
+                }
+                .otp_generatenote {
+                    margin-bottom: 10px;
+                }
+                .resendlink {
+                    margin-bottom: 10px;
+                }
+                .resend-link-attempt {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    .md-forget-password{
+        .field{
+            &.mobile{
+                .control{
+                    margin-bottom: @indent__s;
+                    .iti{
+                        margin-bottom: @indent__s;
+                    }
+                }
+                .profile-notice-phone{
+                    margin-bottom: 20px;
+                }
+            }
+        }
+    }
+
+    #login_mobile-error{
+        color: red;
+    }
+
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m){
+    .login-container,
+    .modal-body-content{
+        .login-left,
+        .login-right{
+            .lib-vendor-prefix-flex-basis(@_value: 100%);
+        }
+    }
+    .modal-popup.modal-slide._inner-scroll {
+        left: 0;
+
+        &.register-popup{
+            .modal-inner-wrap {
+                width: auto;
+                margin: 50px;
+            }
+        }
+
+        .modal-inner-wrap.md-smsprofile-popup {
+            width: auto;
+            margin: 20px;
+            min-height: auto;
+        }
+    }
+    .smsprofile-login-mobile{
+        .iti{
+            .lib-css(width, 100%);
+            input{
+                border: none;
+                border-bottom: 3px solid #000;
+                height: 40px;
+                background: @color-white;
+                box-shadow: 3px 0 3px 0px rgba(0,0,0,0.10)
+            }
+            .iti__flag-container {
+                height: 40px;
+            }
+        }
+    }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m){
+
+    .login-container,
+    .modal-body-content{
+        .block {
+            float: none;
+            width: 100%;
+        }
+        .login-left{
+            .lib-vendor-prefix-flex-basis(@_value: 48%);
+            .fieldset{
+                > .field{
+                    > .control{
+                        .lib-css(width, 100%);
+                    }
+                }
+            }
+        }
+        .login-right{
+            .lib-vendor-prefix-flex-basis(@_value: 48%);
+        }
+    }
+
+    .checkout-shipping-address{
+        .step-content{
+            .login-container{
+                .login-left{
+                    .lib-vendor-prefix-flex-basis(@_value: 100%);
+                }
+            }
+        }
+        .resendotp-block{
+            .field-name-otp {
+                margin-bottom: 15px;
+            }
+        }
+        .otp_text {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .smserror {
+            margin: 8px 0;
+        }
+
+        .otp-button-field{
+            margin: 0;
+        }
+    }
+
+
+    .smsprofile-login-mobile{
+        .iti{
+            .lib-css(width, 100%);
+            input{
+                border: none;
+                border-bottom: 3px solid #000;
+                height: 40px;
+                background: @color-white;
+                box-shadow: 0 0 3px 1px rgba(0,0,0,0.10)
+            }
+            .iti__flag-container {
+                height: 40px;
+            }
+        }
+    }
+
+    .md-forget-password{
+        .field{
+            &.mobile{
+                .control{
+                    .iti{
+                        .lib-css(width, 100%);
+                        input{
+                            border: none;
+                            border-bottom: 3px solid #000;
+                            height: 40px;
+                            background: @color-white;
+                            box-shadow: 3px 0 3px 0px rgba(0,0,0,0.10)
+                        }
+                        .iti__flag-container {
+                            height: 40px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+@media only screen and (max-width: 1080px) {
+    .login-container,
+    .modal-body-content{
+        .login-option-tab{
+            .login-email,
+            .login-mobile{
+                .lib-vendor-prefix-flex-basis(@_value: 47%);
+            }
+        }
+    }
+}
+@media only screen and (max-width: 540px) {
+    
+
+    .modal-popup.modal-slide._inner-scroll {
+        &.register-popup{
+            .modal-inner-wrap {
+                margin: 30px;
+            }
+        }
+        .modal-inner-wrap.md-smsprofile-popup {
+            margin:15px;
+        }
+    }
+    
+    .login-container,
+    .modal-body-content{
+        .login-option-tab{
+            .login-email,
+            .login-mobile{
+                .lib-vendor-prefix-flex-basis(@_value: 100%);
+            }
+            .login-mobile{
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+        }
+    }
+}

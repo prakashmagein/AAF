@@ -1,0 +1,68 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+
+/**
+ * @var \Magefan\OrderEdit\Block\Adminhtml\Order\Shipping\Price $block
+ * @var $mfSecureRenderer \Magefan\Community\Api\SecureHtmlRendererInterface
+ */
+
+?>
+
+<input type="hidden" name="mf-custom-shipping-price" value="<?= $block->getCustomPrice()?>">
+
+<?php $script = "
+    require([
+        'jquery',
+        'Magento_Ui/js/modal/prompt',
+        'domReady!'
+    ], function($,prompt) { /* Variable that represents the `prompt` function */
+        window.initMfCustomShippingPriceBlock = function () {
+            if (!$('.change-custom-price').length) {
+                let label = $('[name=\"mf-custom-shipping-price\"]').val()
+                    ? '<span class=\"unset\">" . __('Unset Custom Price') . "</span>'
+                    : '" . __('Set Custom Price') . "';
+
+                let changeState = $('[name=\"mf-custom-shipping-price\"]').val() ? 'unset' : 'set';
+
+                $('#order-shipping_method').append(
+                    '<br><a class=\"change-custom-price ' + changeState + '\" href=\"javascript:void(0)\" onclick=\"changeCustomShippingPrice()\">' + label + '</a>'
+                );
+            }
+        };
+
+        function changeCustomShippingPrice()
+        {
+            if ($('[name=\"mf-custom-shipping-price\"]').val()) {
+                $('input[name=\"mf-custom-shipping-price\"]').val('');
+                $('input[name=\"order[shipping_method]\"][checked=\"checked\"]').click();
+            } else {
+                prompt({
+                    title: '" . __('Custom Shipping Price') . "',
+                    content: '" .__('Set Custom Shipping Price') . "',
+                    actions: {
+                        confirm: function(customShippingPrice){
+                            $('input[name=\"mf-custom-shipping-price\"]').val(customShippingPrice);
+                            $('input[name=\"order[shipping_method]\"][checked=\"checked\"]').click();
+                        },
+                        cancel: function(){},
+                        always: function(){}
+                    }
+                });
+            }
+        }
+
+        window.changeCustomShippingPrice = changeCustomShippingPrice;
+        window.initMfCustomShippingPriceBlock();
+    });
+";?>
+
+
+<?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
+
+<style>
+    .change-custom-price.unset {color: red;}
+    .change-custom-price.unset:hover {color: red;}
+</style>

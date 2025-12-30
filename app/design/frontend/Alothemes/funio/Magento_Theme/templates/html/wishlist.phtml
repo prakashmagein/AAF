@@ -1,0 +1,22 @@
+<div class="wishlist">
+    <!-- <span class="icon-wishlist"></span> -->
+    <span class="action showlike" data-bind="scope: 'wishlist'">
+        <a title="<?php echo __('Wishlist'); ?>" href="<?php echo $this->getUrl('wishlist') ?>" target="_blank" class="icon btn-heart">
+            <span data-bind="text: '<?php echo __('Wishlist'); ?>'" class="wishlist-text"></span>
+            <span data-bind="text: wishlist().counter ? wishlist().items.length : '0'" class="counter qty"></span>
+        </a>
+    </span>
+</div>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "wishlist": {
+                        "component": "Magento_Wishlist/js/view/wishlist"
+                    }
+                }
+            }
+        }
+    }
+</script>

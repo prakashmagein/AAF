@@ -1,0 +1,25 @@
+{
+    "name": "aheadworks/module-reward-points-graph-ql",
+    "description": "Reward Points GraphQl module by Aheadworks",
+    "require": {
+        "php": "~8.1.0||~8.2.0",
+        "aheadworks/module-reward-points": ">1.0.0",
+        "magento/framework": "^103.0.4",
+        "magento/module-authorization": "^100.4.4",
+        "magento/module-graph-ql": "^100.4.4",
+        "magento/module-quote": "^101.2.4"
+    },
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Aheadworks\\RewardPointsGraphQl\\": ""
+        }
+    }
+}

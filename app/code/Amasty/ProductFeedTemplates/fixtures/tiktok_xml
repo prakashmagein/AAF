@@ -1,0 +1,29 @@
+a:29:{s:4:"name";s:10:"TikTok XML";s:8:"filename";s:6:"TikTok";s:9:"feed_type";s:3:"xml";s:8:"store_id";s:1:"1";s:9:"is_active";s:1:"1";s:8:"compress";s:0:"";s:15:"parent_priority";s:0:"";s:16:"exclude_disabled";s:1:"0";s:20:"exclude_out_of_stock";s:1:"0";s:19:"exclude_not_visible";s:1:"0";s:10:"xml_header";s:108:"<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+<channel>";s:8:"xml_item";s:4:"item";s:11:"xml_content";s:2030:"<g:sku_id>{attribute="basic|sku" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:sku_id>
+<g:title>{attribute="product|name" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:title>
+<g:description>{attribute="product|short_description" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:description>
+<g:availability>{attribute="inventory|is_in_stock" format="as_is" parent="no" optional="yes" modify="replace:1^In Stock|replace:0^Out of Stock"}</g:availability>
+<g:condition>new</g:condition>
+<g:price>{attribute="price|final_price" format="price" parent="no" optional="yes" modify=""}</g:price>
+<g:link>{attribute="url|short" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:link>
+<g:image_link>{attribute="image|thumbnail" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:image_link>
+<g:brand>{attribute="product|manufacturer" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:brand>
+< placeholder: video_link >
+<g:additional_image_link>{attribute="gallery|image_1" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:additional_image_link>
+< placeholder: age_group >
+<g:color>{attribute="product|color" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:color>
+< placeholder: gender >
+< placeholder: item_group_id >
+<g:google_product_category>GOOGLE CATEGORIES (https://support.google.com/merchants/answer/160081)</g:google_product_category>
+<g:material>{attribute="product|material" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:material>
+< placeholder: pattern >
+<g:product_type>{attribute="category|category" format="as_is" parent="no" optional="yes" modify=""}</g:product_type>
+< placeholder: sale_price >
+< placeholder: sale_price_effective_date >
+< placeholder: shipping_weight >
+<g:size>{attribute="product|size" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:size>
+< placeholder: tax >
+<g:gtin>3234567890126</g:gtin>
+<g:mpn>22LB4510/US</g:mpn>";s:10:"xml_footer";s:17:"</channel>
+</rss>";s:21:"format_price_currency";s:3:"USD";s:26:"format_price_currency_show";s:1:"1";s:21:"format_price_decimals";s:3:"two";s:26:"format_price_decimal_point";s:3:"dot";s:32:"format_price_thousands_separator";s:5:"comma";s:11:"format_date";s:5:"Y-m-d";s:12:"execute_mode";s:6:"manual";s:16:"delivery_enabled";s:1:"0";s:10:"utm_source";s:0:"";s:10:"utm_medium";s:0:"";s:8:"utm_term";s:0:"";s:11:"utm_content";s:0:"";s:12:"utm_campaign";s:0:"";s:21:"conditions_serialized";N;s:13:"template_code";s:10:"tiktok_xml";}

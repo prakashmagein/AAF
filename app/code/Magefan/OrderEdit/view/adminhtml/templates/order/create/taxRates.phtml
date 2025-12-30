@@ -1,0 +1,23 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+?>
+<?php
+/** @var \Magefan\OrderEdit\Block\Adminhtml\Order\Product\TaxRates $block */
+?>
+
+<?php
+$codes = $block->getTaxRatesCodes();
+$taxRateId = $block->getTaxRateIdFromQuote();
+?>
+
+<?php if (count($codes)) { ?>
+    <select class="admin__control-select" name="items_tax_rates">
+        <option value=""><?= __('Please select') ?></option>
+        <?php foreach ($codes as $id => $code) { ?>
+            <option value="<?= $id ?>" <?= ($id === $taxRateId) ? 'selected' : '' ?>><?= $code ?></option>
+        <?php } ?>
+    </select>
+<?php } ?>

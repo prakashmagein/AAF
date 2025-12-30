@@ -1,0 +1,51 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+?>
+
+
+<script>
+    require([
+        'jquery',
+        'prototype'
+    ], function($){
+
+        // alert($(document).find('#magedelightsmsprofile_general_attribute').val());
+        if($(document).find('#magedelightsmsprofile_general_attribute').val() !=null) {
+            $(document).find('#row_magedelightsmsprofile_general_generate_code').hide();
+        }
+        $(document).find('#generate_button').click(function () {
+            var AjaxUrl = '<?php echo $block->getAjaxUrl() ?>';
+            $.ajax({
+                showLoader: true,
+                url: AjaxUrl,
+                method: "POST",
+                data: {form_key: window.FORM_KEY},
+                dataType: "json"
+            }).done(function(response) {
+                location.reload();
+            });
+        }); 
+
+    });
+</script>
+
+<?php
+//if($block->checkAttributeExist()){
+    echo $block->getButtonHtml();
+//}
+
+?>
+<span class="collect-indicator" id="collect_span">
+    <img class="processing" hidden="hidden" alt="Collecting" style="margin:0 5px" src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    <img class="collected" hidden="hidden" alt="Collected" style="margin:-3px 5px" src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    <span id="generate_message_span"></span>
+</span

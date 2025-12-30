@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+ -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="quote">
+        <column xsi:type="int" name="mf_tax_rate_id" nullable="true" comment="Magefan Order Edit Tax Rate Id"/>
+        <column xsi:type="varchar" name="mf_custom_shipping_price" nullable="true" comment="Magefan Order Edit Custom Shipping Price"/>
+    </table>
+
+    <table name="mf_order_status_history" resource="default" engine="innodb" comment="Magefan Order Status History">
+        <column xsi:type="int" name="id" unsigned="false" nullable="false" identity="true"
+                comment="ID"/>
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" comment="ORDER ID"/>
+        <column xsi:type="text" name="comment_section" nullable="true" comment="Comment Section"/>
+        <column xsi:type="text" name="comment" nullable="true" comment="Comment"/>
+        <column xsi:type="varchar" name="status" nullable="false" length="32" comment="Status"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP"
+                comment="Created At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign"
+                    referenceId="MF_ORDER_STATUS_HISTORY_ORDER_ID_SALES_ORDER_ENTITY_ID"
+                    table="mf_order_status_history"
+                    column="order_id"
+                    referenceTable="sales_order"
+                    referenceColumn="entity_id"
+                    onDelete="CASCADE"
+        />
+    </table>
+</schema>

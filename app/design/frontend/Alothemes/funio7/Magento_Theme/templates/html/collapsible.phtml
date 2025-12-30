@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div class="block <?= $block->escapeHtmlAttr($block->getBlockCss()) ?> custom-customer-collapse">
+    <div class="title <?= $block->escapeHtmlAttr($block->getBlockCss()) ?>-title" data-mage-init='{"toggleAdvanced": {"toggleContainers": "#<?= $block->escapeHtmlAttr($block->getBlockCss()) ?>", "selectorsToggleClass": "active"}}'>
+    <?= $block->escapeHtml(__('My Profile')) ?>
+    </div>
+    <div class="content <?= $block->escapeHtmlAttr($block->getBlockCss()) ?>-content" id="<?= $block->escapeHtmlAttr($block->getBlockCss()) ?>">
+        <?= $block->getChildHtml() ?>
+    </div>
+</div>
+<script type="text/javascript">
+    require(['jquery'],function($){
+    $(document).ready(function(){
+        var current_tab =  $('.account .custom-customer-collapse #block-collapsible-nav .nav.item.current strong').text();
+        console.log(current_tab);
+        $('.account .custom-customer-collapse .title.block-collapsible-nav-title').text(current_tab);
+    }); 
+});
+</script>

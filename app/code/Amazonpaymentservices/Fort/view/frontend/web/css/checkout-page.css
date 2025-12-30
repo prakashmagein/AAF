@@ -1,0 +1,144 @@
+#applePay {
+    width: 150px !important;
+    height: 50px !important;
+    border: 0px !important;
+    border-radius: 5px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 20px !important;
+    background-position: 50% 50% !important;
+    background-color: black !important;
+    background-size: 60% !important;
+    background-repeat: no-repeat !important;
+    z-index: 999;
+    display: block !important;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-buy {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: buy;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-donate {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: donate;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-plain {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: plain;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-set-up {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: set-up;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-book {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: book;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-check-out {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: check-out;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-subscribe {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: subscribe;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-add-money {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: add-money;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-contribute {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: contribute;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-order {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: order;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-reload {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: reload;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-rent {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: rent;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-support {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: support    ;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-tip {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: tip;
+}
+
+/*noinspection CssInvalidPropertyValue,CssUnknownProperty*/
+.apple-pay-top-up {
+    -webkit-appearance: -apple-pay-button;
+    -apple-pay-button-type: top-up;
+}
+
+.apple-pay .actions-toolbar{
+    text-align: center !important;
+}
+.apple-pay .primary{
+    float: none !important;
+}
+
+fieldset.ccform {
+    width: 300px;
+}
+fieldset .cc-box {
+    position: relative;
+}
+fieldset .cc-box .input-text {
+    width: 100% !important;
+}
+.payment-method .card-logo{
+    position: absolute;
+    top: 6px;
+    right: 6px;
+}
+.vault .cvv-hide,.vaultinsta .cvv-hide {
+    display: none;
+}
+.vault .cvv,.vaultinsta .cvv {
+    width:55px !important;
+}
+.checkout-payment-method .credit-card-types img {
+    -webkit-filter: grayscale(0%) !important;
+}
+html[lang='ar'] { direction: rtl; }
+html[lang='ar'] .select.month,html[lang='ar'] .select.year{ padding-right: 24px !important; }
+html[lang='ar'] .card-logo{ padding-right: 225px; }
+
+.instaform .plan-error,.ccform .plan-error, .instaform .cvv-error, .ccform .cvv-error {
+    color: #f00;
+}
+.ccform .error-ccform,.instaform .error-instaform,.ccform .cc-form-error,.instaform .cc-form-error { color : #f00;}

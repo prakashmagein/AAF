@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "funio";
+    src: url("./funio.ttf?0118d7886d0ef7f17872fbbe6741dd06") format("truetype"),
+url("./funio.woff?0118d7886d0ef7f17872fbbe6741dd06") format("woff"),
+url("./funio.woff2?0118d7886d0ef7f17872fbbe6741dd06") format("woff2"),
+url("./funio.eot?0118d7886d0ef7f17872fbbe6741dd06#iefix") format("embedded-opentype"),
+url("./funio.svg?0118d7886d0ef7f17872fbbe6741dd06#funio") format("svg");
+}
+
+*[class^="funio-"]:before, i[class*=" funio-"]:before {
+    font-family: funio !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.funio-loupe:before {
+    content: "\f101";
+}
+.funio-user:before {
+    content: "\f102";
+}
+.funio-star:before {
+    content: "\f103";
+}
+.funio-shopping-cart:before {
+    content: "\f104";
+}
+.funio-next:before {
+    content: "\f105";
+}
+.funio-left-arrow:before {
+    content: "\f106";
+}
+.funio-right-arrow:before {
+    content: "\f107";
+}
+.funio-left-arrow-1:before {
+    content: "\f108";
+}
+.funio-empty-battery:before {
+    content: "\f109";
+}
+.funio-like:before {
+    content: "\f10a";
+}
+.funio-blocks-with-angled-cuts:before {
+    content: "\f10b";
+}
+.funio-straight-quotes:before {
+    content: "\f10c";
+}
+.funio-star-1:before {
+    content: "\f10d";
+}
+.funio-graph:before {
+    content: "\f10e";
+}
+.funio-filter:before {
+    content: "\f10f";
+}
+.funio-chat:before {
+    content: "\f110";
+}
+.funio-content-writing:before {
+    content: "\f111";
+}

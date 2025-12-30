@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * event
+ *
+ * @copyright Copyright © 2020 Magepow. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="controller_action_predispatch_paypal_express_placeOrder">
+        <observer name="onestepcheckout_predispatch_paypal_express_placeOrder" instance="Magepow\OnestepCheckout\Observer\PaypalExpressPlaceOrder"/>
+    </event>
+    <event name="checkout_submit_all_after">
+        <observer name="sales_pro_observer_checkout_submit_all_after" instance="Magepow\OnestepCheckout\Observer\CheckoutSubmitAllAfter" />
+    </event>
+    <event name="sales_model_service_quote_submit_success">
+        <observer name="convertDataToOrder" instance="Magepow\OnestepCheckout\Observer\RegisterSubmitSuccess"/>
+    </event>
+    <event name="sales_model_service_quote_submit_before">
+        <observer name="convertOscDataToOrder" instance="Magepow\OnestepCheckout\Observer\QuoteSubmitBefore"/>
+    </event>
+
+</config>

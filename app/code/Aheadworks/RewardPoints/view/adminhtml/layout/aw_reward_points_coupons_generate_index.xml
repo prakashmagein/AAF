@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="aw_reward_points_admin_default"/>
+    <body>
+        <referenceBlock name="aw_reward_points_menu_item.coupons">
+            <arguments>
+                <argument name="controller" xsi:type="string">coupons_generate</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="content">
+            <uiComponent name="aw_reward_points_coupons_generate_form"/>
+        </referenceBlock>
+    </body>
+</page>

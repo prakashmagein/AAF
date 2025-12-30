@@ -1,0 +1,58 @@
+# === Magento 2 Core Exclusions ===
+/app/etc/env.php
+/app/etc/config.php
+/vendor/*
+!/vendor/.htaccess
+/generated/*
+!/generated/.htaccess
+/var/*
+!/var/.htaccess
+
+# === STATIC & MEDIA (Do NOT push) ===
+/pub/static/*
+!/pub/static/.htaccess
+/pub/media/*
+!/pub/media/.htaccess
+!/pub/media/logo/*
+!/pub/media/favicon/*
+# Remove product images & cache
+/pub/media/catalog/*
+/pub/media/catalog/product/cache/*
+
+# === LOGS, BACKUPS, SESSION, TEMP ===
+/var/log/*
+/var/report/*
+/var/session/*
+/var/page_cache/*
+/var/view_preprocessed/*
+/backup/
+*.sql
+*.gzip
+*.gz
+*.zip
+*.tar
+*.tar.gz
+*.bak
+
+# === NODE / BUILD TOOLS ===
+/node_modules
+/.cache
+/.grunt
+/Gruntfile.js
+/package.json
+
+# === IDE & EDITOR FILES ===
+/.idea
+/.vscode
+/.settings
+/.project
+/.metadata
+/.php_cs
+/.php_cs.cache
+*.iml
+.DS_Store
+
+# === SECURITY BLOCK ===
+/pub/phpmyadmin/
+/sitemap.xml
+/pub/sitemap.xml

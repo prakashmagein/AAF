@@ -1,0 +1,242 @@
+<!-- 
+/**
+* FME Extensions
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the fmeextensions.com license that is
+* available through the world-wide-web at this URL:
+* https://www.fmeextensions.com/LICENSE.txt
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this extension to newer
+* version in the future.
+*
+* @category  FME
+* @package   FME_Refund
+* @author     Hassan<support@unitedsol.net>
+* @copyright Copyright (c) 2021 FME (http://fmeextensions.com/)
+* @license   https://fmeextensions.com/LICENSE.txt
+*/
+-->
+<?php
+/** @var \Magento\Sales\Block\Order\History $block */
+$blockobj = $block->getLayout()->createBlock('FME\Refund\Block\Save');
+$helper = $this->helper("FME\Refund\Helper\Data");
+?>
+<?php $_orders = $block->getOrders();?>
+<?php echo $block->getChildHtml('info'); ?>
+<?php if ($_orders && count($_orders)) { ?>
+    <div class="table-wrapper orders-history">
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?php echo $block->escapeHtml(__('Orders')); ?></caption>
+            <thead>
+                <tr>
+                    <th scope="col" class="col id"><?php echo $block->escapeHtml(__('Order#')); ?></th>
+                    <th scope="col" class="col date"><?php echo $block->escapeHtml(__('Date')); ?></th>
+                    <?php echo $block->getChildHtml('extra.column.header'); ?>
+                    <th scope="col" class="col total"><?php echo $block->escapeHtml(__('Order Total')); ?></th>
+                    <th scope="col" class="col status"><?php echo $block->escapeHtml(__('Status')); ?></th>
+                    <th scope="col" class="col actions"><?php echo $block->escapeHtml(__('Action')); ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($_orders as $_order) {  ?>
+                    <tr>
+                        <td data-th="<?php echo $block->escapeHtml(__('Order #')); ?>" class="col id"><?php echo $block->escapeHtml($_order->getRealOrderId()); ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Date')); ?>" class="col date"><?php echo /* @noEscape */ $block->formatDate($_order->getCreatedAt()); ?></td>
+                        <?php $extra = $block->getChildBlock('extra.container'); ?>
+                        <?php if ($extra) { ?>
+                            <?php $extra->setOrder($_order); ?>
+                            <?php echo $extra->getChildHtml(); ?>
+                        <?php } ?>
+                        <td data-th="<?php echo $block->escapeHtml(__('Order Total')); ?>" class="col total"><?php echo /* @noEscape */ $_order->formatPrice($_order->getGrandTotal()); ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Status')); ?>" class="col status"><?php echo $block->escapeHtml($_order->getStatusLabel()); ?></td>
+                        <td data-th="<?php echo $block->escapeHtml(__('Actions')); ?>" class="col actions">
+                            <a href="<?php echo $block->escapeUrl($block->getViewUrl($_order)); ?>" class="action view">
+                                <span><?php echo $block->escapeHtml(__('View Order')); ?></span>
+                            </a>
+                            <?php if ($this->helper(\Magento\Sales\Helper\Reorder::class)->canReorder($_order->getEntityId())) { ?>
+                                <a href="#" data-post='<?php echo /* @noEscape */
+                                $this->helper(\Magento\Framework\Data\Helper\PostHelper::class)
+                                ->getPostData($block->getReorderUrl($_order));
+                            ?>' class="action order">
+                            <span><?php echo $block->escapeHtml(__('Reorder')); ?></span>
+                        </a>
+                        <?php
+
+                        if ($helper->getGeneralConfig('enable')) {
+                            //getting the number of days and converting into seconds
+                            $orderDate = $blockobj->orderPlacedDate($_order->getEntityId());
+                            $currentDate = $blockobj->getCurrentDate();
+                            $diff = strtotime($currentDate) - strtotime($orderDate);
+                            $days = round($diff / 86400);
+                            $existingrecord = $blockobj->getDetails($_order->getEntityId());
+                            ?>
+                            <?php if($_order->getStatus()=="closed" || $_order->getStatus()=="Closed"){ ?>
+                                <span> <?php echo __('Returned')?> </span>
+                            <?php } elseif ($days >= ($helper->getGeneralConfig('time')) && $existingrecord->count() == 0 && $_order->getRefundStatus() == '') { ?>
+                                <!-- <span> Not Applicabe </span> -->
+                            <?php } elseif ($existingrecord->count() >= 1 && $blockobj->getRequestStatus($_order->getEntityId()) == 'pending') { ?>
+                                <span style="color: green"><?php echo __('Requested')?></span>
+                            <?php } elseif ($blockobj->getRequestStatus($_order->getEntityId()) == 'approved' || $_order->getRefundStatus() == 'approved') { ?>
+                                <span style="color:green"><?php echo __('Approved')?>  </span>
+                            <?php } elseif ($blockobj->getRequestStatus($_order->getEntityId()) == 'rejected' || $_order->getRefundStatus() == 'rejected') { ?>
+                                <span class="disabled"> <?php echo __('Rejected'); ?> </span>
+                            </a>			                        
+                        <?php } else { 
+                            //show popup if enabled
+                            if($helper->getPopupConfig("enablepopup") == 1){
+                               if($_order->getStatus() === "complete"){
+                                ?>
+                                <a href="javascript:void(0)" class="fme-refund" id="<?= $_order->getEntityId();?>" title="<?php echo __('Click on the link and fill the form to refund your order'); ?>" >
+                                    <span><?php echo __('Return'); ?></span>
+                                </a>
+                            <?php } }else{?>
+                                <a href="<?= $this->getUrl("refund/index/requestsave", ['id' => $_order->getEntityId(), 'email' => $_order->getCustomerEmail(),'name' => $_order->getCustomerName()])?>" id="<?php echo $_order->getEntityId(); ?>" title="<?php echo __('Click on the link to refund your order'); ?>" >
+                                    <span><?php echo __('Return'); ?></span>
+                                </a>
+                            <?php } ?>
+                        <?php  } ?>
+                        <?php
+                    }?>
+                <?php }?>
+            </td>
+        </tr>
+    <?php } ?>
+</tbody>
+</table>
+</div>
+<?php if ($block->getPagerHtml()) { ?>
+    <div class="order-products-toolbar toolbar bottom"><?php echo $block->getPagerHtml(); ?></div>
+<?php } ?>
+<?php } else { ?>
+    <div class="message info empty"><span><?php echo $block->escapeHtml($block->getEmptyOrdersMessage()); ?></span></div>
+<?php } ?>
+<!-- Refund Popup -->
+<div id="popup-modal" style="display:none;">
+    <form class="form-rma" action="<?php echo $blockobj->getFormAction(); ?>" id="rma_form" method="post" enctype="multipart/form-data" onsubmit="return capatcheFunction()" data-hasrequired="<?php echo __('* Required Fields'); ?>" data-mage-init='{"validation":{}}'>
+        <div class="form-group">
+            <input class="fme-form-id" type="hidden" value="<?php echo $_order->getEntityId(); ?>" readonly name="order_id">
+            <label> <?php echo __('Your Name'); ?> : </label> <br>
+            <input type="text" id="customer_name" name="customer_name" data-validate='{"required":true}' value="<?php echo $_order->getCustomerName(); ?>" > <br><br>
+            <label> <?php echo __('Your Email'); ?> : </label> <br>
+            <input type="email" id="customer_email" name="customer_email" data-validate='{"required":true}' value="<?php echo $_order->getCustomerEmail(); ?>" > <br><br>
+            <label> <?php echo __('Select Return Reason'); ?> : </label> <br>
+            <select name="refund reason">
+                <option value="Bad Quality"><?php echo __('Bad Quality'); ?></option>
+                <option value="The product was damaged or defective"><?php echo __('The product was damaged or defective'); ?></option>
+                <option value="Bought the wrong Item"><?php echo __('Bought the wrong Item'); ?></option>
+                <option value="Product Does Not Match Description on Website"><?php echo __('Product Does Not Match Description on Website'); ?></option>
+            </select> <br> <br>
+
+            <?php if ($helper->getPopupConfig('description')) { ?>
+                <label> <?php echo __('Return Description'); ?> :  </label> <br>
+                <textarea class="refund-reason" id="refund_reason" placeholder="Write here...." style="height: 80px" name="description" data-validate='{"required":true, "minlength":10}'> </textarea>
+
+            <?php } ?>     
+        </div>
+        <br>
+        <?php if ($helper->getRecaptchaConfig('recaptcha')) { ?>
+            <div class="field recaptcha">
+                <div class="g-recaptcha" name="recaptcha" id="recaptcha" data-sitekey="<?php echo $helper->getRecaptchaConfig('sitekey'); ?>"></div>
+            </div>
+
+        <?php } ?>      
+        <br>
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button type="submit" title="<?php echo __('Submit'); ?>" class="action submit primary">
+                    <span><?php echo __('Submit'); ?></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Using Google Recaptcha Api -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<!-- Show Popup -->
+<script>
+    require(
+        [
+        'jquery',
+        'Magento_Ui/js/modal/modal'
+        ],
+        function(
+            $,
+            modal
+            ) {
+            var options = {
+                type: 'popup',
+                responsive: true,
+                innerScroll: true,
+                title: '<?php echo $helper->getGeneralConfig("title"); ?>',
+                buttons: [{
+                    text: $.mage.__('Close'),
+                    class: 'modal-close',
+                    click: function (){
+                        location. reload();
+                    }
+                }]
+
+            };
+            $('#popup-modal').on('modalclosed', function() { 
+                location. reload();
+
+            });
+            var popup = modal(options, $('#popup-modal'));
+            $(".fme-refund").on('click',function(){
+
+                $("#popup-modal").find('.fme-form-id').attr('id',''+$(this).attr('id')+'');
+                $("#popup-modal").find('.fme-form-id').val(''+$(this).attr('id')+'');
+                $("#popup-modal").find('.fme-form-id').text(''+$(this).attr('id')+'');
+                $("#popup-modal").modal("openModal");
+            });
+        }
+        );
+    </script>
+    <!-- Validating Recaptcha -->
+    <script type="text/javascript">
+        function capatcheFunction() {
+            var exists = document.getElementById("g-recaptcha-response");
+            if(exists == null){
+
+            } else{
+                var check = document.getElementById("g-recaptcha-response").value;
+                if(check == '' || check == null){
+                    document.getElementById("recaptcha").style.border = "1px solid #ea0e0e";
+                    return false;
+                }
+                else{
+                    document.getElementById("recaptcha").style.border = "none";
+                    return true;
+                }
+            }
+        }
+    </script>
+
+    <style>
+    .disabled
+    {
+        color: red;
+    }
+    #rma_form {
+  margin-top: 4rem;
+}
+#rma_form .action.submit.primary {
+  border-radius: 38px;
+}
+
+#rma_form  input[type="text"], select{
+    border-radius: 0px !important;
+}
+.modal-popup .modal-inner-wrap {
+  width: 100% !important;
+}
+@media screen and (min-width: 768px){
+    .modal-popup .modal-inner-wrap {
+  width: 50% !important;
+}
+}
+</style>

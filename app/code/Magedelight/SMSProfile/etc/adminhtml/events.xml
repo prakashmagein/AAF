@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */ 
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <!-- <event name="admin_system_config_changed_section_magedelightsmsprofile">
+        <observer name="changed_section_magedelightsmsprofile"
+                  instance="Magedelight\SMSProfile\Observer\Adminhtml\CaptchaDisable"/>
+    </event> -->
+    <event name="admin_system_config_changed_section_magedelightsmsprofile">
+        <observer name="changed_section_magedelightsmsprofile"
+                  instance="Magedelight\SMSProfile\Observer\Adminhtml\ValidateSmsProfileConfig"/>
+    </event>
+    <event name="sales_order_invoice_save_after">
+        <observer name="smsNotificationInvoice" instance="Magedelight\SMSProfile\Observer\Adminhtml\InvoicePay"/>
+    </event>
+
+    <event name="sales_order_creditmemo_save_after">
+        <observer name="smsNotificationCreditmemo" instance="Magedelight\SMSProfile\Observer\Adminhtml\CreditmemoRefund"/>
+    </event>
+
+     <event name="sales_order_shipment_save_after">
+        <observer name="smsNotificationShipment" instance="Magedelight\SMSProfile\Observer\Adminhtml\ShipmentSave"/>
+    </event>
+
+    <event name="order_cancel_after">
+        <observer name="adminOrderCancelSms" instance="Magedelight\SMSProfile\Observer\Adminhtml\OrderCancel" />
+    </event>
+
+    <event name="sales_order_shipment_track_save_after">
+        <observer name="adminOrderTrackSms" instance="Magedelight\SMSProfile\Observer\Adminhtml\ShipmentTrackSave"/>
+    </event>
+
+</config>

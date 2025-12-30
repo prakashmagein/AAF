@@ -1,0 +1,26 @@
+type Query {
+    getAddress(input: GetLatLong): [Address] @resolver(class: "Webkul\\GoogleMapPinAddress\\Model\\Resolver\\GetAddress") @doc(description: "The viewRma query returns information about rma")
+}
+input GetLatLong {
+    lat : Float @doc(description: "latitude")
+    lng : Float @doc(description: "longitude")
+}
+type Address @doc(description: "ViewRma defines the rma Information") {
+    street: String
+    city: String
+    state: String
+    country: String
+    postcode: Int
+}
+input CartAddressInput @doc(description: "input the billing or shipping address to be applied to the cart.") {
+    latitude: Float @doc(description: "Shipping location latitude.")
+    longitude: Float @doc(description: "Shipping location longitude.")
+}
+
+interface CartAddressInterface @doc(description: "Defines the billing or shipping address to be applied to the cart."){
+    lat_lng: [LatLng] @resolver(class: "Webkul\\GoogleMapPinAddress\\Model\\Resolver\\GetLatLng") @doc(description: "Shipping location latitude longitude.")
+}
+type LatLng {
+    latitude: Float  @doc(description: "Shipping location latitude.")
+    longitude: Float  @doc(description: "Shipping location longitude.")
+}

@@ -1,0 +1,257 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ *
+ * Glory to Ukraine! Glory to the heroes!
+ */
+?>
+<?php
+/**
+ * Blog post view template
+ *
+ * @var $block \Magefan\Blog\Block\Post\View
+ */
+?>
+<?php
+    $_post = $block->getPost();
+    $_postUrl = $_post->getPostUrl();
+    $_postName = $block->escapeHtml($_post->getTitle(), null);
+?>
+<?= $block->getStyleViewModel()->getStyle('Magefan_Blog::css/bootstrap-4.4.1-custom-min.css') ?>
+<div class="_post-view post-view-modern custom-blog-post-view">
+    <div class="post-holder post-holder-<?= (int)$_post->getId() ?>">
+
+        <div class="post-header clearfix">
+
+            <!-- post category-->
+            <?php if ($_categoriesCount = $_post->getCategoriesCount()) { ?>
+                <div class="post-category mb-4">
+                        <?php foreach ($_post->getParentCategories() as $ct) { ?>
+                            <a class="category-name" href="<?= $block->escapeUrl($ct->getCategoryUrl()) ?>"
+                               title="<?= $block->escapeHtml($ct->getTitle()) ?>">
+                                <?= $block->escapeHtml($ct->getTitle()) ?>
+                            </a>
+                        <?php } ?>
+                    </div>
+            <?php }  ?>
+
+            <!-- block data -->
+            <div class="post-data-wrap mb-4">
+                <!-- post author -->
+                <?php if ($block->authorEnabled()) { ?>
+                    <?php if ($_author = $_post->getAuthor()) { ?>
+                        <span class="post-author-name">
+                            <?php if ($block->authorPageEnabled()) { ?>
+                                <a title="<?= $block->escapeHtml($_author->getTitle()) ?>"
+                                   href="<?= $block->escapeUrl($_author->getAuthorUrl()) ?>"><?= $block->escapeHtml($_author->getTitle()) ?>
+                                </a>
+                            <?php } else { ?>
+                                <?= $block->escapeHtml($_author->getTitle()) ?>
+                            <?php } ?>
+                            <span>-</span>
+                        </span>
+                    <?php } ?>
+                <?php } ?>
+
+                <!-- post date -->
+                <?php if ($_post->isPublishDateEnabled()) { ?>
+                    <span class="post-date"><?= $block->escapeHtml($_post->getPublishDate()) ?></span>
+                <?php } ?>
+
+                <!-- post views -->
+                <?php if ($block->viewsCountEnabled()) { ?>
+                    <?php if ($viewsCount = $_post->getViewsCount()) { ?>
+                        <span class="post-views float-right d-none d-md-block">
+                            <i class="mf-blog-icon mfbi-views"></i>
+                            <?= $block->escapeHtml($viewsCount)?>
+                        </span>
+                    <?php } ?>
+                <?php } ?>
+
+                <!-- post comments -->
+                <?php if ($block->magefanCommentsEnabled() && $_post->getCommentsCount()) { ?>
+                    <span class="post-comments float-right d-none d-md-block">
+                        <i class="mf-blog-icon mfbi-comments"></i>
+                        <a title="<?= $block->escapeHtml($_post->getTitle()) ?>"
+                           href="<?= $block->escapeUrl($_post->getPostUrl()) ?>#post-comments"
+                        ><?= $block->escapeHtml($_post->getCommentsCount()) ?></a>
+                    </span>
+                <?php } ?>
+            </div>
+            <?php /*
+            <div class="post-sharing mb-4 d-none">
+                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                <div class="addthis_inline_share_toolbox text-center" addthis:url="<?= $block->escapeUrl($_postUrl) ?>"></div>
+            </div>
+            */ ?>
+        </div>
+
+        <div class="post-content">
+            <div class="_post-description clearfix">
+                <div class="custom-top-content-image-title">
+                <!-- Post Image -->
+                <?php if ($featuredImage = $_post->getFeaturedImage()) { ?>
+                    <?php
+                        $featuredImgAlt = $_post->getData('featured_img_alt');
+                        if (!$featuredImgAlt) {
+                            $featuredImgAlt = $_postName;
+                        }
+                    ?>
+                    <div class="post-featured-image">
+                        <img src="<?= $block->escapeUrl($featuredImage) ?>"
+                             alt="<?= $block->escapeHtml($featuredImgAlt) ?>" />
+                    </div>
+                <?php } ?>
+
+                <div class="custom-post-view-content-section">
+                    <div class="custom-post-title">
+                        <h2><?= $block->escapeUrl($_postName) ?></h2>
+                    </div>
+                    <div class="custom-author-name">
+                        <!-- post author -->
+                        <?php if ($block->authorEnabled()) { ?>
+                            <?php if ($_author = $_post->getAuthor()) { ?>
+                                <span class="post-author-name">
+                                    <?php if ($block->authorPageEnabled()) { ?>
+                                        <a title="<?= $block->escapeHtml($_author->getTitle()) ?>"
+                                           href="<?= $block->escapeUrl($_author->getAuthorUrl()) ?>"><?= $block->escapeHtml($_author->getTitle()) ?>
+                                        </a>
+                                    <?php } else { ?>
+                                        <?= $block->escapeHtml($_author->getTitle()) ?>
+                                    <?php } ?>
+                                </span>
+                            <?php } ?>
+                        <?php } ?>
+                    </div>
+                    <div class="custom-date-blog-post">
+                        <!-- post date -->
+                        <?php if ($_post->isPublishDateEnabled()) { ?>
+                            <span class="post-date"><?= $block->escapeHtml($_post->getPublishDate()) ?></span>
+                        <?php } ?>
+                    </div>
+                </div>
+                </div>
+
+                <!-- Post Tags -->
+                <?php if ($_tagsCount = $_post->getTagsCount()) { ?>
+                    <div class="post-tag">
+                        <div class="item post-tags">
+                            <div class="post-tag-title"><?= $block->escapeHtml(__('Tags')) ?></div>
+                            <?php $n = 0; ?>
+                            <?php foreach ($_post->getRelatedTags() as $tag) { ?>
+                                <?php $n++; ?>
+                                <a title="<?= $block->escapeHtml($tag->getTitle()) ?>"
+                                   href="<?= $block->escapeUrl($tag->getTagUrl()) ?>"
+                                ><?= $block->escapeHtml($tag->getTitle()) ?></a>
+                            <?php } ?>
+                        </div>
+                    </div>
+                <?php } ?>
+                <!-- END Post Tags -->
+
+                <div class="post-description">
+                    <?= /*@noEscape*/ $block->getContent() ?>
+                    <div class="clear clearfix"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="post-bottom">
+
+            <?php if ($block->displayAddThisToolbox()) : ?>
+            <!-- Post Sharing -->
+            <div class="post-sharing post-sharing-bottom">
+                <div class="share-elements">
+                    <div class="icon-wrapper icon-facebook" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', 'facebook')">
+                        <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', 'Facebook')) ?>">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="18" cy="18" r="17.5" stroke="#D4D5D8"/>
+                            <path d="M22.9987 9.6665H20.4987C19.3936 9.6665 18.3338 10.1055 17.5524 10.8869C16.771 11.6683 16.332 12.7281 16.332 13.8332V16.3332H13.832V19.6665H16.332V26.3332H19.6654V19.6665H22.1654L22.9987 16.3332H19.6654V13.8332C19.6654 13.6122 19.7532 13.4002 19.9094 13.2439C20.0657 13.0876 20.2777 12.9998 20.4987 12.9998H22.9987V9.6665Z" stroke="#282E3E" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+
+                        </div>
+                    </div>
+
+                    <div class="icon-wrapper icon-twitter" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', 'twitter')" >
+                        <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', 'Twitter')) ?>">
+                            <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 301" width="15" height="15">
+                            <title>X_logo-svg</title>
+                            <style>
+                                .s0 { fill: #000000 } 
+                            </style>
+                            <path id="Layer" fill-rule="evenodd" class="s0" d="m300 300.3l-89.3-0.1-81.8-116.5-102.4 116.5h-26.5l117.1-133.3-117.1-166.9h89.3l77.5 110.4 97-110.4h26.5l-111.7 127.2m44.5 154.5h40.7l-187.1-262.2h-40.7z"></path>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="icon-wrapper icon-youtube" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', 'youtube')" >
+                        <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', 'Youtube')) ?>">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="18" cy="18" r="17.5" stroke="#D4D5D8"/>
+                            <path d="M26.7825 13.3502C26.6835 12.9547 26.4819 12.5923 26.1981 12.2997C25.9142 12.007 25.5581 11.7945 25.1658 11.6835C23.7325 11.3335 17.9992 11.3335 17.9992 11.3335C17.9992 11.3335 12.2658 11.3335 10.8325 11.7168C10.4402 11.8278 10.0842 12.0404 9.8003 12.333C9.51644 12.6256 9.31483 12.988 9.21584 13.3835C8.95352 14.8381 8.8252 16.3138 8.83251 17.7918C8.82316 19.281 8.95148 20.7679 9.21584 22.2335C9.32497 22.6167 9.5311 22.9653 9.81429 23.2456C10.0975 23.5258 10.4482 23.7283 10.8325 23.8335C12.2658 24.2168 17.9992 24.2168 17.9992 24.2168C17.9992 24.2168 23.7325 24.2168 25.1658 23.8335C25.5581 23.7225 25.9142 23.51 26.1981 23.2173C26.4819 22.9247 26.6835 22.5623 26.7825 22.1668C27.0428 20.7232 27.1711 19.2588 27.1658 17.7918C27.1752 16.3026 27.0469 14.8157 26.7825 13.3502Z" stroke="#282E3E" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16.125 20.5167L20.9167 17.7917L16.125 15.0667V20.5167Z" stroke="#282E3E" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="icon-wrapper icon-instagram" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', 'instagram')" >
+                        <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', 'Instagram')) ?>">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="18" cy="18" r="17.5" stroke="#D4D5D8"/>
+                            <path d="M22.168 9.6665H13.8346C11.5334 9.6665 9.66797 11.532 9.66797 13.8332V22.1665C9.66797 24.4677 11.5334 26.3332 13.8346 26.3332H22.168C24.4692 26.3332 26.3346 24.4677 26.3346 22.1665V13.8332C26.3346 11.532 24.4692 9.6665 22.168 9.6665Z" stroke="#282E3E" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21.3337 17.475C21.4366 18.1685 21.3181 18.8769 20.9952 19.4992C20.6723 20.1215 20.1614 20.6262 19.5351 20.9414C18.9088 21.2566 18.1991 21.3663 17.5069 21.255C16.8147 21.1436 16.1752 20.8167 15.6794 20.321C15.1837 19.8252 14.8569 19.1857 14.7455 18.4935C14.6341 17.8013 14.7438 17.0916 15.059 16.4653C15.3742 15.8391 15.8789 15.3281 16.5012 15.0052C17.1236 14.6823 17.8319 14.5638 18.5254 14.6667C19.2328 14.7716 19.8878 15.1012 20.3935 15.6069C20.8992 16.1126 21.2288 16.7676 21.3337 17.475Z" stroke="#282E3E" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M22.582 13.4165H22.5895" stroke="#282E3E" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="icon-wrapper icon-tiktok" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', 'tiktok')" >
+                        <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', 'Tiktok')) ?>">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="18" cy="18" r="17.5" stroke="#D4D5D8"/>
+                            <path d="M24.3937 16.325C24.0344 16.4031 22.9125 16.5281 21.3625 15.5718C21.3389 15.5567 21.3117 15.5482 21.2837 15.5472C21.2557 15.5462 21.2279 15.5527 21.2033 15.5662C21.1787 15.5796 21.1582 15.5994 21.1438 15.6235C21.1295 15.6476 21.1219 15.675 21.1219 15.7031C21.1219 15.7031 21.1219 18.8281 21.1219 19.8687C21.1219 20.7062 21.1688 26.2437 15.7594 25.625C15.7594 25.625 11.4844 25.3125 11.4844 20.5218C11.4844 20.5218 11.5438 16.2093 16.6156 15.8343C16.6373 15.8326 16.6591 15.8354 16.6797 15.8424C16.7003 15.8495 16.7193 15.8606 16.7354 15.8753C16.7515 15.8899 16.7644 15.9077 16.7734 15.9275C16.7823 15.9474 16.7871 15.9688 16.7875 15.9906V18.1875C16.7886 18.2247 16.7757 18.2611 16.7515 18.2894C16.7272 18.3177 16.6932 18.3359 16.6563 18.3406C16.0625 18.425 13.675 18.9031 13.9406 21.0812C14.0097 21.6375 14.2843 22.1479 14.7104 22.5122C15.1365 22.8765 15.6834 23.0683 16.2437 23.05C16.2437 23.05 18.4313 23.2937 18.5313 20.2375V10.4812C18.5321 10.44 18.5488 10.4007 18.5779 10.3716C18.607 10.3425 18.6463 10.3258 18.6875 10.325H20.8375C20.874 10.3251 20.9092 10.338 20.9372 10.3614C20.9652 10.3848 20.9841 10.4172 20.9906 10.4531C21.1031 11.0781 21.7469 13.5218 24.3656 13.675C24.4054 13.6765 24.4431 13.6933 24.471 13.7217C24.4989 13.7502 24.5149 13.7882 24.5156 13.8281V16.175C24.5163 16.2103 24.5044 16.2448 24.4821 16.2722C24.4598 16.2996 24.4285 16.3183 24.3937 16.325Z" stroke="#282E3E" stroke-linecap="round"/>
+                            </svg>
+
+
+                        </div>
+                    </div>
+                    <div class="icon-wrapper icon-snapchat" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', 'snapchat')" >
+                        <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', 'Snapchat')) ?>">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="18" cy="18" r="17.5" stroke="#D4D5D8"/>
+                            <path d="M17.8429 11.75H18.1554C18.421 11.7906 18.6866 11.8156 18.9491 11.8688C19.6905 12.0088 20.3595 12.404 20.8401 12.9856C21.3207 13.5672 21.5826 14.2986 21.5804 15.0531C21.5804 15.6219 21.5429 16.1906 21.5241 16.7594C21.5241 16.95 21.5241 16.9719 21.7179 17.0188C21.9684 17.0652 22.2272 17.0291 22.4554 16.9156C22.5527 16.8758 22.6574 16.8572 22.7624 16.8609C22.8675 16.8647 22.9706 16.8908 23.0648 16.9375C23.1218 16.954 23.173 16.9865 23.2123 17.0311C23.2516 17.0757 23.2773 17.1306 23.2865 17.1893C23.2957 17.2481 23.2879 17.3082 23.2642 17.3627C23.2404 17.4171 23.2016 17.4637 23.1523 17.4969C22.9848 17.6235 22.8022 17.7284 22.6085 17.8094C22.4241 17.8969 22.221 17.9469 22.0398 18.0344C21.9501 18.0613 21.8681 18.1092 21.8006 18.1741C21.7331 18.239 21.6819 18.3189 21.6514 18.4075C21.6209 18.496 21.6118 18.5905 21.625 18.6832C21.6382 18.7759 21.6733 18.8641 21.7273 18.9406C21.8648 19.231 22.0269 19.5091 22.2116 19.7719C22.7288 20.5624 23.5317 21.1223 24.4523 21.3344C24.529 21.3474 24.5981 21.3887 24.646 21.45C24.6684 21.4975 24.6718 21.5518 24.6555 21.6017C24.6393 21.6517 24.6046 21.6935 24.5585 21.7188C24.4307 21.8137 24.2909 21.8914 24.1429 21.95C23.7991 22.0562 23.4491 22.1406 23.096 22.2125C23.0293 22.2184 22.9663 22.2456 22.9162 22.2901C22.8662 22.3345 22.8317 22.3939 22.8179 22.4594C22.7835 22.6156 22.7429 22.7719 22.7023 22.925C22.6616 23.0781 22.5804 23.1281 22.4116 23.1125C22.0241 23.075 21.6366 23.0563 21.2491 23.0281C20.871 23.0069 20.497 23.1161 20.1898 23.3375C19.9335 23.5094 19.6835 23.6844 19.421 23.8469C19.0154 24.1 18.549 24.2393 18.071 24.25C17.4625 24.2602 16.867 24.0727 16.3741 23.7156C16.1241 23.5469 15.8773 23.3687 15.6148 23.2219C15.4433 23.1202 15.253 23.0542 15.0554 23.0281C14.5651 22.9776 14.07 23.0007 13.5866 23.0969C13.4335 23.1281 13.3523 23.0719 13.3116 22.9125C13.271 22.7531 13.2273 22.6 13.196 22.4594C13.1648 22.3188 13.071 22.2312 12.9023 22.1937C12.5054 22.1062 12.1116 21.9969 11.7241 21.8812C11.5977 21.8303 11.4853 21.7499 11.396 21.6469C11.3715 21.6217 11.3547 21.5901 11.3476 21.5557C11.3405 21.5213 11.3433 21.4856 11.3558 21.4528C11.3682 21.4199 11.3898 21.3914 11.418 21.3704C11.4462 21.3494 11.4797 21.3369 11.5148 21.3344C11.6204 21.3158 11.7247 21.2907 11.8273 21.2594C13.0585 20.8656 13.8304 20.0094 14.3273 18.8469C14.3629 18.7802 14.384 18.7067 14.3891 18.6313C14.3942 18.5558 14.3832 18.4802 14.357 18.4093C14.3307 18.3384 14.2896 18.2739 14.2366 18.2201C14.1835 18.1662 14.1196 18.1242 14.0491 18.0969C13.8398 17.9844 13.6054 17.925 13.3898 17.8219C13.1905 17.7404 13.0017 17.6355 12.8273 17.5094C12.7836 17.4782 12.7493 17.4356 12.7281 17.3864C12.707 17.3371 12.6997 17.2829 12.7071 17.2298C12.7145 17.1767 12.7363 17.1266 12.7702 17.085C12.804 17.0434 12.8486 17.0118 12.8991 16.9938C12.9929 16.939 13.0977 16.906 13.2059 16.8974C13.3141 16.8887 13.4229 16.9046 13.5241 16.9438C13.7573 17.059 14.021 17.0973 14.2773 17.0531C14.4648 17.0062 14.4773 16.9844 14.471 16.7937C14.4491 16.2625 14.4116 15.7344 14.4179 15.2031C14.4058 14.8525 14.4448 14.5019 14.5335 14.1625C14.6979 13.613 15.0058 13.1171 15.4254 12.7261C15.845 12.335 16.3613 12.0628 16.921 11.9375C17.2248 11.8588 17.5325 11.7962 17.8429 11.75Z" stroke="#282E3E" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+
+                    <div class="icon-wrapper icon-whatsapp" onclick="mfShareWindowOpen('<?= $block->escapeUrl($_postUrl) ?>', 'whatsapp')" >
+                        <div class="icon" title="<?= $block->escapeHtml(__('Share on %1', 'Whatsapp')) ?>">
+                            <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="18" cy="18" r="17.5" stroke="#D4D5D8"/>
+                            <path d="M14.175 24.45C15.3 25.125 16.65 25.5 18 25.5C22.125 25.5 25.5 22.125 25.5 18C25.5 13.875 22.125 10.5 18 10.5C13.875 10.5 10.5 13.875 10.5 18C10.5 19.35 10.875 20.625 11.475 21.75L10.9404 23.806C10.7457 24.5549 11.4389 25.2317 12.183 25.0191L14.175 24.45Z" stroke="#282E3E" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M21.375 20.1364C21.375 20.2579 21.348 20.3828 21.2905 20.5043C21.233 20.6258 21.1587 20.7405 21.0607 20.8485C20.895 21.0308 20.7125 21.1624 20.5063 21.2468C20.3035 21.3311 20.0838 21.375 19.8472 21.375C19.5024 21.375 19.134 21.294 18.7453 21.1286C18.3566 20.9633 17.9679 20.7405 17.5826 20.4604C17.1939 20.1769 16.8254 19.863 16.4739 19.5154C16.1258 19.1644 15.8114 18.7965 15.5309 18.4118C15.2537 18.027 15.0306 17.6423 14.8684 17.2609C14.7061 16.8761 14.625 16.5083 14.625 16.1573C14.625 15.9278 14.6656 15.7084 14.7467 15.5059C14.8278 15.3 14.9562 15.111 15.1354 14.9423C15.3517 14.7296 15.5883 14.625 15.8384 14.625C15.9331 14.625 16.0277 14.6453 16.1122 14.6858C16.2001 14.7263 16.2779 14.787 16.3387 14.8748L17.1229 15.9784C17.1837 16.0628 17.2277 16.1404 17.2581 16.2146C17.2885 16.2855 17.3054 16.3564 17.3054 16.4205C17.3054 16.5015 17.2817 16.5825 17.2344 16.6601C17.1905 16.7377 17.1263 16.8187 17.0451 16.8997L16.7882 17.1664C16.7511 17.2035 16.7342 17.2474 16.7342 17.3014C16.7342 17.3284 16.7375 17.352 16.7443 17.379C16.7544 17.406 16.7646 17.4262 16.7713 17.4465C16.8322 17.5579 16.937 17.703 17.0857 17.8785C17.2378 18.054 17.4 18.2329 17.5758 18.4118C17.7583 18.5906 17.9341 18.756 18.1132 18.9079C18.289 19.0564 18.4343 19.1576 18.5493 19.2184C18.5662 19.2251 18.5864 19.2352 18.6101 19.2454C18.6371 19.2555 18.6642 19.2589 18.6946 19.2589C18.7521 19.2589 18.796 19.2386 18.8332 19.2015L19.0901 18.9484C19.1746 18.864 19.2557 18.7999 19.3334 18.7594C19.4112 18.7121 19.4889 18.6885 19.5734 18.6885C19.6376 18.6885 19.7052 18.702 19.7796 18.7324C19.854 18.7628 19.9317 18.8066 20.0162 18.864L21.135 19.6571C21.2229 19.7179 21.2837 19.7887 21.3209 19.8731C21.3547 19.9575 21.375 20.0419 21.375 20.1364Z" stroke="#282E3E" stroke-miterlimit="10"/>
+                            </svg>
+
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <!-- END Post Sharing -->
+            <?php endif; ?>
+
+            <?= $block->getChildHtml('blog.post.bottom') ?>
+        </div>
+    </div>
+</div>
+
+<style>
+.icon-twitter .icon {
+    border: 1px solid #ddd;
+    padding: 7px 9px;
+    border-radius: 39px;
+    width: 36px;
+    height: 36px;
+}
+</style>

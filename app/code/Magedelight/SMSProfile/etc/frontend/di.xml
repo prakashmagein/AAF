@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */ 
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">	
+    
+    <!-- override LoginPost controller -->
+    <preference for="Magento\Customer\Controller\Account\LoginPost" type="Magedelight\SMSProfile\Controller\Account\LoginPost" /> 
+    
+    <!-- override ForgotPasswordPost controller -->
+    <preference for="Magento\Customer\Controller\Account\ForgotPasswordPost" type="Magedelight\SMSProfile\Controller\Account\ForgotPasswordPost" /> 
+
+    <!-- override EditPost controller 
+    <preference for="Magento\Customer\Controller\Account\EditPost" type="Magedelight\SMSProfile\Controller\Account\EditPost" /> -->
+    
+    <!-- override block -->
+    <preference for="Magento\Customer\Block\Account\Dashboard\Info" type="Magedelight\SMSProfile\Block\Account\Dashboard\Info" /> 
+
+    <!-- override Login controller for login in checkout page -->
+    <preference for="Magento\Customer\Controller\Ajax\Login" type="Magedelight\SMSProfile\Controller\Ajax\Login" />
+    <!-- override widget block for override Telephone template -->
+    <preference for="Magento\Customer\Block\Widget\Telephone" type="Magedelight\SMSProfile\Block\Telephone" />
+
+    <type name="Magento\Checkout\Model\CompositeConfigProvider">
+        <arguments>
+            <argument name="configProviders" xsi:type="array">
+                <item name="smsprofile_configprovider" xsi:type="object">Magedelight\SMSProfile\Model\SmsprofileConfigProvider</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- plugin for  customer Before save -->
+    <type name="Magento\Customer\Api\CustomerRepositoryInterface">
+        <plugin name="SMSNotification_customer_before_save" type="Magedelight\SMSProfile\Plugin\CustomerRepository" />
+    </type>
+   
+</config>

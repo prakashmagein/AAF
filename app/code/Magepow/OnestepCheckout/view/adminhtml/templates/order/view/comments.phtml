@@ -1,0 +1,34 @@
+<?php
+/**
+ * @copyright Copyright © 2020 Magepow. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+?>
+<?php
+/**
+* @var $block \Magepow\OnestepCheckout\Block\Adminhtml\Order\View\Comment
+*/
+?>
+<?php if ($block->getOrderDateTime()): ?>
+<section class="admin__page-section onestepcheckout-delivery-date">
+    <div class="admin__page-section-item-title">
+        <span class="title"><?= __('Delivery Date') ?></span>
+    </div>
+    <div class="admin__page-section-item-content">                                   
+        <span class="comment"><?php echo  $block->getOrderDateTime() ?></span>                        
+    </div>
+</section>
+<?php endif ?>
+<?php if ($block->getOrderComment()): ?>
+<section class="admin__page-section onestepcheckout-comment">
+    <div class="admin__page-section-item-title">
+        <span class="title"><?= __('Delivery Comment') ?></span>
+    </div>
+    <div class="admin__page-section-item-content">                                   
+        <span class="comment"><?php echo  $block->getOrderComment() ?></span>                        
+    </div>
+</section>
+<?php endif ?>

@@ -1,0 +1,78 @@
+<?php 
+    if (!$block->canShowBlock()) return;
+    $helper = $this->helper('Magepow\Layerednav\Helper\Data');
+?>
+
+<div class="block filter" id="layerednav-filter-block" data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false, "collateral": { "openedState": "filter-active", "element": "body" } }}'>
+    <div class="custom-filter-close-section desktop-only">
+        <span class="filter-close-label"><?= /* @escapeNotVerified */ __('Filters') ?></span>
+        <span class="filter-close-icon">
+            <!-- SVG icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M5 15.0059L15.006 4.99991" stroke="#282E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15.006 15.006L5 5" stroke="#282E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </span>
+    </div>
+
+    <div class="block-title filter-title">
+        <strong data-role="title" role="tab" aria-selected="true" aria-expanded="true" tabindex="0"><?= /* @escapeNotVerified */ __('Shop By') ?></strong>
+    </div>
+
+    <div class="block-content custom-filter-top-section filter-content sidebar-shop sidebar-left">
+        <?php if ($block->getLayer()->getState()->getFilters()): ?>
+            <?php echo $block->getChildHtml('state') ?>
+            <div class="block-actions filter-actions">
+                <a href="<?php /* @escapeNotVerified */ echo $block->getClearUrl() ?>" class="action clear filter-clear"><span><?php /* @escapeNotVerified */ echo __('Clear All') ?></span></a>
+            </div>
+        <?php endif; ?>
+
+        <?php $wrapOptions = false;
+        $activeKey = 0; $activeArray = []; ?>
+        <?php foreach ($block->getFilters() as $key => $filter): ?>
+            <?php if ($filter->getItemsCount()): ?>
+                <?php if (!$wrapOptions): ?>
+                    <div class="mobile-filter-header mobile-only" style="display: none;">
+                        <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= /* @escapeNotVerified */ __('Filters') ?></strong>
+                        <span class="filter-close-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M5 15.0059L15.006 4.99991" stroke="#282E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M15.006 15.006L5 5" stroke="#282E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </span>
+                    </div>
+                    <div class="filter-options widget widget-filter" id="narrow-by-list" data-role="content" data-mage-init='{"accordion":{"openedState": "active", "active": false, "collapsible": true, "multipleCollapsible": true}}'>
+                    <?php $wrapOptions = true; ?>
+                <?php endif; ?>
+
+                <div data-role="collapsible" class="filter-options-item">
+                    <div data-role="title" class="filter-options-title"><?php /* @escapeNotVerified */ echo __($filter->getName()) ?></div>
+                    <div data-role="content" class="filter-options-content"><?php /* @escapeNotVerified */ echo $block->getChildBlock('renderer')->render($filter); ?></div>
+                </div>
+
+                <?php $activeArray[] = $activeKey++; ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+
+        <?php if ($wrapOptions): ?>
+            </div>
+
+            <script type="text/x-magento-init">
+                {
+                    "#narrow-by-list": {
+                        <?php if($helper->isEnabledShowAllFilters()): ?>
+                        "accordion": {
+                            "active": <?php echo $this->helper('Magento\Framework\Json\Helper\Data')->jsonEncode($activeArray); ?>
+                        },
+                        <?php endif; ?>
+                        "Magepow_Layerednav/js/layerednav": {
+                            "stickySidebar": <?php echo $helper->isEnabledStickySidebar() ?>,
+                            "stickyTop": <?php echo $helper->getConfigModule('general/sticky_top') ?>
+                        }
+                    }
+                }
+                
+            </script>
+        <?php endif; ?>
+    </div>
+</div>

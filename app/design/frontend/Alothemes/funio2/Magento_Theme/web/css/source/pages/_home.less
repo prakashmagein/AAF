@@ -1,0 +1,771 @@
+// /**
+//  * Copyright © 2021 Aloteam. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+
+& when (@media-common =true) {
+    .banner {
+        &.banner--style--1{
+            margin-top: -140px;
+
+            .pagebuilder-column-group{
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+    
+            .pagebuilder-column{
+                position: relative;
+            }
+
+            figure{
+                margin: 0;
+            }
+
+            .banner-item{
+                text-align: right;
+            }
+
+            .banner-image{
+                animation-delay: .5s;
+            }
+    
+            .banner-content{
+                position: absolute;
+                right:0;
+                bottom: 150px;
+                padding: 55px;
+                font-size: 1.6rem;
+                text-align: initial;
+                animation-delay: .9s;
+    
+                h2{
+                    font-size: 3.6rem;
+                }
+    
+                a{
+                    font-size: 1.6rem;
+                    font-weight: 500;
+                    display: inline-block;
+                    padding: 5px 0;
+                    position: relative;
+
+                    &:before,
+                    &:after{
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        width: 100%;
+                        height: 2px;
+                        .transition(all 0.3s ease);
+                    }
+                    &:hover{
+                        &:before{
+                            top: -2px;
+                        }
+                    }
+                }
+    
+                &.banner-content-inner{
+                    bottom: 0;
+                    left:0;
+                    text-align: center;
+                    padding: 55px 15px;
+                    animation-delay: 1.3s;
+    
+                    h2{
+                        font-size: 3rem;
+                    }
+                }
+            }
+
+            .banner-item-bottom{
+                padding-top: 390px;
+
+                .banner-image{
+                    animation-delay: .7s;
+                }
+
+                .block-static-block{
+                    padding-left: 245px;
+                }
+
+                .block-content{
+                    position: relative;
+                }
+            }
+        }
+
+        &.banner--deal{
+            padding-top: 110px;
+            padding-bottom: 135px;
+
+            h2{
+                font-size: 5rem;
+                font-weight: 400;
+                margin-bottom: 10px;
+            }
+
+            .banner-product{
+                animation-delay: .5s;
+            }
+
+            .products{
+                &.wrapper{
+                    &.grid {
+                        .product-item{
+                            width: 100%;
+                            margin-bottom: 15px;
+        
+                            .product-item-info{
+                                background-color: transparent;
+                                box-shadow: none;
+        
+                                .product-item-details{
+                                    .dflex;
+                                }
+        
+                                .images-container{
+                                    width: 100%;
+                                    order: 2;
+                                    margin-top: 30px;
+                                    margin-bottom: 0;
+                                }
+        
+                                .details-container{
+                                    width: 100%;
+                                }
+        
+                                .product-image-container{
+                                    margin: 0 auto;
+                                    display: none;
+                                }
+        
+                                .product-item-name{
+                                    font-size: 2.2rem;
+                                    font-weight: 400;
+                                }
+        
+                                .price-box {
+                                    .price{
+                                        font-size: 2.2rem;
+                                    }
+                                }
+        
+                                .product-item-actions{
+                                    display: none;
+                                }
+        
+                                .alo-count-down {
+                                    position: static;
+                                    opacity: 1;
+                                    visibility: visible;
+                    
+                                    .countdown {
+                                        justify-content: center;
+                                        
+                                        .timer-box {
+                                            .timer-box-content {
+                                                width: 73px;
+                                                height: auto;
+                                                border-width: 0;
+        
+                                                span{
+                                                    &:not(.title){
+                                                        width: 63px;
+                                                        height: 63px;
+                                                        line-height: 63px;
+                                                        .round-borders(50%);
+                                                        display: inline-block;
+                                                    }
+                    
+                                                    b{
+                                                        font-weight: 400;
+                                                        font-size: 2.4rem;
+                                                    }
+                                                }
+                                                .title{
+                                                    display: block;
+                                                    font-size: 1.3rem;
+                                                    text-transform: uppercase;
+                                                    font-weight: 500;
+                                                    margin-top: 15px;
+                                                }
+                                            }
+                    
+                                            &:not(:last-child){                    
+                                                &:after{
+                                                    .hidden-visibility;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .banner-action{
+                animation-delay: .8s;
+
+                a{
+                    .button-base-effect;
+                    font-size: 1rem;
+                    text-transform: uppercase;
+                    font-weight: 400;
+                    height: 40px;
+                    line-height: 43px;
+                    padding: 0 35px !important;
+
+                    &:hover{
+                        text-decoration: none;
+                    }
+                }
+            }
+
+            .pagebuilder-column-group{
+                .dflex;
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    .magicproduct, 
+    .magiccatalog, 
+    .magiccategory{
+        .block-title-tabs{
+            &:before{
+                .hidden-visibility;
+            }
+        }
+
+        .slick-slider {
+            &:hover{
+                .slick-prev{
+                    left: 0;
+                }
+                
+                .slick-next{
+                    right: 0;
+                }
+            }
+        }
+    }
+
+    .service--home{
+        padding-top: 100px;
+        padding-bottom: 100px;
+
+        h2{
+            font-size: 3.6rem;
+        }
+
+        .service-home-title{
+            margin-bottom: 68px;
+        }
+
+        .pagebuilder-column-group{
+            .dflex;
+        }
+
+        figure{
+            margin-bottom: 20px;
+        }
+        
+        .service-item{
+            animation-delay: .3s;
+
+            h3{
+                margin-bottom: 10px;
+                font-size: 2.4rem;
+                font-weight: 400;
+            }
+
+            p{
+                margin: 0;
+                font-size: 1.6rem;
+            }
+
+            &:first-child{
+                animation-delay: .6s;
+            }
+
+            &:last-child{
+                animation-delay: .6s;
+            }
+        }
+    }
+
+    .magepow--category {
+        &.category--home{
+            padding-top: 65px;
+            padding-bottom: 45px;
+
+            .block-title{
+                display: none;
+            }
+
+            .category-item{
+                .category-image-container{
+                    .round-borders(50%);
+                    max-width: 280px;
+                    margin: 0 auto;
+
+                    img{
+                        .round-borders(50%);
+                    }
+                }
+
+                .category-item-name{
+                    font-size: 2.2rem;
+                    text-align: center;
+                }
+            }
+
+            .slick-dots{
+                position: static;
+                margin-top: 60px;
+
+                li {
+                    button{
+                        border-width: 0;
+
+                        &:hover{
+                            border-width: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        ul{
+            padding: 0;
+        }
+    }
+
+    .magiccart__product {
+        &.product--tab{
+            margin-top: 120px;
+
+            .block-title-tabs{
+                .block-title-heading{
+                    display: none;
+                }
+            }
+        }
+
+        .title-products{
+            .block-title-heading{
+                .title{
+                    font-size: 3.6rem;
+                }
+            }
+        }
+
+        &.product--style--2{
+            margin-top: 75px;
+            margin-bottom: 65px;
+
+            .title-products{
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    .magicproduct, 
+    .magiccatalog, 
+    .magiccategory{
+        .block-title-tabs{
+            margin-bottom: 0;
+            padding-bottom: 0;
+
+            &:before{
+                .hidden-visibility;
+            }
+
+            .magictabs {
+                .item{
+                    padding-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    .cms-index-index{
+        .page-wrapper{
+            overflow-y: hidden;
+        }
+
+        .columns {
+            .column{
+                &.main{
+                    padding-bottom: 30px;
+                }
+            }
+        }
+    }
+
+    // footer custom 
+    .block--subcribe{
+        .cms-content{
+            margin-top: 25px;
+            animation-delay: .3s;
+        }
+
+    }
+
+
+
+    /* responsive */
+    @media screen and (min-width: 1740px){
+        body {
+            .container{
+                max-width: 1740px;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xxl-m - 1)){
+        .banner{
+            &.banner--style--1 {
+                .banner-item-bottom {
+                    .block-static-block{
+                        padding-left: 100px;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xl-m - 1)) {
+        .banner{
+            &.banner--style--1 {
+                margin-top: 30px;
+
+                .banner-content{
+                    padding: 20px;
+                    font-size: 13px;
+                    bottom: 0;
+
+                    h2{
+                        font-size: 2.5rem;
+                    }
+
+                    &.banner-content-inner{
+                        h2{
+                            font-size: 2rem;
+                        }
+                    }
+                }
+
+                .banner-item-bottom{
+                    padding-top: 117px;
+                }
+            }
+        }
+
+        .magiccart__product {
+            &.product--tab{
+                margin-top: 60px;
+            }
+        }
+
+        .magepow-category{
+            &.category-home {
+                .category-item {
+                    .category-item-name{
+                        font-size: 1.8rem;
+                    }
+                }
+
+                .slick-dots{
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xm - 1)) {
+        .banner{
+            &.banner--style--1{
+                .banner-content{
+                    max-width: calc(~"100% - 30px");
+                }
+
+                .banner-item-bottom {
+                    .block-static-block{
+                        padding-left: 30px;
+                    }
+
+                    .banner-content{
+                        max-width: 100%;
+                    }
+                }
+            }
+        }
+
+        .service {
+            &.service--home{
+                .service-item {
+                    p{
+                        font-size: 1.4rem;
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__m - 1)) {
+        .banner{
+            &.banner--style--1 {
+                .banner-item-bottom{
+                    padding-top: 30px;
+
+                    .block-static-block{
+                        padding-left: 0;
+                    }
+                }
+            }
+        }
+
+
+        .magiccart__product{
+            &.product--tab {
+                .block-title-tabs {
+                    .dflex;
+                    align-items: center;
+                    justify-content: space-between;
+                    margin-bottom: 20px;
+
+                    
+                    .block-title-heading{
+                        display: block;
+
+                        .title{
+                            margin: 0;
+                        }
+                    }
+
+                    .magictabs {
+                        right: 0;
+                        margin: 0;
+
+                        .item{
+                            padding-bottom: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        .service--home {
+            .pagebuilder-column-group{
+                border-width: 1px;
+                border-style: solid;
+            }
+
+            .service-item{
+                border-width: 0 0 1px;
+                border-style: solid;
+                padding: 20px 15px;
+
+                &:last-child{
+                    border-width: 0;
+                }
+            }
+        }
+
+        .magepow--category{
+            &.category--home {
+                .slick-dots{
+                    margin-top: 30px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: @screen__ss ) {
+        .magiccart__product {
+            .title-products {
+                .block-title-heading {
+                    .title{
+                        font-size: 2.5rem;
+                    }
+                }
+            }
+        }
+
+        .service--home {
+            padding-top: 40px;
+            padding-bottom: 40px;
+
+            h2{
+                font-size: 2.5rem;
+            }
+
+            .service-home-title{
+                margin-bottom: 30px;
+            }
+
+            .service-item {
+                h3{
+                    font-size: 2rem;
+                }
+            }
+        }
+
+        .banner{
+            &.banner--deal{
+                padding-top: 40px;
+                padding-bottom: 40px;
+
+                h2{
+                    font-size: 4rem;
+                    margin-bottom: 0;
+                }
+
+                .products{
+                    &.wrapper{
+                        &.grid {
+                            .product-item {
+                                .product-item-info {
+                                    .product-item-name{
+                                        font-size: 1.6rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .magiccart__product{
+            &.product--style--2 {
+                margin-top: 40px;
+                margin-bottom: 30px;
+
+                .title-products{
+                    margin-bottom: 20px;
+                }
+            }
+        }
+
+    }
+
+    @media screen and (max-width: (@screen__xs - 1)) {
+        .magepow-categories {
+            .category-item-name{
+                font-size: 1.6rem;
+            }
+        }
+
+        .banner{
+            &.banner--deal {
+                h2{
+                    font-size: 3rem;
+                }
+
+                .products{
+                    &.wrapper{
+                        &.grid {
+                            .product-item {
+                                .product-item-info{
+                                    .alo-count-down {
+                                        .countdown {
+                                            .timer-box {
+                                                .timer-box-content {
+                                                    width: 50px;
+
+                                                    span{
+                                                        &:not(.title){
+                                                            width: 40px;
+                                                            height: 40px;
+                                                            line-height: 40px;
+                                                        }
+
+                                                        b{
+                                                            font-size: 1.8rem;
+                                                        }
+                                                    }
+
+                                                    .title{
+                                                        margin-top: 0;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xs-m - 1)) {
+        .banner{
+            &.banner--style--1 {
+                .banner-content{
+                    padding: 15px;
+
+                    h2{
+                        font-size: 2rem;
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            &.banner--deal {
+                h2{
+                    font-size: 2.5rem;
+                }
+            }
+        }
+
+        .service{
+            &.service--home {
+                h2{
+                    font-size: 2rem;
+                }
+
+                .service-item {
+                    h3{
+                        font-size: 1.8rem;
+                    }
+
+                    p{
+                        font-size: 1.2rem;
+                    }
+                }
+            }
+        }
+
+        .magiccart__product {
+            .title-products {
+                .block-title-heading {
+                    .title{
+                        font-size: 2rem;
+                    }
+                }
+            }
+        }
+    }
+
+    /* rtl */
+    .rtl {}
+}

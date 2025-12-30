@@ -1,0 +1,60 @@
+<?php
+
+use Aheadworks\RewardPoints\Model\Config;
+/**
+ * Reward points information
+ *
+ * @var Aheadworks\RewardPoints\Block\Customer\RewardPointsBalance\Account $block
+ * @var Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="block rewardpoints">
+    <div class="block-content">
+        <p>
+            <?= $escaper->escapeHtml(__(
+                'Your current balance is <strong>%1 %2</strong>',
+                $block->getCustomerRewardPointsBalance(), $block->getLabelNameRewardPoints()
+            ), ['strong']) ?>
+            <br/>
+            <?php if (!$block->isCustomerRewardPointsSpendRate()): ?>
+                <?php $customerWillEarnPoints = $block->getCustomerWillEarnPoints(); ?>
+                <?php if ($customerWillEarnPoints > 0): ?>
+                    <?= $escaper->escapeHtml(__(
+                        'Spend <strong>%1</strong> to earn <strong>%2 %3</strong>, ' .
+                        'and get a bonus discount of <strong>%4</strong>',
+                        $block->getFormattedSpendCustomerIsNeeded(),
+                        $customerWillEarnPoints,
+                        $block->getLabelNameRewardPoints(),
+                        $block->getFormattedCustomerBonusDiscount()
+                    ), ['strong']) ?>
+                <?php else: ?>
+                    <?= $escaper->escapeHtml(__(
+                        'Spend <strong>%1</strong> to earn more and spend them!',
+                        $block->getFormattedSpendCustomerIsNeeded()
+                    ), ['strong']) ?>
+                <?php endif; ?>
+            <?php else: ?>
+                <?= $escaper->escapeHtml(__(
+                    'It can be redeemed for <strong>%1</strong> at checkout',
+                    $block->getFormattedCustomerBalanceCurrency()
+                ), ['strong']) ?>
+            <?php endif; ?>
+            <?php if ($block->getOnceMinBalance()): ?>
+                <br/>
+                <?= $escaper->escapeHtml(__(
+                    'Earn <strong>%1</strong> or more %2 to spend them on checkout',
+                    $block->getOnceMinBalance(),
+                    $block->getLabelNameRewardPoints(),
+                ), ['strong']) ?>
+            <?php endif; ?>
+        </p>
+        <p>
+            <?= $escaper->escapeHtml(__(
+                'Click <a href="%1">here</a> to learn more about %2 program.',
+                $block->getFrontendExplainerPageLink(), $block->getTabLabelNameRewardPoints()
+            ), ['a']) ?>
+        </p>
+    </div>
+
+    <?= $block->getChildHtml() ?>
+</div>

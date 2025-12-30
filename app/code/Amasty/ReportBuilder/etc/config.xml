@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Custom Reports Builder for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_report_builder>
+            <general>
+                <excluded_entities/>
+            </general>
+            <stock_data>
+                <update>0</update>
+                <frequency>D</frequency>
+                <time>04,00,00</time>
+            </stock_data>
+        </amasty_report_builder>
+    </default>
+</config>

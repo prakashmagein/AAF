@@ -1,0 +1,7 @@
+<?php
+/** @var Cadence\Pinterest\Block\AbstractBlock $block */
+$helper = $block->getHelper();
+$session = $block->getSession();
+if ($helper->isAddToCartPixelEnabled() && $session->hasAddToCart()) {
+    echo $helper->getPixelHtml('AddToCart', $session->getAddToCart());
+}

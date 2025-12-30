@@ -1,0 +1,41 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Backend\Block\Widget\Button\Toolbar">
+        <plugin name="Magefan_OrderEdit::toolbar_button" type="Magefan\OrderEdit\Plugin\Button\ToolbarPlugin" sortOrder="100" />
+    </type>
+    <type name="Magento\Sales\Model\ResourceModel\Order\Handler\State">
+        <plugin
+                disabled="false"
+                name="Magefan_Order_Edit_Plugin_Backend_Magento_Sales_Model_Resource_Model_Order_Handler_State_Plugin"
+                sortOrder="10"
+                type="Magefan\OrderEdit\Plugin\Backend\Magento\Sales\Model\ResourceModel\Order\Handler\StatePlugin"
+        />
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\View\Items">
+        <plugin name="Magefan_OrderEdit_Plugin_Backend_Magento_Sales_Block_Adminhtml_Order_View_Items" type="Magefan\OrderEdit\Plugin\Backend\Magento\Sales\Block\Adminhtml\Order\View\Items" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Quote\Model\Quote\TotalsCollector">
+        <plugin name="Magefan_OrderEdit_Plugin_Magento_Quote_Model_Quote_TotalsCollector" type="Magefan\OrderEdit\Plugin\Backend\Magento\Quote\Model\Quote\TotalsCollector" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Tax\Model\Calculation">
+        <plugin name="Magefan_OrderEdit_Plugin_Magento_Tax_Model_Calculation" type="Magefan\OrderEdit\Plugin\Backend\Magento\Tax\Model\Calculation" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Tax\Api\TaxClassManagementInterface">
+        <plugin name="Magefan_OrderEdit_Plugin_Magento_Tax_Api_TaxClassManagementInterface" type="Magefan\OrderEdit\Plugin\Backend\Magento\Tax\Api\TaxClassManagementInterface" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\Create\Shipping\Method\Form">
+        <plugin name="Magefan_OrderEdit_Plugin_Backend_Magento_Sales_Block_Adminhtml_Order_Create_Shipping_Method_Form" type="Magefan\OrderEdit\Plugin\Backend\Magento\Sales\Block\Adminhtml\Order\Create\Shipping\Method\Form" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Tax\Model\Sales\Total\Quote\Shipping">
+        <plugin name="Magefan_OrderEdit_Plugin_Backend_Magento_Tax_Model_Sales_Total_Quote_Shipping" type="Magefan\OrderEdit\Plugin\Backend\Magento\Tax\Model\Sales\Total\Quote\Shipping" sortOrder="10" disabled="false"/>
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\View\History">
+        <plugin name="Magefan_OrderEdit_Plugin_Backend_Magento_Sales_Block_Adminhtml_Order_View_History" type="Magefan\OrderEdit\Plugin\Backend\Magento\Sales\Block\Adminhtml\Order\View\History" sortOrder="10" disabled="false"/>
+    </type>
+</config>

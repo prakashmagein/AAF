@@ -1,0 +1,439 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2023 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2023 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Customer\Block\Form\Login $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<?php 
+    $smsProfileHelper = $block->getData('view_model');
+    $smsProfileHelper = $smsProfileHelper->getHelperData();
+    $otpLogin = $smsProfileHelper->getSmsProfileOtpOnLogin();
+    /*$validate = $smsProfileHelper->getSmsProfileMailPhoneValidationClass();*/
+    /*if($smsProfileHelper->getModuleStatus()) {
+        $required = $smsProfileHelper->getSmsProfilePhoneRequiredOnSignUp();
+    }*/
+    $autoVerifyOTP = $smsProfileHelper->getAutoGenerateLogin();
+    /*$mobileNumberLimit = $smsProfileHelper->getMobileNumberLimit();*/
+    $otpLength = $smsProfileHelper->getOtpLength();
+    $resendLimitEnable=$smsProfileHelper->getOTPResendLimitEnable();
+    $resendLimit=$smsProfileHelper->getOTPResendLimit();
+    $resendLimitTime=$smsProfileHelper->getOTPResendTime();
+    $resendCount=0;
+
+    $disableResendLink=0;
+    if($resendLimit == $resendCount || $resendCount > $resendLimit){
+        $disableResendLink=1;
+    }
+
+    $phoneValidation = $smsProfileHelper->getPhoneValidation();
+
+    $mobileNumberFieldClass = 10;
+    if(!$smsProfileHelper->isCustomerCountryEnabled()){
+        for ($i=0; $i < count($phoneValidation); $i++) { 
+            if ($phoneValidation[$i]['country']=='default') {
+                $mobileNumberFieldClass = $phoneValidation[$i]['digit'];
+            }  
+        }
+    }
+    
+?>
+
+<div class="login_page">
+    
+    <div class="block block-left">
+    <div class="custom_register_left">
+        <p class="heading"><?php echo __("You can also login via"); ?></p>
+        <button class="Phone custom-tab-button-active" id="loginbyphone" style="display: none;"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18.3312 14.1V16.6C18.3322 16.8321 18.2846 17.0618 18.1917 17.2745C18.0987 17.4871 17.9623 17.678 17.7913 17.8349C17.6203 17.9918 17.4184 18.1113 17.1985 18.1856C16.9787 18.26 16.7457 18.2876 16.5146 18.2667C13.9503 17.9881 11.4871 17.1118 9.32291 15.7084C7.30943 14.4289 5.60236 12.7218 4.32291 10.7084C2.91456 8.53437 2.03811 6.05919 1.76458 3.48337C1.74375 3.25292 1.77114 3.02067 1.84499 2.80139C1.91885 2.58211 2.03755 2.38061 2.19355 2.20972C2.34954 2.03883 2.53941 1.90229 2.75107 1.8088C2.96272 1.71531 3.19153 1.66692 3.42291 1.6667H5.92291C6.32733 1.66272 6.7194 1.80593 7.02604 2.06964C7.33269 2.33335 7.53297 2.69957 7.58958 3.10003C7.6951 3.90009 7.89078 4.68564 8.17291 5.4417C8.28503 5.73997 8.30929 6.06413 8.24283 6.37577C8.17637 6.6874 8.02196 6.97346 7.79791 7.20003L6.73958 8.25837C7.92587 10.3447 9.65329 12.0721 11.7396 13.2584L12.7979 12.2C13.0245 11.976 13.3105 11.8216 13.6222 11.7551C13.9338 11.6886 14.258 11.7129 14.5562 11.825C15.3123 12.1072 16.0979 12.3028 16.8979 12.4084C17.3027 12.4655 17.6724 12.6694 17.9367 12.9813C18.201 13.2932 18.3414 13.6913 18.3312 14.1Z" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?php echo __("Phone"); ?></span></button>
+        <button class="Email" id="loginbyemail"  ><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M3.33073 3.33336H16.6641C17.5807 3.33336 18.3307 4.08336 18.3307 5.00003V15C18.3307 15.9167 17.5807 16.6667 16.6641 16.6667H3.33073C2.41406 16.6667 1.66406 15.9167 1.66406 15V5.00003C1.66406 4.08336 2.41406 3.33336 3.33073 3.33336Z" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M18.3307 5.00003L9.9974 10.8334L1.66406 5.00003" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?php echo __("Email"); ?></span></button>
+        <!-- <button class="Facebook"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M15.0026 1.66702H12.5026C11.3975 1.66702 10.3377 2.10601 9.55633 2.88741C8.77492 3.66881 8.33594 4.72862 8.33594 5.83369V8.33369H5.83594V11.667H8.33594V18.3337H11.6693V11.667H14.1693L15.0026 8.33369H11.6693V5.83369C11.6693 5.61268 11.7571 5.40071 11.9133 5.24443C12.0696 5.08815 12.2816 5.00036 12.5026 5.00036H15.0026V1.66702Z" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span>Facebook</span></button> -->
+     <!--   <button class="Apple"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M12.8302 1.66702C12.9969 2.58369 12.5802 3.50036 12.0802 4.16702C11.5802 4.83369 10.6635 5.41702 9.74686 5.33369C9.5802 4.41702 9.99686 3.58369 10.4969 2.91702C11.0802 2.25036 11.9969 1.75036 12.8302 1.66702ZM15.4969 16.167C15.9135 15.5004 16.1635 15.0837 16.4969 14.3337C13.9135 13.3337 13.4969 9.66702 16.0802 8.33369C15.3302 7.33369 14.2469 6.83369 13.1635 6.83369C12.4135 6.83369 11.9135 7.00036 11.4135 7.16702C10.9969 7.33369 10.6635 7.41702 10.2469 7.41702C9.74686 7.41702 9.41353 7.25036 8.91353 7.08369C8.41353 6.91702 7.91353 6.75036 7.3302 6.75036C6.16353 6.75036 4.91353 7.41702 4.16353 8.66702C3.0802 10.3337 3.24686 13.5837 4.99686 16.2504C5.74686 17.2504 6.5802 18.3337 7.66353 18.3337C8.16353 18.3337 8.41353 18.167 8.74686 18.0837C9.16353 17.917 9.5802 17.7504 10.2469 17.7504C10.9969 17.7504 11.3302 17.917 11.7469 18.0837C12.0802 18.2504 12.3302 18.3337 12.8302 18.3337C13.9969 18.3337 14.8302 17.0837 15.4969 16.167Z" stroke="#9D782F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?php //echo __("Apple"); ?></span></button> -->
+        <!-- <button class="Google"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18.0026 8.50036H10.1693V11.5837H14.7526C14.6693 12.3337 14.1693 13.5004 13.0859 14.2504C12.4193 14.7504 11.4193 15.0837 10.1693 15.0837C8.0026 15.0837 6.08594 13.667 5.41927 11.5837C5.2526 11.0837 5.16927 10.5004 5.16927 9.91702C5.16927 9.33369 5.2526 8.75036 5.41927 8.25036C5.5026 8.08369 5.5026 7.91702 5.58594 7.83369C6.33594 6.08369 8.08594 4.83369 10.1693 4.83369C11.7526 4.83369 12.7526 5.50036 13.4193 6.08369L15.7526 3.75036C14.3359 2.50036 12.4193 1.66702 10.1693 1.66702C6.91927 1.66702 4.08594 3.50036 2.7526 6.25036C2.16927 7.41702 1.83594 8.66702 1.83594 10.0004C1.83594 11.3337 2.16927 12.5837 2.7526 13.7504C4.08594 16.5004 6.91927 18.3337 10.1693 18.3337C12.4193 18.3337 14.3359 17.5837 15.6693 16.3337C17.2526 14.917 18.1693 12.7504 18.1693 10.167C18.1693 9.50036 18.0859 9.00036 18.0026 8.50036Z" stroke="#9D782F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span>Google</span></button> -->
+<?php
+/*
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+
+$yourBlock = $objectManager->get('Mageplaza\SocialLogin\Block\Popup\Social');
+
+$availableSocials = $yourBlock->getAvailableSocials();
+$childBlock = $yourBlock->getChildBlock('request.info');
+
+if ($yourBlock->canShow() && sizeof($availableSocials)):
+    ?>
+            <?php foreach ($availableSocials as $key => $social): ?>
+                <?php if($key=='google'): ?>
+                    <div  class="social_login_btn_div Google"><a class="Google"
+                       data-mage-init='{"socialProvider": {"url": "<?= $social['login_url'] ?>"}}'><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M18.0026 8.50036H10.1693V11.5837H14.7526C14.6693 12.3337 14.1693 13.5004 13.0859 14.2504C12.4193 14.7504 11.4193 15.0837 10.1693 15.0837C8.0026 15.0837 6.08594 13.667 5.41927 11.5837C5.2526 11.0837 5.16927 10.5004 5.16927 9.91702C5.16927 9.33369 5.2526 8.75036 5.41927 8.25036C5.5026 8.08369 5.5026 7.91702 5.58594 7.83369C6.33594 6.08369 8.08594 4.83369 10.1693 4.83369C11.7526 4.83369 12.7526 5.50036 13.4193 6.08369L15.7526 3.75036C14.3359 2.50036 12.4193 1.66702 10.1693 1.66702C6.91927 1.66702 4.08594 3.50036 2.7526 6.25036C2.16927 7.41702 1.83594 8.66702 1.83594 10.0004C1.83594 11.3337 2.16927 12.5837 2.7526 13.7504C4.08594 16.5004 6.91927 18.3337 10.1693 18.3337C12.4193 18.3337 14.3359 17.5837 15.6693 16.3337C17.2526 14.917 18.1693 12.7504 18.1693 10.167C18.1693 9.50036 18.0859 9.00036 18.0026 8.50036Z" stroke="#9D782F" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?= __('Google') ?></span></a></div>
+                 <?php endif; ?>
+                 <?php if($key=='facebook'): ?>
+                    <div  class="social_login_btn_div Facebook"><a class="Facebook"
+                       data-mage-init='{"socialProvider": {"url": "<?= $social['login_url'] ?>"}}'><svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M15.0026 1.66702H12.5026C11.3975 1.66702 10.3377 2.10601 9.55633 2.88741C8.77492 3.66881 8.33594 4.72862 8.33594 5.83369V8.33369H5.83594V11.667H8.33594V18.3337H11.6693V11.667H14.1693L15.0026 8.33369H11.6693V5.83369C11.6693 5.61268 11.7571 5.40071 11.9133 5.24443C12.0696 5.08815 12.2816 5.00036 12.5026 5.00036H15.0026V1.66702Z" stroke="#9D782F" stroke-linecap="round" stroke-linejoin="round"/>
+</svg><span><?= __('Facebook') ?></span></a></div>
+                 <?php endif; ?>   
+            <?php endforeach; ?>
+<?php endif; */?>
+        <p class="heading-second" ><?php echo __("Don’t have an account?"); ?></p>
+        <button class="account_button" >
+            <a class="action back button_anchor" href="<?php echo $block->getUrl('customer/account/create/'); ?>"><span>
+                <?= $block->escapeHtml(__('Create New Account')) ?></span></a>
+        </button>
+        </div>
+</div>
+
+<div class="block block-customer-login">
+
+<?php if(in_array($otpLogin, ['login_both','login_otp'])): ?>
+    <div class="sms-profile-login">
+        <?php if(in_array($otpLogin, ['login_both'])): ?>
+            <?= /* @noEscape */ $secureRenderer->renderTag('style', [], ".block-customer-login .block-title{display: none;} .block-customer-login{display: none;}.iti__flag-container{display: none;}", false) ?>
+            <div class="smsprofile-login-option custom-login-option">
+                <div class="block-title">
+                    <strong id="block-customer-login-heading" role="heading" aria-level="2"><?= $block->escapeHtml(__('Registered Customers')) ?></strong>
+                </div>
+                <div class="login-option-tab">
+                    <div class="login-mobile active" data-md-js="md-login-opt">
+                        <input type="button" class="login-opt" name="Mobile" id="login-opt-mobile" value="<?= $block->escapeHtml(__('Login with OTP')) ?>"/>
+                    </div>
+                    <div class="login-email" data-md-js="md-login-password">
+                        <input type="button" class="login-opt" name="Email" id="login-opt-email" value="<?= $block->escapeHtml(__('Login with Password')) ?>"/>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if(in_array($otpLogin, ['login_otp'])): ?>
+            <?= /* @noEscape */ $secureRenderer->renderTag('style', [], ".block-customer-login .block-title{display: none;} .block-customer-login{display: none;}", false) ?>
+            <div class="smsprofile-login-option">
+                <div class="block-title">
+                    <strong id="block-customer-login-heading" role="heading" aria-level="2">
+                        <?= $block->escapeHtml(__('Registered Customers')) ?>
+                    </strong>
+                </div>
+            </div>
+        <?php endif; ?>
+    </div>
+<?php endif;?>
+<form class="form form-login" autocomplete="off" action="<?= $block->escapeUrl($block->getPostActionUrl()) ?>" method="post" id="login-form" data-mage-init='{"validation":{}}'>
+    <?= $block->getBlockHtml('formkey') ?>
+    <?php if(in_array($otpLogin, ['login_both','login_otp'])):?>
+        <input type='hidden' name='form_type' id="form_type" value="<?= $escaper->escapeHtmlAttr('login') ?>"/>
+        <input type='hidden' name='auto_verify_otp' id="auto_verify_otp" value="<?= $escaper->escapeHtmlAttr($autoVerifyOTP) ?>"/>
+        <?php /*<input type='hidden' name='mobile_number_limit' id="mobile_number_limit" value="<?= $escaper->escapeHtmlAttr($mobileNumberLimit) ?>"/> */?>
+        <input type='hidden' name='opt_code_limit' id="opt_code_limit" value="<?= $escaper->escapeHtmlAttr($otpLength) ?>"/>
+        <input type='hidden' name='resend_limit' id="resend_limit" value="<?= $escaper->escapeHtmlAttr($resendLimit) ?>"/>
+        <input type='hidden' name='resend_limit_time' id="resend_limit_time" value="<?= $escaper->escapeHtmlAttr($resendLimitTime) ?>"/>
+        <input type='hidden' name='resend_link_disable' id="resend_link_disable" value="<?= $escaper->escapeHtmlAttr($disableResendLink) ?>"/>
+        <input type='hidden' name='login[otp]' class='verifiedotp' value="<?= $escaper->escapeHtmlAttr('0') ?>"/>
+        <input type='hidden' name='login[otp_val]' class='verifiedotpval' value="<?= $escaper->escapeHtmlAttr('0') ?>"/>
+        <input type='hidden' class='logintype' value="<?= $escaper->escapeHtmlAttr($otpLogin) ?>"/>
+        <input type='hidden' id="phone_validation" name="phone_validation" value="<?= $escaper->escapeHtmlAttr(json_encode($phoneValidation)) ?>"/>
+        <?php if(!$smsProfileHelper->isCustomerCountryEnabled()):?>
+            <input type="hidden" id="default_mobile_validation" value="<?= $escaper->escapeHtmlAttr($mobileNumberFieldClass);?>" />
+        <?php endif;?>
+        <div class="smsprofile-login-mobile" id="loginwith_phone" >
+            <fieldset class="fieldset login" data-hasrequired="<?= $escaper->escapeHtml(__('* Required Fields')) ?>">
+                    <?php 
+                    $datetime_2 = $smsProfileHelper->getCurrentDate();
+
+                    if(isset($datetime_1)){
+
+                    $from_time = strtotime($datetime_1); 
+                    $to_time = strtotime($datetime_2); 
+                    $diff_minutes = round(abs($from_time - $to_time) / 60,2);
+                    $leftMinutes=($resendLimitTime - $diff_minutes);
+                    }?>
+                    <div class="field email required form-field">
+                        <div class="custom-block-title block-title"> <strong id="block-customer-login-heading" role="heading" aria-level="2"> <?php echo __("Login with mobile number");?> </strong> </div>
+                        <div class="form-field__control control mobile">
+                            <?php if($smsProfileHelper->isCustomerCountryEnabled()): ?>
+                                <input type="hidden" name='login[countrycodeval]' value="" id="countryreg" name="countryreg" />
+                                <input type="hidden" value="" id="countryregcode" name="countryregcode" />
+                            <?php endif; ?>
+                            <input name="login[mobile]" value=""
+                                <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>
+                                   id="login_mobile"
+                                   type="text"
+                                   placeholder="<?= $escaper->escapeHtmlAttr(__('Mobile Number')) ?>"
+                                    pattern="\d{9}" maxlength="9"
+                                   class="form-field__input input-text"
+                                   title="<?= $escaper->escapeHtmlAttr(__('Mobile Number')) ?>"
+                                   data-mage-init='{"mage/trim-input":{},"validation":{}}'
+                                   data-validate="{'required':true, 'validate-number':true}">
+                             <label for="login_mobile" class="label"><span><?= $block->escapeHtml(__('Mobile Number')) ?></span></label>      
+                            <?php if($smsProfileHelper->getPhoneNote()):?>
+                                <div class="profile-notice-phone">
+                                    <span><?= $smsProfileHelper->getPhoneNote(); ?></span>
+                                </div>
+                            <?php endif; ?>
+                            <div class="field">
+                                <button class="send_otp_login action primary" style="display: none;" type="button"><?= __('Get Verification Code');?></button>
+                                <span class="otp_generatenote"></span>
+                                <div class="resendotp-block" style="display: none">
+                                    <?php if($resendLimitEnable == 1) { ?>
+                                    <p class="resend-wait">
+                                        <?= __('Resend In:'); ?>
+                                        <span class="time"><?= ' '.$resendLimitTime; ?></span>
+                                         <?= __('Seconds'); ?>
+                                    </p>
+                                    <div class="resendlink" style="display: none">
+                                        <?php if($resendLimitEnable==1){?>
+                                            <?php if($resendLimit == $resendCount || $resendCount> $resendLimit ) { ?>
+
+                                                <?php echo __('OTP resend limit exhausted. Kindly try after '); echo $leftMinutes;  echo __(' minutes'); ?>
+
+                                            <?php }else{ ?>
+                                                 <button class="resendotp"  type="button"><?= __('Resend OTP');?></button>
+                                           <?php }?>
+                                       <?php  }else{ ?>
+                                         <button class="resendotp"  type="button"><?= __('Resend OTP');?></button>
+                                      <?php  } ?>
+                                    </div>
+                                    <div class="resend-link-attempt" style="display: none"></div>
+                                   <?php } ?>
+                                    <div class="field field-name-otp required">
+                                        <div class="control">
+                                            <input maxlength="6" minlength="4" id="otp" name="otp" value="" title="otp"
+                                                   class="input-text required-entry" data-validate="{required:true}"
+                                                   placeholder="<?php echo __("Verification Code");?>" 
+                                                   autocomplete="off" aria-required="true" type="text"
+                                                   novalidate="novalidate" style="width: 200px;">
+                                            <label class="label" for="otp">
+                                                <span><?= __('Verification Code'); ?></span>
+                                            </label>       
+                                            <div class="field">
+                                            <button class="verif_otp_login action primary"
+                                                    type="button"><?= __('Login'); ?></button>
+                                            </div>   
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="otp_text"></span>
+                                <span class="smserror"></span>
+                            </div>
+                        </div>
+                    </div>
+            </fieldset>
+            <?php $recaptchaStatus = $smsProfileHelper->getRecaptchaStatus();
+                $recaptchaForms  = $smsProfileHelper->getRecaptchaForms();
+            ?>
+            <?php if($recaptchaStatus && in_array('login', $recaptchaForms)):?>
+                <!-- Google reCAPTCHA widget -->
+                <div id="login-captcha"></div>
+                <input type="hidden" id="captcha-response" name="captcha-response" />
+                <input type="hidden" id="captcha-widget-id" name="captcha-widget-id" />
+            <?php endif;?>
+        </div>
+        <?php if($smsProfileHelper->isCustomerCountryEnabled()): ?>
+            <script type="text/x-magento-init">
+                {
+                    "input[name='login[mobile]']": {
+                        "Magedelight_SMSProfile/js/intlTelephoneInput":
+                            {
+                                "nationalMode":true,
+                                "separateDialCode": true,
+                                "utilsScript":"<?= $this->getViewFileUrl('Magedelight_SMSProfile::js/utils.js'); ?>",
+                                "preferredCountries":["<?= $smsProfileHelper->getDefaultCustomerCountry(); ?>"],
+                                "onlyCountries":[<?= $smsProfileHelper->getAvailableCountries(); ?>]
+                            }
+                    }
+                }
+            </script>
+        <?php endif; ?>
+        <script type="text/x-magento-init">
+        {
+            "*" : {
+                "Magedelight_SMSProfile/js/custom-login":{}
+            }
+        }
+        </script>
+    <?php endif;?>
+    <?php if(in_array($otpLogin, ['login_both','login_pwd'])):?>
+        <?php $loginButtonViewModel = $block->getData('login_button_view_model');?>
+        <div class="block-custom block-customer-login-custom" id="loginwith_email">
+            <fieldset class="fieldset login" data-hasrequired="<?= $block->escapeHtml(__('* Required Fields')) ?>">
+                    <div class="custom-block-title block-title"> <strong id="block-customer-login-heading" role="heading" aria-level="2"> <?php echo __("Login with email");?> </strong> </div>
+
+                    <div class="field email required">
+                        
+                        <div class="control">
+                            <input name="login[username]" value="<?= $block->escapeHtmlAttr($block->getUsername()) ?>"
+                                <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>
+                                   id="email" type="email" placeholder="<?= $block->escapeHtmlAttr(__('Email Address')) ?>" class="input-text"
+                                   title="<?= $block->escapeHtmlAttr(__('Email Address')) ?>"
+                                   data-mage-init='{"mage/trim-input":{}}'
+                                   data-validate="{required:true}" disabled>
+                            <label for="email" class="label">
+                            <span><?= $escaper->escapeHtml(__('Email Address')) ?></span>
+                            </label>    
+                        </div>
+                    </div>
+                    <div class="field password required">
+                        
+                        <div class="control">
+                            <input name="login[password]" type="password"
+                                <?php if ($block->isAutocompleteDisabled()): ?> autocomplete="off"<?php endif; ?>
+                                   class="input-text pass" placeholder="<?= $block->escapeHtmlAttr(__('Password')) ?>" id="pass"
+                                   title="<?= $block->escapeHtmlAttr(__('Password')) ?>"
+                                   data-validate="{required:true}" disabled>
+                            <label for="pass" class="label">
+                            <span><?= $escaper->escapeHtml(__('Password')) ?></span>
+                            </label>       
+                        </div>
+                    </div>
+                  
+            </fieldset>
+        </div>
+        <?php // phpcs:ignore Magento2.Legacy.PhtmlTemplate ?>
+        <script type="text/x-magento-init">
+            {
+                "*": {
+                    "Magento_Customer/js/block-submit-on-send": {
+                        "formId": "login-form"
+                    },
+                    "Magento_Ui/js/core/app": {
+                        "components": {
+                            "showPassword": {
+                                "component": "Magento_Customer/js/show-password",
+                                "passwordSelector": "#pass"
+                            }
+                        }
+                    }
+                }
+            }
+        </script>
+    <?php endif?>
+    <?= $block->getChildHtml('form_additional_info') ?>
+    <div class="actions-toolbar custom-login-action-button">
+        <div class="primary"><button type="submit" class="action login primary" name="send" id="send2" data-md-js="md-submit-button"><span><?= $block->escapeHtml(__('Sign In')) ?></span></button></div>
+        <div class="secondary"><a class="action remind" href="<?= $block->escapeUrl($block->getForgotPasswordUrl()) ?>"><span><?= $block->escapeHtml(__('Forgot Your Password?')) ?></span></a></div>
+    </div>
+</form>
+</div>
+
+</div>
+<style type="text/css">
+    .login-container{
+        display: block;
+    }
+    .custom-login-option{
+        display: none;
+    }
+    /*.send_otp_login.action.primary{
+        display: block !important;
+    }*/
+    .block.block-customer-login{
+        display: block !important;
+    }
+    .custom-block-title{
+        display: block !important;
+    }
+    .block-customer-login-custom{
+        display: none;
+    }
+    .custom-login-action-button{
+        display: none !important;
+    }
+    .custom-show{
+        display: block !important;
+    }
+    input#otp{
+        width: 100% !important;
+    }
+    .smsprofile-login-mobile button.verif_otp_login, .smsprofile-login-mobile button.send_otp_login{
+        width: 100%;
+    }
+</style>
+
+
+<script>
+    require(['jquery'], function($) {
+        $(document).ready(function() {
+            $('#loginbyphone').on('click', function() {
+                $('#loginwith_phone').show();
+                $('#loginwith_email').hide();
+                $('#loginwith_email input#email').prop('disabled', true);
+                $('#loginwith_email input#pass').prop('disabled', true);
+                $('#loginbyphone').hide();
+                $('#loginbyemail').show();
+                $('#loginbyphone').addClass('custom-tab-button-active');
+                $('#loginbyemail').removeClass('custom-tab-button-active');
+                $('.custom-login-action-button').removeClass('custom-show');
+            });
+            $('#loginbyemail').on('click', function() {
+                $('#loginwith_phone').hide();
+                $('#loginwith_phone input#login_mobile').val('');
+                $('#loginwith_email input#email').prop('disabled', false);
+                $('#loginwith_email input#pass').prop('disabled', false);
+                $('#loginwith_email').show();
+                $('#loginbyemail').hide();
+                $('#loginbyphone').show();
+                $('#loginbyemail').addClass('custom-tab-button-active');
+                $('#loginbyphone').removeClass('custom-tab-button-active');
+                $('.custom-login-action-button').addClass('custom-show');
+            });
+
+            $('#login_mobile').on('input', function () {
+		  let val = $(this).val().replace(/\D/g, '').slice(0, 9);
+		  $(this).val(val);
+		});
+		$('#login_mobile').on('keydown', function(e) {
+		  if (e.key === 'Enter' || e.keyCode === 13) {
+		  $('.send_otp_login').trigger("click");
+		    e.preventDefault(); // prevent form submission
+		    
+		    //return false;
+		  }
+		});
+        $('#otp').on('keydown', function(e) {
+		  if (e.key === 'Enter' || e.keyCode === 13) {
+		  $('.verif_otp_login').trigger("click");
+		    e.preventDefault(); // prevent form submission
+		    
+		    //return false;
+		  }
+		});
+            if ($('#loginwith_email .login #email').val()) {
+                    $('#loginbyemail').trigger("click");
+            }
+            
+            $('#md-login-popup #md-login-content .custom-customer-create-link a.custom-create-account-link').on('click', function() {
+               $('#md-login-popup .md-tablist .md-title:not(.active)').trigger("click");
+               $('#md-login-popup #md-login-content .custom-customer-create-link').removeClass('show-customer-account');
+            });
+
+
+            // for the popup only
+             $(document).on('click', '#md-login-popup [aria-controls="md-register-content"]', function() {
+                $('#loginwith_email input#email').val('');
+                $('#loginwith_email input#pass').val('');
+            });
+
+
+        });
+    });
+</script>

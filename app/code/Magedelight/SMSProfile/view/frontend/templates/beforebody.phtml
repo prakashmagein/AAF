@@ -1,0 +1,115 @@
+<?php
+/**
+ * Magedelight
+ * Copyright (C) 2023 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2023 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */
+?>
+
+<?php
+$smsProfileHelper = $block->getData('view_model');
+$smsProfileHelper = $smsProfileHelper->getHelperData();
+$isEnabled = $smsProfileHelper->isCustomerCountryEnabled();?>
+<?php if($smsProfileHelper->getModuleStatus() && $smsProfileHelper->getSmsProfileOnCheckoutPage()): ?>
+    <script type="text/x-magento-init">
+    {
+        "*" : {
+                "Magedelight_SMSProfile/js/custom-login":{},
+                "Magedelight_SMSProfile/js/otpcod":{}
+            }
+    }
+    </script>
+<?php endif; ?>
+
+<script type="application/javascript">
+    require([
+        'jquery',
+        'intlTelInput'
+    ], function ($,intlTelInput) {
+         MegaTelePhoneRenderComplete = function() {
+            <?php if ($isEnabled): ?>
+                //console.log('initilaizing pohone');
+                /*$("input[name='telephone']").intlTelInput({
+                    nationalMode : false,
+                    geoIpLookup: function (callback) {
+                        $.get('https://ipinfo.io', function () {
+                        }, "jsonp").always(function (resp) {
+                            var countryCode = (resp && resp.country) ? resp.country : "";
+                            callback(countryCode);
+                        });
+                    },
+                    'utilsScript': utils
+                });
+                $("input[name='telephone']").val($("input[name='telephone']").intlTelInput('getNumber'));*/
+                var custreginput = document.querySelector(".intlPhone");
+                // initialise plugin
+                var custregiti = window.intlTelInput(custreginput, {
+                    nationalMode:true,
+                    separateDialCode: true,
+                    utilsScript: "<?php echo $block->getViewFileUrl('Magedelight_SMSProfile::js/utils.js'); ?>",
+                    formatOnDisplay: false,
+                    preferredCountries:["<?= $smsProfileHelper->getDefaultCustomerCountry(); ?>"],
+                    onlyCountries:[<?= $smsProfileHelper->getAvailableCountries(); ?>]
+                });
+
+                custreginput.addEventListener('countrychange', function(e) {
+                    custreginput.value = custregiti.getSelectedCountryData().dialCode;
+                });
+
+                require(['jquery', 'jquery/ui','mage/mage','mage/validation'], function($){
+                    jQuery.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                        custreginputcountryCode = (resp && resp.country) ? resp.country : "";
+                        custregiti.setCountry(custreginputcountryCode);
+                        custreginput.value = custregiti.getSelectedCountryData().dialCode;
+                    });
+                });
+            <?php endif; ?>
+        },
+
+         MegaTelePhoneBillingRenderComplete = function() {
+            <?php if ($isEnabled): ?>
+                //console.log('initilaizing pohone');
+                /*$("input[name='telephone']").intlTelInput({
+                    nationalMode : false,
+                    geoIpLookup: function (callback) {
+                        $.get('https://ipinfo.io', function () {
+                        }, "jsonp").always(function (resp) {
+                            var countryCode = (resp && resp.country) ? resp.country : "";
+                            callback(countryCode);
+                        });
+                    },
+                    'utilsScript': utils
+                });
+                $("input[name='telephone']").val($("input[name='telephone']").intlTelInput('getNumber'));*/
+                var custreginput = document.querySelector("#co-payment-form .intlPhone");
+                // initialise plugin
+                var custregiti = window.intlTelInput(custreginput, {
+                    nationalMode:true,
+                    separateDialCode: true,
+                    utilsScript: "<?php echo $block->getViewFileUrl('Magedelight_SMSProfile::js/utils.js'); ?>",
+                    formatOnDisplay: false,
+                    preferredCountries:["<?= $smsProfileHelper->getDefaultCustomerCountry(); ?>"],
+                    onlyCountries:[<?= $smsProfileHelper->getAvailableCountries(); ?>]
+                });
+
+                custreginput.addEventListener('countrychange', function(e) {
+                    custreginput.value = custregiti.getSelectedCountryData().dialCode;
+                });
+
+                require(['jquery', 'jquery/ui','mage/mage','mage/validation'], function($){
+                    jQuery.get('https://ipinfo.io', function() {}, "jsonp").always(function(resp) {
+                        custreginputcountryCode = (resp && resp.country) ? resp.country : "";
+                        custregiti.setCountry(custreginputcountryCode);
+                        custreginput.value = custregiti.getSelectedCountryData().dialCode;
+                    });
+                });
+            <?php endif; ?>
+        }
+
+    });
+</script>

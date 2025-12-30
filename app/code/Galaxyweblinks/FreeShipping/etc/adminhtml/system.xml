@@ -1,0 +1,14 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" sortOrder="1000" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <group id="freeshipping" sortOrder="10" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+               <field id="custom_shipping_city_field" translate="label" type="multiselect" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Allowed Cities</label>
+                <source_model>Galaxyweblinks\Liltshipping\Model\Config\Source\City</source_model>
+                <can_be_empty>1</can_be_empty>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

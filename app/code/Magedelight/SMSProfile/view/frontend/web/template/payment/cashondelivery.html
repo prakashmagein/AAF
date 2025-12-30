@@ -1,0 +1,89 @@
+ <!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2023 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2023 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */ 
+ -->
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <input type="radio"
+               name="payment[method]"
+               class="radio"
+               data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()"/>
+        <label data-bind="attr: {'for': getCode()}" class="label"><span data-bind="text: getTitle()"></span></label>
+    </div>
+
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <p data-bind="html: getInstructions()"></p>
+        <div class="checkout-agreements-block">
+            <!-- ko foreach: $parent.getRegion('before-place-order') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <!-- ko if: (window.checkoutConfig.otpcod == 1) -->
+            <input type='hidden' name='resend_link_disable' id="resend_link_disable" data-bind="value: window.checkoutConfig.resend_link_disable"/>
+            <div class="field" style="margin-top: 15px;">    
+                <button class="send_otp_cod action primary"  type="button"><!-- ko i18n: 'Generate OTP' --><!-- /ko --></button>
+                <span class="otp_cod_resendlink">&nbsp;</span>
+                <p class="resend-wait" style="display:none">
+                    <span data-bind="i18n: 'Resend In:'"></span>
+                    <span class="time" data-bind="text: window.checkoutConfig.resend_limit_time"></span>
+                    <span class="resendtime" data-bind="text: window.checkoutConfig.resend_limit_time" style="display: none;"></span>
+                    <span data-bind="i18n: 'Seconds'"></span>
+                </p>
+                <div class="resend-link-attempt" style="display: none"></div>
+                <span class="otp_cod_generatenote">&nbsp;</span>
+
+                <p style="font-size:10px;margin-top: 10px;"><!-- ko i18n: "Generate OTP should be sent on shipping address mobile number." --><!-- /ko --></p>
+                <input class="input-text verifiedotpcod"  type="hidden"   name="payment[codotp]" value="0" data-bind="hiddenInput: codotp,mageInit: {'mage/trim-input':{}}, attr: {'id': getCode()+'_codotp'}"  data-validate="{required:true}" />
+               
+                 <span class="resend-limit" data-bind="text: window.checkoutConfig.otpresend_limit" style="display:none"></span>
+            </div>
+        <!-- /ko -->
+        <div class="actions-toolbar">
+            <div class="primary">
+                <!-- ko if: (window.checkoutConfig.otpcod == 1) -->
+                <button class="action primary checkout cod"
+                        type="submit"
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        enable: (getCode() == isChecked()),
+                        css: {disabled: 'disabled'}
+                        "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+                <!-- /ko -->
+                <!-- ko if: (window.checkoutConfig.otpcod == 0) -->
+                <button class="action primary checkout cod"
+                        type="submit"                        
+                        data-bind="
+                        click: placeOrder,
+                        attr: {title: $t('Place Order')},
+                        enable: (getCode() == isChecked()),
+                        css: {disabled: !isPlaceOrderActionAllowed()}
+                        "
+                        disabled>
+                    <span data-bind="i18n: 'Place Order'"></span>
+                </button>
+                <!-- /ko -->
+            </div>
+        </div>
+
+    </div>
+</div>

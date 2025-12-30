@@ -1,0 +1,55 @@
+<?php if ($block->isKnetPaymentMethod()): ?>
+    <?php $knetData = $block->getKnetParmeters();
+    $knetRefNo = $knetData['knet_ref_number'] ?? '';
+    $thirdRefNo = $knetData['third_party_transaction_number'] ?? '';
+    ?>
+
+  <div class="success-section">
+    
+    <div style="clear: both;">KNET Reference Number : <?= $block->escapeHtml(__($knetRefNo)); ?></div>
+    <div style="clear: both;">KNET third party transaction number : <?= $block->escapeHtml(__($thirdRefNo)); ?></div>
+  </div>
+<?php endif; ?>
+
+<?php if ($block->isValuPaymentMethod()): ?>
+
+	<?php $valuData = $block->getValuParmeters();
+	    $valuMonth = $valuData['valu_tenure'] ?? '';
+    	$valuEmi = $valuData['valu_tenure_amount'] ?? '';
+    	$adminFee = $valuData['valu_tenure_interest'] ?? '';
+      $cashbackAmount = $valuData['cashback_wallet_amount'] ?? '';
+      $loanNumber = $valuData['loan_number'] ?? '';
+      $transactionId= $valuData['valu_transaction_id'] ?? '';
+	?>
+  <div class="success-section">
+    <div style="clear: both;">Transaction Id: <?= $block->escapeHtml(__($transactionId)); ?> </div>
+    <div style="clear: both;">Installment Plan : EGP <?= $block->escapeHtml(__(intval($valuEmi)/100)); ?> for <?= $block->escapeHtml(__($valuMonth)); ?> Months</div>
+    <div style="clear: both;">Admin Fees : EGP <?= $block->escapeHtml(__(intval($adminFee)/100)); ?> </div>
+    <div style="clear: both;">Cashback Amount : EGP <?= $block->escapeHtml(__(intval($cashbackAmount)/100)); ?> </div>
+    <div style="clear: both;">Loan Number : <?= $block->escapeHtml(__($loanNumber)); ?> </div>
+  </div>
+
+
+<?php endif; ?>
+
+
+
+<?php if ($block->isOmanNetPaymentMethod()): ?>
+
+  <?php $OmanNetData = $block->getOmanNetParmeters();
+    $thirdRefNo = $OmanNetData['third_party_transaction_number'] ?? '';
+  ?>
+
+  <div class="success-section">
+  <div style="clear: both;">OmanNet third party transaction number : <?= $block->escapeHtml(__($thirdRefNo)); ?></div>
+
+<?php endif; ?>
+
+<?php if ($block->isBenefitPaymentMethod()): ?>
+  <?php $benefitData = $block->getBenefitParmeters();
+    $thirdRefNo = $benefitData['third_party_transaction_number'] ?? '';
+  ?>
+  <div class="success-section">
+    <p style="clear: both;">BENEFIT third party transaction number : <?= $block->escapeHtml(__($thirdRefNo)); ?></p>
+  </div>
+<?php endif; ?>

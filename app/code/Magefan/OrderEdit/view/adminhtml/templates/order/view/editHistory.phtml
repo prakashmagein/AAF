@@ -1,0 +1,49 @@
+<?php
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+?>
+<?php
+/** @var \Magefan\OrderEdit\Block\Adminhtml\Order\EditHistory $block */
+?>
+
+<?php
+    $historyCollection = $block->getHistoryCollection();
+?>
+<?php if (count($historyCollection)) { ?>
+    <section id="mf-order-timeline" class="admin__page-section">
+        <div class="admin__page-section-title">
+            <span class="title"> Timeline </span>
+        </div>
+        <div class="admin__page-section-content">
+            <div class="mf-order-timeline__container">
+                <ul class="mf-order-timeline__timeline">
+                    <?php foreach ($historyCollection as $history) { ?>
+                        <li class="mf-order-history-marker-status <?= $history->getData('status') ?>">
+                            <time><?= $block->formatTime($history->getData('created_at'), \IntlDateFormatter::MEDIUM, true) ?></time>
+                            <div class="mf-order-timeline__timeline-title">
+                                <strong><?= $history->getData('comment_section') ?></strong>
+                                <a href="#" class="mf-order-timeline__timeline-expand" onclick="jQuery('[data-timeline-group=<?= $history->getId() ?>]').toggle(); return false">details</a>
+                            </div>
+                            <div class="mf-order-timeline__timeline-details" data-timeline-group="<?= $history->getId() ?>" style="display: none;">
+                               <?= nl2br($history->getData('comment')) ?>
+                            </div>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .mf-order-history-marker-status.pending::marker {color: #afaf36;}
+        .mf-order-history-marker-status.processing::marker {color: #0074D9;}
+        .mf-order-history-marker-status.fraud::marker {color: #FF0000;}
+        .mf-order-history-marker-status.complete::marker {color: #00FF00;}
+        .mf-order-history-marker-status.closed::marker {color: #808080;}
+        .mf-order-history-marker-status.canceled::marker {color: #FF0000;}
+        .mf-order-history-marker-status.holded::marker {color: #FFA500}
+    </style>
+
+<?php } ?>

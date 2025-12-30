@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+                aw_reward_points_coupons_generate_form.aw_reward_points_coupons_generate_form_data_source
+            </item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="save">
+                <class>primary</class>
+                <label translate="true">Generate</label>
+            </button>
+        </buttons>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>aw_reward_points_coupons_generate_form.aw_reward_points_coupons_generate_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="aw_reward_points_coupons_generate_form_data_source" component="Magento_Ui/js/form/provider">
+        <settings>
+            <submitUrl path="*/*/generate"/>
+        </settings>
+        <aclResource>Aheadworks_RewardPoints::aw_reward_points_coupons</aclResource>
+        <dataProvider name="aw_reward_points_coupons_generate_form_data_source"
+                      class="Aheadworks\RewardPoints\Ui\DataProvider\Coupon\GenerateFormDataProvider">
+            <settings>
+                <requestFieldName/>
+                <primaryFieldName/>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general" sortOrder="10">
+        <settings>
+            <label/>
+        </settings>
+        <input name="quantity" sortOrder="10">
+            <settings>
+                <dataScope>quantity</dataScope>
+                <label translate="true">Coupon Quantity</label>
+                <validation>
+                    <rule name="validate-integer" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </input>
+        <input name="length" sortOrder="20">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">10</item>
+                </item>
+            </argument>
+            <settings>
+                <dataScope>length</dataScope>
+                <label translate="true">Code Length</label>
+                <notice translate="true">Length of codes excluding prefix</notice>
+                <validation>
+                    <rule name="validate-integer" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </input>
+        <input name="prefix" sortOrder="30">
+            <settings>
+                <dataScope>prefix</dataScope>
+                <label translate="true">Code Prefix</label>
+            </settings>
+        </input>
+        <input name="balance" sortOrder="40">
+            <settings>
+                <dataScope>balance</dataScope>
+                <label translate="true">Coupon Balance</label>
+                <validation>
+                    <rule name="validate-integer" xsi:type="boolean">true</rule>
+                    <rule name="validate-greater-than-zero" xsi:type="boolean">true</rule>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </input>
+    </fieldset>
+</form>

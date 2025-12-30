@@ -1,0 +1,16 @@
+@md-smsprofile-icons-admin__font-name-path: '@{baseDir}Magedelight_SMSProfile/fonts/icon';
+@md-smsprofile-icons-admin__font-name : 'SMSProfile';
+.lib-font-face(
+      @family-name:@md-smsprofile-icons-admin__font-name,
+      @font-path: @md-smsprofile-icons-admin__font-name-path,
+      @font-weight: normal,
+      @font-style: normal
+);
+
+.admin__menu .item-smsprofile-root-commonlyvisible > a:before,
+.admin__menu .item-smsprofile-root.parent.level-0 .submenu > .submenu-title:before,
+.config-nav-block .md_section_smsprofile a:before {
+      font-family: @md-smsprofile-icons-admin__font-name;
+      content: "\f7cd";
+      padding-right: 8px;
+}

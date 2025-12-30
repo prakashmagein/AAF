@@ -1,0 +1,103 @@
+<?php
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+<?php
+/**
+ * Product list toolbar
+ *
+ * @var $block \Magento\Catalog\Block\Product\ProductList\Toolbar
+ */
+use Magento\Catalog\Model\Product\ProductList\Toolbar;
+?>
+<?php if ($block->getCollection()->getSize()): ?>
+    <div class="custom-tool-catpage toolbar toolbar-products" data-mage-init='<?php /* @escapeNotVerified */ echo $block->getWidgetOptionsJson(); ?>'>
+        <div class="filter-custom-section">
+        <button class="custom-filter-btn">   
+        <span class="filter-button-label"><?php /* @escapeNotVerified */ echo __('Filters') ?></span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M16.5 2.25H1.5L7.5 9.345V14.25L10.5 15.75V9.345L16.5 2.25Z" stroke="#535865" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        </button>
+        </div>
+        <?php include ($block->getTemplateFile('Magiccart_Alothemes::product/list/toolbar/filter.phtml')) ?>
+        <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/amount.phtml')) ?>
+		
+        <span class="view-mode-label"><?php /* @escapeNotVerified */ echo __('View') ?></span>
+        <div class="view-mode">
+            <?php if ($block->isExpanded()): ?>
+                <?php include ($block->getTemplateFile('Magiccart_Alothemes::product/list/toolbar/grid-view.phtml')) ?>
+                <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/viewmode.phtml')) ?>
+            <?php endif; ?>
+        </div>
+        <?php if ($block->isExpanded()): ?>
+            <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/sorter.phtml')) ?>
+        <?php endif; ?>
+        <?php include ($block->getTemplateFile('Magento_Catalog::product/list/toolbar/limiter.phtml')) ?>
+        <?php echo $block->getPagerHtml() ?>
+		
+    </div>
+<?php endif ?>
+
+
+<script>
+    require(['jquery'],function($){
+    $(document).ready(function(){
+        $(".custom-filter-btn").bind("click", (function () {
+            $(".view-mode .grid-mode.grid-3").trigger("click");
+            // $(".catalog-category-view .sidebar-sticky").addClass("sidebar-show");
+            // $(".catalog-category-view .column.main").addClass("custom-main-with-right");
+            $(".catalog-category-view .sidebar-sticky").attr('style', 'display: block !important');
+            $(".catalog-category-view .column.main").attr('style', 'width: 75% !important');
+            $(this).hide();
+            
+        }));
+
+        $(".view-mode .grid-mode.grid-4").bind("click", (function () {
+            $(".catalog-category-view .sidebar-sticky").attr('style', 'display: none !important');
+            $(".catalog-category-view .column.main").attr('style', 'width: 100% !important');
+            $(".custom-filter-btn").show();
+        }));
+
+        $(".custom-filter-close-section .filter-close-icon").bind("click", (function () {
+            $(".catalog-category-view .sidebar-sticky").attr('style', 'display: none !important');
+            $(".catalog-category-view .column.main").attr('style', 'width: 100% !important');
+            $(".view-mode .grid-mode.grid-4").trigger("click");
+            $(".custom-filter-btn").show();
+        }));
+        $(".mobile-only .filter-close-icon").on("click", (function () {
+            $("body").removeClass("filter-active");
+            $(".block.filter").removeClass("active");
+        }));
+
+        if($(window).width() > 991){
+        $(".sidebar.sidebar-main .filter-options-content a > input").bind("click", (function () {
+            console.log("dsds");
+            setTimeout(function() {
+            $(".custom-filter-btn").trigger("click");
+             }, 2000);
+        }));
+
+        $(".sidebar.sidebar-main .block-actions.filter-actions .filter-clear").bind("click", (function () {
+            console.log("dsds");
+            setTimeout(function() {
+            $(".custom-filter-btn").trigger("click");
+             }, 2000);
+        }));
+
+        $(".sidebar.sidebar-main .filter-current .item .remove").bind("click", (function () {
+            console.log("dsds");
+            setTimeout(function() {
+            $(".custom-filter-btn").trigger("click");
+             }, 2000);
+        }));
+    }
+
+   }); 
+});  
+</script>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_ProductShipping
+ * @copyright  Copyright (c) 2022 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <lofproductshipping>
+                <active>1</active>
+                <allowed_methods>delivery</allowed_methods>
+                <methods>delivery</methods>
+                <sallowspecific>0</sallowspecific>
+                <model>Lof\ProductShipping\Model\Carrier</model>
+                <name>Per Product Rate</name>
+                <title>Shipping Per Product</title>
+                <!--<name>shipping</name>-->
+                <!--<title>Title for shipping</title>-->
+                <defaultprice>0</defaultprice>
+                <handling_type>F</handling_type>
+                <handling_action>O</handling_action>
+                <handling_fee>0</handling_fee>
+                <is_online>1</is_online>
+                <disable_free_shipping>0</disable_free_shipping>
+                <split_shipment>1</split_shipment>
+            </lofproductshipping>
+        </carriers>
+    </default>
+</config>

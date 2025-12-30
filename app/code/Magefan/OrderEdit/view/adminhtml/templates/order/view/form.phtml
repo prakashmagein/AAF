@@ -1,0 +1,98 @@
+<?php
+/**
+ * @var $block \Magefan\OrderEdit\Block\Adminhtml\Order\Form
+ * @var $mfSecureRenderer \Magefan\Community\Api\SecureHtmlRendererInterface
+ */
+?>
+
+<form id="edit_form" data-order-config='<?= $block->escapeHtml($block->getOrderDataJson()) ?>'
+      data-load-base-url="<?= $block->escapeUrl($block->getLoadBlockUrl()) ?>"
+      action="<?= $block->escapeUrl($block->getSaveUrl()) ?>" method="post" action="<?= $block->escapeUrl($block->getSaveUrl()) ?>" enctype="multipart/form-data" novalidate="novalidate">
+    <?= $block->getBlockHtml('formkey') ?>
+
+    <div id="order-message" style="float: left;width: calc( (100%) * 0.75 - 30px );margin-left: 15%">
+        <?= $block->getChildHtml('message') ?>
+    </div>
+    <div id="order-account-info-editt" class="fieldset-wrapper" >
+        <?= $block->getChildHtml('data') ?>
+    </div>
+</form>
+
+<div id="gridfield"></div>
+
+<?php $orderId = (int)$block->getRequest()->getParam('order_id'); ?>
+
+<?php $script = "
+    require([
+        'jquery',
+        'wysiwygAdapter',
+        'Magento_Ui/js/modal/prompt',
+        'Magento_Ui/js/modal/confirm',
+        'mage/mage',
+        'prototype'
+    ], function ($, wysiwyg, prompt, confirm) {
+
+        $('#edit_form').mage('form').mage('validation');
+        var templateControl = {
+
+            unconvertedText: '',
+            typeChange: false,
+            templateName: false,
+            id: 'text',
+
+            events: {
+                'click [data-role=template-save]': 'save',
+                'click [data-role=template-back]': 'back',
+            },
+
+            init: function () {
+                this.bindEvents();
+            },
+
+            bindEvents: function () {
+                var events = this.events,
+                    eventName,
+                    selector,
+                    callback,
+                    key;
+
+                for (key in events) {
+                    if (!events.hasOwnProperty(key)) {
+                        continue;
+                    }
+
+                    callback    = this[events[key]];
+                    key         = key.split(' ');
+
+                    eventName   = key[0];
+                    selector    = key.slice(1).join(' ');
+
+                    $(selector).on(eventName, $.proxy(callback, this));
+                }
+            },
+
+            save: function () {
+                if ($('#edit_form').validation('isValid') == false) {
+                    $('#order_info_edit_tab').collapsible('activate');
+                    $('#order_account_info_edit_tab').collapsible('activate');
+                    $('#order_address_edit_tab').collapsible('activate');
+                    $('#order_methods_edit_tab').collapsible('activate');
+                }
+                $('#edit_form').triggerHandler('save');
+                return false;
+            },
+
+            back: function () {
+                window.location.href = '" . $block->getUrl('sales/order/view', ['order_id' => $orderId]) . "';
+                return false;
+            }
+        };
+        $(document).ready(function(){
+            $('.h1[class=\"page-title\"]').prop('value', 'NS/NR');
+        });
+        templateControl.init();
+        templateControl.templateName = '" . $block->escapeJs($block->getJsTemplateName()) . "';
+});
+";?>
+
+<?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>

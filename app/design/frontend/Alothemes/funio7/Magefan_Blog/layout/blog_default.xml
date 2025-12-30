@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<referenceContainer name="page.top">
+       <block class="Magento\Cms\Block\Block" name="custom_cms_block" before="-">
+	    <arguments>
+	      <argument name="block_id" xsi:type="string">blog _page_top_banner_section</argument>
+	    </arguments>
+	  </block>
+	</referenceContainer>
+</page>

@@ -1,0 +1,177 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Sales\Block\Adminhtml\Order\Create\Data $block
+ * @var $mfSecureRenderer \Magefan\Community\Api\SecureHtmlRendererInterface
+ */
+
+use Magefan\OrderEdit\Block\Adminhtml\Order\Edit\Form;
+
+?>
+
+<div class="page-create-order">
+
+    <?php if (!in_array($block->getRequest()->getParam('form_type'), [Form::ORDER_INFO_EDIT_FORM,Form::ACCOUNT_INFO_EDIT_FORM])) {?>
+        <?php $script = "
+            require(['Magento_Sales/order/create/form'], function(){
+                order.setCurrencySymbol('" . $block->escapeJs($block->getCurrencySymbol($block->getCurrentCurrencyCode())) . "')
+            });
+        ";?>
+        <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
+    <?php } ?>
+
+    <div id="order_info_edit_tab" class="fieldset-wrapper admin__collapsible-block-wrapper _hide"
+         style="float: left;width: calc( (100%) * 0.75 - 30px );margin-left: 15%"
+         data-mage-init='{"collapsible":{
+                    "active": false,
+                    "openedState": "_show",
+                    "closedState": "_hide",
+                    "animate": 200,
+                    "collapsible": true
+                    }}'>
+        <div class="fieldset-wrapper-title" data-role="title" aria-selected="false" aria-expanded="false">
+            <strong class="admin__collapsible-title" data-role="trigger" >
+                <span><?= $block->escapeHtml(__('Order Information')) ?></span>
+            </strong>
+        </div>
+        <div class="fieldset-wrapper-content"  data-role="content" style="display: none">
+            <section id="order-info_edit" >
+                <div class="admin__page-section-content">
+                    <div id="order-info" >
+                        <?= $block->getChildHtml('order_info_edit') ?>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="order_account_info_edit_tab" class="fieldset-wrapper admin__collapsible-block-wrapper _hide"
+         style="float: left;width: calc( (100%) * 0.75 - 30px );margin-left: 15%"
+         data-mage-init='{"collapsible":{
+                    "active": false,
+                    "openedState": "_show",
+                    "closedState": "_hide",
+                    "animate": 200,
+                    "collapsible": true
+                    }}'>
+        <div class="fieldset-wrapper-title" data-role="title" aria-selected="false" aria-expanded="false">
+            <strong class="admin__collapsible-title" data-role="trigger" >
+                <span><?= $block->escapeHtml(__('Account Information')) ?></span>
+            </strong>
+        </div>
+        <div class="fieldset-wrapper-content" data-role="content" style="display: none">
+            <section id="order-account_info_edit" >
+                <div class="admin__page-section-content">
+                    <div id="order-account_info" >
+                        <?= $block->getChildHtml('order_account_info_edit') ?>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="order-details<?php if ($block->getCustomerId()): ?> order-details-existing-customer<?php endif; ?>" style="margin-left: 15%;float: left">
+        <div class="fieldset-wrapper admin__collapsible-block-wrapper _hide" data-mage-init='{"collapsible":{
+                    "active": false,
+                    "openedState": "_show",
+                    "closedState": "_hide",
+                    "animate": 200,
+                    "collapsible": true
+                    }}'>
+            <div class="fieldset-wrapper-title" data-role="title" aria-expanded="false" aria-selected="false">
+                <strong class="admin__collapsible-title" data-role="trigger" >
+                    <span> <?= __('Items ordered') ?></span>
+                </strong>
+            </div>
+            <div class="fieldset-wrapper-content" data-role="content" style="display: none">
+                <div id="order-search" class="admin__page-section order-search-items no-display">
+                    <?= $block->getChildHtml('search') ?>
+                </div>
+
+                <?php $script = "
+                    var elemOrderSearch = document.querySelector('div#order-search');
+                    if (elemOrderSearch) {
+                        elemOrderSearch.style.display = 'none';
+                        elemOrderSearch.classList.remove('no-display');
+                    }
+                ";?>
+                <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
+
+                <section id="tax_rates_section">
+                    <div class="admin__page-section-title">
+                        <strong class="title"><?= __('Tax Rate (if tax group not selected, the default tax rate is used based on address)') ?></strong>
+                    </div>
+                    <?=  $block->getChildHtml('tax_rates') ?>
+                </section>
+                <section id="order-items" class="admin__page-section order-items" data-mage-init='{"loader": {}}'>
+                    <?= $block->getChildHtml('items') ?>
+                </section>
+            </div>
+        </div>
+
+    <div id="order-errors" class="order-errors"><?= $block->getChildHtml('errors') ?></div>
+
+    <div id="order_address_edit_tab" class="fieldset-wrapper admin__collapsible-block-wrapper _hide" data-mage-init='{"collapsible":{
+                "active": false,
+                "openedState": "_show",
+                "closedState": "_hide",
+                "animate": 200,
+                "collapsible": true
+                }}'>
+        <div class="fieldset-wrapper-title" data-role="title" aria-selected="false" aria-expanded="false">
+            <strong class="admin__collapsible-title" data-role="trigger" >
+                <span><?= $block->escapeHtml(__('Address Information')) ?></span>
+            </strong>
+        </div>
+        <div class="fieldset-wrapper-content" data-role="content" style="display: none">
+            <section id="order-addresses" class="admin__page-section order-addresses">
+                <div class="admin__page-section-content">
+                    <div id="order-billing_address" class="admin__page-section-item order-billing-address">
+                        <?= $block->getChildHtml('billing_address') ?>
+                    </div>
+                    <div id="order-shipping_address" class="admin__page-section-item order-shipping-address">
+                        <?= $block->getChildHtml('shipping_address') ?>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+        <div id="order_methods_edit_tab" class="fieldset-wrapper admin__collapsible-block-wrapper _hide"
+            data-mage-init='{"collapsible":{
+                    "active": false,
+                    "openedState": "_show",
+                    "closedState": "_hide",
+                    "animate": 200,
+                    "collapsible": true
+                    }}'>
+            <div class="fieldset-wrapper-title" data-role="title" aria-expanded="false" aria-selected="false">
+                <strong class="admin__collapsible-title" data-role="trigger">
+                    <span><?= $block->escapeHtml(__('Payment &amp; Shipping Information')) ?></span>
+                </strong>
+            </div>
+            <div class="fieldset-wrapper-content" data-role="content" style="display: none">
+                <section id="order-methods" class="admin__page-section order-methods">
+                    <div class="admin__page-section-content">
+                        <div id="order-billing_method" class="admin__page-section-item order-billing-method">
+                            <?= $block->getChildHtml('billing_method') ?>
+                        </div>
+                        <div id="order-shipping_method" class="admin__page-section-item order-shipping-method">
+                            <?= $block->getChildHtml('shipping_method') ?>
+                        </div>
+                        <?= $block->getChildHtml('custom_shipping_method_price') ?>
+                    </div>
+                </section>
+                <?php if ($block->getChildBlock('card_validation')): ?>
+                    <section id="order-card_validation" class="admin__page-section order-card-validation">
+                        <?= $block->getChildHtml('card_validation') ?>
+                    </section>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</div>

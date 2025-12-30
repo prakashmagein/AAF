@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2023 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2023 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */ 
+ -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magedelightsmsprofile>
+        	<general>
+        		<send_otp_via>email</send_otp_via>
+        	</general>
+        	<otpsetting>
+        		<phone_validation>
+        			<item1>
+        				<country>default</country>	
+        				<digit>10</digit>
+        			</item1>
+        		</phone_validation>	
+        	</otpsetting>
+            <email_template>
+                <smsprofilealert_template>magedelightsmsprofile_email_template_smsprofilealert_template</smsprofilealert_template>
+                <sendotp_template>magedelightsmsprofile_email_template_sendotp_template</sendotp_template>
+                <notification_template>magedelightsmsprofile_email_template_notification_template</notification_template>
+            </email_template>
+        </magedelightsmsprofile>
+    </default>
+</config>

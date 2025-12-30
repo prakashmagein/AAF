@@ -1,0 +1,238 @@
+// /**
+//  * Copyright © 2021 Aloteam. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+
+& when (@media-common =true) {
+
+    .magicslider-caption {
+        position: absolute;
+        top:0;
+        right: 0;
+        bottom:0;
+        left: 0;
+
+        .figcaption {
+            position: absolute;
+            top:50%;
+            left: 0;
+            right: 0;
+            .transform(translateY(-50%));
+        }
+    }
+
+    .text-slide {        
+        .caption1 {
+            font-size: 2.4rem;
+            font-weight: 400;
+        }
+
+        .caption2 {
+            font-size: 9rem;
+            font-weight: 200;
+        }
+
+        .actions{
+            margin-top: 30px;
+        }
+
+        .action {
+            .button-base-effect;
+            font-size: 1.2rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 500;
+            border-width: 0;
+            line-height: 49px;
+
+            &:after {
+                content: "\f107";
+                font-family: @fonticon;
+                vertical-align: middle;
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .slide-showcase {
+        .slick-slide {
+            position: relative;
+
+            .text-slide {
+                min-width: 300px;
+
+                [class*="caption"] {
+                    display: none;
+                }
+            }
+            
+            picture{
+                position: relative;
+                overflow: hidden;
+                img{
+                    margin: 0 auto;
+                }
+            }
+
+            &.slick-active {
+                .text-slide {
+                    [class*="caption"] {
+                        display: block;
+                    }
+
+                    .caption1 {
+                        
+                        .animate__fadeInLeft();
+                        animation-duration: 1s;
+                        display: inline-block;
+                    }
+
+                    .caption2 {
+                        .animate__bounceInDown();
+                        animation-duration: 1.5s;
+                    }
+                }
+
+                picture{
+                    img{
+                        .kenburns-bottom-out();
+                    }
+                }
+            }
+        }
+
+        .magicslider{
+            .slick-prev,
+            .slick-next{
+                .round-borders(50%);
+
+                &:before{
+                    font-size: 1.5rem;
+                }
+            }
+
+            .slick-prev{
+                left: 100px;
+            }
+
+            .slick-next{
+                right: 100px;
+            }
+        }
+
+        .slick-dots {
+            text-align: initial;
+            left: 0;
+            right: 0;
+            bottom: 55px;
+            text-align: center;
+
+            li {
+                button{
+                    opacity: .3;       
+                }
+
+                &:hover, 
+                &.slick-active {
+                    button{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    /* responsive */
+    @media screen and  (min-width: (@screen__xxl + 1)){
+        .slide-showcase {
+            .slick-slide {
+                picture {
+                    img{
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+    
+    @media screen and (max-width: (@screen__xl-m - 1)) {
+        .text-slide {
+            .caption2{
+                font-size: 4rem;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__m - 1)){
+        .text-slide {
+            .caption1{
+                font-size: 1.4rem;
+            }
+
+            .caption2 {
+                font-size: 3rem;
+            }
+
+            .actions{
+                margin-top: 10px;
+            }
+        }
+
+        .slide-showcase {
+            .slick-dots{
+                bottom: 20px;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__s - 1)){
+        .text-slide {
+            .caption1{
+                display: none !important;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xs - 1)){
+        .text-slide {
+            .caption1{
+                font-size: 1rem;
+                margin-bottom: 0;
+            }
+
+            .caption2{
+                font-size: 2rem;
+                margin: 0;
+            }
+
+            .actions{
+                margin-top: 15px;
+            }
+
+            .action{
+                height: 40px;
+                line-height: 43px;
+                padding: 0 20px;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xxs - 1)) {
+        .text-slide {
+            display: none;
+        }
+    }
+
+    /* rtl */
+    .rtl {}
+}

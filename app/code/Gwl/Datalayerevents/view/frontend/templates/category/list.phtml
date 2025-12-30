@@ -1,0 +1,36 @@
+<?php
+$viewModel = $block->getViewModel();
+$currencyCode = $viewModel->getCurrencyCode();
+$escaper = $viewModel->escaper();
+
+    $categoryId = $viewModel->getCurrentCategory($block->getLayer()->getCurrentCategory())->getId();
+    $categoryUrl = $viewModel->getCurrentCategory($block->getLayer()->getCurrentCategory())->getUrl();
+    $itemListName = $viewModel->getItemListName($block->getRequest()->getFullActionName(), $block->getLayout());
+    $dataItemsList= $viewModel->getViewItemList($block->getLoadedProductCollection());
+    // if ($viewModel->getCatalogSession() && $viewModel->getCatalogSession()->getIsAjaxLayer()) {
+    //     $gtag = $viewModel->getGtagAjaxLayer($dataItemsList, $categoryId, $itemListName);
+    //     $viewModel->getCatalogSession()->setGtag($gtag);
+    //     $viewModel->getCatalogSession()->unsIsAjaxLayer();
+    // }
+
+?>
+
+<?php if (isset($dataItemsList) && isset($categoryId) && isset($itemListName) && isset($categoryUrl)): ?>
+    <?php foreach ($dataItemsList as $listItem): ?>
+<script>
+    window.addEventListener("load", (event) => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'view_item_list',
+            'ecommerce':{
+            'category_name': "<?= $escaper->escapeHtml($itemListName) ?>",
+            'category_url': "<?= $escaper->escapeHtml($categoryUrl) ?>",
+            'currency':"<?= $escaper->escapeHtml($currencyCode) ?>",
+            'items': <?= /* @noEscape */ $viewModel->serializeItem($listItem) ?>
+            }
+        });
+    }, false);
+</script>
+
+    <?php endforeach; ?>
+<?php endif; ?>

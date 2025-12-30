@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page layout="1column"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<body>
+		<move element="breadcrumbs" destination="product.shop.content" before="-"/>
+		<move element="product.info.review" destination="product.shop.content" after="breadcrumbs"/>
+		<move element="page.main.title" destination="product.shop.content" after="product.info.review"/>
+		<move element="product.info.price" destination="product.shop.content" after="page.main.title"/>
+		<move element="product.price.final" destination="product.info.price" before="-"/>
+		<move element="product.info.shopbrand" destination="product.shop.content" after="product.info.price" before="-"/>
+		<move element="product.info.overview" destination="product.shop.content" after="product.info.options"/>
+		
+		<move element="product.info.stock.sku" destination="product.shop.content" after="product.info.price" before="customize.button"/>
+		<move element="product.info" destination="product.shop.content" before="product.info.overview"/>
+		<move element="product.info.extrahint" destination="product.shop.content" before="product.info.mailto"/>
+		<move element="product.info.mailto" destination="product.shop.content" after="-"/>
+		<move element="alo.product.timer" destination="product.shop.content" after="product.info.extrahint"/>
+
+		<move element="product.info.details" destination="product.shop.content" after="-" />
+		<move element="catalog.product.related" destination="product.related.block"/>
+		<move element="product.info.upsell" destination="product.related.block" after="catalog.product.related"/>
+		<move element="product.related.block" destination="sections.page.bottom" after="-" />
+
+		<move element="tag.product.tagproduct" destination="product.shop.content" after="product.info.overview" />
+
+		
+		<container name="alo.product.timer" as="alo_product_timer" label="Alo Product Timer" htmlTag="div" htmlClass="sections-content-timer wrap"/>
+		<referenceContainer name="alo.product.timer" htmlClass="additional-timer-block">
+			<block class="Magento\Catalog\Block\Product\View" name="product.timer" as="product_timer" template="product/view/timer.phtml">
+				<arguments>
+					<argument translate="true" name="title" xsi:type="string">Timer</argument>
+				</arguments>
+			</block>
+		</referenceContainer>
+		<referenceContainer name="page.wrapper">
+			<container name="product.related.block" htmlTag="div" htmlClass="block-product-bottom"/>
+		</referenceContainer>
+
+		<referenceContainer name="product.info.media" htmlTag="div" htmlClass="product media product-img-box col"/>
+		<referenceContainer name="product.info.main" htmlTag="div" htmlClass="product-info-main product-shop col"/>
+
+
+		<block class="Magento\Cms\Block\Block"  name="product.custom.static.block" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">product_page_shipping_block</argument>
+                </arguments>
+        </block>
+
+        <move element="product.custom.static.block" destination="product.shop.content" after="-" />
+
+		<referenceBlock name="product.info.mailto" remove="true"/>
+		<referenceBlock name="product.info.overview" remove="true"/>
+		<referenceBlock name="tag.product.tagproduct" remove="true"/>
+
+		<referenceContainer name="product.info.price">
+            <block class="Magento\Framework\View\Element\Template" name="price.includes.vat" template="Magento_Catalog::product/price_includes_vat.phtml"/>
+        </referenceContainer>
+
+	</body>
+</page>

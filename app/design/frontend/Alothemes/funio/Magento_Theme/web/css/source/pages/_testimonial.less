@@ -1,0 +1,181 @@
+// /**
+//  * Copyright © 2021 Aloteam. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+
+& when (@media-common =true) {
+    .testimonial-container {
+        margin-top: 50px;
+
+        .action {
+            &.submit {
+                .button-base-effect;
+                margin-bottom: 50px;
+            }
+        }
+
+        .magiccart-testimonials-grid {
+            .dflex();
+            margin: 0 -15px 50px;
+
+            .magiccart-testimonial-rating {
+                margin-bottom: 10px;
+
+                .rating-box {
+                    position: relative;
+
+                    &:before {
+                        content: "\f005""\f005""\f005""\f005""\f005";
+                        font-family: @fontawesome;
+                        z-index: 1;
+                        font-size: 1.4rem;
+                        height: 14px;
+                        display: block;
+                        line-height: 14px;
+                        font-weight: 400;
+                        letter-spacing: 5px;
+                    }
+
+                    .rating {
+                        position: absolute;
+                        top: 0;
+                        overflow: hidden;
+
+                        &:before {
+                            content: "\f005""\f005""\f005""\f005""\f005";
+                            font-family: @fontawesome;
+                            z-index: 1;
+                            font-size: 1.4rem;
+                            height: 14px;
+                            display: block;
+                            line-height: 14px;
+                            font-weight: 400;
+                            letter-spacing: 5px;
+                        }
+                    }
+                }
+            }
+
+            .magiccart-testimonial-content {
+                margin-bottom: 10px;
+            }
+
+            .magiccart-testimonial-author {
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                font-weight: 700;
+                position: relative;
+                margin-bottom: 10px;
+            }
+
+            .magiccart-testimonial-jobandcompany {
+                font-weight: 500;
+            }
+
+            .magiccart-testimonial-avatar {
+                display: inline-block;
+                .round-borders(50%);
+                padding: 10px;
+                border-width: 1px;
+                border-style: dashed;
+
+                img {
+                    .round-borders(50%);
+                }
+            }
+
+            .magiccart-testimonials-grid-left {
+                margin-bottom: -50px;
+                text-align: center;
+            }
+
+            .magiccart-testimonials-grid-right {
+                border-width: 1px;
+                border-style: solid;
+                padding: 70px 20px 20px;
+            }
+
+            .testimonial-item {
+                width: calc(~"100% / 3");
+                padding: 0 15px;
+                margin-bottom: 30px;
+            }
+        }
+
+        .toolbar {
+            .toolbar-amount {
+                display: none;
+            }
+        }
+    }
+
+    .alo-testimonial-submit{
+        max-width: 800px;
+        padding: 35px;
+        margin: 50px auto 0;
+        .box-shadow(0 0 2px rgba(0, 0, 0, .2));
+
+
+        .fieldset{
+            .field {
+                margin-bottom: 20px;
+                &.field-avatar{
+                    input{
+                        border: 0;
+                    }
+                }
+            }
+        }
+
+        .action {
+            &.submit {
+                .button-base-effect;
+                margin-bottom: 50px;
+            }
+        }
+    }
+
+    /* responsive */
+    @media screen and (max-width: (@screen__xm - 1)) {
+        .testimonial-container {
+            .magiccart-testimonials-grid {
+                .testimonial-item {
+                    width: 50%;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__ss - 1)) {
+        .testimonial-container {
+            .magiccart-testimonials-grid {
+                .testimonial-item {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    /* rtl */
+    .rtl {
+        .testimonial-container {
+            .magiccart-testimonials-grid {
+                .magiccart-testimonial-author{
+                    &:before{
+                        margin-right: 0;
+                        margin-left: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

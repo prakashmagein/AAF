@@ -1,0 +1,43 @@
+<?php
+$_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
+if(!$_aloHelper->getConfigModule('category_page/gridview') || !$block->isModeActive('grid')){
+	echo $_aloHelper->getGridStyle('.products-grid .product-item');
+	return;
+}
+$options    = $_aloHelper->getCategoryOptions();
+?>
+<div class="grid-view-mode" data-mage-init='{"gridView": {}}'
+	<?php foreach ($options as $key => $value): ?>
+		data-<?php echo $key ?>='<?php echo $value ?>'
+	<?php endforeach ?>
+	>
+	<?php 
+	echo $_aloHelper->getGridStyle('.products-grid .product-item');
+	$gridNum = $options['grid-max'] + 1;
+	while ($gridNum) : ?>
+		<span class="grid-mode grid-<?= $gridNum ?>" data-grid="<?= $gridNum ?>">
+			<span class="icon">
+				<?php 
+					$num = $gridNum;
+					$column = 3;
+					$r = 5;
+					$width = ($r + 1)*$num - 1;	/* $r*$num + ($num-1)*1; */
+					$height = ($r + 1)*$column - 1;	/* $r*$column + ($column-1)*1; */
+				?>
+				<span id="Layer_1" style="width:<?php echo $width ?>px; height:<?php echo $height ?>px;">
+					<?php while ($column) : ?>
+						<?php $num = $gridNum; ?>
+						<span class="layer">
+							<?php while ($num) : ?>
+								<span style="width:<?php echo $r ?>px; height:<?php echo $r ?>px;"></span>									   
+								<?php $num--; ?>
+							<?php endwhile ?>
+						</span>
+						<?php $column-- ?>
+					<?php endwhile ?>
+				</span>
+			</span>
+		</span>
+		<?php $gridNum--; ?>
+	<?php endwhile ?>
+</div>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="before.body.end">
+            <block name="addEditUrls" template="Magefan_OrderEdit::order/view/addEditUrls.phtml"/>
+        </referenceContainer>
+
+        <referenceBlock name="order_history">
+            <block name="editing_history" class="Magefan\OrderEdit\Block\Adminhtml\Order\EditHistory" template="Magefan_OrderEdit::order/view/editHistory.phtml" />
+        </referenceBlock>
+    </body>
+</page>

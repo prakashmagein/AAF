@@ -1,0 +1,15 @@
+<!--@subject {{trans "Your %reward_points_label_name balance will be expired" reward_points_label_name=$reward_points_label_name}} @-->
+<!--@vars {
+"template config_path=\"design\/email\/footer_template\"":"Email Footer Template",
+"template config_path=\"design\/email\/header_template\"":"Email Header Template"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">Dear {{var customer_name}}</p>
+<p>This letter informs you, that your {{var points}} {{var reward_points_label_name}} will expire on {{var expire_date}} ({{if expire_in_days}}{{var expire_in_days}} days left{{else}}today{{/if}}).</p>
+<p>Currently, you have {{var points_balance}} {{var points_label_name}} in your account, which equals to {{var money_balance}} worth of discount. Hurry up before it's gone!</p>
+<p>Click <a href="{{var rp_program_url}}">here</a> to learn more about our loyalty program.</p>
+<p>Click here to <a href="{{var unsubscribe_url}}">unsubscribe</a></p>
+
+{{template config_path="design/email/footer_template"}}

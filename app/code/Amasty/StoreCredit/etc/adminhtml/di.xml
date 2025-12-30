@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Store Credit & Refund for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\StoreCredit\Model\History\Repository\GetHistoryAdminNameInterface"
+                type="Amasty\StoreCredit\Model\History\Repository\GetHistoryAdminName" />
+
+    <type name="Amasty\StoreCredit\Model\History\Repository\GetHistoryAdminName">
+        <arguments>
+            <argument name="adminActions" xsi:type="array">
+                <item name="admin_balance_change_plus"
+                      xsi:type="const">Amasty\StoreCredit\Model\History\MessageProcessor::ADMIN_BALANCE_CHANGE_PLUS</item>
+                <item name="admin_balance_change_minus"
+                      xsi:type="const">Amasty\StoreCredit\Model\History\MessageProcessor::ADMIN_BALANCE_CHANGE_MINUS</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Sales\Model\Service\CreditmemoService">
+        <plugin name="AmastyRefundToStoreCredit" type="Amasty\StoreCredit\Plugin\RefundToStoreCredit" />
+    </type>
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="Amasty_StoreCredit::Sales_Order" type="Amasty\StoreCredit\Plugin\Sales\Model\OrderPlugin" />
+    </type>
+
+    <type name="Amasty\StoreCredit\Model\Config\Backend\Restrict\Entity">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="dataPersistor" xsi:type="object">Magento\Framework\App\Request\DataPersistorInterface</item>
+                <item name="utils" xsi:type="object">Amasty\StoreCredit\Model\Config\Utils</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Amasty\StoreCredit\Model\Config\Backend\Restrict\Skus" type="Amasty\StoreCredit\Model\Config\Backend\Restrict\Entity">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="filterModel" xsi:type="object">Amasty\StoreCredit\Model\ResourceModel\FilterSkus</item>
+                <item name="persistentName" xsi:type="string">amasty_storecredit_config_skus</item>
+                <item name="errorMessage" xsi:type="string">The following SKUs are invalid: %1.</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Amasty\StoreCredit\Model\Config\Backend\Restrict\Categories" type="Amasty\StoreCredit\Model\Config\Backend\Restrict\Entity">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="filterModel" xsi:type="object">Amasty\StoreCredit\Model\ResourceModel\FilterCategories</item>
+                <item name="persistentName" xsi:type="string">amasty_storecredit_config_categories</item>
+                <item name="errorMessage" xsi:type="string">The following Category IDs are invalid: %1.</item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>

@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+	<route url="/V1/lof-productshipping/shipping" method="POST">
+		<service class="Lof\ProductShipping\Api\ShippingRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_ProductShipping::save_shipping"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-productshipping/shipping/search" method="GET">
+		<service class="Lof\ProductShipping\Api\ShippingRepositoryInterface" method="getList"/>
+		<resources>
+			<resource ref="Lof_ProductShipping::lofproduct_shipping"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-productshipping/shipping/:shippingId" method="GET">
+		<service class="Lof\ProductShipping\Api\ShippingRepositoryInterface" method="get"/>
+		<resources>
+			<resource ref="Lof_ProductShipping::edit_shipping"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-productshipping/shipping/:shippingId" method="PUT">
+		<service class="Lof\ProductShipping\Api\ShippingRepositoryInterface" method="save"/>
+		<resources>
+			<resource ref="Lof_ProductShipping::save_shipping"/>
+		</resources>
+	</route>
+	<route url="/V1/lof-productshipping/shipping/:shippingId" method="DELETE">
+		<service class="Lof\ProductShipping\Api\ShippingRepositoryInterface" method="deleteById"/>
+		<resources>
+			<resource ref="Lof_ProductShipping::delete_shipping"/>
+		</resources>
+	</route>
+</routes>

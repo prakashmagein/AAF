@@ -1,0 +1,730 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="aw_rp_earn_rate" resource="default" engine="innodb" comment="Aheadworks Reward Points Earn Rate Table">
+        <column xsi:type="int" name="rate_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Primary Index Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="smallint" name="customer_group_id" padding="5" unsigned="true" nullable="false"
+                identity="false" comment="Customer Group Id"/>
+        <column xsi:type="int" name="lifetime_sales_amount" padding="10" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Customer lifetime sales amount"/>
+        <column xsi:type="int" name="base_amount" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Base Currency"/>
+        <column xsi:type="int" name="points" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Points"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rate_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_EARN_RATE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="aw_rp_earn_rate" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="AW_RP_EARN_RATE_WS_ID_CSTR_GROUP_ID_LIFETIME_SALES_AMOUNT">
+            <column name="website_id"/>
+            <column name="customer_group_id"/>
+            <column name="lifetime_sales_amount"/>
+        </constraint>
+        <index referenceId="AW_RP_EARN_RATE_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RATE_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RATE_WEBSITE_ID_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="website_id"/>
+            <column name="customer_group_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_product_share" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Product Share Table">
+        <column xsi:type="int" name="share_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Primary Index Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Customer Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Product Id"/>
+        <column xsi:type="varchar" name="network" nullable="true" length="16" comment="Share Network"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="share_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_PRODUCT_SHARE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="aw_rp_product_share" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_RP_PRODUCT_SHARE_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="aw_rp_product_share" column="customer_id" referenceTable="customer_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_RP_PRODUCT_SHARE_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID"
+                    table="aw_rp_product_share" column="product_id" referenceTable="catalog_product_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <index referenceId="AW_RP_PRODUCT_SHARE_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="AW_RP_PRODUCT_SHARE_CUSTOMER_ID" indexType="btree">
+            <column name="customer_id"/>
+        </index>
+        <index referenceId="AW_RP_PRODUCT_SHARE_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+        <index referenceId="AW_RP_PRODUCT_SHARE_NETWORK" indexType="btree">
+            <column name="network"/>
+        </index>
+    </table>
+    <table name="aw_rp_spend_rate" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Spend Rate Table">
+        <column xsi:type="int" name="rate_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Primary Index Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="smallint" name="customer_group_id" padding="5" unsigned="true" nullable="false"
+                identity="false" comment="Customer Group Id"/>
+        <column xsi:type="int" name="lifetime_sales_amount" padding="10" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Customer lifetime sales amount"/>
+        <column xsi:type="int" name="points" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Points"/>
+        <column xsi:type="int" name="base_amount" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Base Currency"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rate_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_SPEND_RATE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="aw_rp_spend_rate" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="AW_RP_SPEND_RATE_WS_ID_CSTR_GROUP_ID_LIFETIME_SALES_AMOUNT">
+            <column name="website_id"/>
+            <column name="customer_group_id"/>
+            <column name="lifetime_sales_amount"/>
+        </constraint>
+        <index referenceId="AW_RP_SPEND_RATE_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RATE_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RATE_WEBSITE_ID_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="website_id"/>
+            <column name="customer_group_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_transaction" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Transaction Table">
+        <column xsi:type="int" name="transaction_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Primary Index Id"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false"
+                comment="Customer Id"/>
+        <column xsi:type="varchar" name="customer_name" nullable="true" length="255" comment="Customer Name"/>
+        <column xsi:type="varchar" name="customer_email" nullable="true" length="255" comment="Customer Email"/>
+        <column xsi:type="varchar" name="comment_to_customer" nullable="true" length="255" comment="Customer Comments"/>
+        <column xsi:type="varchar" name="comment_to_customer_placeholder" nullable="true" length="255"
+                comment="Comment To Customer Placeholder"/>
+        <column xsi:type="varchar" name="comment_to_admin" nullable="true" length="255" comment="Admin Comments"/>
+        <column xsi:type="varchar" name="comment_to_admin_placeholder" nullable="true" length="255"
+                comment="Admin Comments Placeholder"/>
+        <column xsi:type="int" name="balance" padding="11" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Customer Balance"/>
+        <column xsi:type="int" name="current_balance" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Current Customer Balance"/>
+        <column xsi:type="timestamp" name="transaction_date" on_update="false" nullable="false"
+                default="CURRENT_TIMESTAMP" comment="Transaction Date"/>
+        <column xsi:type="timestamp" name="holding_period_expiration_date" on_update="false" nullable="true"
+                comment="Holding period expiration"/>
+        <column xsi:type="timestamp" name="expiration_date" on_update="false" nullable="true"
+                comment="Expiration Date"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="true" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="smallint" name="type" padding="5" unsigned="true" nullable="false" identity="false"
+                default="1" comment="Transaction Type"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false"
+                default="1" comment="Transaction Status"/>
+        <column xsi:type="smallint" name="balance_update_notified" padding="5" unsigned="true" nullable="false"
+                identity="false" default="2" comment="Balance Update Notified"/>
+        <column xsi:type="smallint" name="expiration_notified" padding="5" unsigned="true" nullable="false"
+                identity="false" default="4" comment="Expiration Notified"/>
+        <column xsi:type="int" name="created_by" padding="10" unsigned="true" nullable="true" identity="false"
+                comment="Created By"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="transaction_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_TRANSACTION_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="aw_rp_transaction" column="customer_id" referenceTable="customer_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_RP_TRANSACTION_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="aw_rp_transaction" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+        <index referenceId="AW_RP_TRANSACTION_CUSTOMER_ID" indexType="btree">
+            <column name="customer_id"/>
+        </index>
+        <index referenceId="AW_RP_TRANSACTION_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_points_summary" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Summary Table">
+        <column xsi:type="int" name="summary_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Primary Index Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false"
+                comment="Customer Id"/>
+        <column xsi:type="int" name="points" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Points"/>
+        <column xsi:type="int" name="points_earn" padding="11" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Earn Points"/>
+        <column xsi:type="int" name="points_spend" padding="11" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Spend Points"/>
+        <column xsi:type="int" name="daily_review_points" padding="11" unsigned="false" nullable="false"
+                identity="false" default="0" comment="Daily Reward Points for Review"/>
+        <column xsi:type="date" name="daily_review_points_date" comment="Daily Reward Points for Review Date"/>
+        <column xsi:type="int" name="daily_share_points" padding="11" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Daily Reward Points for Share"/>
+        <column xsi:type="int" name="monthly_share_points" padding="11" unsigned="false" nullable="false"
+                identity="false" default="0" comment="Monthly Reward Points for Share"/>
+        <column xsi:type="date" name="daily_share_points_date" comment="Daily Reward Points for Share Date"/>
+        <column xsi:type="date" name="monthly_share_points_date" comment="Monthly Reward Points Date for Share"/>
+        <column xsi:type="date" name="dob_update_date" comment="Dob Update date"/>
+        <column xsi:type="boolean" name="is_awarded_for_newsletter_signup" nullable="false" default="0"
+                comment="Is Awarded for Newsletter Signup"/>
+        <column xsi:type="smallint" name="balance_update_notification_status" padding="5" unsigned="true"
+                nullable="false" identity="false" default="1" comment="Balance Update Notifications (status)"/>
+        <column xsi:type="smallint" name="expiration_notification_status" padding="5" unsigned="true" nullable="false"
+                identity="false" default="1" comment="Points Expiration Notification (status)"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="summary_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_POINTS_SUMMARY_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="aw_rp_points_summary" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_RP_POINTS_SUMMARY_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="aw_rp_points_summary" column="customer_id" referenceTable="customer_entity"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="unique" referenceId="AW_RP_POINTS_SUMMARY_CUSTOMER_ID">
+            <column name="customer_id"/>
+        </constraint>
+        <index referenceId="AW_RP_POINTS_SUMMARY_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_transaction_entity" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Transaction Entity">
+        <column xsi:type="int" name="transaction_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Transaction Id"/>
+        <column xsi:type="smallint" name="entity_type" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Entity Type"/>
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Entity Id"/>
+        <column xsi:type="varchar" name="entity_label" nullable="true" length="255" comment="Entity Label"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="transaction_id"/>
+            <column name="entity_type"/>
+            <column name="entity_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_996961C1BF7B559DDA3FB8DF42243E09"
+                    table="aw_rp_transaction_entity" column="transaction_id" referenceTable="aw_rp_transaction"
+                    referenceColumn="transaction_id" onDelete="CASCADE"/>
+        <index referenceId="AW_RP_TRANSACTION_ENTITY_TRANSACTION_ID_ENTITY_TYPE_ENTITY_ID" indexType="btree">
+            <column name="transaction_id"/>
+            <column name="entity_type"/>
+            <column name="entity_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_transaction_adjusted_history" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Transaction Adjusted History">
+        <column xsi:type="int" name="transaction_id" padding="11" unsigned="false" nullable="false" identity="true"
+                comment="Transaction Id"/>
+        <column xsi:type="int" name="from_transaction_id" padding="11" unsigned="false" nullable="false"
+                identity="false" comment="From Transaction Id"/>
+        <column xsi:type="int" name="balance" padding="11" unsigned="false" nullable="false" identity="false"
+                comment="Balance"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="transaction_id"/>
+            <column name="from_transaction_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="FK_FCBEE88A6225D539BD0159E5B03F0019"
+                    table="aw_rp_transaction_adjusted_history" column="transaction_id"
+                    referenceTable="aw_rp_transaction" referenceColumn="transaction_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_FEAC2D8B51CDD4721D4D790076954B65"
+                    table="aw_rp_transaction_adjusted_history" column="from_transaction_id"
+                    referenceTable="aw_rp_transaction" referenceColumn="transaction_id" onDelete="CASCADE"/>
+        <index referenceId="IDX_FE803DD9D56281B4A60D86AB958B8441" indexType="btree">
+            <column name="transaction_id"/>
+            <column name="from_transaction_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_earn_rule" resource="default" engine="innodb" comment="Aheadworks Reward Points Earn Rule Table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Rule Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="int" name="priority" padding="11" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Priority"/>
+        <column xsi:type="smallint" name="discard_subsequent_rules" padding="6" unsigned="false" nullable="false"
+                identity="false" default="0" comment="Discard Subsequent Rules"/>
+        <column xsi:type="date" name="from_date" comment="From Date"/>
+        <column xsi:type="date" name="to_date" comment="To Date"/>
+        <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <column xsi:type="mediumtext" name="condition" nullable="true" comment="Condition Serialized"/>
+        <column xsi:type="mediumtext" name="action" nullable="true" comment="Action Serialized"/>
+        <column xsi:type="varchar" name="type" nullable="false" length="10" default="catalog" comment="Type"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="AW_RP_EARN_RULE_NAME" indexType="btree">
+            <column name="name"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_FROM_DATE" indexType="btree">
+            <column name="from_date"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_TO_DATE" indexType="btree">
+            <column name="to_date"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRIORITY" indexType="btree">
+            <column name="priority"/>
+        </index>
+    </table>
+    <table name="aw_rp_earn_rule_website" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Earn Rule To Website Relations">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Rule Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="website_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_EARN_RULE_WEBSITE_RULE_ID_AW_RP_EARN_RULE_ID"
+                    table="aw_rp_earn_rule_website" column="rule_id" referenceTable="aw_rp_earn_rule"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_RP_EARN_RULE_WEBSITE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="aw_rp_earn_rule_website" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+        <index referenceId="AW_RP_EARN_RULE_WEBSITE_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_earn_rule_customer_group" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Earn Rule To Customer Groups Relations">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Rule Id"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Customer Group Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="customer_group_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_EARN_RULE_CUSTOMER_GROUP_RULE_ID_AW_RP_EARN_RULE_ID"
+                    table="aw_rp_earn_rule_customer_group" column="rule_id" referenceTable="aw_rp_earn_rule"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_1CB2B361F5F407C4D4DC1815617D1049"
+                    table="aw_rp_earn_rule_customer_group" column="customer_group_id" referenceTable="customer_group"
+                    referenceColumn="customer_group_id" onDelete="CASCADE"/>
+        <index referenceId="AW_RP_EARN_RULE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_earn_rule_product" resource="default" engine="innodb"
+           comment="AW Reward Points Earn Rule Product">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Rule Id"/>
+        <column xsi:type="date" name="from_date" comment="Rule is Active From"/>
+        <column xsi:type="date" name="to_date" comment="Rule is Active To"/>
+        <column xsi:type="smallint" name="customer_group_id" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Customer Group Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Product Id"/>
+        <column xsi:type="int" name="priority" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Priority"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="IDX_0416A1C671218D9677B9C88DF109E861">
+            <column name="rule_id"/>
+            <column name="from_date"/>
+            <column name="to_date"/>
+            <column name="customer_group_id"/>
+            <column name="website_id"/>
+            <column name="product_id"/>
+            <column name="priority"/>
+        </constraint>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_FROM_DATE" indexType="btree">
+            <column name="from_date"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_TO_DATE" indexType="btree">
+            <column name="to_date"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_earn_rule_product_idx" resource="default" engine="innodb"
+           comment="AW Reward Points Earn Rule Product">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Rule Id"/>
+        <column xsi:type="date" name="from_date" comment="Rule is Active From"/>
+        <column xsi:type="date" name="to_date" comment="Rule is Active To"/>
+        <column xsi:type="smallint" name="customer_group_id" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Customer Group Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Product Id"/>
+        <column xsi:type="int" name="priority" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Priority"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="IDX_D17AE21463797FC23C0B9E10393E9C4A">
+            <column name="rule_id"/>
+            <column name="from_date"/>
+            <column name="to_date"/>
+            <column name="customer_group_id"/>
+            <column name="website_id"/>
+            <column name="product_id"/>
+            <column name="priority"/>
+        </constraint>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_IDX_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_IDX_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_IDX_FROM_DATE" indexType="btree">
+            <column name="from_date"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_IDX_TO_DATE" indexType="btree">
+            <column name="to_date"/>
+        </index>
+        <index referenceId="AW_RP_EARN_RULE_PRODUCT_IDX_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_label" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Entity Label To Store Relation Table">
+        <column xsi:type="smallint" name="store_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Store Id"/>
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Entity Id"/>
+        <column xsi:type="varchar" name="entity_type" nullable="false" length="100" comment="Entity Type"/>
+        <column xsi:type="text" name="product_promo_text" nullable="true" comment="Products Promo Text"/>
+        <column xsi:type="text" name="category_promo_text" nullable="true" comment="Category Products Promo Text"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="store_id"/>
+            <column name="entity_id"/>
+            <column name="entity_type"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_LABEL_STORE_ID_STORE_STORE_ID" table="aw_rp_label"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="CASCADE"/>
+        <index referenceId="AW_RP_LABEL_STORE_ID" indexType="btree">
+            <column name="store_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_order_additional" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Order Additional Table">
+        <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Order Id"/>
+        <column xsi:type="varchar" name="applied_rule_ids" nullable="true" length="255" comment="Applied Rule Ids"/>
+        <column xsi:type="varchar" name="canceled_rule_ids" nullable="true" length="255" comment="Canceled Rule Ids"/>
+        <constraint xsi:type="foreign" referenceId="AW_RP_ORDER_ADDITIONAL_ORDER_ID_SALES_ORDER_ENTITY_ID"
+                    table="aw_rp_order_additional" column="order_id" referenceTable="sales_order"
+                    referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="order_id"/>
+        </constraint>
+    </table>
+    <table name="aw_rp_coupon" resource="default" engine="innodb" comment="Aheadworks Reward Points Coupon Table">
+        <column xsi:type="int" name="coupon_id" unsigned="true" identity="true" comment="Coupon ID"/>
+        <column xsi:type="int" name="customer_id" unsigned="true" comment="Customer ID"/>
+        <column xsi:type="varchar" name="code" nullable="false" comment="Code"/>
+        <column xsi:type="smallint" name="status" unsigned="true" default="0" comment="Status"/>
+        <column xsi:type="int" name="balance" unsigned="true" nullable="false" comment="Balance"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false"
+                nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true"
+                nullable="false" default="CURRENT_TIMESTAMP" comment="Updated At"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="coupon_id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="AW_RP_COUPON_CODE">
+            <column name="code"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_COUPON_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID"
+                    table="aw_rp_coupon" column="customer_id"
+                    referenceTable="customer_entity" referenceColumn="entity_id"/>
+    </table>
+    <table name="quote" resource="checkout" comment="Sales Flat Quote">
+        <column xsi:type="int" name="aw_use_reward_points" padding="10" nullable="true" identity="false" comment="Aw Use Reward Points"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+        <column xsi:type="varchar" name="aw_reward_points_description" nullable="true" length="255" comment="Aw Reward Points Description"/>
+        <column xsi:type="int" name="aw_reward_points_qty_to_apply" padding="10" nullable="true" identity="false"  comment="Aw Reward Points Qty To Apply"/>
+    </table>
+    <table name="quote_item" resource="checkout" comment="Sales Flat Quote Item">
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+    </table>
+    <table name="quote_address" resource="checkout" comment="Sales Flat Quote Address">
+        <column xsi:type="int" name="aw_use_reward_points" padding="10" nullable="true" identity="false" comment="Aw Use Reward Points"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+        <column xsi:type="varchar" name="aw_reward_points_description" nullable="true" length="255" comment="Aw Reward Points Description"/>
+        <column xsi:type="decimal" name="aw_reward_points_shipping_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Shipping Amount"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_shipping_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Shipping Amount"/>
+        <column xsi:type="int" name="aw_reward_points_shipping" padding="10" nullable="true" identity="false" comment="Aw Reward Points Shipping"/>
+    </table>
+    <table name="quote_address_item" resource="checkout" comment="Sales Flat Quote Address Item">
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+    </table>
+    <table name="sales_creditmemo" resource="sales" comment="Sales Flat Creditmemo">
+        <column xsi:type="int" name="aw_use_reward_points" padding="10" nullable="true" identity="false" comment="Aw Use Reward Points"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+        <column xsi:type="varchar" name="aw_reward_points_description" nullable="true" length="255" comment="Aw Reward Points Description"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_refund" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Refund"/>
+        <column xsi:type="decimal" name="aw_reward_points_refund" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Refund"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_refund" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Refund"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_reimbursed" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Reimbursed"/>
+        <column xsi:type="decimal" name="aw_reward_points_reimbursed" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Reimbursed"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_reimbursed" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Reimbursed"/>
+    </table>
+    <table name="sales_creditmemo_item" resource="sales" comment="Sales Flat Creditmemo Item">
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_refunded" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Refunded"/>
+        <column xsi:type="decimal" name="aw_reward_points_refunded" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Refunded"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_refunded" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Refunded"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_reimbursed" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Reimbursed"/>
+        <column xsi:type="decimal" name="aw_reward_points_reimbursed" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Reimbursed"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_reimbursed" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Reimbursed"/>
+    </table>
+    <table name="sales_invoice" resource="sales" comment="Sales Flat Invoice">
+        <column xsi:type="int" name="aw_use_reward_points" padding="10" nullable="true" identity="false" comment="Aw Use Reward Points"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+        <column xsi:type="varchar" name="aw_reward_points_description" nullable="true" length="255" comment="Aw Reward Points Description"/>
+    </table>
+    <table name="sales_invoice_item" resource="sales" comment="Sales Flat Invoice Item">
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+    </table>
+    <table name="sales_order" resource="sales" comment="Sales Flat Order">
+        <column xsi:type="int" name="aw_use_reward_points" padding="10" nullable="true" identity="false" comment="Aw Use Reward Points"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+        <column xsi:type="varchar" name="aw_reward_points_description" nullable="true" length="255" comment="Aw Reward Points Description"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_invoiced" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Invoiced"/>
+        <column xsi:type="decimal" name="aw_reward_points_invoiced" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Invoiced"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_refunded" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Refunded"/>
+        <column xsi:type="decimal" name="aw_reward_points_refunded" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Refunded"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_invoiced" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Invoiced"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_refunded" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Refunded"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_refund" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Refund"/>
+        <column xsi:type="decimal" name="aw_reward_points_refund" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Refund"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_refund" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Refund"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_reimbursed" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Reimbursed"/>
+        <column xsi:type="decimal" name="aw_reward_points_reimbursed" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Reimbursed"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_reimbursed" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Reimbursed"/>
+        <column xsi:type="decimal" name="aw_reward_points_shipping_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Shipping Amount"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_shipping_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Shipping Amount"/>
+        <column xsi:type="int" name="aw_reward_points_shipping" padding="10" nullable="true" identity="false" comment="Aw Reward Points Shipping"/>
+    </table>
+    <table name="sales_order_item" resource="sales" comment="Sales Flat Order Item">
+        <column xsi:type="decimal" name="base_aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true"  comment="Base Aw Reward Points Amount"/>
+        <column xsi:type="decimal" name="aw_reward_points_amount" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Amount"/>
+        <column xsi:type="int" name="aw_reward_points" padding="10" nullable="true" identity="false" comment="Aw Reward Points"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_refunded" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Refunded"/>
+        <column xsi:type="decimal" name="aw_reward_points_refunded" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Refunded"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_refunded" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Refunded"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_reimbursed" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Reimbursed"/>
+        <column xsi:type="decimal" name="aw_reward_points_reimbursed" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Reimbursed"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_reimbursed" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Reimbursed"/>
+        <column xsi:type="decimal" name="base_aw_reward_points_invoiced" scale="4" precision="12" unsigned="false" nullable="true" comment="Base Aw Reward Points Invoiced"/>
+        <column xsi:type="decimal" name="aw_reward_points_invoiced" scale="4" precision="12" unsigned="false" nullable="true" comment="Aw Reward Points Invoiced"/>
+        <column xsi:type="int" name="aw_reward_points_blnce_invoiced" padding="10" nullable="true" identity="false" comment="Aw Reward Points Blnce Invoiced"/>
+    </table>
+    <table name="aw_rp_spend_rule" resource="default" engine="innodb" comment="Aheadworks Reward Points Spend Rule Table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Rule Id"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="text" name="description" nullable="true" comment="Description"/>
+        <column xsi:type="int" name="priority" padding="11" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Priority"/>
+        <column xsi:type="smallint" name="discard_subsequent_rules" padding="6" unsigned="false" nullable="false"
+                identity="false" default="0" comment="Discard Subsequent Rules"/>
+        <column xsi:type="date" name="from_date" comment="From Date"/>
+        <column xsi:type="date" name="to_date" comment="To Date"/>
+        <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Status"/>
+        <column xsi:type="mediumtext" name="condition" nullable="true" comment="Condition Serialized"/>
+        <column xsi:type="mediumtext" name="action" nullable="true" comment="Action Serialized"/>
+        <column xsi:type="varchar" name="type" nullable="false" length="10" default="catalog" comment="Type"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="AW_RP_SPEND_RULE_NAME" indexType="btree">
+            <column name="name"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_FROM_DATE" indexType="btree">
+            <column name="from_date"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_TO_DATE" indexType="btree">
+            <column name="to_date"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRIORITY" indexType="btree">
+            <column name="priority"/>
+        </index>
+    </table>
+    <table name="aw_rp_spend_rule_website" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Spend Rule To Website Relations">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Rule Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="website_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_SPEND_RULE_WEBSITE_RULE_ID_AW_RP_SPEND_RULE_ID"
+                    table="aw_rp_spend_rule_website" column="rule_id" referenceTable="aw_rp_spend_rule"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AW_RP_SPEND_RULE_WEBSITE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID"
+                    table="aw_rp_spend_rule_website" column="website_id" referenceTable="store_website"
+                    referenceColumn="website_id" onDelete="CASCADE"/>
+        <index referenceId="AW_RP_SPEND_RULE_WEBSITE_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_spend_rule_customer_group" resource="default" engine="innodb"
+           comment="Aheadworks Reward Points Spend Rule To Customer Groups Relations">
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Rule Id"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="false" identity="false"
+                comment="Customer Group Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+            <column name="customer_group_id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="AW_RP_SPEND_RULE_CUSTOMER_GROUP_RULE_ID_AW_RP_SPEND_RULE_ID"
+                    table="aw_rp_spend_rule_customer_group" column="rule_id" referenceTable="aw_rp_spend_rule"
+                    referenceColumn="id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign"
+                    referenceId="AW_RP_SPEND_RULE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID_CUSTOMER_GROUP_CUSTOMER_GROUP_ID"
+                    table="aw_rp_spend_rule_customer_group" column="customer_group_id" referenceTable="customer_group"
+                    referenceColumn="customer_group_id" onDelete="CASCADE"/>
+        <index referenceId="AW_RP_SPEND_RULE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_spend_rule_product" resource="default" engine="innodb"
+           comment="AW Reward Points Spend Rule Product">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Rule Id"/>
+        <column xsi:type="date" name="from_date" comment="Rule is Active From"/>
+        <column xsi:type="date" name="to_date" comment="Rule is Active To"/>
+        <column xsi:type="smallint" name="customer_group_id" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Customer Group Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Product Id"/>
+        <column xsi:type="int" name="priority" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Priority"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="IDX_0416A1C671218D9677B9C88DF109E862">
+            <column name="rule_id"/>
+            <column name="from_date"/>
+            <column name="to_date"/>
+            <column name="customer_group_id"/>
+            <column name="website_id"/>
+            <column name="product_id"/>
+            <column name="priority"/>
+        </constraint>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_FROM_DATE" indexType="btree">
+            <column name="from_date"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_TO_DATE" indexType="btree">
+            <column name="to_date"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+    <table name="aw_rp_spend_rule_product_idx" resource="default" engine="innodb"
+           comment="AW Reward Points Spend Rule Product">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Rule Id"/>
+        <column xsi:type="date" name="from_date" comment="Rule is Active From"/>
+        <column xsi:type="date" name="to_date" comment="Rule is Active To"/>
+        <column xsi:type="smallint" name="customer_group_id" padding="5" unsigned="true" nullable="false"
+                identity="false" default="0" comment="Customer Group Id"/>
+        <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false"
+                comment="Website Id"/>
+        <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Product Id"/>
+        <column xsi:type="int" name="priority" padding="10" unsigned="true" nullable="false" identity="false"
+                default="0" comment="Priority"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="unique" referenceId="IDX_D17AE21463797FC23C0B9E10393E9C5A">
+            <column name="rule_id"/>
+            <column name="from_date"/>
+            <column name="to_date"/>
+            <column name="customer_group_id"/>
+            <column name="website_id"/>
+            <column name="product_id"/>
+            <column name="priority"/>
+        </constraint>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_IDX_CUSTOMER_GROUP_ID" indexType="btree">
+            <column name="customer_group_id"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_IDX_WEBSITE_ID" indexType="btree">
+            <column name="website_id"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_IDX_FROM_DATE" indexType="btree">
+            <column name="from_date"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_IDX_TO_DATE" indexType="btree">
+            <column name="to_date"/>
+        </index>
+        <index referenceId="AW_RP_SPEND_RULE_PRODUCT_IDX_PRODUCT_ID" indexType="btree">
+            <column name="product_id"/>
+        </index>
+    </table>
+</schema>

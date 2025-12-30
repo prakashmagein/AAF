@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Landofcoder
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Landofcoder.com license that is
+ * available through the world-wide-web at this URL:
+ * https://landofcoder.com/license-agreement.html
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category   Landofcoder
+ * @package    Lof_ProductShipping
+ * @copyright  Copyright (c) 2022 Landofcoder (https://landofcoder.com/)
+ * @license    https://landofcoder.com/LICENSE-1.0.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Lof_ProductShipping::shipping" sortOrder="1" title="Product Shipping" module="Lof_ProductShipping" resource="Lof_ProductShipping::lofproduct_shipping"
+             parent="Lof_All::lof_all"/>
+        <add id="Lof_ProductShipping::region_product_shipping_rate_setting" title="Product Shipping Rate"
+             module="Lof_ProductShipping" sortOrder="30" parent="Lof_ProductShipping::shipping"
+             action="lofmpproductshipping/shipping/index" resource="Lof_ProductShipping::lofproduct_shipping"
+        />
+    </menu>
+</config>

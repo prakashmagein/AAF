@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:amasty:module:Amasty_ReportBuilder:etc/entity_scheme.xsd">
+    <amasty_report_builder_entities>
+        <entity name="custom_form_answer" primary="true">
+            <title>Custom Form</title>
+            <main_table>amasty_customform_answer</main_table>
+
+            <columns>
+                <column name="answer_id" primary="true">
+                    <title>Answer ID</title>
+                </column>
+
+                <column name="form_id">
+                    <title>Form ID</title>
+                </column>
+
+                <column name="form_name">
+                    <title>Form Name</title>
+                </column>
+
+                <column name="form_code">
+                    <title>Form Code</title>
+                </column>
+
+                <column name="created_at">
+                    <title>Submitted At</title>
+                </column>
+
+                <column name="updated_at">
+                    <title>Updated At</title>
+                </column>
+
+                <column name="admin_response_status">
+                    <title>Status</title>
+                    <source_model>Amasty\Customform\Model\Config\Source\Status</source_model>
+                </column>
+
+                <column name="customer_id">
+                    <title>Customer</title>
+                    <ui_grid_class>Amasty\CustomFormToBuilder\Ui\Component\Listing\Columns\CustomerId</ui_grid_class>
+                </column>
+
+                <column name="admin_response_email">
+                    <title>Admin Response Email</title>
+                </column>
+
+                <column name="referer_url">
+                    <title>Referer URL</title>
+                </column>
+
+                <column name="status">
+                    <hidden>true</hidden>
+                </column>
+            </columns>
+
+            <relations>
+                <relation name="customer" type="column">
+                    <column>customer_id</column>
+                    <reference_column>entity_id</reference_column>
+                    <relationship_type>many_to_one</relationship_type>
+                </relation>
+            </relations>
+        </entity>
+    </amasty_report_builder_entities>
+</config>

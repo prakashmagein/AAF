@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="magedelight_smsprofilelog" resource="default" engine="innodb" comment="SMSProfile Log Table">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="varchar" name="s_id" nullable="false" length="255" comment="message SId"/>
+    <column xsi:type="varchar" name="api_service" nullable="false" length="255" comment="Api Service"/>
+    <column xsi:type="text" name="recipient_phone" nullable="false" comment="Recipient Phone Number"/>
+    <column xsi:type="varchar" name="transaction_type" nullable="true" length="255" comment="Transaction Type"/>
+    <column xsi:type="text" name="message_body" nullable="true" comment="Message Body"/>
+    <column xsi:type="varchar" name="status" nullable="true" length="255" comment="Sms Status"/>
+    <column xsi:type="smallint" name="is_error" padding="6" unsigned="false" nullable="false" identity="false" comment="Result Is Error"/>
+    <column xsi:type="varchar" name="error_message" nullable="true" length="255" comment="Sms Error Message"/>
+    <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" comment="Created At"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <index referenceId="MAGEDELIGHT_SMSPROFILELOG_S_ID _API_SERVICE" indexType="fulltext">
+      <column name="s_id"/>
+      <column name="api_service"/>
+      <column name="recipient_phone"/>
+      <column name="transaction_type"/>
+      <column name="message_body"/>
+      <column name="status"/>
+      <column name="error_message"/>
+    </index>
+  </table>
+  <table name="magedelight_smsprofiletemplates" resource="default" engine="innodb" comment="SMSProfile Templates Table">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="varchar" name="template_name" nullable="false" length="255" comment="Template Name"/>
+    <column xsi:type="text" name="template_content" nullable="true" comment="Template Content"/>
+    <column xsi:type="varchar" name="event_type" nullable="true" length="255" comment="Sms Event Type"/>
+    <column xsi:type="smallint" name="store_id" padding="6" unsigned="false" nullable="true" identity="false" comment="Store Id"/>
+    <column xsi:type="varchar" name="otp_template" nullable="false" length="255" comment="OTP Templete"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <index referenceId="MAGEDELIGHT_SMSPROFILETEMPLATES_TEMPLATE_NAME _TEMPLATE_CONTENT" indexType="fulltext">
+      <column name="template_name"/>
+      <column name="template_content"/>
+      <column name="event_type"/>
+    </index>
+  </table>
+  <table name="magedelight_smsprofileotp" resource="default" engine="innodb" comment="SMSProfile OTP Table">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="varchar" name="otp_code" nullable="false" length="255" comment="OTP Code"/>
+    <column xsi:type="varchar" name="customer_mobile" nullable="false" length="255" comment="Customer Mobile"/>
+    <column xsi:type="int" name="resend" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="resend"/>
+    <column xsi:type="datetime" name="created_at" on_update="false" nullable="true" comment="Creation Time"/>
+    <column xsi:type="datetime" name="updated_at" on_update="false" nullable="true" comment="Update Time"/>
+    <column xsi:type="varchar" name="timeout" nullable="false" length="255" comment="Time Out For Otp"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <index referenceId="MAGEDELIGHT_SMSPROFILEOTP_OTP_CODECUSTOMER_MOBILE" indexType="fulltext">
+      <column name="otp_code"/>
+      <column name="customer_mobile"/>
+    </index>
+  </table>
+  <table name="magedelight_smslog" resource="default" engine="innodb" comment="SMSNotification Log Table">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="varchar" name="s_id" nullable="false" length="255" comment="message SId"/>
+    <column xsi:type="varchar" name="api_service" nullable="false" length="255" comment="Api Service"/>
+    <column xsi:type="text" name="recipient_phone" nullable="false" comment="Recipient Phone Number"/>
+    <column xsi:type="varchar" name="transaction_type" nullable="true" length="255" comment="Transaction Type"/>
+    <column xsi:type="text" name="message_body" nullable="true" comment="Message Body"/>
+    <column xsi:type="varchar" name="status" nullable="true" length="255" comment="Sms Status"/>
+    <column xsi:type="smallint" name="is_error" padding="6" unsigned="false" nullable="false" identity="false" comment="Result Is Error"/>
+    <column xsi:type="varchar" name="error_message" nullable="true" length="255" comment="Sms Error Message"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <index referenceId="MAGEDELIGHT_SMSLOG_S_ID _API_SERVICE" indexType="fulltext">
+      <column name="s_id"/>
+      <column name="api_service"/>
+      <column name="recipient_phone"/>
+      <column name="transaction_type"/>
+      <column name="message_body"/>
+      <column name="status"/>
+      <column name="error_message"/>
+    </index>
+  </table>
+  <table name="magedelight_smstemplates" resource="default" engine="innodb" comment="SMSNotification Templates Table">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="varchar" name="template_name" nullable="false" length="255" comment="Template Name"/>
+    <column xsi:type="varchar" name="notification_template" nullable="false" length="255" comment="Notification Templete"/>
+    <column xsi:type="text" name="template_content" nullable="true" comment="Template Content"/>
+    <column xsi:type="varchar" name="event_type" nullable="true" length="255" comment="Sms Event Type"/>
+    <column xsi:type="smallint" name="store_id" padding="6" unsigned="false" nullable="true" identity="false" comment="Store Id"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="unique" referenceId="UNIQUE">
+      <column name="event_type"/>
+    </constraint>
+    <index referenceId="MAGEDELIGHT_SMSTEMPLATES_TEMPLATE_NAME _TEMPLATE_CONTENT" indexType="fulltext">
+      <column name="template_name"/>
+      <column name="template_content"/>
+      <column name="event_type"/>
+    </index>
+  </table>
+  <table name="magedelight_sms_mailtemplates" resource="default" engine="innodb" comment="SMS Notification Mail Templates Table">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="varchar" name="template_code" nullable="false" length="255" comment="Template Code"/>
+    <column xsi:type="varchar" name="mail_template_name" nullable="false" length="255" comment="Template Name"/>
+    <column xsi:type="varchar" name="mail_template_subject" nullable="false" length="255" comment="Template Name"/>
+    <column xsi:type="text" name="mail_template_content" nullable="true" comment="Template Content"/>
+    <column xsi:type="text" name="mail_template_style" nullable="true" comment="Template Content"/>
+    <column xsi:type="varchar" name="sms_for_frontend_user" nullable="true" length="255" comment="Sms Event Type"/>
+    <column xsi:type="varchar" name="sms_template_language" nullable="false" length="255" comment="Template Name"/>
+    <column xsi:type="text" name="sms_template_content" nullable="true" comment="Template Content"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <index referenceId="FTI_14361CB724DCA0E0377872D70672A92A" indexType="fulltext">
+      <column name="mail_template_name"/>
+      <column name="mail_template_subject"/>
+      <column name="mail_template_content"/>
+      <column name="sms_for_frontend_user"/>
+      <column name="sms_template_language"/>
+      <column name="sms_template_content"/>
+    </index>
+  </table>
+    <table name="magedelight_smsprofileotpattempt" resource="default" engine="innodb" comment="SMSProfile OTP Attemp Table">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Entity Id"/>
+    <column xsi:type="varchar" name="customer_mobile" nullable="false" length="255" comment="Customer Mobile"/>
+     <column xsi:type="int" name="customer_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="customer_id"/>
+    <column xsi:type="int" name="attemp_count" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="attemp_count"/>
+    <column xsi:type="datetime" name="resend_count_time" on_update="false" nullable="true" comment="Resend Count Time"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <index referenceId="MAGEDELIGHT_SMSPROFILE_OTP_ATTEMPT" indexType="fulltext">
+      <column name="customer_mobile"/>
+    </index>
+  </table>
+</schema>

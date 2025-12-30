@@ -1,0 +1,125 @@
+<?php
+
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+?>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\SessionFactory')->create();
+?>
+<header class="page-header alothemes">
+	<div class="header-sticker">
+		<div class="header-top">
+			<div class="container">
+				<div class="row align-items-center header-top-layout">
+					<div class="col-xl-6 col-lg-6 col-md-12 item">
+						<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header-static-custom')->toHtml(); ?>
+
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-12 item">
+						<div class="item-content-right dflex align-items-center">
+							<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header-static-links')->toHtml(); ?>
+
+							<?php echo $this->getChildHtml('store_language'); ?>
+							<?php echo $this->getChildHtml('currency'); ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header-content">
+			<div class="container">
+				<div class="row align-items-center header-center-layout">
+					<div class="col-xl-1 col-lg-6 col-md-6 col-sm-6 col-6 item item-logo">
+						<div class="header-logo">
+							<?php echo $this->getChildHtml('logo'); ?>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-8 col-md-3 col-sm-3 col-3 header-menu item-menu">
+						<?php echo $this->getChildHtml('navigation.sections'); ?>
+						<?php echo $this->getChildHtml('catalog.topnav'); ?>
+					</div>
+					<div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-6 item item-tool">
+						<div class="header-tool align-items-center dflex">
+							<div class="header-search">
+								<span class="toggle-tab"></span>
+								<div class="toggle-content">
+									<?php echo $this->getChildHtml('top.search'); ?>
+								</div>
+							</div>
+							<div class="header-account">
+								<div class="<?php if ($customerSession->isLoggedIn()) echo 'toggle-tab'; ?> outside-close mobile">
+									<div class="onclick <?php if (!$customerSession->isLoggedIn()) echo 'proceed-to-checkout' ?>">
+										<div class="text-account text-hidden" data-bind="scope: 'customer'">
+											<!-- ko if: customer().firstname  -->
+											<span class="logged-in" data-bind="text: new String('<?= $block->escapeHtml(__('Hi! %1', '%1')) ?>').replace('%1', customer().firstname)">
+											</span>
+											<!-- /ko -->
+											<!-- ko ifnot: customer().firstname  -->
+											<?php
+											if ($customerSession->isLoggedIn()) {
+												echo __('Hi! %1', $customerSession->getCustomer()->getFirstname());
+											} else {
+												echo __('Login');
+											}
+											?>
+											<!-- /ko -->
+											<script type="text/x-magento-init">
+												{
+													"*": {
+														"Magento_Ui/js/core/app": {
+															"components": {
+																"customer": {
+																	"component": "Magento_Customer/js/view/customer"
+																}
+															}
+														}
+													}
+												}
+											</script>
+										</div>
+									</div>
+								</div>
+								<div class="toggle-content">
+									<div class="alo-account"><?php echo $this->getChildHtml('header.links'); ?></div>
+								</div>
+							</div>
+							<div class="header-wishlist">
+								<?php echo $this->getChildHtml('topWishlist'); ?>
+							</div>
+							<?php echo $this->getChildHtml('minicart'); ?>
+							<span data-action="toggle-nav" class="action nav-toggle">
+								<span class="icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script type="text/javascript">
+	require([
+		'jquery',
+		'js/custom',
+		'magiccart/wow'
+	], function($) {
+		$(document).ready(function() {
+			new WOW().init();
+		});
+	});
+</script>

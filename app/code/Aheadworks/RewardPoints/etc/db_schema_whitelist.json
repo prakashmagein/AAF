@@ -1,0 +1,515 @@
+{
+    "aw_rp_earn_rate": {
+        "column": {
+            "rate_id": true,
+            "website_id": true,
+            "customer_group_id": true,
+            "lifetime_sales_amount": true,
+            "base_amount": true,
+            "points": true
+        },
+        "index": {
+            "AW_RP_EARN_RATE_WEBSITE_ID": true,
+            "AW_RP_EARN_RATE_CUSTOMER_GROUP_ID": true,
+            "AW_RP_EARN_RATE_WEBSITE_ID_CUSTOMER_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_EARN_RATE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "AW_RP_EARN_RATE_WS_ID_CSTR_GROUP_ID_LIFETIME_SALES_AMOUNT": true
+        }
+    },
+    "aw_rp_product_share": {
+        "column": {
+            "share_id": true,
+            "website_id": true,
+            "customer_id": true,
+            "product_id": true,
+            "network": true
+        },
+        "index": {
+            "AW_RP_PRODUCT_SHARE_WEBSITE_ID": true,
+            "AW_RP_PRODUCT_SHARE_CUSTOMER_ID": true,
+            "AW_RP_PRODUCT_SHARE_PRODUCT_ID": true,
+            "AW_RP_PRODUCT_SHARE_NETWORK": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_PRODUCT_SHARE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "AW_RP_PRODUCT_SHARE_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true,
+            "AW_RP_PRODUCT_SHARE_PRODUCT_ID_CATALOG_PRODUCT_ENTITY_ENTITY_ID": true
+        }
+    },
+    "aw_rp_spend_rate": {
+        "column": {
+            "rate_id": true,
+            "website_id": true,
+            "customer_group_id": true,
+            "lifetime_sales_amount": true,
+            "points": true,
+            "base_amount": true
+        },
+        "index": {
+            "AW_RP_SPEND_RATE_WEBSITE_ID": true,
+            "AW_RP_SPEND_RATE_CUSTOMER_GROUP_ID": true,
+            "AW_RP_SPEND_RATE_WEBSITE_ID_CUSTOMER_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_SPEND_RATE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "AW_RP_SPEND_RATE_WS_ID_CSTR_GROUP_ID_LIFETIME_SALES_AMOUNT": true
+        }
+    },
+    "aw_rp_transaction": {
+        "column": {
+            "transaction_id": true,
+            "customer_id": true,
+            "customer_name": true,
+            "customer_email": true,
+            "comment_to_customer": true,
+            "comment_to_customer_placeholder": true,
+            "comment_to_admin": true,
+            "comment_to_admin_placeholder": true,
+            "balance": true,
+            "current_balance": true,
+            "transaction_date": true,
+            "holding_period_expiration_date": true,
+            "expiration_date": true,
+            "website_id": true,
+            "type": true,
+            "status": true,
+            "balance_update_notified": true,
+            "expiration_notified": true,
+            "created_by": true
+        },
+        "index": {
+            "AW_RP_TRANSACTION_CUSTOMER_ID": true,
+            "AW_RP_TRANSACTION_WEBSITE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_TRANSACTION_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true,
+            "AW_RP_TRANSACTION_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true
+        }
+    },
+    "aw_rp_points_summary": {
+        "column": {
+            "summary_id": true,
+            "website_id": true,
+            "customer_id": true,
+            "points": true,
+            "points_earn": true,
+            "points_spend": true,
+            "daily_review_points": true,
+            "daily_review_points_date": true,
+            "daily_share_points": true,
+            "monthly_share_points": true,
+            "daily_share_points_date": true,
+            "monthly_share_points_date": true,
+            "dob_update_date": true,
+            "is_awarded_for_newsletter_signup": true,
+            "balance_update_notification_status": true,
+            "expiration_notification_status": true
+        },
+        "index": {
+            "AW_RP_POINTS_SUMMARY_WEBSITE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_POINTS_SUMMARY_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "AW_RP_POINTS_SUMMARY_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true,
+            "AW_RP_POINTS_SUMMARY_CUSTOMER_ID": true
+        }
+    },
+    "aw_rp_transaction_entity": {
+        "column": {
+            "transaction_id": true,
+            "entity_type": true,
+            "entity_id": true,
+            "entity_label": true
+        },
+        "index": {
+            "AW_RP_TRANSACTION_ENTITY_TRANSACTION_ID_ENTITY_TYPE_ENTITY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_996961C1BF7B559DDA3FB8DF42243E09": true
+        }
+    },
+    "aw_rp_transaction_adjusted_history": {
+        "column": {
+            "transaction_id": true,
+            "from_transaction_id": true,
+            "balance": true
+        },
+        "index": {
+            "IDX_FE803DD9D56281B4A60D86AB958B8441": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_FCBEE88A6225D539BD0159E5B03F0019": true,
+            "FK_FEAC2D8B51CDD4721D4D790076954B65": true
+        }
+    },
+    "aw_rp_earn_rule": {
+        "column": {
+            "id": true,
+            "name": true,
+            "description": true,
+            "priority": true,
+            "discard_subsequent_rules": true,
+            "from_date": true,
+            "to_date": true,
+            "status": true,
+            "condition": true,
+            "action": true,
+            "type": true
+        },
+        "index": {
+            "AW_RP_EARN_RULE_NAME": true,
+            "AW_RP_EARN_RULE_FROM_DATE": true,
+            "AW_RP_EARN_RULE_TO_DATE": true,
+            "AW_RP_EARN_RULE_STATUS": true,
+            "AW_RP_EARN_RULE_PRIORITY": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_rp_earn_rule_website": {
+        "column": {
+            "rule_id": true,
+            "website_id": true
+        },
+        "index": {
+            "AW_RP_EARN_RULE_WEBSITE_WEBSITE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_EARN_RULE_WEBSITE_RULE_ID_AW_RP_EARN_RULE_ID": true,
+            "AW_RP_EARN_RULE_WEBSITE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true
+        }
+    },
+    "aw_rp_earn_rule_customer_group": {
+        "column": {
+            "rule_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "AW_RP_EARN_RULE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_EARN_RULE_CUSTOMER_GROUP_RULE_ID_AW_RP_EARN_RULE_ID": true,
+            "FK_1CB2B361F5F407C4D4DC1815617D1049": true
+        }
+    },
+    "aw_rp_earn_rule_product": {
+        "column": {
+            "id": true,
+            "rule_id": true,
+            "from_date": true,
+            "to_date": true,
+            "customer_group_id": true,
+            "website_id": true,
+            "product_id": true,
+            "priority": true
+        },
+        "index": {
+            "AW_RP_EARN_RULE_PRODUCT_CUSTOMER_GROUP_ID": true,
+            "AW_RP_EARN_RULE_PRODUCT_WEBSITE_ID": true,
+            "AW_RP_EARN_RULE_PRODUCT_FROM_DATE": true,
+            "AW_RP_EARN_RULE_PRODUCT_TO_DATE": true,
+            "AW_RP_EARN_RULE_PRODUCT_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNQ_0416A1C671218D9677B9C88DF109E861": true
+        }
+    },
+    "aw_rp_earn_rule_product_idx": {
+        "column": {
+            "id": true,
+            "rule_id": true,
+            "from_date": true,
+            "to_date": true,
+            "customer_group_id": true,
+            "website_id": true,
+            "product_id": true,
+            "priority": true
+        },
+        "index": {
+            "AW_RP_EARN_RULE_PRODUCT_IDX_CUSTOMER_GROUP_ID": true,
+            "AW_RP_EARN_RULE_PRODUCT_IDX_WEBSITE_ID": true,
+            "AW_RP_EARN_RULE_PRODUCT_IDX_FROM_DATE": true,
+            "AW_RP_EARN_RULE_PRODUCT_IDX_TO_DATE": true,
+            "AW_RP_EARN_RULE_PRODUCT_IDX_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNQ_D17AE21463797FC23C0B9E10393E9C4A": true
+        }
+    },
+    "aw_rp_label": {
+        "column": {
+            "store_id": true,
+            "entity_id": true,
+            "entity_type": true,
+            "product_promo_text": true,
+            "category_promo_text": true
+        },
+        "index": {
+            "AW_RP_LABEL_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_LABEL_STORE_ID_STORE_STORE_ID": true
+        }
+    },
+    "aw_rp_order_additional": {
+        "column": {
+            "order_id": true,
+            "applied_rule_ids": true,
+            "canceled_rule_ids": true
+        },
+        "constraint": {
+            "AW_RP_ORDER_ADDITIONAL_ORDER_ID_SALES_ORDER_ENTITY_ID": true,
+            "PRIMARY": true
+        }
+    },
+    "aw_rp_coupon": {
+        "column": {
+            "coupon_id": true,
+            "customer_id": true,
+            "code": true,
+            "status": true,
+            "balance": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_COUPON_CODE": true,
+            "AW_RP_COUPON_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "quote": {
+        "column": {
+            "aw_use_reward_points": true,
+            "aw_reward_points_amount": true,
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points": true,
+            "aw_reward_points_description": true,
+            "aw_reward_points_qty_to_apply": true
+        }
+    },
+    "quote_item": {
+        "column": {
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points_amount": true,
+            "aw_reward_points": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "aw_use_reward_points": true,
+            "aw_reward_points_amount": true,
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points": true,
+            "aw_reward_points_description": true,
+            "aw_reward_points_shipping_amount": true,
+            "base_aw_reward_points_shipping_amount": true,
+            "aw_reward_points_shipping": true
+        }
+    },
+    "quote_address_item": {
+        "column": {
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points_amount": true,
+            "aw_reward_points": true
+        }
+    },
+    "sales_creditmemo": {
+        "column": {
+            "aw_use_reward_points": true,
+            "aw_reward_points_amount": true,
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points": true,
+            "aw_reward_points_description": true,
+            "base_aw_reward_points_refund": true,
+            "aw_reward_points_refund": true,
+            "aw_reward_points_blnce_refund": true,
+            "base_aw_reward_points_reimbursed": true,
+            "aw_reward_points_reimbursed": true,
+            "aw_reward_points_blnce_reimbursed": true
+        }
+    },
+    "sales_creditmemo_item": {
+        "column": {
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points_amount": true,
+            "aw_reward_points": true,
+            "base_aw_reward_points_refunded": true,
+            "aw_reward_points_refunded": true,
+            "aw_reward_points_blnce_refunded": true,
+            "base_aw_reward_points_reimbursed": true,
+            "aw_reward_points_reimbursed": true,
+            "aw_reward_points_blnce_reimbursed": true
+        }
+    },
+    "sales_invoice": {
+        "column": {
+            "aw_use_reward_points": true,
+            "aw_reward_points_amount": true,
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points": true,
+            "aw_reward_points_description": true
+        }
+    },
+    "sales_invoice_item": {
+        "column": {
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points_amount": true,
+            "aw_reward_points": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "aw_use_reward_points": true,
+            "aw_reward_points_amount": true,
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points": true,
+            "aw_reward_points_description": true,
+            "base_aw_reward_points_invoiced": true,
+            "aw_reward_points_invoiced": true,
+            "base_aw_reward_points_refunded": true,
+            "aw_reward_points_refunded": true,
+            "aw_reward_points_blnce_invoiced": true,
+            "aw_reward_points_blnce_refunded": true,
+            "base_aw_reward_points_refund": true,
+            "aw_reward_points_refund": true,
+            "aw_reward_points_blnce_refund": true,
+            "base_aw_reward_points_reimbursed": true,
+            "aw_reward_points_reimbursed": true,
+            "aw_reward_points_blnce_reimbursed": true,
+            "aw_reward_points_shipping_amount": true,
+            "base_aw_reward_points_shipping_amount": true,
+            "aw_reward_points_shipping": true
+        }
+    },
+    "sales_order_item": {
+        "column": {
+            "base_aw_reward_points_amount": true,
+            "aw_reward_points_amount": true,
+            "aw_reward_points": true,
+            "base_aw_reward_points_refunded": true,
+            "aw_reward_points_refunded": true,
+            "aw_reward_points_blnce_refunded": true,
+            "base_aw_reward_points_reimbursed": true,
+            "aw_reward_points_reimbursed": true,
+            "aw_reward_points_blnce_reimbursed": true,
+            "base_aw_reward_points_invoiced": true,
+            "aw_reward_points_invoiced": true,
+            "aw_reward_points_blnce_invoiced": true
+        }
+    },
+    "aw_rp_spend_rule": {
+        "column": {
+            "id": true,
+            "name": true,
+            "description": true,
+            "priority": true,
+            "discard_subsequent_rules": true,
+            "from_date": true,
+            "to_date": true,
+            "status": true,
+            "condition": true,
+            "action": true,
+            "type": true
+        },
+        "index": {
+            "AW_RP_SPEND_RULE_NAME": true,
+            "AW_RP_SPEND_RULE_FROM_DATE": true,
+            "AW_RP_SPEND_RULE_TO_DATE": true,
+            "AW_RP_SPEND_RULE_STATUS": true,
+            "AW_RP_SPEND_RULE_PRIORITY": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "aw_rp_spend_rule_website": {
+        "column": {
+            "rule_id": true,
+            "website_id": true
+        },
+        "index": {
+            "AW_RP_SPEND_RULE_WEBSITE_WEBSITE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_SPEND_RULE_WEBSITE_RULE_ID_AW_RP_SPEND_RULE_ID": true,
+            "AW_RP_SPEND_RULE_WEBSITE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true
+        }
+    },
+    "aw_rp_spend_rule_customer_group": {
+        "column": {
+            "rule_id": true,
+            "customer_group_id": true
+        },
+        "index": {
+            "AW_RP_SPEND_RULE_CUSTOMER_GROUP_CUSTOMER_GROUP_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AW_RP_SPEND_RULE_CUSTOMER_GROUP_RULE_ID_AW_RP_SPEND_RULE_ID": true,
+            "FK_301419C58D38552E6ABAD3954BF76090": true
+        }
+    },
+    "aw_rp_spend_rule_product": {
+        "column": {
+            "id": true,
+            "rule_id": true,
+            "from_date": true,
+            "to_date": true,
+            "customer_group_id": true,
+            "website_id": true,
+            "product_id": true,
+            "priority": true
+        },
+        "index": {
+            "AW_RP_SPEND_RULE_PRODUCT_CUSTOMER_GROUP_ID": true,
+            "AW_RP_SPEND_RULE_PRODUCT_WEBSITE_ID": true,
+            "AW_RP_SPEND_RULE_PRODUCT_FROM_DATE": true,
+            "AW_RP_SPEND_RULE_PRODUCT_TO_DATE": true,
+            "AW_RP_SPEND_RULE_PRODUCT_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNQ_5D5475459347D3B96A87E7E27BB6959C": true
+        }
+    },
+    "aw_rp_spend_rule_product_idx": {
+        "column": {
+            "id": true,
+            "rule_id": true,
+            "from_date": true,
+            "to_date": true,
+            "customer_group_id": true,
+            "website_id": true,
+            "product_id": true,
+            "priority": true
+        },
+        "index": {
+            "AW_RP_SPEND_RULE_PRODUCT_IDX_CUSTOMER_GROUP_ID": true,
+            "AW_RP_SPEND_RULE_PRODUCT_IDX_WEBSITE_ID": true,
+            "AW_RP_SPEND_RULE_PRODUCT_IDX_FROM_DATE": true,
+            "AW_RP_SPEND_RULE_PRODUCT_IDX_TO_DATE": true,
+            "AW_RP_SPEND_RULE_PRODUCT_IDX_PRODUCT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "UNQ_39C03789E88A0357D59833CCF02BCF16": true
+        }
+    }
+}

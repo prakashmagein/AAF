@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */ 
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Magedelight_SMSProfile::smsprofile_root"
+            title="Mobile OTP Login"
+            module="Magedelight_SMSProfile"
+            sortOrder="50"
+            resource="Magedelight_SMSProfile::root"
+            toolTip="magedelight_base" />
+
+
+        <add id="Magedelight_SMSProfile::smsprofile_root_commonlyvisible"
+            title="Mobile OTP Login"
+            module="Magedelight_SMSProfile"
+            sortOrder="500"
+            parent="Magedelight_Base::md_modules"
+            resource="Magedelight_SMSProfile::root" />              
+
+        <add id="Magedelight_SMSProfile::smsprofiletemplates"
+            title="OTP SMS Templates"
+            module="Magedelight_SMSProfile"
+            sortOrder="100"
+            action="smsprofile/smsprofiletemplates/index" 
+            resource="Magedelight_SMSProfile::smsprofiletemplates"
+            parent="Magedelight_SMSProfile::smsprofile_root" />
+
+           
+
+        <add id="Magedelight_SMSProfile::smspromotional"
+            title="Promotional SMS"
+            module="Magedelight_SMSProfile"
+            sortOrder="100"
+            action="smsprofile/smspromotional/index" 
+            resource="Magedelight_SMSProfile::smspromotional" 
+            parent="Magedelight_SMSProfile::smsprofile_root"/>
+
+        <add id="Magedelight_SMSProfile::smsprofilelog"
+            title="SMS Log"
+            module="Magedelight_SMSProfile"
+            sortOrder="100"
+            action="smsprofile/smsprofilelog/index" 
+            resource="Magedelight_SMSProfile::smsprofilelog" 
+            parent="Magedelight_SMSProfile::smsprofile_root"/>
+
+        <add id="Magedelight_SMSProfile::config_root"
+            title="Configuration"
+            module="Magedelight_SMSProfile"
+            sortOrder="500"
+            action="adminhtml/system_config/edit/section/magedelightsmsprofile"
+            parent="Magedelight_SMSProfile::smsprofile_root"
+            resource="Magedelight_SMSProfile::config_root" />
+
+        <add id="Magedelight_SMSProfile::useful_links"
+            title="Useful Links"
+            module="Magedelight_SMSProfile"
+            sortOrder="999"
+            parent="Magedelight_SMSProfile::smsprofile_root"
+            resource="Magedelight_SMSProfile::root" />
+        <add id="Magedelight_SMSProfile::documentation"
+            title="Documentation"
+            module="Magedelight_SMSProfile"
+            sortOrder="10"
+            target="_blank"
+            parent="Magedelight_SMSProfile::useful_links"
+            resource="Magedelight_SMSProfile::root" />
+
+            <!--SMS Notification -->
+        <add id="Magedelight_SMSProfile::smsnotification_root"
+                     title="Magedelight Sms Notification"
+                     module="Magedelight_SMSProfile"
+                     sortOrder="55"
+                     resource="Magedelight_SMSProfile::root"
+                     toolTip="magedelight_base" />
+        <add id="Magedelight_SMSProfile::smsnotification_root_commonlyvisible"
+                     title="Sms Notification"
+                     module="Magedelight_SMSProfile"
+                     sortOrder="500"
+                     parent="Magedelight_Base::md_modules"
+                     resource="Magedelight_SMSProfile::root" /> 
+         <add id="Magedelight_SMSProfile::smstemplates"
+            title="Notification SMS Templates"
+            module="Magedelight_SMSProfile"
+            sortOrder="100"
+            action="smsprofile/smstemplates/index" 
+            resource="Magedelight_SMSProfile::smstemplates"
+            parent="Magedelight_SMSProfile::smsnotification_root" />
+
+        <add id="Magedelight_SMSProfile::smslog"
+            title="Notificatin SMS Log"
+            module="Magedelight_SMSProfile"
+            sortOrder="100"
+            action="smsprofile/smslog/index" 
+            resource="Magedelight_SMSProfile::smslog" 
+            parent="Magedelight_SMSProfile::smsnotification_root"/>
+
+        <add id="Magedelight_SMSProfile::notificationconfig_root"
+            title="Configuration"
+            module="Magedelight_SMSProfile"
+            sortOrder="500"
+            action="adminhtml/system_config/edit/section/magedelightsmsprofile"
+            parent="Magedelight_SMSProfile::smsnotification_root"
+            resource="Magedelight_SMSProfile::config_root" />
+        <add id="Magedelight_SMSProfile::notifcationuseful_links"
+            title="Useful Links"
+            module="Magedelight_SMSProfile"
+            sortOrder="999"
+            parent="Magedelight_SMSProfile::smsnotification_root"
+            resource="Magedelight_SMSProfile::root" />
+        <add id="Magedelight_SMSProfile::notifcationdocumentation"
+            title="Documentation"
+            module="Magedelight_SMSProfile"
+            sortOrder="10"
+            target="_blank"
+            parent="Magedelight_SMSProfile::notifcationuseful_links"
+            resource="Magedelight_SMSProfile::root" />
+
+    </menu>
+</config>

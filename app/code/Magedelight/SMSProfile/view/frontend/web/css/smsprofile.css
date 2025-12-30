@@ -1,0 +1,13 @@
+.profile-notice-phone {
+    font-size: 11px;
+    margin-top: 10px;
+}
+
+span.otp_generatenote {
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.disable-block {
+     display: none;
+}

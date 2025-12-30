@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="codedecorator" class="code-config-tab"  translate="label" sortOrder="300">
+            <label><![CDATA[Decorator Extensions]]></label> 
+        </tab> 
+        <section id="whatsappchat" translate="label" sortOrder="504" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>WhatsApp Chat</label>
+            <tab>codedecorator</tab>
+            <resource>Codedecorator_WhatsAppChat::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Configuration</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Extension</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+                <field id="number" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enter Whatsapp Number</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="message" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Message</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="product" translate="label" type="select" sortOrder="35" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Only Product Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="image" translate="label" type="image" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WhatsApp Chat Image</label>
+                    <backend_model>Codedecorator\WhatsAppChat\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">whatsapp</upload_dir>
+                    <base_url type="media" scope_info="1">whatsapp</base_url>
+                    <comment><![CDATA[Allowed file types: jpg, jpeg, gif, png]]></comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="position" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>WhatsApp Chat Image Position</label>
+                    <source_model>Codedecorator\WhatsAppChat\Model\Config\Source\Position</source_model>
+                    <comment>WhatsApp Chat Image position to be shown on frontend</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                        <field id="product">0</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

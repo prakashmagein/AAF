@@ -1,0 +1,11 @@
+includes:
+    - phpstan-baseline.neon
+
+parameters:
+    excludePaths:
+        - Model/Coupon/Generate/Consumer.php
+        - Model/Coupon/MassAction/Disable.php
+        - Model/Coupon/MassAction/Enable.php
+        - Model/CouponManagement.php
+        - Model/Source/Coupon/Status.php
+        - Model/Source/Coupon/Status.php

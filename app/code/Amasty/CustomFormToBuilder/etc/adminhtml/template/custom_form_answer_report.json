@@ -1,0 +1,50 @@
+{
+  "name": "Amasty Custom Form Report",
+  "main_entity": "custom_form_answer",
+  "store_ids": {"0": "0"},
+  "is_use_period": "0",
+  "display_chart": "0",
+  "columns": {
+    "answer_id": {
+      "column_id": "custom_form_answer.answer_id",
+      "is_date_filter": "0",
+      "filter": "",
+      "visibility": "1",
+      "position": "0",
+      "order": "2"
+    },
+    "form_name": {
+      "column_id": "custom_form_answer.form_name",
+      "is_date_filter": "0",
+      "filter": "",
+      "visibility": "1",
+      "position": "1",
+      "order": "0"
+    },
+    "created_at": {
+      "column_id": "custom_form_answer.created_at",
+      "is_date_filter": "0",
+      "filter": "",
+      "visibility": "1",
+      "position": "2",
+      "order": "0"
+    },
+    "customer_id": {
+      "column_id": "custom_form_answer.customer_id",
+      "is_date_filter": "0",
+      "filter": "",
+      "visibility": "1",
+      "position": "3",
+      "order": "0"
+    },
+    "admin_response_status": {
+      "column_id": "custom_form_answer.admin_response_status",
+      "is_date_filter": "0",
+      "filter": "",
+      "visibility": "1",
+      "position": "4",
+      "order": "0"
+    }
+  },
+  "scheme": {}
+}

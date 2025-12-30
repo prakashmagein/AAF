@@ -1,0 +1,38 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<form class="form form-shipping-address" id="co-shipping-form" data-bind="attr: {'data-hasrequired': $t('* Required Fields')}">
+    <!-- ko foreach: getRegion('before-fields') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div id="shipping-new-address-form" class="fieldset address">
+        <!-- ko foreach: getRegion('additional-fieldsets') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!-- ko if: (isCustomerLoggedIn) -->
+        <div class="field choice" data-bind="visible: !isFormInline">
+            <input type="checkbox" class="checkbox" id="shipping-save-in-address-book" data-bind="checked: saveInAddressBook" />
+            <label class="label" for="shipping-save-in-address-book">
+                <span data-bind="i18n: 'Save in address book'"></span>
+            </label>
+        </div>
+        <!-- /ko -->
+        <!-- ko if: (window.checkoutConfig.enable_on_checkoutpage == 1 && window.checkoutConfig.customer_login == 0) -->
+        <div class="field required custom_emaill_id_div">
+            <label class="label" for="customer-email"><span data-bind="i18n: 'Email Address'"></span></label>
+            <div class="control _with-tooltip">
+                <input class="input-text custom_emaill_id"
+                       type="email"
+                       name="username"
+                       id="customer-email" required />
+            </div>
+            <div class="field-error custom_emaill_id" style="display: none;">
+                <span>This is a required field.</span>
+            </div>
+        </div>
+        <!-- /ko -->
+    </div>
+</form>

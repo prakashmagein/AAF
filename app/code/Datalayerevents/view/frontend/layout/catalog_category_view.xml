@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="category.product.list.additional">
+            <block class="Magento\Catalog\Block\Product\ListProduct" name="gwl_view_list" template="Gwl_Datalayerevents::category/list.phtml" after="-">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Gwl\Datalayerevents\Block\Product\ListProduct</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

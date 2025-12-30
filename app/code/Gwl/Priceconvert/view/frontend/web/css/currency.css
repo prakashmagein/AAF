@@ -1,0 +1,11 @@
+.sar-currency {
+/*display:inline;
+height:25px !important;
+width:40px !important;*/
+}
+.product-view .currency-replaced .sar-currency  {
+display:inline;
+height:25px !important;
+width:40px !important;
+}
+

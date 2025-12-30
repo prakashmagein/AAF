@@ -1,0 +1,17 @@
+<!--@subject {{trans "Your %reward_points_label_name balance has been updated" reward_points_label_name=$reward_points_label_name}} @-->
+<!--@vars {
+"template config_path=\"design\/email\/footer_template\"":"Email Footer Template",
+"template config_path=\"design\/email\/header_template\"":"Email Header Template"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<p class="greeting">Dear {{var customer_name}}</p>
+<p>{{trans "Your %reward_points_label_name balance at" reward_points_label_name=$reward_points_label_name}} <a href="{{var store_url}}">{{var store_name|escape}}</a> {{trans "has just been changed:" }}
+{{var points}} {{trans "%points_label_name balance added" points_label_name=$points_label_name}}{{depend comment}} ({{var comment}}){{/depend}}.
+{{depend expire_date}}{{trans "These %points_label_name will expire on" points_label_name=$points_label_name}} {{var expire_date}} ({{if expire_in_days}}{{var expire_in_days}} {{trans "days left" }}{{else}}{{trans "today" }}{{/if}}).{{/depend}}</p>
+<p>{{trans "Your current balance is" }} {{var points_balance}} {{trans "%points_label_name, which equals to" points_label_name=$points_label_name}} {{var money_balance}} {{trans "worth of discount." }}</p>
+<p>{{trans 'Click <a href="%rp_program_url">here</a> to learn more about our loyalty program.' rp_program_url=$rp_program_url |raw}}</p>
+<p>{{trans 'Click here to <a href="%unsubscribe_url">unsubscribe</a>' unsubscribe_url=$unsubscribe_url |raw}}</p>
+
+{{template config_path="design/email/footer_template"}}

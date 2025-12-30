@@ -1,0 +1,54 @@
+<!--
+/**
+* FME Extensions
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the fmeextensions.com license that is
+* available through the world-wide-web at this URL:
+* https://www.fmeextensions.com/LICENSE.txt
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this extension to newer
+* version in the future.
+*
+* @category  FME
+* @author    Hassan <support@fmeextensions.com>
+* @package   FME_Refund
+* @copyright Copyright (c) 2021 FME (http://fmeextensions.com/)
+* @license   https://fmeextensions.com/LICENSE.txt
+*/
+-->
+
+<!--@subject Refund Request details for Order # {{var order_id}} @-->
+{{template config_path="design/email/header_template"}}
+<table>
+    <tr>
+        <td> Hi <strong>{{var customer_name|escape}}</strong>,</td>
+    </tr>
+    <tr>
+        <td>
+            <h3> <strong> Your Request has been rejected</strong></h3>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <h3> <strong>Order ID #</strong> {{var order_id|escape}}</h3>
+        </td>
+
+        <tr>
+            <td>
+                <span style='font-size:30px'>&#128532;</span> <br> 
+                <p style="padding: 10px 10px 10px 10px">
+                    We are sorry to hear that our product didn’t meet your requirements. We completely understand that it isn&#8217;t for everyone. Because your request doesnot falls under our refund policy, Therefore we cannot refund your request.
+
+                    <br>Thank you for your time and for giving us a try.<br>
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td><a href="https://www.termsfeed.com/blog/sample-return-policy-ecommerce-stores/">@magento2_refund_policy</a></td>
+        </tr>
+</table>
+{{template config_path="design/email/footer_template"}}

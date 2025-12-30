@@ -1,0 +1,83 @@
+<fieldset class="admin__field amrepbuilder-chartpicker-component"
+          visible="visible"
+          css="$data.additionalClasses"
+          attr="'data-config-scope': $data.scopeLabel, 'data-index': index">
+    <legend class="admin__field-label" if="$data.label" attr="for: uid">
+        <span text="label"></span>
+    </legend>
+
+    <input class="admin__control-text hidden"
+           type="text"
+           data-bind="
+                event: { change: userChanges },
+                value: value,
+                hasFocus: focused,
+                valueUpdate: valueUpdate,
+                attr: {
+                    name: inputName,
+                    placeholder: placeholder,
+                    'aria-describedby': noticeId,
+                    id: uid,
+                    disabled: disabled
+                }"
+    >
+
+    <div class="admin__field-control amrepbuilder-content"
+         css="'_with-tooltip': $data.tooltip">
+        <div class="amrepbuilder-chart-picker">
+            <!-- ko foreach: { data: chartsDescription, as: 'item'}  -->
+                <label class="amrepbuilder-item"
+                       attr="title: item.label"
+                       data-bind="css: { disabled: $parent.chartItemUnavailable(item) }"
+                >
+                    <input
+                        class="amrepbuilder-input"
+                        data-bind="
+                            checked: $parent.chart.chart_type,
+                            disabled: $parent.disabled"
+                        attr="
+                            value: item.value,
+                            type: 'radio'">
+                    <span class="amrepbuilder-image-container">
+                        <!--ko template: $parent.templates.chartIconsPath + item.value --><!-- /ko -->
+                    </span>
+                </label>
+            <!-- /ko -->
+        </div>
+
+        <ul>
+            <li outereach="chart.axises" class="amrepbuilder-admin-field">
+                <div class="amrepbuilder-select-field _required">
+                    <select class="admin__control-select amrepbuilder-select _required"
+                            data-bind="
+                                attr: {
+                                    name: 'chart_axis_' + type,
+                                    id: $parent.uid + id,
+                                    disabled: $parent.disabled,
+                                    'aria-describedby': $parent.noticeId
+                                },
+                                event: { change: $parent.inputSelectListener(event) },
+                                hasFocus: $parent.focused,
+                                optgroup: $parent.chosenOptionsData,
+                                value: $data.value,
+                                optionsCaption: $t('Please select column'),
+                                optionsValue: 'value',
+                                optionsText: 'label'">
+                    </select>
+
+                    <div class="admin__field-label amrepbuilder-label">
+                        <label data-bind="attr: {for: $parent.uid + id}">
+                            <span text="label"></span>
+                        </label>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+        <label class="admin__field-error" if="error" attr="for: uid" text="error"></label>
+
+        <div class="admin__field-note" if="$data.notice" attr="id: noticeId">
+            <span html="notice"></span>
+        </div>
+    </div>
+</fieldset>

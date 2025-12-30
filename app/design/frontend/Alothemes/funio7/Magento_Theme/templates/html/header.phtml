@@ -1,0 +1,372 @@
+<?php
+
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/**
+ * @var \Magento\Theme\Block\Html\Header $block
+ */
+?>
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<?php
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+$customerSession = $objectManager->get('Magento\Customer\Model\SessionFactory')->create();
+?>
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('custom-css-designer')->toHtml(); ?>
+<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('custom-css-designer-dc')->toHtml(); ?>
+
+<?php
+$storeManager = $objectManager->get('Magento\Store\Model\StoreManagerInterface');
+$websiteCode = $storeManager->getWebsite()->getCode();
+
+$localeResolver = $objectManager->get('Magento\Framework\Locale\Resolver');
+$currentLocale = $localeResolver->getLocale();
+
+if ($websiteCode == 'base') : ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('css/custom-gwl.css'); ?>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('css/custom.css'); ?>" media="all" />
+<?php elseif ($websiteCode == 'miro') : ?>
+    <link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('css/custom-gwl-miro.css'); ?>" media="all" />
+    <link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('css/custom-miro.css'); ?>" media="all" />
+<?php endif; ?>
+
+<?php
+if($currentLocale == 'ar_SA'): ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $block->getViewFileUrl('css/custom-main-rtl.css'); ?>" media="all" />
+<?php endif; ?>
+
+<header class="page-header alothemes">
+	<div class="header-sticker">
+		<div class="header-top">
+			<div class="container">
+				<div class="row align-items-center header-top-layout">
+					<div class="col-xl-3 col-lg-6 col-md-12 item">
+						<div class="item-content-left dflex align-items-center">
+
+							<?php echo $this->getChildHtml('store_language'); ?>
+							<?php echo $this->getChildHtml('currency'); ?>
+						</div>
+					</div>
+					<div class="col-xl-6 col-lg-6 col-md-12 item">
+						<div class="align-items-center">
+                        <h2 class="discounts_sale_timer">
+                        	<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header-timer')->toHtml(); ?>
+                        		
+                        	</h2>
+						</div> 
+					</div>
+					<div class="col-xl-3 col-lg-6 col-md-12 item">
+						<div class="item-content-right dflex align-items-center">
+						<?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('header-static-links')->toHtml(); ?>
+                         </div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="header-content">
+			<div class="container">
+				<div class="row align-items-center header-center-layout">
+					<div class="col-xl-1 col-lg-6 col-md-6 col-sm-6 col-6 item item-logo">
+							
+						<div class="header-logo">
+						<span data-action="toggle-nav" class="action nav-toggle">
+								<span class="icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</span>
+							<?php echo $this->getChildHtml('logo'); ?>
+						</div>
+					</div>
+					<div class="col-xl-9 col-lg-8 col-md-3 col-sm-3 col-3 header-menu item-menu">
+						<?php echo $this->getChildHtml('navigation.sections'); ?>
+						<?php echo $this->getChildHtml('catalog.topnav'); ?>
+					</div>
+					<div class="col-xl-2 col-lg-6 col-md-6 col-sm-6 col-6 item item-tool">
+						<div class="header-tool align-items-center dflex">
+							<div class="header-search">
+								<span class="toggle-tab">
+									<svg class="custom-search-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M11 19C15.4183 19 19 15.4183 19 11C19 6.58172 15.4183 3 11 3C6.58172 3 3 6.58172 3 11C3 15.4183 6.58172 19 11 19Z" stroke="#282E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									<path d="M21.0004 21.0004L16.6504 16.6504" stroke="#282E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+									</svg>
+
+								</span>
+								<div class="toggle-content">
+									<?php echo $this->getChildHtml('top.search'); ?>
+								</div>
+							</div>
+							<div class="header-account">
+
+								<div class="<?php if ($customerSession->isLoggedIn()) echo 'toggle-tab'; ?> outside-close mobile">
+									<div class="onclick">
+										<a class="action back" href="<?php if (!$customerSession->isLoggedIn()) {echo $block->getUrl('customer/account/login'); }else{ echo "javascript:void(0)";} ?>"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								  <path d="M20 21V19C20 17.9391 19.5786 16.9217 18.8284 16.1716C18.0783 15.4214 17.0609 15 16 15H8C6.93913 15 5.92172 15.4214 5.17157 16.1716C4.42143 16.9217 4 17.9391 4 19V21" stroke="#282E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								  <path d="M12 11C14.2091 11 16 9.20914 16 7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7C8 9.20914 9.79086 11 12 11Z" stroke="#282E3E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg></a>
+										<div class="text-account text-hidden" data-bind="scope: 'customer'">
+											<!-- ko if: customer().firstname  -->
+											<span class="logged-in" data-bind="text: new String('<?= $block->escapeHtml(__('Hi! %1', '%1')) ?>').replace('%1', customer().firstname)">
+											</span>
+											<!-- /ko -->
+											<!-- ko ifnot: customer().firstname  -->
+											<?php
+											if ($customerSession->isLoggedIn()) {
+												echo __('Hi! %1', $customerSession->getCustomer()->getFirstname());
+											} else {
+												echo __('Login');
+											}
+											?>
+											<!-- /ko -->
+											<script type="text/x-magento-init">
+												{
+													"*": {
+														"Magento_Ui/js/core/app": {
+															"components": {
+																"customer": {
+																	"component": "Magento_Customer/js/view/customer"
+																}
+															}
+														}
+													}
+												}
+											</script>
+										</div>
+									</div>
+								</div>
+								<div class="toggle-content">
+									<div class="alo-account"><?php echo $this->getChildHtml('header.links'); ?></div>
+								</div>
+							</div>
+							<div class="header-wishlist">
+								<?php echo $this->getChildHtml('topWishlist'); ?>
+							</div>
+							<?php echo $this->getChildHtml('minicart'); ?>
+							<!--<span data-action="toggle-nav" class="action nav-toggle">
+								<span class="icon">
+									<span></span>
+									<span></span>
+									<span></span>
+								</span>
+							</span>-->
+						</div>
+						<div style="display:none;" class="custom-go-cart"><a class="got-cart-link" href="<?php echo $block->getUrl('checkout/cart'); ?>"><?php echo __("Go to Cart");?></a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
+
+<script type="text/javascript">
+	require([
+		'jquery',
+		'js/custom',
+		'magiccart/wow'
+	], function($) {
+		$(document).ready(function() {
+			new WOW().init();
+		});
+	});
+
+
+require([ 'jquery', 'jquery/ui'], function($){
+    $(document).ready(function() {
+                $(document).on("click", ".checkout-step-address.shipping-payment-method input[type='radio']", function() {
+                    setTimeout( function(){ 
+                        $('.price').each(function() {
+                            $(this).attr('dir', 'ltl');
+                            $(this).css('direction', 'ltr');
+                            var priceText = $(this).text();
+                            var englishPrice = convertArabicToEnglish(priceText);
+                            $(this).text(englishPrice);
+                        });
+                    }  , 2000 );
+                });
+
+            setTimeout( function(){
+                $(document).on("click", ".table-checkout-shipping-method .row", function() {
+                    setTimeout( function(){ 
+                        $('.price').each(function() {
+                            $(this).attr('dir', 'ltl');
+                            $(this).css('direction', 'ltr');
+                            var priceText = $(this).text();
+                            var englishPrice = convertArabicToEnglish(priceText);
+                            $(this).text(englishPrice);
+                        });
+                    }  , 2000 );
+                });
+            }  , 3000 );
+
+
+
+            setTimeout( function(){
+            	if ($('input[name="payment[method]"]:checked').val()) {
+	                    $('.place-order-primary .action.primary.checkout').prop('disabled', false);
+	                } else {
+	                    $('.place-order-primary .action.primary.checkout').prop('disabled', true);
+	                }
+            	$(document).on("change", 'input[name="payment[method]"]',function() {
+				    if ($('input[name="payment[method]"]:checked').val()) {
+	                    $('.place-order-primary .action.primary.checkout').prop('disabled', false);
+	                } else {
+	                    $('.place-order-primary .action.primary.checkout').prop('disabled', true);
+	                }
+				});
+			}  , 3000 );
+
+                
+});
+
+$(document).ready(function() {
+        function bindSelectAddressEvent() {
+            $('.shipping-address-item .action-select-shipping-item').each(function() {
+                var $this = $(this);
+                if (!$this.data('click-bound')) {
+                    $this.on('click', function() {
+                        setTimeout( function(){
+                        $('.price').each(function() {
+                        	$(this).attr('dir', 'ltl');
+                            $(this).css('direction', 'ltr');
+                            var priceText = $(this).text();
+                            var englishPrice = convertArabicToEnglish(priceText);
+                            $(this).text(englishPrice);
+                        });
+                       }  , 3000 );
+
+                    });
+                    $this.data('click-bound', true);
+                }
+            });
+        }
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if ($(mutation.target).find('.shipping-address-item .action-select-shipping-item')) {
+                    bindSelectAddressEvent();
+                }
+            });
+        });
+        var checkoutElement = document.querySelector('.checkout-container');
+        if (checkoutElement) {
+            observer.observe(checkoutElement, {
+                childList: true,
+                subtree: true
+            });
+        }
+		bindSelectAddressEvent();
+    });
+
+
+function convertArabicToEnglish(input) {
+    var arabicNumbers = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩', '٬', '٫'];
+    var englishNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ',', '.'];
+
+    for (var i = 0; i < arabicNumbers.length; i++) {
+        var regex = new RegExp(arabicNumbers[i], 'g');
+        input = input.replace(regex, englishNumbers[i]);
+    }
+
+    return input;
+}    
+
+
+
+$(document).ready(function() {
+		setTimeout( function(){
+			if ($('body').hasClass('checkout-index-index')) {
+			$("div[name='shippingAddress.company']").hide();
+		    $("div[name='shippingAddress.vat_id']").hide();
+
+		    $("div[name='billingAddress.company']").hide();
+		    $("div[name='billingAddress.vat_id']").hide();
+
+			if (window.checkoutConfig.customerData !== undefined && window.checkoutConfig.customerData !== null) {
+			var customerData = window.checkoutConfig.customerData;
+			var customerMobile =  customerData.custom_attributes.customer_mobile.value;
+				$("input[name='custom_attributes[customer_mobile]']").val(customerMobile);
+				$("input[name='custom_attributes[customer_mobile]']").trigger('change');
+			}
+		}
+		}  , 8000 );
+
+
+		$(document).on("change", "input[name='custom_checkbox_company']",function() {
+			    if ($(this).is(':checked')) {
+		        	$("div[name='shippingAddress.company']").show();
+		            $("div[name='shippingAddress.vat_id']").show();
+		        } else {
+		        	$("div[name='shippingAddress.company']").hide();
+		            $("div[name='shippingAddress.vat_id']").hide();
+
+		        }
+		});
+
+		$(document).on("change", "input[name='custom_checkbox_company']",function() {
+			    if ($(this).is(':checked')) {
+		        	$("div[name='billingAddress.company']").show();
+		            $("div[name='billingAddress.vat_id']").show();
+		        } else {
+		        	$("div[name='billingAddress.company']").hide();
+		            $("div[name='billingAddress.vat_id']").hide();
+
+		        }
+		});
+
+
+	});
+
+
+	
+	$(document).ready(function() {
+            $(document).on("click", "#loginbyphone_checkout", function() {
+                $('#loginwith_phone_checkout').show();
+                $('#loginwith_email_checkout').hide();
+                $('#loginbyemail_checkout').removeClass("custom-tab-button-active");
+                $('#loginbyphone_checkout').addClass("custom-tab-button-active");
+
+            });
+            $(document).on("click", "#loginbyemail_checkout", function() {
+                $('#loginwith_phone_checkout').hide();
+                $('#loginwith_email_checkout').show();
+                $('#loginbyemail_checkout').addClass("custom-tab-button-active");
+                $('#loginbyphone_checkout').removeClass("custom-tab-button-active");
+            });
+        });
+
+
+$(document).ready(function(){
+	setTimeout( function(){
+		if ($('body').hasClass('cms-index-index')) {
+		    $(window).scrollTop(0);
+		    //location.reload();
+		}
+	}  , 1500 );
+});
+
+$(document).ready(function() {
+    $('.price-box').each(function() {
+        if ($(this).find('.old-price').length) {
+            $(this).find('.price-container.price-final_price:not(.old-price .price-container.price-final_price) .price').css('color', '#dc0a0a');
+        }
+    });
+});
+
+});
+
+</script>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var isWindows = navigator.appVersion.indexOf("Win") != -1;
+    // Apply a class to the body if the OS is Windows
+    if (isWindows) {
+        document.body.classList.add("windows-os");
+    }
+});
+</script>

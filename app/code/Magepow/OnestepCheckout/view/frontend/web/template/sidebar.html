@@ -1,0 +1,27 @@
+<div id="opc-sidebar">
+     <div class="custom-discount">
+    <!-- ko foreach: getRegion('discount') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+     </div >
+    <!-- ko foreach: getRegion('summary') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+    <div class="opc-block-shipping-information">
+        <!-- ko foreach: getRegion('shipping-information') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+    </div>
+    <div id="co-place-order-area">
+        <div class="onestepcheckout-addition-content-wrapper">
+            <!-- ko foreach: getRegion('place-order-information-left') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+        <div class="onestepcheckout-place-order-wrapper">
+            <!-- ko foreach: getRegion('place-order-information-right') -->
+                <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+    </div>
+</div>

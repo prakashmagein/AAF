@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Pricing\PriceCurrencyInterface">
+        <plugin name="gwl_priceconvert_pricecurrencyplugin" type="Gwl\Priceconvert\Plugin\PriceCurrencyPlugin" sortOrder="1"/>
+    </type>
+    <type name="Magento\Directory\Model\Currency">
+        <plugin name="currency_format" type="Gwl\Priceconvert\Plugin\Currency" />
+    </type> 
+     <type name="Magento\Framework\Currency\Data\Currency">
+        <plugin name="currency_format_data" type="Gwl\Priceconvert\Plugin\CurrencyData" />
+    </type>
+    <!--<type name="Magento\Sales\Model\Order\Pdf\Invoice">
+        <plugin name="currency_format_invoice_pdf" type="Gwl\Priceconvert\Plugin\Pdf\InvoicePlugin" />
+    </type>-->
+    <type name="Magento\CatalogExport\Model\Export\Product">
+        <plugin name="add_image_url_to_export" type="Gwl\Priceconvert\Plugin\AddImageUrl" />
+    </type>
+</config>

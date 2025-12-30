@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2023 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2023 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */ 
+ -->
+ 
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd"> 
+    
+    <!-- Send / resend  OTP - GraphQL-->
+    <route method="POST" url="/V1/sendotp">
+        <service class="Magedelight\SMSProfile\Api\SMSProfieApiServicesInterface" method="SendOtpToCustomer"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer login  with OTP Only - GraphQL -->
+    <route method="POST" url="/V1/customertoken">
+        <service class="Magedelight\SMSProfile\Api\SMSProfieApiServicesInterface" method="createCustomerTokenWithOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer login  with OTP and Password - GraphQL -->
+    <route method="POST" url="/V1/customertokenwithotpandpassword">
+        <service class="Magedelight\SMSProfile\Api\SMSProfieApiServicesInterface" method="createCustomerTokenWithOtpPassword"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer account create  with OTP -->
+    <route method="POST" url="/V1/customersignupwithotp">
+        <service class="Magedelight\SMSProfile\Api\SMSProfieApiServicesInterface" method="createAccountWithOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Customer account edit  with OTP -->
+    <route method="POST" url="/V1/customereditwithotp">
+        <service class="Magedelight\SMSProfile\Api\SMSProfieApiServicesInterface" method="updateAccountWithOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Send reset password link in mail with OTP - GraphQL -->
+    <route method="POST" url="/V1/passwordwithotp">
+        <service class="Magedelight\SMSProfile\Api\SMSProfieApiServicesInterface" method="initiatePasswordResetWithOTP"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- Guest place order with payment information saving for COD - GraphQL -->
+    <route method="POST" url="/V1/guestcheckoutwithotpforcod/:cartId">
+        <service class="Magedelight\SMSProfile\Api\SMSProfieApiServicesInterface" method="savePaymentInformationAndPlaceOrderWithOtp"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+
+    <!-- My place order with payment information saving - GraphQL -->
+    <route url="/V1/carts/mine/checkoutwithotpforcod" method="POST">
+        <service class="Magedelight\SMSProfile\Api\SMSProfieApiServicesInterface" method="savePaymentInformationAndPlaceOrderWithOtpForUser"/>
+        <resources>
+            <resource ref="self" />
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+
+</routes>

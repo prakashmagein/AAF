@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="layout_load_before">
+		<observer name="magefan_orderedit_observer_backend_layout_loadbefore_layout_load_before" instance="Magefan\OrderEdit\Observer\Backend\Layout\LoadBefore"/>
+	</event>
+	<event name="adminhtml_sales_order_create_process_item_before">
+		<observer name="magefan_orderedit_observer_backend_adminhtml_salesordercreateprocessitembefore_adminhtml_sales_order_create_process_item_before"
+				  instance="Magefan\OrderEdit\Observer\Backend\Adminhtml\SalesOrderCreateProcessItemBefore"/>
+	</event>
+	<event name="controller_action_predispatch_sales_order_view">
+		<observer name="magefan_orderedit_observer_backend_controller_actionpredispatchsalesorderview_controller_action_predispatch_sales_order_view" instance="Magefan\OrderEdit\Observer\Backend\Controller\ActionPredispatchSalesOrderView"/>
+	</event>
+	<event name="controller_action_predispatch_sales_order_invoice_new">
+		<observer name="magefan_orderedit_observer_backend_controller_actionpredispatchsalesorderinvoicenew_controller_action_predispatch_sales_order_invoice_new" instance="Magefan\OrderEdit\Observer\Backend\Controller\ActionPredispatchSalesOrderInvoiceNew"/>
+	</event>
+	<event name="controller_action_predispatch_adminhtml_order_shipment_new">
+		<observer name="magefan_orderedit_observer_backend_controller_actionpredispatchadminhtmlordershipmentnew_controller_action_predispatch_adminhtml_order_shipment_new" instance="Magefan\OrderEdit\Observer\Backend\Controller\ActionPredispatchAdminhtmlOrderShipmentNew"/>
+	</event>
+</config>

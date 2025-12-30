@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */ 
+ -->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magedelight_SMSProfile::css/intlTelInput.css"/>
+        <css src="Magedelight_SMSProfile::css/isValidNumber.css"/>
+		<!-- <link src="Magedelight_SMSProfile::js/profile-phone-validation.js"/> -->
+        <!-- <link src="Magedelight_SMSProfile::js/intlTelInput.js"/>
+        <link src="Magedelight_SMSProfile::js/utils.js"/> -->
+	</head>
+    <body>
+    	<referenceContainer name="page.wrapper">
+            <block class="Magedelight\SMSProfile\Block\MdPopup" name="md-login-popup" template="Magedelight_SMSProfile::mdpopup.phtml" after="-">
+                <block class="Magento\Customer\Block\Form\Login" name="md_customer_login_popup" template="Magedelight_SMSProfile::smsprofile-login-mobile.phtml">
+                    <container name="form.additional.info.mdlogin" as="form_additional_info"/>
+                    <arguments>
+                        <argument name="login_button_view_model" xsi:type="object">Magento\Customer\ViewModel\LoginButton</argument>
+                        <argument name="view_model" xsi:type="object">Magedelight\SMSProfile\ViewModel\Modelhelper</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Customer\Block\Form\Register" name="md_customer_register_popup" template="Magedelight_SMSProfile::register.phtml">
+                    <container name="form.additional.info.mdcreate" as="form_additional_info"/>
+                    <container name="customer.form.register.fields.before" as="form_fields_before" label="Form Fields Before" htmlTag="div" htmlClass="customer-form-before"/>
+                    <arguments>
+                        <argument name="attribute_data" xsi:type="object">Magento\Customer\Block\DataProviders\AddressAttributeData</argument>
+                        <argument name="region_provider" xsi:type="object">Magento\Customer\ViewModel\Address\RegionProvider</argument>
+                        <argument name="create_account_button_view_model" xsi:type="object">Magento\Customer\ViewModel\CreateAccountButton</argument>
+                        <argument name="view_model" xsi:type="object">Magedelight\SMSProfile\ViewModel\Modelhelper</argument>
+                    </arguments>
+                </block>
+
+                <block class="Magento\Customer\Block\Account\Forgotpassword" name="md_customer_forgot_password"
+                       template="Magedelight_SMSProfile::forgotpassword.phtml">
+                    <arguments>
+                        <argument name="forgot_password_button_view_model" xsi:type="object">Magento\Customer\ViewModel\ForgotPasswordButton</argument>
+                        <argument name="view_model" xsi:type="object">Magedelight\SMSProfile\ViewModel\Modelhelper</argument>
+                    </arguments>
+                    <container name="form.additional.info.mdforgot.password" as="form_additional_info"/>
+                </block>
+
+            </block>
+        </referenceContainer>
+        <referenceContainer name="form.additional.info.mdlogin">
+           <block class="Magento\Captcha\Block\Captcha" name="captcha_mdlogin" after="-">
+                <action method="setFormId">
+                    <argument name="formId" xsi:type="string">user_login</argument>
+                </action>
+                <action method="setImgWidth">
+                    <argument name="width" xsi:type="string">230</argument>
+                </action>
+                <action method="setImgHeight">
+                    <argument name="width" xsi:type="string">50</argument>
+                </action>
+            </block>
+            <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
+                   name="recaptcha_mdlogin"
+                   after="-"
+                   template="Magento_ReCaptchaFrontendUi::recaptcha.phtml"
+                   ifconfig="recaptcha_frontend/type_for/customer_login">
+                <arguments>
+                    <argument name="recaptcha_for" xsi:type="string">customer_login</argument>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="recaptcha" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_ReCaptchaFrontendUi/js/reCaptcha</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="form.additional.info.mdcreate">
+            <block class="Magento\Captcha\Block\Captcha" name="captcha_mdcreate" after="-">
+                <action method="setFormId">
+                    <argument name="formId" xsi:type="string">user_create</argument>
+                </action>
+                <action method="setImgWidth">
+                    <argument name="width" xsi:type="string">230</argument>
+                </action>
+                <action method="setImgHeight">
+                    <argument name="width" xsi:type="string">50</argument>
+                </action>
+            </block>
+            <block class="Magento\ReCaptchaUi\Block\ReCaptcha"
+                   name="recaptcha_mdcreate"
+                   after="-"
+                   template="Magento_ReCaptchaFrontendUi::recaptcha.phtml"
+                   ifconfig="recaptcha_frontend/type_for/customer_create">
+                <arguments>
+                    <argument name="recaptcha_for" xsi:type="string">customer_create</argument>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="recaptcha" xsi:type="array">
+                                <item name="component" xsi:type="string">Magento_ReCaptchaFrontendUi/js/reCaptcha</item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+            <block name="login_as_customer_opt_in_create"
+                   template="Magento_LoginAsCustomerAssistance::shopping-assistance.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">
+                        Magento\LoginAsCustomerAssistance\ViewModel\ShoppingAssistanceViewModel
+                    </argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="form.additional.info.mdforgot.password">
+            <block class="Magento\Captcha\Block\Captcha" name="captcha_mdforgot" after="-">
+                <action method="setFormId">
+                    <argument name="formId" xsi:type="string">user_forgotpassword</argument>
+                </action>
+                <action method="setImgWidth">
+                    <argument name="width" xsi:type="string">230</argument>
+                </action>
+                <action method="setImgHeight">
+                    <argument name="width" xsi:type="string">50</argument>
+                </action>
+            </block>
+            
+        </referenceContainer>
+        <container name="smsprofile.before.body.end" label="SMSProfile Before Body End" after="before.body.end">
+            <block class="Magento\Framework\View\Element\Template" name="magedelight_smsprofile_footer" template="Magedelight_SMSProfile::footer.phtml" after="-" ifconfig="magedelightsmsprofile/general/enable">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Magedelight\SMSProfile\ViewModel\Modelhelper</argument>
+                </arguments>
+            </block>
+        </container>
+    </body>
+</page>

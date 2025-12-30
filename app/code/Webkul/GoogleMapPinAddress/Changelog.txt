@@ -1,0 +1,38 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 5.0.3 --------------------------------------
++ Implemented garphql api
+- Bug fixed.
+
+-------------------------------- Version 5.0.2 --------------------------------------
++ Compatible with magento 2.4.x
+- Bug fixed.
+
+-------------------------------- Version 5.0.1 --------------------------------------
++ Compatible with magento 2.4.x
+- Bug fixed.
+
+-------------------------------- Version 5.0.0 --------------------------------------
++ Compatible with magento 2.4.x
+- Bug fixed.
+
+-------------------------------- Version 4.0.1 --------------------------------------
++ Compatible with magento 2.4.x.
++ Compatible with multiple store view.
++ Multiple address checkout.
+- Bug fixed.
+ 
+-------------------------------- Version 4.0.0 --------------------------------------
+- Critical issues and bug fixed.
++ Compatible with magento 2.4.x
+
+-------------------------------- Version 3.0.0 --------------------------------------
+
++ logged in user can add the address in address book with the help of Google Map.
++ on checkout page user can fill data related to address with the help of Google Map.
++ working for both guest user and logged in user.
++ admin can enable disable the module
++ admin can set the Google map api key

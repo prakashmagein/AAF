@@ -1,0 +1,26 @@
+{
+    "name": "amasty/module-automatic-related-products-subscription-package",
+    "description": "Automatic Related Products Subscription Package by Amasty",
+    "require": {
+        "php": ">=7.3",
+        "amasty/base": ">=1.14.7",
+        "amasty/mostviewed": ">=2.17.0"
+    },
+    "suggest": {
+        "amasty/module-mostviewed-hyva": "Install this package to ensure the Automatic Related Products extension works with Hyv\u00e4 Theme.",
+        "amasty/module-mostviewed-export-entity": "Install this package for Export Bundles compatibility.",
+        "amasty/module-mostviewed-import-entity": "Install this package for Import Bundles compatibility."
+    },
+    "homepage": "https://amasty.com/",
+    "type": "magento2-module",
+    "version": "2.17.1",
+    "license": "proprietary",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\AutomaticRelatedProductsSubscriptionPackage\\": ""
+        }
+    }
+}

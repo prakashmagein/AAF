@@ -1,0 +1,78 @@
+<?php
+
+$customerdata = $block->getCustomerInformation();
+$customeraddress = $block->getCustomerAddress();
+?>
+
+<script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'global_variables',
+        'event_source': '<?= $block->getWebsiteName(); ?>',
+        'store_view': '<?= $block->getStoreName(); ?>',
+        'language': '<?= $block->getCurrentLocale(); ?>',
+        'country': '<?= $customeraddress ? $customeraddress['country'] : ''; ?>',
+        'city': '<?= $customeraddress ? $customeraddress['city'] : ''; ?>',
+        'zip': '<?= $customeraddress ? $customeraddress['postcode'] : ''; ?>',
+        'loyalty_tier': 'Platinum',
+        'login_status': '<?= $block->getCustomerSession()->isLoggedIn() ? "true" : "false"; ?>',
+
+        <?php if($block->getCustomerSession()->isLoggedIn()){
+         ?>    
+          'customer': {
+             'customer_id': <?= $customerdata->getId(); ?>,
+             'firstname': "<?= $customerdata->getFirstname(); ?>",
+             'lastname': "<?= $customerdata->getLastname(); ?>",
+             'email': "<?= $customerdata->getEmail(); ?>",
+             'phone': "<?= $customerdata->getCustomAttribute('customer_mobile')->getValue(); ?>",
+             'gender': "<?php if($customerdata->getGender()== 0){ echo 'N/A' ; } elseif($customerdata->getGender()==1 ) { echo 'M';} elseif($customerdata->getGender()==2){ echo 'F'; } ?>",
+             'berthday': "<?= $customerdata->getDob() ?>",
+          },
+
+        <?php } ?>
+    });
+</script>
+
+
+<!-- customer register -->
+<?php $dataLayer = $this->getDataLayerScript(); ?>
+<?php if ($dataLayer): ?>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push(<?= json_encode($dataLayer, JSON_HEX_TAG); ?>);
+    </script>
+    <?php $this->clearDataLayer(); ?>
+<?php endif; ?>
+
+<!-- customer login -->
+<?php $dataLayerlogin = $this->getDataLayerScriptLogin(); ?>
+<?php if ($dataLayerlogin): ?>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push(<?= json_encode($dataLayerlogin, JSON_HEX_TAG); ?>);
+    </script>
+<?php endif; ?>
+
+<?php
+    if (($this->getRequest()->getFullActionName() == "customer_account_index") !== true){
+        $block->clearDataLayerLogin();
+    }
+?>
+
+
+<!-- add to cart -->
+
+
+<!-- add to Wishlist -->
+
+
+
+<!-- Remove cart item -->
+<?php $dataLayerremoveitem = $this->getDataLayerScriptRemoveItem(); ?>
+<?php if ($dataLayerremoveitem): ?>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push(<?= json_encode($dataLayerremoveitem, JSON_HEX_TAG); ?>);
+    </script>
+    <?php $this->clearDataLayerRemoveItem(); ?>
+<?php endif; ?>

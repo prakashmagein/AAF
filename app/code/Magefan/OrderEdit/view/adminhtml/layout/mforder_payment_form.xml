@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="sales_order_create_load_block_shipping_address"/>
+    <update handle="sales_order_create_load_block_billing_address"/>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Catalog\Block\Adminhtml\Product\Composite\Configure" name="after.body.start.product_composite_configure" template="Magento_Catalog::catalog/product/composite/configure.phtml"/>
+        </referenceContainer>
+        <referenceBlock name="content">
+            <block class="Magefan\OrderEdit\Block\Adminhtml\Order\Form" name="order_create_form" as="form">
+                <block class="Magento\Sales\Block\Adminhtml\Order\Create\Data" template="Magefan_OrderEdit::order/create/dataForOneTypeChange.phtml" name="data">
+                    <block class="Magento\Sales\Block\Adminhtml\Order\Create\Billing\Method" template="Magento_Sales::order/create/abstract.phtml" name="billing_method">
+                        <block class="Magento\Sales\Block\Adminhtml\Order\Create\Billing\Method\Form" template="Magento_Sales::order/create/billing/method/form.phtml" name="order_create_billing_form" as="form"/>
+                    </block>
+                </block>
+            </block>
+        </referenceBlock>
+
+        <move element="billing_address" destination="data"  after="billing_method" />
+        <move element="shipping_address" destination="data"  after="billing_method" />
+    </body>
+</page>

@@ -1,0 +1,41 @@
+<div id="cart-page">
+    <div id="block-cart-list" data-bind="scope:'minicart-addons'" class="block">
+        <!-- ko template: getTemplate() -->
+        <!-- /ko -->
+        <?php
+        $maxpriceShipping = $block->getConfigForShippingBar();
+        $currencySymbols = $block->getStoreCurrency();
+        $currencyCode = $block->getCurrentCurrencyCode();
+        $freeShipping_status = $block->getFreeShippingStatus();
+        ?>
+        <?php if ($freeShipping_status == 1 && $maxpriceShipping != '') : ?>
+            <div class="component-wrapper">
+                <span data-bind="text : getpercentage() < 100 ?'Free shipping on all' : 'free shipping on all'"></span>
+                <span class="shipping-price">
+                    <span class="shipping-title"><?php echo __('order over'); ?>
+                    <?php if (isset($currencySymbols)) {
+                        echo $block->escapeHtml(__($currencySymbols));
+                    } else {
+                        echo $block->escapeHtml(__($currencyCode));
+                    } ?>
+                    </span>
+                    <span class="shipping-num" data-bind="text: maxprice"></span>
+                </span>
+            </div>
+
+            <script>
+                maxpriceShipping = <?= /* @escapeNotVerified */ $maxpriceShipping ?>;
+            </script>
+            <script type="text/x-magento-init">
+                {
+             "#block-cart-list": {
+                 "Magento_Ui/js/core/app": <?php /* @escapeNotVerified */ echo $block->getJsLayout(); ?>
+             },
+             "*": {
+                 "Magento_Ui/js/block-loader": "<?= /* @escapeNotVerified */ $block->getViewFileUrl('images/loader-1.gif') ?>"
+             }
+         }
+     </script>
+        <?php endif; ?>
+    </div>
+</div>

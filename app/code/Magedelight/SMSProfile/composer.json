@@ -1,0 +1,26 @@
+{
+    "name": "mage_delight/smsprofile",
+    "description": "SMS Profile",
+    "require": {
+        "php": ">=5.6",
+        "twilio/sdk": "*",
+        "mage_delight/base": "*"
+    },
+    "type": "magento2-module",
+    "license": "GPL-3.0",
+    "version": "1.1.1",
+    "authors": [
+        {
+            "name": "MD",
+            "email": "info@magedelight.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Magedelight\\SMSProfile\\": ""
+        }
+    }
+}

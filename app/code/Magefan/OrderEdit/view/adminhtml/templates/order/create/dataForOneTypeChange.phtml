@@ -1,0 +1,98 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Sales\Block\Adminhtml\Order\Create\Data $block
+ * @var $mfSecureRenderer \Magefan\Community\Api\SecureHtmlRendererInterface
+ */
+use Magefan\OrderEdit\Block\Adminhtml\Order\Edit\Form;
+$script = '';
+?>
+
+<div class="page-create-order">
+
+    <section id="order-info_edit_sec">
+        <?= $block->getChildHtml('order_info_edit') ?>
+    </section>
+
+    <section id="order-account_info_edit_sec" >
+        <?= $block->getChildHtml('order_account_info_edit') ?>
+    </section>
+
+    <?php if (!in_array($block->getRequest()->getParam('form_type'), [Form::ORDER_INFO_EDIT_FORM,Form::ACCOUNT_INFO_EDIT_FORM])) { ?>
+        <?php $script .= "
+            require(['Magento_Sales/order/create/form'], function(){
+                order.setCurrencySymbol('" . $block->escapeJs($block->getCurrencySymbol($block->getCurrentCurrencyCode())) . "')
+            });
+        ";?>
+        <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
+    <?php } ?>
+
+    <div class="order-details<?php if ($block->getCustomerId()): ?> order-details-existing-customer<?php endif; ?>" style="float: left;width: calc( (100%) * 0.75 - 30px );margin-left: 15%" >
+
+        <div id="order-additional_area" class="admin__page-section order-additional-area">
+            <?= $block->getChildHtml('additional_area') ?>
+        </div>
+        <?php $script = "
+            var mfelem7TM8XQSy = document.querySelector('div#order-additional_area');
+            if (mfelem7TM8XQSy) {
+                mfelem7TM8XQSy.style.display = 'none';
+            }
+        ";?>
+        <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
+
+        <div id="order-search" class="admin__page-section order-search-items no-display">
+            <?= $block->getChildHtml('search') ?>
+        </div>
+
+        <?php $script = "
+            var elemOrderSearch = document.querySelector('div#order-search');
+            if (elemOrderSearch) {
+                elemOrderSearch.style.display = 'none';
+                elemOrderSearch.classList.remove('no-display');
+            }
+        ";?>
+        <?= /* @noEscape */ $mfSecureRenderer->renderTag('script', [], $script, false) ?>
+
+        <section id="order-methods" class="admin__page-section order-methods">
+            <div class="admin__page-section-content">
+                <div id="order-billing_method" style="float: left" class="admin__page-section-item order-billing-method">
+                    <?= $block->getChildHtml('billing_method') ?>
+                </div>
+                <?= $block->getChildHtml('custom_shipping_method_price') ?>
+                <div id="order-shipping_method" style="float: left" class="admin__page-section-item order-shipping-method">
+                    <?= $block->getChildHtml('shipping_method') ?>
+                </div>
+            </div>
+        </section>
+
+        <section id="order-addresses"  style="display: none;" class="admin__page-section order-addresses">
+            <div class="admin__page-section-title" >
+                <span class="title"><?= $block->escapeHtml(__('Address Information')) ?></span>
+            </div>
+            <div class="admin__page-section-content">
+                <div id="order-billing_address" class="admin__page-section-item order-billing-address">
+                    <?= $block->getChildHtml('billing_address') ?>
+                </div>
+                <div id="order-shipping_address" class="admin__page-section-item order-shipping-address">
+                    <?= $block->getChildHtml('shipping_address') ?>
+                </div>
+            </div>
+        </section>
+
+        <?php if ($block->getChildHtml('items')) { ?>
+            <section id="tax_rates_section">
+                <div class="admin__page-section-title">
+                    <strong class="title"><?= __('Tax Rate (if tax group not selected, the default tax rate is used based on address)') ?></strong>
+                </div>
+                <?=  $block->getChildHtml('tax_rates') ?>
+            </section>
+        <?php  } ?>
+        <section id="order-items" class="admin__page-section order-items" data-mage-init='{"loader": {}}'>
+            <?= $block->getChildHtml('items') ?>
+        </section>
+    </div>
+</div>

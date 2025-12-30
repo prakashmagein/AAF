@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * di
+ *
+ * @copyright Copyright © 2020 Magepow. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Save address when estimate shipping method -->
+    <type name="Magento\Quote\Model\ShippingMethodManagement">
+        <plugin name="saveAddressWhenEstimate" type="Magepow\OnestepCheckout\Plugin\Checkout\ShippingMethodManagement"/>
+    </type>
+    <type name="Magento\Authorization\Model\CompositeUserContext">
+        <plugin name="onestepcheckout_usercontext" type="Magepow\OnestepCheckout\Plugin\Authorization\UserContext"/>
+    </type>
+    <type name="Magento\Paypal\Model\Express">
+        <plugin name="onestepcheckout_PaypalExpress" type="Magepow\OnestepCheckout\Plugin\Paypal\Model\Express"/>
+    </type>
+    <preference for="Magento\Checkout\Api\AgreementsValidatorInterface" type="Magepow\OnestepCheckout\Model\AgreementsValidator"/>
+</config>

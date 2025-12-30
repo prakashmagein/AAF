@@ -1,0 +1,758 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <system>
+    <config>
+      <path>magepow_ajaxcompare/general/message</path>
+      <value><![CDATA[You added this product to the comparison list]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcompare/general/popupttl</path>
+      <value><![CDATA[]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxwishlist/general/popupttl</path>
+      <value><![CDATA[]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxwishlist/general/image</path>
+      <value><![CDATA[default/logo.png]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/general/showLoader</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup/product_image_width</path>
+      <value><![CDATA[300]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup/product_image_height</path>
+      <value><![CDATA[300]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup/product_price</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup/continue_button</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup/enabled_countdown</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup_design/button_text_color</path>
+      <value><![CDATA[#000000]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup_design/continue</path>
+      <value><![CDATA[rgba(0, 0, 0, 0)]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup_design/continue_hover</path>
+      <value><![CDATA[rgba(0, 0, 0, 0)]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup_design/viewcart</path>
+      <value><![CDATA[rgba(0, 0, 0, 0)]]></value>
+    </config>
+    <config>
+      <path>magepow_ajaxcart/success_popup_design/viewcart_hover</path>
+      <value><![CDATA[rgba(0, 0, 0, 0)]]></value>
+    </config>
+    <config>
+      <path>magepow_categories/general/enabled</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magepow_categories/category_page/heading</path>
+      <value><![CDATA[]]></value>
+    </config>
+    <config>
+      <path>magepow_categories/category_page/item_amount</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magepow_categories/home_page/heading</path>
+      <value><![CDATA[Categories Home Page]]></value>
+    </config>
+    <config>
+      <path>magepow_categories/home_page/thumbnail</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magepow_categories/home_page/category_select</path>
+      <value><![CDATA[3,246,249,250]]></value>
+    </config>
+    <config>
+      <path>magepow_categories/home_page/item_amount</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magepow_gdpr/cookie_restriction/content</path>
+      <value><![CDATA[This website uses cookies to ensure you get the best experience on our website.]]></value>
+    </config>
+    <config>
+      <path>magepow_infinitescroll/general/loading_image</path>
+      <value><![CDATA[default/loader-swatch.gif]]></value>
+    </config>
+    <config>
+      <path>magepow_onestepcheckout/general/description</path>
+      <value><![CDATA[]]></value>
+    </config>
+    <config>
+      <path>magepow_onestepcheckout/general/auto_detect_address</path>
+      <value><![CDATA[]]></value>
+    </config>
+    <config>
+      <path>magepow_onestepcheckout/design_configuration/heading_text</path>
+      <value><![CDATA[#000000]]></value>
+    </config>
+    <config>
+      <path>magepow_onestepcheckout/design_configuration/place_order_button</path>
+      <value><![CDATA[#222222]]></value>
+    </config>
+    <config>
+      <path>magepow_onestepcheckout/design_configuration/custom_css</path>
+      <value><![CDATA[.onestepcheckout-index-index .onestepcheckout-place-order-wrapper .place-order-primary button.primary.checkout{
+color: white;
+}
+
+.onestepcheckout-index-index .onestepcheckout-place-order-wrapper .place-order-primary button.primary.checkout:hover{
+background-color: #000000;
+border-color: #000000;
+}
+
+.onestepcheckout-index-index .checkout-step-sidebar .discount-code .form-discount .actions-toolbar .primary .action-apply{
+color: white;
+background-color: #222222;
+border-color: #222222;
+}
+
+.onestepcheckout-index-index .checkout-step-sidebar .discount-code .form-discount .actions-toolbar .primary .action-apply:hover{
+background-color: #000000;
+border-color: #000000;
+color: white;
+}
+
+.onestepcheckout-index-index .checkout-container .action.action-auth-toggle{
+background-color: #222222;
+color: white;
+border-color: #222222;
+}
+
+.onestepcheckout-index-index .checkout-container .action.action-auth-toggle:hover{
+background-color: #000000;
+border-color: #000000;
+color: white;
+}]]></value>
+    </config>
+    <config>
+      <path>magepow_producttags/general/enabled</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magepow_producttags/general/enable_tag_on_product</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magepow_producttags/general/show_number_products</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magepow_producttags/general/product_tag_title</path>
+      <value><![CDATA[Popular Tags]]></value>
+    </config>
+    <config>
+      <path>magepow_producttags/general/number_tags_sidebar</path>
+      <value><![CDATA[6]]></value>
+    </config>
+    <config>
+      <path>magepow_productzoom/general/zoomLevel</path>
+      <value><![CDATA[0.5]]></value>
+    </config>
+    <config>
+      <path>magepow_productzoom/general/lensShape</path>
+      <value><![CDATA[round]]></value>
+    </config>
+    <config>
+      <path>magepow_productzoom/general/lensOpacity</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magepow_productzoom/general/tintColour</path>
+      <value><![CDATA[#ff3366]]></value>
+    </config>
+    <config>
+      <path>magepow_productzoom/general/tintOpacity</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magepow_speedoptimizer/general/loading_body</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magepow_speedoptimizer/general/body_includes</path>
+      <value><![CDATA[
+                    <script type="text/javascript"> 
+                        require(["jquery", "magepow/lazyload", "domReady!"], function($, lazyload){
+                        var imgLazy = $('.lazyload').not(".loaded"); 
+                        imgLazy.lazyload(); 
+                        imgLazy.on('load',function(){
+                            var img = $(this);
+                            if(img.hasClass( "loaded" )) return;
+                            if(img.attr('src') == img.data('src')){img.addClass('loaded');}
+                            else {img.lazyload();}
+                            if($.equalheight) $.fn.equalheight();
+                        });
+                        $('body').on('contentUpdated', function () {
+                            var lazy = $(this).find("img.lazyload").not(".loaded").lazyload();
+                            lazy.on('load',function(){
+                                var img = $(this);
+                                if(img.hasClass( "loaded" )) return;
+                                if(img.attr('src') == img.data('src')){img.addClass('loaded');}
+                                else {img.lazyload();}
+                                if($.equalheight) $.fn.equalheight();
+                            });
+                        });
+                        $('body').removeClass('loading_body');
+                        }); 
+                    </script>]]></value>
+    </config>
+    <config>
+      <path>magepow_speedoptimizer/general/loading_body_placeholder</path>
+      <value><![CDATA[default/loading_1.gif]]></value>
+    </config>
+    <config>
+      <path>magepow_speedoptimizer/general/loading_img_placeholder</path>
+      <value><![CDATA[default/loading_2.gif]]></value>
+    </config>
+    <config>
+      <path>alothemes/category_page/config_display</path>
+      <value><![CDATA[{"_1601090070156_156":{"title":"Show Cart","selector":".catalog-category-view .product-item .actions-cart, .product-item .tocart","enabled":"1"},"_1601090072720_720":{"title":"Show Compare","selector":".catalog-category-view .product-item .tocompare"},"_1601090074061_61":{"title":"Show Wishlist","selector":".catalog-category-view .product-item .towishlist","enabled":"1"},"_1601090074700_700":{"title":"Show Quickview","selector":".catalog-category-view .product-item .link-view","enabled":"1"},"_1601090075319_319":{"title":"Show Review","selector":".catalog-category-view .product-item .product-reviews-summary","enabled":"1"},"_1601953500959_959":{"title":"Stock Status","selector":".catalog-category-view .product-item .stock","enabled":"1"},"_1601953611355_355":{"title":"Price","selector":".catalog-category-view .product-item .price-box","enabled":"1"},"_1625731086274_274":{"title":"View Mode 4 Column","selector":".grid-view-mode .grid-4","enabled":"1"},"_1625731097543_543":{"title":"View Mode 3 Column","selector":".grid-view-mode .grid-3","enabled":"1"},"_1625731097323_323":{"title":"View Mode 2 Column","selector":".grid-view-mode .grid-2","enabled":"1"},"_1625731097058_58":{"title":"View Mode 1 Column","selector":".grid-view-mode .grid-1"},"_1632468727897_897":{"title":"Toolbar Grid Mode Active","selector":".modes .modes-mode.mode-grid.active"}}]]></value>
+    </config>
+    <config>
+      <path>alothemes/grid/portrait</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/grid/notebook</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>alothemes/product_page/config_display</path>
+      <value><![CDATA[{"_1601183793747_747":{"title":"Show Cart","selector":".product-info-main .actions-cart, .tocart","enabled":"1"},"_1601183797109_109":{"title":"Show Compare","selector":".product-info-main .tocompare","enabled":"1"},"_1601183798190_190":{"title":"Show Wishlist","selector":".product-info-main .towishlist","enabled":"1"},"_1601183832717_717":{"title":"Show Review","selector":".product-info-main .product-reviews-summary","enabled":"1"},"_1601518572381_381":{"title":"Show SKU","selector":".product-info-main .attribute.sku","enabled":"1"},"_1601953214789_789":{"title":"Stock Status","selector":".product-info-main .product-info-stock-sku .stock","enabled":"1"},"_1601953645904_904":{"title":"Price","selector":".product-info-main .price-box","enabled":"1"},"_1602553251992_992":{"title":"Show Sticky Cart","selector":".stickyCart .clSticky","enabled":"1"},"_1621218659272_272":{"title":"Delivery Return","selector":".delivery-return"},"_1621218670247_247":{"title":"Customer Services","selector":".service-customers"},"_1626244941270_270":{"title":"Deal Progress","selector":".product-info-main  .product-deal-special-progress"},"_1632475520267_267":{"title":"Brand","selector":".product-info-main .brand"},"_1632475607722_722":{"title":"Service Customer","selector":".service-customers"},"_1632564019276_276":{"title":"Offer Block","selector":".additional-timer-block .offer-product"}}]]></value>
+    </config>
+    <config>
+      <path>alothemes/product_page/tab_block</path>
+      <value><![CDATA[{"_1614654676883_883":{"title":"Custom Tab","block":"custom-tab","enabled":"1"}}]]></value>
+    </config>
+    <config>
+      <path>alothemes/related/landscape</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/related/tablet</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/related/notebook</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>alothemes/related/desktop</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/related/widescreen</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/related/visible</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/related/arrows</path>
+      <value><![CDATA[true]]></value>
+    </config>
+    <config>
+      <path>alothemes/upsell/autoplay</path>
+      <value><![CDATA[false]]></value>
+    </config>
+    <config>
+      <path>alothemes/upsell/landscape</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/upsell/tablet</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/upsell/notebook</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>alothemes/upsell/desktop</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/upsell/widescreen</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/upsell/visible</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/upsell/arrows</path>
+      <value><![CDATA[true]]></value>
+    </config>
+    <config>
+      <path>alothemes/crosssell/landscape</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/crosssell/tablet</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/crosssell/notebook</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>alothemes/crosssell/desktop</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/crosssell/widescreen</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/crosssell/visible</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>alothemes/crosssell/arrows</path>
+      <value><![CDATA[true]]></value>
+    </config>
+    <config>
+      <path>alothemes/recentorder/product_ids</path>
+      <value><![CDATA[1,3,12]]></value>
+    </config>
+    <config>
+      <path>alothemes/recentorder/autoplay</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>alothemes/recentorder/speed</path>
+      <value><![CDATA[9000]]></value>
+    </config>
+    <config>
+      <path>alothemes/recentorder/mobile</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>alothemes/labels/salePercent</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>alothemes/timer/enabled</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>alothemes/categorysearch/enabled</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>alothemes/categorysearch/depth</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>alothemes/newsletter/timeDelay</path>
+      <value><![CDATA[5000]]></value>
+    </config>
+    <config>
+      <path>alothemes/newsletter/width</path>
+      <value><![CDATA[750]]></value>
+    </config>
+    <config>
+      <path>alothemes/newsletter/height</path>
+      <value><![CDATA[]]></value>
+    </config>
+    <config>
+      <path>alothemes/newsletter/overlayColor</path>
+      <value><![CDATA[#000000]]></value>
+    </config>
+    <config>
+      <path>alothemes/font/google</path>
+      <value><![CDATA[Josefin Sans]]></value>
+    </config>
+    <config>
+      <path>alothemes/font/custom</path>
+      <value><![CDATA[Ano]]></value>
+    </config>
+    <config>
+      <path>alothemes/list/mobile</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>alothemes/list/portrait</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/list/landscape</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/list/tablet</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>alothemes/list/desktop</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>alothemes/list/visible</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>alothemes/list/padding</path>
+      <value><![CDATA[15]]></value>
+    </config>
+    <config>
+      <path>alodesign/general/developer</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>alodesign/header/color</path>
+      <value><![CDATA[{"_1460974842988_988":{"title":"Link","selector":".page-header a","color":"#000000","background":"","border":""},"_1460974844035_35":{"title":"Link hover","selector":".page-header a:hover","color":"#868686","background":"","border":""},"_1637289796797_797":{"title":"Link Focus","selector":".page-header a:focus, .page-header a:visited","color":"#000000","background":"","border":""},"_1461746040974_974":{"title":"Minicart qty","selector":".minicart-wrapper .action.showcart .counter.qty","color":"#ffffff","background":"#000000","border":"#000000"},"_1461747058784_784":{"title":"Minicart Dropdown","selector":".minicart-wrapper .block-minicart","color":"#000000","background":"#ffffff","border":"#ffffff"},"_1461746040514_514":{"title":"Minicart viewcart","selector":".block-minicart .block-content .actions .primary .viewcart","color":"#000000","background":"#dfdfdf","border":"#dfdfdf"},"_1461746040213_213":{"title":"Minicart viewcart hover","selector":".block-minicart .block-content .actions .primary .viewcart:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1633409330033_33":{"title":"Minicart No item ","selector":".minicart-wrapper .block-minicart .action.close","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1535266281871_871":{"title":"menu top","selector":".magicmenu","color":"","background":"rgba(0, 0, 0, 0)","border":""},"_1460974852706_706":{"title":"Background Drop-down-menu","selector":".magicmenu .nav-desktop .level0 .full-width, .magicmenu .nav-desktop .level0 .level-top-mega, .magicmenu .nav-desktop .level0.dropdown .level0, .magicmenu .nav-desktop .level0.dropdown .hasChild ul, .magicmenu .nav-desktop .level0.dropdown .hasChild ul","color":"","background":"#ffffff","border":"#dfdfdf"},"_1460974853562_562":{"title":"Item-menu","selector":".magicmenu .nav-desktop .level0 .level-top","color":"#000000","background":"","border":""},"_1460975123617_617":{"title":"Item-menu(hover,active)","selector":".magicmenu .nav-desktop .level0.over a, .magicmenu .nav-desktop .level0.active > a, .magicmenu .nav-desktop .level0.active > a span.icon-text, .magicmenu .nav-desktop .level0 a:hover, .magicmenu .nav-desktop .level0 a.icon-text:hover, .magicmenu .nav-desktop .level0.dropdown .level-top:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":""},"_1631068631011_11":{"title":"Item-menu(hover,active)","selector":".magicmenu .nav-desktop .level0 .level-top > span:not(.icon):before, .magicmenu .nav-desktop .level0 .level-top > span:not(.boder-menu):before","color":"","background":"#000000","border":""},"_1460975135746_746":{"title":"Drop-down-menu-link-leve2","selector":".magicmenu .nav-desktop .level0 .level-top-mega .level0 > .level1 > a","color":"#ffffff","background":"","border":""},"_1460975138353_353":{"title":"Drop-down-menu-link-hover","selector":".magicmenu .nav-desktop .level0 .level-top-mega .children a:hover,.magicmenu .nav-desktop .level0.home .level-top-mega div a:hover,.magicmenu .nav-desktop .level0.dropdown a:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":""},"_1466091462366_366":{"title":"Label New Menu","selector":".magicmenu .nav-desktop .level0 .level-top .cat_label, .magicmenu .nav-desktop .level0 .cat_label, .mean-container .mean-nav ul li a span.cat_label, .vmagicmenu .level0 .cat_label, .vmagicmenu .level0 .level-top-mega .children .cat_label","color":"#ffffff","background":"#5eac12","border":""},"_1466091463701_701":{"title":"Label Sale Menu","selector":".magicmenu .nav-desktop .level0 .cat_label.Sale, .magicmenu .nav-desktop .level0 .cat_label.sale, .magicmenu .nav-desktop .level0 .level-top-mega .children a .cat_label.sale, .magicmenu .nav-desktop .level0 .level-top-mega .children a .cat_label.Sale, .vmagicmenu .level0 .cat_label.Sale, .vmagicmenu .level0 .cat_label.sale, .vmagicmenu .level0 .level-top-mega .children .cat_label.sale, .vmagicmenu .level0 .level-top-mega .children .cat_label.Sale, .mean-container .mean-nav ul li a span.cat_label.sale, .mean-container .mean-nav ul li a span.cat_label.Sale","color":"#ffffff","background":"#ff6600","border":""},"_1466091464549_549":{"title":"Label Hot Menu","selector":".magicmenu .nav-desktop .level0 .cat_label.Hot, .magicmenu .nav-desktop .level0 .cat_label.hot, .magicmenu .nav-desktop .level0 .cat_label.HOT, .vmagicmenu .level0 .cat_label.Hot, .vmagicmenu .level0 .cat_label.hot, .vmagicmenu .level0 .cat_label.HOT, .vmagicmenu .level0 .level-top-mega .children .cat_label.hot, .vmagicmenu .level0 .level-top-mega .children .cat_label.Hot, .vmagicmenu .level0 .level-top-mega .children .cat_label.HOT, .mean-container .mean-nav ul li a span.cat_label.hot, .mean-container .mean-nav ul li a span.cat_label.Hot, .mean-container .mean-nav ul li a span.cat_label.HOT","color":"#ffffff","background":"#ff0000","border":""},"_1636947266451_451":{"title":"Header Toggle Tab","selector":"header .header-content .toggle-tab","color":"#000000","background":"","border":""},"_1630295262515_515":{"title":"Header Account Onclick","selector":".header-account","color":"#000000","background":"","border":""},"_1630295297376_376":{"title":"Header Account Onclick Hover","selector":".header-account .onclick:hover","color":"#000000","background":"","border":""},"_1634831561361_361":{"title":"Header Account Content","selector":".header-account .toggle-content","color":"","background":"#ffffff","border":""},"_1477037000958_958":{"title":"Language, Currency ","selector":".currency_top, .top-form-language","color":"","background":"","border":"#e5e5e5"},"_1630295408983_983":{"title":"Language, Currency Dropdown","selector":".top-form-language .switcher-dropdown, .currency_top .switcher-dropdown","color":"","background":"#ffffff","border":""},"_1630295458135_135":{"title":"Language, Currency Dropdown A","selector":".top-form-language .switcher-options a, .currency_top .switcher-options a","color":"#000000","background":"","border":""},"_1630295467641_641":{"title":"Language, Currency Dropdown A Hover","selector":".top-form-language .switcher-options a:hover, .currency_top .switcher-options a:hover","color":"#868686","background":"","border":""},"_1636947771771_771":{"title":"Language, Currency Strong","selector":".top-form-language .switcher-trigger strong, .currency_top .switcher-trigger strong","color":"#868686","background":"","border":""},"_1636948027492_492":{"title":"Static, Custom Link Li","selector":".header-static-links li, .header-static-custom li","color":"","background":"","border":""},"_1631069010529_529":{"title":"Form Search","selector":".block-search .form-search","color":"","background":"","border":"#e5e5e5"},"_1632296826112_112":{"title":"Form Search Content","selector":".header-search .toggle-content","color":"","background":"#ffffff","border":""},"_1477037070441_441":{"title":"Form Search Input","selector":"header .form-search input.input-text","color":"","background":"#ffffff","border":"rgba(0, 0, 0, 0)"},"_1477037071621_621":{"title":"Button Search","selector":"header .form-search .action.search","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1631069772051_51":{"title":"Search Category Box","selector":".block-search .form-search .field.search .catalogsearch-box #categories-box","color":"#000000","background":"#ffffff","border":""},"_1631069853149_149":{"title":"Search Category Box Item Hover","selector":".block-search .form-search .field.search .catalogsearch-box #categories-box .cat-list li:hover","color":"#868686","background":"","border":""},"_1631072026818_818":{"title":"Wishlist A","selector":".wishlist .action.showlike a","color":"#000000","background":"","border":""},"_1631072048993_993":{"title":"Minicart Showcart","selector":".minicart-wrapper .action.showcart","color":"#000000","background":"","border":""},"_1630923595644_644":{"title":"Nav Toggle Span","selector":".nav-toggle .icon span","color":"","background":"#000000","border":""},"_1626687648975_975":{"title":"Header Top","selector":".header-top","color":"#868686","background":"","border":"#e5e5e5"},"_1626688011404_404":{"title":"Header Top A","selector":".header-top a","color":"#868686","background":"","border":""},"_1627369959439_439":{"title":"Header Top A Focus","selector":".header-top a:focus, .header-top a:visited","color":"#868686","background":"","border":""},"_1626688022930_930":{"title":"Header Top A Hover","selector":".header-top a:hover","color":"#000000","background":"","border":""},"_1637210925552_552":{"title":"Header","selector":".header-content","color":"#000000","background":"","border":""},"_1628479489861_861":{"title":"Header Fixed","selector":".header-container-fixed","color":"","background":"#ffffff","border":"#e5e5e5"},"_1630921789245_245":{"title":"Header Toolbar Mobile","selector":".main-toolbar-mobile","color":"","background":"#ffffff","border":"#e5e5e5"},"_1630921828668_668":{"title":"Header Toolbar Mobile Menu","selector":".main-toolbar-mobile .item-mobile a .icon span","color":"","background":"#000000","border":""},"_1631086042813_813":{"title":"Nav Section Title","selector":".nav-sections .nav-sections-item-title","color":"","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1631086000454_454":{"title":"Nav Section Title Line","selector":".nav-sections .nav-sections-item-title:before","color":"","background":"#000000","border":""},"_1632281669497_497":{"title":"Onmap Close","selector":".onmap .btn-close","color":"","background":"#ffffff","border":"#e5e5e5"},"_1632281548810_810":{"title":"Onmap Close Line","selector":".onmap .btn-close:before, .onmap .btn-close:after","color":"","background":"#000000","border":""},"_1632281688603_603":{"title":"Onmap Close Hover ","selector":".onmap .btn-close:hover","color":"","background":"","border":"#d6d6d6"},"_1632281604005_5":{"title":"Onmap Close Hover Line","selector":".onmap .btn-close:hover:before, .onmap .btn-close:hover:after","color":"","background":"#e5e5e5","border":""},"_1631085933528_528":{"title":"Menu Mobile A","selector":".nav-mobile li a","color":"#000000","background":"","border":"#e5e5e5"},"_1631085956102_102":{"title":"Menu Mobile A Hover","selector":".nav-mobile li a:hover","color":"#868686","background":"","border":""},"_1632276675672_672":{"title":"Menu Mobile Title","selector":".nav-sections .close-menu","color":"#000000","background":"#000000","border":""},"_1632277394594_594":{"title":"Menu Mobile Account A","selector":".nav-sections .nav-sections-item-content .header.links li .customer-name, .nav-sections .nav-sections-item-content .header.links li a","color":"","background":"","border":"#e5e5e5"},"_1632277424299_299":{"title":"Menu Mobile Language A","selector":".nav-sections .nav-sections-item-content .top-form-language","color":"","background":"","border":"#e5e5e5"},"_1637289707385_385":{"title":"Menu Mobile Language Strong","selector":".nav-sections .top-form-language .switcher-trigger strong, .nav-sections .currency_top .switcher-trigger strong","color":"#000000","background":"","border":""},"_1632191817511_511":{"title":"Sticky Toolbar Menu","selector":".sticky-toolbar-mobile .main-toolbar-mobile .item-mobile a","color":"#000000","background":"","border":""}}]]></value>
+    </config>
+    <config>
+      <path>alodesign/content/color</path>
+      <value><![CDATA[{"_1627263879230_230":{"title":"Home Page","selector":".cms-index-index","color":"#868686","background":"","border":""},"_1628591109475_475":{"title":"Slider Caption 1","selector":".text-slide .caption1","color":"#000000","background":"","border":""},"_1628591120418_418":{"title":"Slider Caption 2","selector":".text-slide .caption2","color":"#000000","background":"","border":""},"_1628591119618_618":{"title":"Slider Action","selector":".text-slide .action","color":"#ffffff","background":"#000000","border":"#000000"},"_1636948541164_164":{"title":"Slider Action Hover","selector":".text-slide .action:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1637200356174_174":{"title":"Slider Action Effect","selector":".text-slide .action:before","color":"","background":"#ffffff","border":""},"_1638162178994_994":{"title":"Slider Home Arrow","selector":".slide-showcase .magicslider .slick-prev,.slide-showcase .magicslider .slick-next","color":"","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1638244752544_544":{"title":"Slider Home  Arrow Icon","selector":".slide-showcase .magicslider .slick-prev:before, .slide-showcase .magicslider .slick-next:before","color":"#e5e5e5","background":"","border":""},"_1638162233179_179":{"title":"Slider Home  Arrow Hover","selector":".slide-showcase .magicslider .slick-prev:hover, .slide-showcase .magicslider .slick-next:hover","color":"","background":"#000000","border":"#000000"},"_1638162353473_473":{"title":"Slider Dots","selector":".slide-showcase .slick-dots li button","color":"","background":"#000000","border":"rgba(0, 0, 0, 0)"},"_1638162299454_454":{"title":"Slider Dots Hover, Active","selector":".slide-showcase .slick-dots li:hover button, .slide-showcase .slick-dots li.slick-active button","color":"","background":"#000000","border":"rgba(0, 0, 0, 0)"},"_1638245036998_998":{"title":"Slide Arrow","selector":"#html-body .slick-slider .slick-prev,#html-body .slick-slider .slick-next","color":"","background":"","border":"#e5e5e5"},"_1638246990045_45":{"title":"Slide Arrow Hover","selector":"#html-body .slick-slider .slick-prev:hover, #html-body .slick-slider .slick-next:hover","color":"","background":"","border":"#000000"},"_1638262419756_756":{"title":"Static Product Overlay","selector":".static--product.product-style-1 .product-items .product-item .product-item-info:before","color":"","background":"#000000","border":""},"_1637209682285_285":{"title":"Rating Star","selector":".rating-summary .rating-result > span:before","color":"#edc128","background":"","border":""},"_1637223908054_54":{"title":"Brand","selector":".home-static-brand .shopbrand ","color":"","background":"","border":"#e5e5e5"},"_1638328312843_843":{"title":"Brand Item","selector":".home-static-brand .item","color":"","background":"","border":"#e5e5e5"},"_1638266347266_266":{"title":"Banner 1 Detail","selector":".banner.banner--style--1 .banner-details","color":"#ffffff","background":"","border":""},"_1638430043613_613":{"title":"Banner 1 A","selector":".banner.banner--style--1 .banner-details a:before, .banner.banner--style--1 .banner-details a","color":"#000000","background":"","border":""},"_1638266365271_271":{"title":"Banner 1 A Line","selector":".banner.banner--style--1 .banner-details a:before, .banner.banner--style--1 .banner-details a:after","color":"","background":"#000000","border":""},"_1638430686800_800":{"title":"Banner 1 Detail Center H2","selector":".banner.banner--style--1 .banner-details h2","color":"#ffffff","background":"","border":""},"_1638430704506_506":{"title":"Banner 1 Detail Center A","selector":".banner.banner--style--1 .banner-details.banner-detail-center a","color":"#ffffff","background":"","border":"#ffffff"},"_1638430731878_878":{"title":"Banner 1 Detail Center A Hover","selector":".banner.banner--style--1 .banner-details.banner-detail-center a:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#ffffff"},"_1638430771099_99":{"title":"Banner 1 Detail Center A Effect","selector":".banner.banner--style--1 .banner-details.banner-detail-center a:before","color":"","background":"#ffffff","border":""},"_1638431603402_402":{"title":"Banner 1 Detail Special Label Arrow","selector":".banner.banner--style--1 .banner-details.banner-detail-special-label p span:before","color":"","background":"","border":"#9a744d"},"_1638245817779_779":{"title":"Subscribe Title","selector":".block--subcribe .block-title","color":"#000000","background":"","border":""},"_1638245900654_654":{"title":"Subscribe Subtitle","selector":".block--subcribe .field .subscribe-panel .panel-text","color":"#6d6d6d","background":"","border":""},"_1638433184210_210":{"title":"Banner 2 Product Info","selector":".banner.banner--style--2 .products.wrapper.grid .product-item .product-item-info","color":"","background":"rgba(0, 0, 0, 0)","border":""},"_1638433875315_315":{"title":"Banner 2 A","selector":".banner.banner--style--2 .action a","color":"#ffffff","background":"#000000","border":"#000000"},"_1638433891640_640":{"title":"Banner 2 A Hover","selector":".banner.banner--style--2 .action a:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1638433910785_785":{"title":"Banner 2 A Effect","selector":".banner.banner--style--2 .action a:before","color":"","background":"#ffffff","border":""},"_1638434393764_764":{"title":"Banner 2 Product A","selector":".banner.banner--style--2 .products.wrapper.grid .product-item-name a","color":"#6d6d6d","background":"","border":""},"_1638434419430_430":{"title":"Banner 2 Product A Hover","selector":".banner.banner--style--2 .products.wrapper.grid .product-item-name a:hover","color":"#000000","background":"","border":""},"_1638434328107_107":{"title":"Banner 2 Timer Box","selector":".banner.banner--style--2 .product-items .product-item .product-item-info .images-container .alo-count-down .timer-box .timer-box-content","color":"","background":"rgba(0, 0, 0, 0)","border":""},"_1638434343755_755":{"title":"Banner 2 Timer Box Count","selector":".banner.banner--style--2 .product-items .product-item .product-item-info .images-container .alo-count-down .timer-box .timer-box-content span:not(.title)","color":"","background":"#ffffff","border":""},"_1638435622490_490":{"title":"Block About A","selector":".block--about.about--home .block-details a","color":"#ffffff","background":"#000000","border":"#000000"},"_1638435640696_696":{"title":"Block About A Hover","selector":".block--about.about--home .block-details a:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1638435652368_368":{"title":"Block About A Effect","selector":".block--about.about--home .block-details a:before","color":"","background":"#ffffff","border":""},"_1638503530291_291":{"title":"Testimonial Home Arrow","selector":".testimonial--slider .slick-slider .slick-prev, .testimonial--slider .slick-slider .slick-next","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1638503970922_922":{"title":"Testimonial Home Arrow Hover","selector":".testimonial--slider .slick-slider .slick-prev:hover, .testimonial--slider .slick-slider .slick-next:hover","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1638503568176_176":{"title":"Testimonial Home Arrow Icon","selector":".testimonial--slider .slick-slider .slick-prev:before, .testimonial--slider .slick-slider .slick-next:before","color":"#301413","background":"","border":""},"_1638503631767_767":{"title":"Testimonial Home Arrow Hover Icon ","selector":".testimonial--slider .slick-slider .slick-prev:hover:before, .testimonial--slider .slick-slider .slick-next:hover:before","color":"#000000","background":"","border":""},"_1638516073364_364":{"title":"Testimonia Company","selector":".testimonial--slider.testimonial--home .slick-slide .alo-item .item-info .item-info-detail .company","color":"#000000","background":"","border":""},"_1638516112712_712":{"title":"Testimonia Name","selector":".testimonial--slider.testimonial--home .slick-slide .alo-item .item-info .item-info-images .name","color":"#000000","background":"","border":""}}]]></value>
+    </config>
+    <config>
+      <path>alodesign/footer/color</path>
+      <value><![CDATA[{"_1460975745240_240":{"title":"Link","selector":".page-footer a","color":"#6d6d6d","background":"","border":""},"_1460975746527_527":{"title":"Link Hover","selector":".page-footer a:hover","color":"#000000","background":"","border":""},"_1630402816987_987":{"title":"Link Focus","selector":".page-footer a:focus, .page-footer a:visited","color":"#6d6d6d","background":"","border":""},"_1630402675219_219":{"title":"Subscribe Title","selector":".page-footer .form.subscribe .block-content .block-title","color":"#000000","background":"","border":""},"_1460975764064_64":{"title":"Subscribe Text","selector":".footer .collapsible .form-subscribe-header p","color":"#000000","background":"","border":""},"_1460975765095_95":{"title":"Subscribe input","selector":".block-subscribe input.input-text","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1637294976383_383":{"title":"Subscribe input Focus","selector":".block-subscribe input.input-text:focus","color":"","background":"","border":"#e5e5e5"},"_1460975766584_584":{"title":"Subscribe Button","selector":".block-subscribe .actions button.button","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1460975767584_584":{"title":"Subscribe Button Hover","selector":".block-subscribe .actions button.button:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1638516227779_779":{"title":"Subscribe Notice","selector":".page-footer .form.subscribe .block-content .field.newsletter .visible #newsletter-error","color":"","background":"#ffffff","border":""},"_1476980402084_84":{"title":"Footer Title","selector":".ft-title","color":"#000000","background":"","border":""},"_1461745578874_874":{"title":"Backtotop","selector":"#backtotop","color":"#000000","background":"#ffffff","border":"#000000"},"_1461745619738_738":{"title":"Backtotop hover","selector":"#backtotop:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1630402205310_310":{"title":"Footer Social Item","selector":".page-footer .social-profile li a","color":"","background":"","border":"#e5e5e5"},"_1630402234952_952":{"title":"Footer Social Item Hover","selector":".page-footer .social-profile li a:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1630404613165_165":{"title":"Copyright A","selector":".copyright-custom-link li a","color":"#000000","background":"","border":""},"_1631073796927_927":{"title":"Copyright A Focus","selector":".copyright-custom-link li a:focus, .copyright-custom-link li a:visited","color":"#000000","background":"","border":""},"_1630404630733_733":{"title":"Copyright A Hover","selector":".copyright-custom-link li a:hover","color":"#868686","background":"","border":""},"_1627275211504_504":{"title":"Page Footer","selector":".page-footer","color":"","background":"#f8f8f8","border":""},"_1630402131393_393":{"title":"Footer Bottom","selector":".block-footer-bottom","color":"","background":"","border":"#e5e5e5"},"_1630402130704_704":{"title":"Footer Links Company","selector":".footer-links-company","color":"","background":"","border":"#e5e5e5"},"_1638246058425_425":{"title":"Footer Top","selector":".block-footer-top","color":"","background":"","border":"#e5e5e5"}}]]></value>
+    </config>
+    <config>
+      <path>alodesign/extra_css/color</path>
+      <value><![CDATA[.slick-dots li button{
+background-color: rgba(0, 0, 0, .3);
+}
+.nav-open .header-tool .nav-toggle:after{
+background-color: rgba(0, 0, 0, .5);
+}
+.header-search .toggle-tab:after{
+background-color: rgba(0, 0, 0, .5);
+}
+.post-view .post-holder .post-ftimg-hld .post-header{
+background: -webkit-linear-gradient(top,transparent,rgba(0,0,0,.85));
+background: linear-gradient(180deg,transparent 0,rgba(0,0,0,.85));
+color: #ffffff;
+}
+
+.block.related-post.related .block-content .post-ftimg-hld:before{
+background-color: rgba(255, 255, 255, 0.3);
+}
+
+.modals-overlay{
+background-color: rgba(0, 0, 0, .7);
+}
+
+body._has-modal-custom .modal-custom-overlay{
+background-color: rgba(0, 0, 0, .7);
+}
+
+@media(max-width: 1199px){
+.nav-sections{
+background-color: #ffffff;
+}
+}
+
+
+@media(max-width: 767px){
+.opc-summary-wrapper.opc-sidebar .modal-header .action-close{
+background-color: rgba(0, 0, 0, 0);
+border-color: rgba(0, 0, 0, 0);
+color: #000000;
+}
+.block-title-tabs .toggle-content{
+background-color: #fff;
+}
+.service--about{
+border-color: #bbbbbb;
+}
+.service--about .service__item .service__item__content{
+border-color: #bbbbbb;
+}
+}]]></value>
+    </config>
+    <config>
+      <path>alodesign/base/color</path>
+      <value><![CDATA[{"_1460970308665_665":{"title":"Text","selector":"body","color":"#868686","background":"#ffffff","border":""},"_1614308780685_685":{"title":"Tag.slick-prev, .slick-next","selector":"h1,h2,h3,h4,h5,h6","color":"#000000","background":"","border":""},"_1460973866805_805":{"title":"Link","selector":"a","color":"#868686","background":"","border":""},"_1460970355783_783":{"title":"Links hover","selector":"a:hover","color":"#000000","background":"","border":""},"_1614588802867_867":{"title":"Links Focus, Visited","selector":"a:focus, a:visited","color":"#868686","background":"","border":""},"_1460973917197_197":{"title":"Input","selector":"input, input[type=\"text\"], input[type=\"password\"], input[type=\"url\"], input[type=\"tel\"], input[type=\"search\"], input[type=\"number\"], input[type=\"datetime\"], input[type=\"email\"]","color":"#000000","background":"#ffffff","border":"#e5e5e5"},"_1621329771399_399":{"title":"Input Error","selector":"input.mage-error","color":"","background":"","border":"#ed8380"},"_1614322453183_183":{"title":"Textarea","selector":"textarea","color":"#000000","background":"#ffffff","border":"#e5e5e5"},"_1620877792364_364":{"title":"select","selector":"select","color":"#000000","background":"#ffffff","border":"#e5e5e5"},"_1614309795440_440":{"title":"Input Placeholder","selector":"input::placeholder, textarea::placeholder","color":"#868686","background":"","border":""},"_1614309956654_654":{"title":"Button","selector":"button","color":"#ffffff","background":"#222222","border":"#222222"},"_1614310025948_948":{"title":"Button Hover","selector":"button:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1614588851853_853":{"title":"Button Focus, Visited","selector":"button:focus, button:active","color":"#ffffff","background":"#222222","border":"#222222"},"_1621225503596_596":{"title":"Table","selector":"table","color":"","background":"","border":"#e5e5e5"},"_1621225513396_396":{"title":"Table Th, Td","selector":".table:not(.cart):not(.totals) > thead > tr > th, .table:not(.cart):not(.totals) > tbody > tr > th, .table:not(.cart):not(.totals) > tfoot > tr > th, .table:not(.cart):not(.totals) > thead > tr > td, .table:not(.cart):not(.totals) > tbody > tr > td, .table:not(.cart):not(.totals) > tfoot > tr > td, table td, table th, .table td, .table th","color":"","background":"","border":"#e5e5e5"},"_1621649123099_99":{"title":"Mark","selector":".mark, mark","color":"","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1614740677491_491":{"title":"Label Required","selector":".fieldset>.field.required>.label:after, .fieldset>.fields>.field.required>.label:after, .fieldset>.field._required>.label:after, .fieldset>.fields>.field._required>.label:after","color":"#e02b27","background":"","border":""},"_1614310400423_423":{"title":"Sale Label ","selector":".cat_label.Sale","color":"#ffffff","background":"#f95a00","border":""},"_1614311005944_944":{"title":"Arrow Down Label Sale Menu","selector":".magicmenu .nav-desktop .level0 .level-top span.cat_label.Sale:before","color":"","background":"","border":"#f95a00"},"_1614310482239_239":{"title":"New Label ","selector":".cat_label.New","color":"#ffffff","background":"#5eac12","border":""},"_1620554716881_881":{"title":"New Label  Arrow","selector":".cat_label.New:after","color":"","background":"","border":"#5eac12"},"_1614310876452_452":{"title":"Hot Label ","selector":".cat_label.Hot","color":"#ffffff","background":"#ff0000","border":""},"_1614311091940_940":{"title":"New Label  Arrow","selector":".cat_label.Hot:after","color":"","background":"","border":"#ff0000"},"_1614311218100_100":{"title":"Arrow Slider","selector":".slick-slider .slick-prev, .slick-slider .slick-next","color":"","background":"#ffffff","border":"#000000"},"_1614311402628_628":{"title":"Arrow Slider Hover","selector":".slick-slider .slick-prev:hover, .slick-slider .slick-next:hover","color":"","background":"#000000","border":"#000000"},"_1614311323285_285":{"title":"Arrow Slider Icon","selector":".slick-slider .slick-prev:before, .slick-slider .slick-next:before","color":"#000000","background":"","border":""},"_1614311499004_4":{"title":"Arrow Slider Hover Icon","selector":".slick-slider .slick-prev:hover:before, .slick-slider .slick-next:hover:before","color":"#ffffff","background":"","border":""},"_1621415768561_561":{"title":"Magic Slider Button Hover","selector":".magicslider button:hover","color":"","background":"","border":"#000000"},"_1621415883175_175":{"title":"Magic Slider Button Focus","selector":".magicslider button:focus, .magicslider button:visited","color":"","background":"","border":"#000000"},"_1614314126682_682":{"title":"Dot Button","selector":".slick-dots li button","color":"","background":"#ffffff","border":""},"_1614314148571_571":{"title":"Dot Button Active","selector":".slick-dots li.slick-active button","color":"","background":"#000000","border":""},"_1621910372925_925":{"title":"Dot Button Hover","selector":".slick-dots li:hover button","color":"","background":"#000000","border":""},"_1625458560082_82":{"title":"Block Title Tab Line","selector":".block-title-tabs:before","color":"","background":"#d8d8d8","border":""},"_1625458590046_46":{"title":"Block Title Tab Sub","selector":".block-title-tabs .sub-title","color":"#a3a3a3","background":"","border":""},"_1614314340555_555":{"title":"Tab Title","selector":".block-title-tabs .magictabs .item .title","color":"#bbbbbb","background":"","border":""},"_1614399753904_904":{"title":"Tab Title Inner","selector":".block-title-tabs .magictabs .item .title:before","color":"","background":"","border":"#000000"},"_1614314404188_188":{"title":"Tab Title Active","selector":".block-title-tabs .magictabs .item.activated .title, .block-title-tabs .magictabs .item:hover .title","color":"#000000","background":"","border":""},"_1622185797453_453":{"title":"Tab Title Line","selector":".block-title-tabs .magictabs .item.activated:before","color":"","background":"#000000","border":""},"_1614314482299_299":{"title":"Toggle Tab","selector":".toggle-tab","color":"#000000","background":"","border":""},"_1638257440027_27":{"title":"Toggle Tab Line","selector":".toggle-tab span","color":"","background":"#000000","border":""},"_1600416180133_133":{"title":"Page Title","selector":".page-title-wrapper .page-title","color":"#000000","background":"","border":""},"_1614314565030_30":{"title":"Block Heading Line","selector":".block__heading:before","color":"","background":"#e8e8e8","border":""},"_1625470432349_349":{"title":"Block Sub Title","selector":".block__heading .block__heading--sub","color":"#a3a3a3","background":"","border":""},"_1614314612018_18":{"title":"Social Profile Links","selector":".social-profile li a","color":"#000000","background":"","border":""},"_1614314682450_450":{"title":"Social Profile Links Hover","selector":".social-profile li a:hover","color":"#aaaaaa","background":"","border":""},"_1614589059670_670":{"title":"Social Profile Links Focus","selector":".social-profile li a:focus ","color":"#000000","background":"","border":""},"_1614334800260_260":{"title":"Product Gird Item","selector":".products.wrapper.grid .product-item .product-item-info","color":"","background":"#ffffff","border":""},"_1614335134398_398":{"title":"Product Lable","selector":".product-label .sticker","color":"#000000","background":"","border":""},"_1620722036088_88":{"title":"Product New","selector":".labelnew","color":"#5eac12","background":"#ffffff","border":""},"_1620722000056_56":{"title":"Product Hot","selector":".labelhot","color":"#ff6f00","background":"#ffffff","border":""},"_1620721999598_598":{"title":"Product Sale","selector":".labelsale","color":"#ff3939","background":"#ffffff","border":""},"_1614417420118_118":{"title":"Product Price","selector":".price","color":"#000000","background":"","border":""},"_1614417584822_822":{"title":"Product Old Price","selector":".old-price .price","color":"#a3a3a3","background":"","border":""},"_1620726657228_228":{"title":"Product Stock In","selector":".stock.available> span","color":"#5eac12","background":"","border":""},"_1620726736154_154":{"title":"Product Stock Out","selector":".stock.unavailable> span","color":"#e02b27","background":"","border":""},"_1614840426741_741":{"title":"Product Old Option Text Select","selector":".product-item .product-item-info .swatch-attribute-options .swatch-option.text.selected","color":"#000000","background":"","border":"#000000"},"_1620813244557_557":{"title":"Product Old Option Color","selector":".products.wrapper [class*=\"swatch-opt-\"] .swatch-attribute.color .swatch-option:before","color":"","background":"rgba(0, 0, 0, 0)","border":"#868686"},"_1614335167770_770":{"title":"Product Action","selector":".products.wrapper .product-item-actions .action","color":"#000000","background":"#ffffff","border":"#000000"},"_1620741876112_112":{"title":"Product Description","selector":".products.wrapper .product-item-actions","color":"","background":"","border":"#e5e5e5"},"_1620809305342_342":{"title":"Product Swatch","selector":".products.wrapper.grid [class*=\"swatch-opt-\"]","color":"","background":"#ffffff","border":""},"_1625713547492_492":{"title":"Product Timer","selector":".products.wrapper.grid .product-timer","color":"","background":"","border":"#000000"},"_1625714129274_274":{"title":"Product Timer Label","selector":".products.wrapper.grid .product-timer .label","color":"#a3a3a3","background":"","border":""},"_1621103402051_51":{"title":"Product Countdown Number","selector":".alo-count-down .countdown .timer-box .timer-box-content b","color":"#000000","background":"","border":""},"_1625714209435_435":{"title":"Product Countdown Title","selector":".alo-count-down .countdown .timer-box .timer-box-content .title","color":"#000000","background":"","border":""},"_1623835781124_124":{"title":"Product Deal Special  Progress","selector":".product-deal-special-progress .deal-progress .deal-progress-bar","color":"","background":"#4bc871","border":""},"_1623835786242_242":{"title":"Product Deal Stock Available","selector":".product-deal-special-progress .deal-stock-label .stock-available strong","color":"#000000","background":"","border":""},"_1623835786051_51":{"title":"Product Deal Stock Sold","selector":".product-deal-special-progress .deal-stock-label .stock-sold strong","color":"#ff4545","background":"","border":""},"_1630404823731_731":{"title":"Add To Links","selector":".products.wrapper .product-item-actions .action","color":"#000000","background":"#ffffff","border":"#ffffff"},"_1614335221473_473":{"title":"Add To Links Hover","selector":".products.wrapper .product-item-actions .action:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1620722246661_661":{"title":"Add To Links Add Cart","selector":".products.wrapper .product-item-actions .action.tocart","color":"#ffffff","background":"#000000","border":"#000000"},"_1620722267363_363":{"title":"Add To Links Add Cart Hover","selector":".products.wrapper .product-item-actions .action.tocart:hover","color":"#000000","background":"#ffffff","border":"#ffffff"},"_1632472039492_492":{"title":"Product List Quickview Icon","selector":".products.wrapper.list .link-view .quickview","color":"#8d8d8d","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1632472381141_141":{"title":"Product List Quickview Icon Hover","selector":".products.wrapper.list .link-view .quickview:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1632472090440_440":{"title":"Product List  Wishlist","selector":".products.wrapper.list .product-item-actions .action.towishlist","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1632472191256_256":{"title":"Product List  Wishlist Hover","selector":".products.wrapper.list .product-item-actions .action.towishlist:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1632472215387_387":{"title":"Product List  Compare","selector":".products.wrapper.list .product-item-actions .action.tocompare","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1632472243195_195":{"title":"Product List  Compare Hover","selector":".products.wrapper.list .product-item-actions .action.tocompare:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1632472422684_684":{"title":"Product List Add Cart Hover","selector":".products.wrapper.list .product-item-actions .action.tocart:hover","color":"#ffffff","background":"#222222","border":"#222222"},"_1637311524854_854":{"title":"Product List Coundown","selector":".products.wrapper.grid .alo-count-down .timer-box .timer-box-content","color":"","background":"#ffffff","border":"#e5e5e5"},"_1638501947320_320":{"title":"Product Detail Breadcrumb","selector":".catalog-product-view .breadcrumbs li","color":"#868686","background":"","border":""},"_1638498842584_584":{"title":"Product Detail Breadcrumb A","selector":".catalog-product-view .breadcrumbs li a","color":"#868686","background":"","border":""},"_1638498925483_483":{"title":"Product Detail Breadcrumb A Hover","selector":".catalog-product-view .breadcrumbs li a:hover","color":"#000000","background":"","border":""},"_1638498939644_644":{"title":"Product Detail Breadcrumb Strong","selector":".catalog-product-view .breadcrumbs li strong","color":"#868686","background":"","border":""},"_1614396692358_358":{"title":"Cookie ","selector":".message.global.cookie.magepow-gdpr-cookie-notice","color":"#8d8d8d","background":"#000000","border":""},"_1615190836174_174":{"title":"Modal Popup","selector":".modal-popup.modal-slide .modal-inner-wrap[class]","color":"","background":"#ffffff","border":""},"_1625566482547_547":{"title":"Modal Popup Ajaxcart","selector":".modal-popup.modals-ajaxcart._show .modal-inner-wrap","color":"","background":"rgba(0, 0, 0, 0)","border":""},"_1621494529976_976":{"title":"Popup Close Button","selector":".modal-popup .modal-header .action-close","color":"#000000","background":"#ffffff","border":"#e5e5e5"},"_1627014688742_742":{"title":"Popup Close Button Line","selector":".modal-popup .modal-header .action-close:before, .modal-popup .modal-header .action-close:after","color":"","background":"#000000","border":""},"_1621494562179_179":{"title":"Popup Close Button Hover","selector":".modal-popup .modal-header .action-close:hover","color":"#ffffff","background":"#ffffff","border":"#e5e5e5"},"_1627014719883_883":{"title":"Popup Close Button Hover Line","selector":".modal-popup .modal-header .action-close:hover:before, .modal-popup .modal-header .action-close:hover:after","color":"","background":"#e5e5e5","border":""},"_1614397164618_618":{"title":"NewsLetter Title","selector":".modal-popup.popup-newsletter .modal-content .block-content .promo-text","color":"#000000","background":"","border":""},"_1614397198502_502":{"title":"Newsletter Caption","selector":".modal-popup.popup-newsletter .modal-content .block-content .caption","color":"#555555","background":"","border":""},"_1614398679092_92":{"title":"Newsletter Caption Inner","selector":".modal-popup.popup-newsletter .modal-content .block-content .caption span","color":"#000000","background":"","border":""},"_1614397258917_917":{"title":"Newsletter Input Placeholder","selector":".modal-popup .modal-content .block-content .input-box .input-text::placeholder","color":"#868686","background":"","border":""},"_1614397332125_125":{"title":"Newsletter Action","selector":".modal-popup.popup-newsletter .modal-content .block-content .actions .action.button","color":"#ffffff","background":"#000000","border":"#000000"},"_1614397373590_590":{"title":"Newsletter Action Hover","selector":".modal-popup.popup-newsletter .modal-content .block-content .actions .action.button:hover","color":"#000000","background":"#ffffff","border":"#e5e5e5"},"_1614589162503_503":{"title":"Newsletter Action Focus","selector":".modal-popup.popup-newsletter .modal-content .block-content .actions .action.button:focus","color":"#ffffff","background":"#000000","border":"#000000"},"_1614398810217_217":{"title":"Newsletter Bottom","selector":".modal-popup.popup-newsletter .modal-content .block-content .subscribe-bottom label","color":"#aaaaaa","background":"","border":""},"_1622304246420_420":{"title":"Newsletter Error","selector":".modal-popup.popup-newsletter .cms-newsletter .subcribe-box .control div.mage-error[generated]","color":"","background":"#ffffff","border":""},"_1627014776562_562":{"title":"Authentication Content","selector":".modal-popup.popup-authentication .modal-content","color":"","background":"","border":"#e5e5e5"},"_1621498314546_546":{"title":"Authentication Title","selector":".modal-popup.popup-authentication .modal-content .block-title","color":"#000000","background":"#ffffff","border":""},"_1621498315651_651":{"title":"Authentication Title Line","selector":".modal-popup.popup-authentication .modal-content .block-title:after","color":"","background":"#000000","border":""},"_1614934569891_891":{"title":"Authentication Title","selector":".block-authentication .block-title strong","color":"#000000","background":"","border":""},"_1614934896243_243":{"title":"Authentication Action","selector":".block-authentication .actions-toolbar > .primary .action","color":"#ffffff","background":"#222222","border":"#222222"},"_1614934923457_457":{"title":"Authentication Action Hover","selector":".block-authentication .actions-toolbar > .primary .action:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1621498220417_417":{"title":"Authentication Action Register","selector":".block-authentication .actions-toolbar > .primary .action.action-register","color":"#000000","background":"#ffffff","border":"#000000"},"_1621498269847_847":{"title":"Authentication Action Register Hover","selector":".block-authentication .actions-toolbar > .primary .action.action-register:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1625555639531_531":{"title":"One Step Checkout  Login Title Line","selector":".modal-custom.authentication-dropdown .block-customer-login .block-title:after","color":"","background":"#000000","border":""},"_1625555639343_343":{"title":"One Step Checkout Login Action","selector":".modal-custom.authentication-dropdown .block-customer-login .block-content .actions-toolbar .primary .action","color":"#ffffff","background":"#222222","border":"#222222"},"_1625555639139_139":{"title":"One Step Checkout Login Action Hover","selector":".modal-custom.authentication-dropdown .block-customer-login .block-content .actions-toolbar .primary .action:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1632300545163_163":{"title":"Breadcrumb","selector":".breadcrumbs","color":"","background":"","border":"#e5e5e5"},"_1620817438704_704":{"title":"Breadcrumb Title","selector":".breadcrumbs .pagecrumbs-title","color":"#ffffff","background":"","border":""},"_1614415695757_757":{"title":"Breadcrumb Item","selector":".breadcrumbs li","color":"#ffffff","background":"","border":""},"_1614415662286_286":{"title":"Breadcrumb Link","selector":".breadcrumbs li a","color":"#ffffff","background":"","border":""},"_1614415797808_808":{"title":"Breadcrumb Link Hover","selector":".breadcrumbs li a:hover","color":"#868686","background":"","border":""},"_1620745662027_27":{"title":"Breadcrumb Strong","selector":".breadcrumbs li strong","color":"#ffffff","background":"","border":""},"_1614419613202_202":{"title":"Review Actions","selector":".product-reviews-summary .reviews-actions a","color":"#868686","background":"","border":""},"_1614419825085_85":{"title":"Review Actions Hover","selector":".product-reviews-summary .reviews-actions a:hover","color":"#000000","background":"","border":""},"_1614419556506_506":{"title":"Rating No Star","selector":".rating-summary .rating-result:before","color":"#cecece","background":"","border":""},"_1614419470187_187":{"title":"Rating Star","selector":".rating-summary .rating-result > span:before","color":"#ffc107","background":"","border":""},"_1632537347120_120":{"title":"Review No Start","selector":".review-field-ratings .review-field-rating .control:before","color":"#cecece","background":"","border":""},"_1632537311930_930":{"title":"Review Start","selector":".review-field-ratings .review-field-rating .control label:before","color":"#ffc107","background":"","border":""},"_1626418738709_709":{"title":"Toolbar ","selector":".toolbar","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1626418887502_502":{"title":"Toolbar Bottom","selector":".toolbar-bottom .toolbar","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1632454138905_905":{"title":"Toolbar View Mode","selector":".toolbar .view-mode","color":"","background":"","border":"#e5e5e5"},"_1614568563228_228":{"title":"Toolbar Grid Mode","selector":".grid-view-mode .grid-mode .icon .layer span","color":"","background":"#cecece","border":""},"_1632451961404_404":{"title":"Toolbar Grid Mode Active","selector":".grid-view-mode .grid-mode.active .icon .layer span","color":"","background":"#000000","border":""},"_1614568586487_487":{"title":"Toolbar Grid Mode Hover","selector":".grid-view-mode .grid-mode:hover .icon .layer span","color":"","background":"#000000","border":""},"_1620877657275_275":{"title":"Toolbar Grid Mode Focus","selector":".grid-view-mode .grid-mode:focus .icon .layer span, .grid-view-mode .grid-mode:visited .icon .layer span","color":"","background":"#cecece","border":""},"_1632382300201_201":{"title":"Toolbar Mode Icon","selector":".modes .modes-mode .icon .layer span","color":"","background":"#cecece","border":""},"_1632382326551_551":{"title":"Toolbar Mode  Hover","selector":".modes .modes-mode:hover .icon .layer span","color":"","background":"#000000","border":""},"_1632382326294_294":{"title":"Toolbar Mode  Active","selector":".modes .modes-mode.active .icon .layer span","color":"","background":"#000000","border":""},"_1625477634999_999":{"title":"Toolbar Filter Toggle","selector":".toolbar .sidebar-filters-toggle","color":"#000000","background":"#ffffff","border":"#e5e5e5"},"_1625477680124_124":{"title":"Toolbar Filter Toggle Hover","selector":".toolbar .sidebar-filters-toggle:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1625478200642_642":{"title":"Toolbar Filter Active Close","selector":".has-sidebar-filters-toggle.filter-active .sidebar-filters-toggle:before","color":"#000000","background":"","border":""},"_1614570450429_429":{"title":"Toolbar Sorter","selector":".toolbar .sorter","color":"","background":"","border":"#e5e5e5"},"_1620877566328_328":{"title":"Toolbar Page Item","selector":".pages .items .item .page, .pages .items .item .action","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1620877503515_515":{"title":"Toolbar Page Item Hover","selector":".pages .items .item .page:hover, .pages .items .item .action:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1620877523372_372":{"title":"Toolbar Page Item Curent","selector":".pages .items .item.current .page, .pages .items .item.current .action","color":"#ffffff","background":"#000000","border":"#000000"},"_1615374577814_814":{"title":"Tooltip Label","selector":"body .field-tooltip .label","color":"#ffffff","background":"#000000","border":"#000000"},"_1614671455646_646":{"title":"Swatch Color Selected","selector":"body .swatch-option.color.selected:before","color":"","background":"","border":"#e5e5e5"},"_1614741947549_549":{"title":"Sticky Cart","selector":".stickyCart","color":"","background":"#000000","border":""},"_1614740831809_809":{"title":"Sticky Cart Reduced, Increase","selector":".stickyCart .stickyChild .contentHide .quantity .increase, .stickyCart .stickyChild .contentHide .quantity .reduced","color":"#aaaaaa","background":"rgba(0, 0, 0, 0)","border":""},"_1614740958965_965":{"title":"Sticky Cart Reduced, Increase Hover","selector":".stickyCart .stickyChild .contentHide .quantity .increase:hover, .stickyCart .stickyChild .contentHide .quantity .reduced:hover","color":"#ffffff","background":"","border":""},"_1614741028219_219":{"title":"Sticky Cart Reduced, Increase Focus","selector":".stickyCart .stickyChild .contentHide .quantity .increase:focus, .stickyCart .stickyChild .contentHide .quantity .reduced:focus","color":"#aaaaaa","background":"","border":""},"_1614741616463_463":{"title":"Sticky Cart Qty","selector":".stickyCart .stickyChild .contentHide .quantity","color":"","background":"","border":"#e5e5e5"},"_1622017810337_337":{"title":"Sticky Cart Qty Action Line","selector":".stickyCart .stickyChild .quantity .btn-plus:before","color":"","background":"#e8e8e8","border":""},"_1614741083984_984":{"title":"Sticky Cart Button","selector":".stickyCart .stickyChild .clSticky #btnSticky","color":"#ffffff","background":"#222222","border":"#222222"},"_1614741122727_727":{"title":"Sticky Cart Button Hover","selector":".stickyCart .stickyChild .clSticky #btnSticky:hover","color":"#000000","background":"#ffffff","border":"#ffffff"},"_1633342486909_909":{"title":"Ajax Cart","selector":".modal-popup.modals-ajaxcart .modal-inner-wrap .modal-content","color":"#000000","background":"#ffffff","border":""},"_1621997356758_758":{"title":"Ajax Cart Header","selector":".modal-popup.modals-ajaxcart .modal-inner-wrap .modal-content .popup .block .header","color":"#000000","background":"","border":"#e5e5e5"},"_1614916403826_826":{"title":"Ajax Cart Message","selector":".modal-popup.modals-ajaxcart .popup .message","color":"#000000","background":"","border":""},"_1633342568245_245":{"title":"Ajax Cart Product Name","selector":".modal-popup.modals-ajaxcart .modal-inner-wrap .modal-content .popup .block .ajaxcart-wrapper-main .ajax-product-details .ajax-cart-product-name a","color":"#000000","background":"","border":""},"_1633342599263_263":{"title":"Ajax Cart Product Name Hover","selector":".modal-popup.modals-ajaxcart .modal-inner-wrap .modal-content .popup .block .ajaxcart-wrapper-main .ajax-product-details .ajax-cart-product-name a:hover","color":"#868686","background":"","border":""},"_1615373541512_512":{"title":"Ajax Cart Action View Cart Hover","selector":".ajaxcart-wrapper-main .btn-viewcart .viewcart:hover","color":"#868686","background":"","border":""},"_1622003012274_274":{"title":"Ajax Wishlist Remind","selector":".modal-popup.customer-popup-ajaxwishlist .modal-inner-wrap .modal-content .form-login .actions-toolbar > .primary .action.remind","color":"#ffffff","background":"#000000","border":"#000000"},"_1622003012041_41":{"title":"Ajax Wishlist Remind Hover","selector":".modal-popup.customer-popup-ajaxwishlist .modal-inner-wrap .modal-content .form-login .actions-toolbar > .primary .action.remind:hover","color":"#ffffff","background":"#f95a00","border":"#f95a00"},"_1622001891317_317":{"title":"Ajax Compare Action","selector":".modal-popup.modal-popup_ajaxcompare_magepow .modal-inner-wrap .mgp-compare-popup-border .ajax-compare-detail .ajaxcompare-buttons .action","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1622002997287_287":{"title":"Ajax Compare Action Hover","selector":".modal-popup.modal-popup_ajaxcompare_magepow .modal-inner-wrap .mgp-compare-popup-border .ajax-compare-detail .ajaxcompare-buttons .action:hover","color":"#f95a00","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1622003333377_377":{"title":"Ajax Compare Close","selector":".modal-popup.modal-popup_ajaxcompare_magepow .modal-header .action-close","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1622003333264_264":{"title":"Ajax Compare Close Hover","selector":".modal-popup.modal-popup_ajaxcompare_magepow .modal-header .action-close:hover","color":"#f95a00","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1621948969991_991":{"title":"Recent Order A Hover","selector":".notify-slider-wrapper .products.wrapper.grid .product-item .product-item-info .product-item-details .product-name a:hover","color":"#f95a00","background":"","border":""},"_1621954152251_251":{"title":"Quickview Detail A Hover","selector":".modal-popup.modals-quickview .product-info-main .view-full-page-details a:hover","color":"#000000","background":"","border":""},"_1622023054997_997":{"title":"Quickview Bundle Option","selector":".modal-popup.modals-quickview .bundle-options-container .product-add-form","color":"","background":"#ffffff","border":""},"_1622023129860_860":{"title":"Quickview Bundle Option Item","selector":".bundle-options-container .bundle-options-wrapper","color":"","background":"","border":"#e5e5e5"},"_1622023216294_294":{"title":"Quickview Bundle Option Summary","selector":".bundle-options-container .block-bundle-summary","color":"","background":"","border":"#e5e5e5"},"_1622021083865_865":{"title":"Modul Custom Authentication","selector":".modal-custom.authentication-dropdown","color":"","background":"rgba(0, 0, 0, 0)","border":""},"_1622024190625_625":{"title":"Modul Custom Authentication Title","selector":".modal-custom.authentication-dropdown .modal-content .block-title","color":"#000000","background":"","border":"#e5e5e5"},"_1621178845799_799":{"title":"Required Label","selector":".required label:after","color":"#e02b27","background":"","border":""},"_1621304786795_795":{"title":"Cms Sub Title","selector":".cms-title .sub-title","color":"#a3a3a3","background":"","border":""},"_1621304747094_94":{"title":"Cms Title Underline","selector":".cms-title:before","color":"","background":"#e8e8e8","border":""},"_1622187746457_457":{"title":"Lookbook Marker Cicle","selector":".lookbook .easypin-marker:before, .lookbook .easypin-marker .icon:before","color":"","background":"#ffffff","border":""},"_1622189358973_973":{"title":"Lookbook Marker Cicle Inset","selector":".lookbook .easypin-marker:after","color":"","background":"#ffffff","border":""},"_1622189384013_13":{"title":"Lookbook Marker  ","selector":".lookbook .easypin-marker","color":"","background":"#ff2f2f","border":""},"_1622189414980_980":{"title":"Lookbook Marker 2n","selector":".lookbook .easypin-marker:nth-child(2n)","color":"","background":"#42ad3a","border":""},"_1622189415448_448":{"title":"Lookbook Marker 3n","selector":".lookbook .easypin-marker:nth-child(3n)","color":"","background":"#f32fff","border":""},"_1622189416044_44":{"title":"Lookbook Marker 5n","selector":".lookbook .easypin-marker:nth-child(4n)","color":"","background":"#f4df2b","border":""},"_1626406255602_602":{"title":"Mobile Menu Account Name","selector":".nav-sections .nav-sections-item-content .header.links li .customer-name","color":"","background":"","border":"#e5e5e5"},"_1626258629590_590":{"title":"Mobile Minicart Count","selector":".sticky-toolbar-mobile .main-toolbar-mobile .item-mobile.checkout-cart .symbolic #counter-number-cart","color":"#ffffff","background":"#000000","border":"#000000"},"_1626320156771_771":{"title":"Search Mobile Input","selector":".childnode-search .search-inner-wrap .form-search .field.search .input-text","color":"#000000","background":"#ffffff","border":""},"_1626320156638_638":{"title":"Search Mobile Action","selector":".childnode-search .search-inner-wrap .form-search .action.search","color":"#ffffff","background":"#222222","border":"#222222"},"_1626320156500_500":{"title":"Search Mobile Action Hover","selector":".childnode-search .search-inner-wrap .form-search .action.search:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1627016191668_668":{"title":"Magicmenu A","selector":".magicmenu .nav-desktop .level-top li a","color":"#868686","background":"","border":""},"_1627016234182_182":{"title":"Magicmenu A Hover","selector":".magicmenu .nav-desktop .level-top li a:hover","color":"#000000","background":"","border":""},"_1626332660047_47":{"title":"Mega menu Level 1","selector":".magicmenu .nav-desktop .level0 .level-top-mega .children.level1 > a","color":"#000000","background":"","border":""},"_1626324121832_832":{"title":"Mega menu Line","selector":".magicmenu .nav-desktop .level0 .level-top-mega .children.level1 > a:before","color":"","background":"#000000","border":""},"_1638418425051_51":{"title":"Mega menu Blog Menu Title","selector":".magicmenu .nav-desktop .level0.blog .level-top-mega .cat-mega .title:before","color":"","background":"#000000","border":""},"_1627015132209_209":{"title":"Mega menu Blog Recent Line","selector":".magicmenu .nav-desktop .level0.blog .level-top-mega .mega-block-right .blog-widget-recent .post-title .title:before","color":"","background":"#000000","border":""},"_1633340535896_896":{"title":"Mega menu Blog Post Title","selector":".magicmenu .nav-desktop .level0.blog .level-top-mega .mega-block-right .blog-widget-recent .post-list .post-holder .post-content .post-detail-holder .post-title .post-item-link","color":"#000000","background":"","border":""},"_1633340542125_125":{"title":"Mega menu Blog Post Title Hover","selector":".magicmenu .nav-desktop .level0.blog .level-top-mega .mega-block-right .blog-widget-recent .post-list .post-holder .post-content .post-detail-holder .post-title .post-item-link:hover","color":"#868686","background":"","border":""},"_1633341800060_60":{"title":"Mega menu Blog Post Info","selector":".post-content .post-more-info","color":"#868686","background":"","border":""},"_1634829352723_723":{"title":"View Cart Table Title","selector":".cart.table-wrapper .table-caption","color":"#000000","background":"","border":""},"_1634829371960_960":{"title":"View Cart Summary Title","selector":".cart-summary > .title","color":"#000000","background":"","border":""},"_1634829408516_516":{"title":"View Cart Summary Block Title","selector":".cart-summary .block > .title","color":"#000000","background":"","border":""},"_1634829408733_733":{"title":"View Cart Summary Total Title","selector":".cart-summary .cart-totals .table-caption","color":"#000000","background":"","border":""},"_1634828559484_484":{"title":"View Cart Qty","selector":".cart.table-wrapper .col.qty .custom-qty","color":"","background":"","border":"#e5e5e5"},"_1634828374296_296":{"title":"View Cart Qty Input","selector":".cart.table-wrapper .col.qty .custom-qty input","color":"","background":"","border":"#e5e5e5"},"_1634828283750_750":{"title":"View Cart Qty Button","selector":".cart.table-wrapper .col.qty .custom-qty .btn-plus .items","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1634828326190_190":{"title":"View Cart Qty Button Hover","selector":".cart.table-wrapper .col.qty .custom-qty .btn-plus .items:hover","color":"#868686","background":"","border":""},"_1634828325580_580":{"title":"View Cart Gift Button","selector":".cart.table-wrapper .col.item-actions .action.action-gift","color":"#868686","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1634828325308_308":{"title":"View Cart Gift Button","selector":".cart.table-wrapper .col.item-actions .action.action-gift:hover","color":"#000000","background":"","border":""},"_1637729263758_758":{"title":"View Cart Gift Form","selector":".cart.table-wrapper .col.item-actions .gift-options-cart-item .gift-content","color":"","background":"#ffffff","border":""},"_1637729315502_502":{"title":"View Cart Gift Form Cancel","selector":".cart.table-wrapper .col.item-actions .gift-options-cart-item .gift-content .action.action-cancel","color":"#000000","background":"","border":"#000000"},"_1637729360496_496":{"title":"View Cart Gift Form Cancel Hover","selector":".cart.table-wrapper .col.item-actions .gift-options-cart-item .gift-content .action.action-cancel:hover","color":"#ffffff","background":"#000000","border":"rgba(0, 0, 0, 0)"},"_1637730164620_620":{"title":"View Cart Gift Form Delete","selector":".cart.table-wrapper .col.item-actions .gift-options-cart-item .gift-content .actions-toolbar .action.action-delete","color":"#000000","background":"","border":"#000000"},"_1637730184011_11":{"title":"View Cart Gift Form Delete Hover","selector":".cart.table-wrapper .col.item-actions .gift-options-cart-item .gift-content .actions-toolbar .action.action-delete:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1637727967061_61":{"title":"View Cart Continue Hover","selector":".cart.main.actions .action.continue:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1637729114047_47":{"title":"View Cart Delete","selector":".cart.table-wrapper .col.item-actions .action.action-delete","color":"#000000","background":"#ffffff","border":"#e5e5e5"},"_1637729149254_254":{"title":"View Cart Delete Icon","selector":".cart.table-wrapper .col.item-actions .action.action-delete:before, .cart.table-wrapper .col.item-actions .action.action-delete:after","color":"","background":"#000000","border":""},"_1637729197830_830":{"title":"View Cart Delete Hover","selector":".cart.table-wrapper .col.item-actions .action.action-delete:hover","color":"","background":"","border":"#d6d6d6"},"_1637729225430_430":{"title":"View Cart Delete Hover Icon","selector":".cart.table-wrapper .col.item-actions .action.action-delete:hover:before, .cart.table-wrapper .col.item-actions .action.action-delete:hover:after","color":"","background":"#e5e5e5","border":""},"_1625557317450_450":{"title":"One Step Checkout  Title Summary Line","selector":".checkout-step-sidebar .order-summary .step-title:before","color":"","background":"#000000","border":""},"_1625564399879_879":{"title":"One Step Checkout Payment Action","selector":".onestepcheckout-index-index .form-mgp-billing-address .actions-toolbar > .primary .action, .onestepcheckout-index-index .form-mgp-billing-address .actions-toolbar > .secondary .action","color":"#ffffff","background":"#222222","border":"#222222"},"_1625564428312_312":{"title":"One Step Checkout Payment Action Hover","selector":".onestepcheckout-index-index .form-mgp-billing-address .actions-toolbar > .primary .action:hover, .onestepcheckout-index-index .form-mgp-billing-address .actions-toolbar > .secondary .action:hover","color":"#ffffff","background":"#222222","border":"#222222"},"_1625564573808_808":{"title":"One Step Checkout Coupon","selector":".checkout-step-sidebar .discount-code .form-discount .actions-toolbar .primary .action-apply","color":"#ffffff","background":"#000000","border":"#000000"},"_1625564598286_286":{"title":"One Step Checkout Coupon Hover","selector":".checkout-step-sidebar .discount-code .form-discount .actions-toolbar .primary .action-apply:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1625567153515_515":{"title":"One Step Checkout Qty Button","selector":".onestepcheckout-index-index .checkout-step-sidebar .order-summary .minicart-items-wrapper .product-item .product .product-item-details .details-qty .control .btn-minus .button-action, .onestepcheckout-index-index .checkout-step-sidebar .order-summary .minicart-items-wrapper .product-item .product .product-item-details .details-qty .control .btn-plus .button-action","color":"#000000","background":"rgba(0, 0, 0, 0)","border":""},"_1625567153326_326":{"title":"One Step Checkout Qty Button Hover","selector":".onestepcheckout-index-index .checkout-step-sidebar .order-summary .minicart-items-wrapper .product-item .product .product-item-details .details-qty .control .btn-minus .button-action:hover, .onestepcheckout-index-index .checkout-step-sidebar .order-summary .minicart-items-wrapper .product-item .product .product-item-details .details-qty .control .btn-plus .button-action:hover","color":"#868686","background":"rgba(0, 0, 0, 0)","border":""},"_1625567727235_235":{"title":"One Step Checkout Remove Product","selector":".onestepcheckout-index-index .checkout-step-sidebar .order-summary .minicart-items-wrapper .product-item .product .product-item-details .button-remove .button-action.remove","color":"#000000","background":"#ffffff","border":"#e5e5e5"},"_1625567727010_10":{"title":"One Step Checkout Remove Product Hover","selector":".onestepcheckout-index-index .checkout-step-sidebar .order-summary .minicart-items-wrapper .product-item .product .product-item-details .button-remove .button-action.remove:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1634831346806_806":{"title":"One Step Checkout Header","selector":".onestepcheckout-index-index .header-content","color":"","background":"","border":"#e5e5e5"},"_1634831445632_632":{"title":"Checkout Shipping","selector":".opc-wrapper .shipping-address-item.selected-item","color":"","background":"","border":"#28af5b"},"_1634831486607_607":{"title":"Checkout Shipping Icon","selector":".opc-wrapper .shipping-address-item.selected-item:after","color":"#ffffff","background":"#28af5b","border":"#28af5b"},"_1626249921006_6":{"title":"Offer Product","selector":".additional-timer-block .offer-product","color":"#28af5b","background":"","border":"#28af5b"},"_1626250021800_800":{"title":"Add Timer Slogan","selector":".additional-timer-block .slogan-countdown","color":"#e02b27","background":"","border":""},"_1626250101219_219":{"title":"Add Timer  Number","selector":".additional-timer-block .alo-count-down .countdown .timer-box .timer-box-content b","color":"","background":"","border":"#e5e5e5"},"_1632478185287_287":{"title":"Detail Page Image Thubnail","selector":".catalog-product-view .fotorama__nav--thumbs .fotorama__nav__frame .fotorama__thumb","color":"","background":"","border":"#e5e5e5"},"_1626249831069_69":{"title":"Detail Page Image Thubnail Active","selector":".catalog-product-view .fotorama__nav--thumbs .fotorama__nav__frame.fotorama__active .fotorama__thumb","color":"","background":"","border":"#000000"},"_1626250691831_831":{"title":"Detail Brand Hover","selector":".product-info-main .brand:hover a","color":"","background":"","border":"#000000"},"_1632543288735_735":{"title":"Detail Sku","selector":".product-sku .sku","color":"#000000","background":"","border":""},"_1632543352683_683":{"title":"Detail Categories A","selector":".categories-product-view a","color":"#000000","background":"","border":""},"_1632543387949_949":{"title":"Detail Categories A Hover","selector":".categories-product-view a:hover","color":"#868686","background":"","border":""},"_1632543258653_653":{"title":"Detail Share Title","selector":".alo-social-links .custom-html .title-social","color":"#868686","background":"","border":""},"_1626256746307_307":{"title":"Detail Facebook","selector":".alo-social-links .custom-html .list-inline li .facebook","color":"#ffffff","background":"#3b5998","border":"#3b5998"},"_1626256805297_297":{"title":"Detail Twitter","selector":".alo-social-links .custom-html .list-inline li .twitter","color":"#ffffff","background":"#1da1f2","border":"#1da1f2"},"_1626256842732_732":{"title":"Detail Pinterest","selector":".alo-social-links .custom-html .list-inline li .pinterest","color":"#ffffff","background":"#bd081c","border":"#bd081c"},"_1626256845829_829":{"title":"Detail ","selector":".alo-social-links .custom-html .list-inline li .linkedin","color":"#ffffff","background":"#0077b5","border":"#0077b5"},"_1632533361405_405":{"title":"Detail Social Link","selector":".product-social-links","color":"","background":"","border":"#e5e5e5"},"_1626678562135_135":{"title":"Detail Related Product","selector":".catalog-product-view .block-related-product","color":"","background":"","border":"#e5e5e5"},"_1626405048075_75":{"title":"Wishlist Toolbar Action","selector":".form-wishlist-items .actions-toolbar .primary .action","color":"#ffffff","background":"#222222","border":"#222222"},"_1626405047466_466":{"title":"Wishlist Toolbar Action Hover","selector":".form-wishlist-items .actions-toolbar .primary .action:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1632476155989_989":{"title":"Detail Page Header","selector":".catalog-product-view .page-header","color":"","background":"","border":"#e5e5e5"},"_1632297641664_664":{"title":"Detail Page Price","selector":".product-info-price","color":"","background":"","border":"#e5e5e5"},"_1632297700671_671":{"title":"Detail Page Brand","selector":".product-info-main .brand a","color":"","background":"","border":"#e5e5e5"},"_1632297710624_624":{"title":"Detail Page Brand Hover","selector":".product-info-main .brand a:hover","color":"","background":"","border":"#000000"},"_1632298170816_816":{"title":"Detail Page Qty","selector":".product-qty .custom-qty","color":"","background":"","border":"#e5e5e5"},"_1632297724373_373":{"title":"Detail Page Qty Input","selector":".product-qty .custom-qty input","color":"","background":"","border":"#e5e5e5"},"_1632298430597_597":{"title":"Detail Page Qty Button","selector":".product-qty .custom-qty .btn-plus .items","color":"#868686","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1632298473172_172":{"title":"Detail Page Qty Button Hover","selector":".product-qty .custom-qty .btn-plus .items:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1632298568253_253":{"title":"Detail Page Social Link","selector":".product-social-links .action:before","color":"","background":"","border":"#e5e5e5"},"_1632298587244_244":{"title":"Detail Page Social Link Hover","selector":".product-social-links .action:hover:before","color":"#ffffff","background":"#000000","border":"#000000"},"_1632537109830_830":{"title":"Detail Product Info Detail","selector":".product.info.detailed","color":"","background":"","border":"#e5e5e5"},"_1632558118962_962":{"title":"Detail Info Tab","selector":".product.info.detailed .items-tabs","color":"","background":"","border":"#e5e5e5"},"_1632535185129_129":{"title":"Detail Info Tab  A","selector":".product.info.detailed .items-tabs .item.active a","color":"#000000","background":"","border":""},"_1632534116698_698":{"title":"Detail Info Tab Line","selector":".product.info.detailed .items-tabs .item .data.switch:before","color":"","background":"#bbbbbb","border":""},"_1632537490038_38":{"title":"Detail Info Tab Active Line","selector":".product.info.detailed .items-tabs .item.active .data.switch:before","color":"","background":"#000000","border":""},"_1632537732707_707":{"title":"Detail Info Tab Hover Line","selector":".product.info.detailed .items-tabs .item:hover .data.switch:before","color":"","background":"#000000","border":""},"_1632537685296_296":{"title":"Detail Info Tab Content","selector":".product.info.detailed .data-tabs-content","color":"","background":"","border":"#e5e5e5"},"_1632539223083_83":{"title":"Detail Info Review Title","selector":".product.info.detailed #reviews .review-list .block-title strong","color":"#000000","background":"","border":""},"_1632541850400_400":{"title":"Detail Info Review Comment Title","selector":".product.info.detailed #reviews .review-legend.legend","color":"#000000","background":"","border":"#000000"},"_1632541968662_662":{"title":"Detail Info Rating Label","selector":".product.info.detailed #reviews .review-field-ratings > .label","color":"#000000","background":"","border":""},"_1632543545065_65":{"title":"Related, Cross, Croll Title","selector":".block.block-related .block-title #block-related-heading, .block.box-up-sell .block-title #block-related-heading, .block.crosssell .block-title #block-related-heading, .block.block-related .block-title #block-upsell-heading, .block.box-up-sell .block-title #block-upsell-heading, .block.crosssell .block-title #block-upsell-heading, .block.block-related .block-title #block-crosssell-heading, .block.box-up-sell .block-title #block-crosssell-heading, .block.crosssell .block-title #block-crosssell-heading","color":"#000000","background":"","border":""},"_1632543511392_392":{"title":"Related, Cross, Croll Title Line","selector":".block.block-related .block-title #block-related-heading:before, .block.box-up-sell .block-title #block-related-heading:before, .block.crosssell .block-title #block-related-heading:before, .block.block-related .block-title #block-upsell-heading:before, .block.box-up-sell .block-title #block-upsell-heading:before, .block.crosssell .block-title #block-upsell-heading:before, .block.block-related .block-title #block-crosssell-heading:before, .block.box-up-sell .block-title #block-crosssell-heading:before, .block.crosssell .block-title #block-crosssell-heading:before","color":"","background":"#000000","border":""},"_1632543948479_479":{"title":"Related, Cross, Croll Arrow","selector":".block.block-related .slick-prev, .block.box-up-sell .slick-prev, .block.crosssell .slick-prev, .block.block-related .slick-next, .block.box-up-sell .slick-next, .block.crosssell .slick-next","color":"","background":"","border":"#000000"},"_1632551747330_330":{"title":"Detail Group Table Head","selector":".table.grouped:not(.cart):not(.totals) > thead > tr > th","color":"","background":"","border":"#e5e5e5"},"_1632551771017_17":{"title":"Detail Group Table Body","selector":".table.grouped:not(.cart):not(.totals) > tbody > tr > td","color":"","background":"","border":"#e5e5e5"},"_1632552910281_281":{"title":"Detail Bundle Option","selector":".bundle-options-container .bundle-options-wrapper .field.option:not(:last-child)","color":"","background":"","border":"#e5e5e5"},"_1632552974621_621":{"title":"Detail Bundle Option","selector":".bundle-options-container .block-bundle-summary .price-box","color":"","background":"","border":"#e5e5e5"},"_1632553024679_679":{"title":"Detail Bundle Option Title","selector":".bundle-options-container .bundle-options-wrapper .legend.title","color":"#000000","background":"","border":""},"_1632553035128_128":{"title":"Detail Bundle Option Title","selector":".bundle-options-container .block-bundle-summary > .title > strong","color":"#000000","background":"","border":""},"_1632553034856_856":{"title":"Detail Bundle Option Label","selector":".bundle-options-container .bundle-options-wrapper .field.option > .label","color":"#000000","background":"","border":""},"_1632362156560_560":{"title":"Category Page Magepow Categories Item","selector":".categories--category--page .magepow-categories .category-image-container:before","color":"","background":"","border":"rgba(0, 0, 0, 0)"},"_1632362422814_814":{"title":"Category Page Magepow Categories Item Hover","selector":".categories--category--page .magepow-categories .category-item-info:hover .category-image-container:before","color":"","background":"","border":"#e5e5e5"},"_1632362892893_893":{"title":"Category Page Magepow Categories","selector":".categories--category--page","color":"","background":"","border":"#e5e5e5"},"_1632366029663_663":{"title":"Category Page Magepow Categories Arrow Hover","selector":".categories--category--page .magepow-categories .slick-prev:hover, .categories--category--page .magepow-categories .slick-next:hover","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1632389549297_297":{"title":"Category Page Magepow Categories Arrow Hover Before","selector":".categories--category--page .magepow-categories .slick-prev:before, .categories--category--page .magepow-categories .slick-next:before","color":"","background":"rgba(0, 0, 0, 0)","border":""},"_1632382201638_638":{"title":"Category Page Magepow Categories Arrow Hover Before","selector":".categories--category--page .magepow-categories .slick-prev:hover:before, .categories--category--page .magepow-categories .slick-next:hover:before","color":"#868686","background":"","border":""},"_1632395269279_279":{"title":"Background #94856c","selector":".background--94856c","color":"","background":"#94856c","border":""},"_1632395324522_522":{"title":"Background #4c5365","selector":".background--4c5365","color":"","background":"#4c5365","border":""},"_1632397882249_249":{"title":"About Major Heading","selector":".about--major .block__heading","color":"#ffffff","background":"","border":""},"_1632397898859_859":{"title":"About Major Heading Title","selector":".about--major .block__heading .block__heading--title","color":"#ffffff","background":"","border":""},"_1632398155472_472":{"title":"About Major Description","selector":".about--major  .block__discription","color":"#ffffff","background":"","border":""},"_1632397959116_116":{"title":"About Major Action","selector":".about--major .block__action","color":"#ffffff","background":"rgba(0, 0, 0, 0)","border":"#ffffff"},"_1632397985641_641":{"title":"About Major Action Hover","selector":".about--major .block__action:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1632734410467_467":{"title":"About Service Item Line","selector":".service--about .service__item:before","color":"","background":"#bbbbbb","border":"#e5e5e5"},"_1632734447542_542":{"title":"About Testimonial","selector":".testimonial--slider.testimonial--about","color":"#000000","background":"#ffffff","border":""},"_1632735954836_836":{"title":"About Testimonial Name","selector":".testimonial--slider.testimonial--about .slick-slide .alo-item .item-info .name","color":"#000000","background":"","border":""},"_1632736236073_73":{"title":"About Testimonial Job","selector":".testimonial--slider.testimonial--about .slick-slide .alo-item .item-info .job","color":"#868686","background":"","border":""},"_1632736080580_580":{"title":"About Testimonial Quote","selector":".testimonial--about .item-info .item-info-detail .quote-icon","color":"#e7e7e7","background":"","border":""},"_1632736136761_761":{"title":"About Testimonial Avatar","selector":".testimonial--about .item-info .item-info-images .avatar","color":"","background":"","border":"#d8ab7e"},"_1632736173224_224":{"title":"About Testimonial Content","selector":".testimonial--about .slick-slide .alo-item .item-info .content","color":"#868686","background":"","border":""},"_1632736316377_377":{"title":"About Testimonial Arrow","selector":".testimonial--about .slick-slider .slick-prev, .testimonial--about .slick-slider .slick-next","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1632736359317_317":{"title":"About Testimonial Arrow Icon","selector":".testimonial--about .slick-slider .slick-prev:before, .testimonial--about .slick-slider .slick-next:before","color":"#868686","background":"","border":""},"_1632736390465_465":{"title":"About Testimonial Arrow Hover","selector":".testimonial--about .slick-slider .slick-prev:hover, .testimonial--about .slick-slider .slick-next:hover","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1632736404587_587":{"title":"About Testimonial Arrow Hover Icon","selector":".testimonial--about .slick-slider .slick-prev:hover:before, .testimonial--about .slick-slider .slick-next:hover:before","color":"#000000","background":"","border":""},"_1633075969989_989":{"title":"Contact Detail A Hover","selector":".store-contact .contact-info-item .contact-info-item-detail a:hover","color":"#000000","background":"","border":""},"_1633076983087_87":{"title":"Contact Form","selector":".form.contact","color":"","background":"#ffffff","border":""},"_1633333199027_27":{"title":"Lookbook Action A","selector":".page__lookbook__items .block__action a","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1633333231197_197":{"title":"Lookbook Action A Hover","selector":".page__lookbook__items .block__action a:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1633869924930_930":{"title":"Brand Search Button","selector":".shop-by-brand .block.block-search .form-search .field.search .actions .action","color":"","background":"","border":"#e5e5e5"},"_1633869964231_231":{"title":"Brand Search Button Hover Icon","selector":".block-search.brand-search .form-search .field.search .actions .action:hover:before","color":"#000000","background":"","border":""},"_1633870015034_34":{"title":"Brand Item Image","selector":".shopbrand .brand-list > .item .image","color":"","background":"","border":"#e5e5e5"},"_1633870025150_150":{"title":"Brand Item Hover Image","selector":".shopbrand .brand-list > .item:hover .image","color":"","background":"","border":"#000000"},"_1633870803818_818":{"title":"Brand Sidebar Search Button Hover Icon","selector":".sidebar .form-search-sidebar-brand .field.search .actions .action:hover:before","color":"#000000","background":"","border":""},"_1634829831030_30":{"title":"Login Page Title","selector":".login-container .block .block-title","color":"#000000","background":"","border":"#e5e5e5"},"_1637739781798_798":{"title":"Login Page Register Title","selector":".login-container .block.block-new-customer .block-title","color":"#ffffff","background":"","border":""},"_1637740746415_415":{"title":"Login Page Register SubTitle","selector":".login-container .block.block-new-customer .sub-title","color":"#ffffff","background":"","border":""},"_1634829845254_254":{"title":"Login Page Create Button","selector":".login-container .block .action.create","color":"#000000","background":"#ffffff","border":"#222222"},"_1634829844383_383":{"title":"Login Page Create Button Hover","selector":".login-container .block .action.create:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1637742025462_462":{"title":"Register Page Title","selector":".account .fieldset .legend","color":"#000000","background":"","border":""},"_1637744869401_401":{"title":"Login Header","selector":".customer-account-login .page-header, .customer-account-create .page-header, .customer-account-forgotpassword .page-header","color":"","background":"","border":"#e5e5e5"},"_1634831649842_842":{"title":"Account Page Title","selector":".account .column.main .block .block-title","color":"#000000","background":"","border":""},"_1634831703887_887":{"title":"Account Page Table","selector":".account .column.main .block .block-content .box","color":"","background":"","border":"#e5e5e5"},"_1634831661164_164":{"title":"Account Page Table Column","selector":".account .column.main .block .block-content .box > *:not(:last-child)","color":"","background":"","border":"#e5e5e5"},"_1634831732772_772":{"title":"Account Page Box Title","selector":".account .column.main .block .block-content .box .box-title","color":"#000000","background":"","border":""},"_1634831806477_477":{"title":"Account Page Table","selector":".account .block.block-reviews-dashboard .block-content .items","color":"","background":"","border":"#e5e5e5"},"_1634831778982_982":{"title":"Account Page Table Row","selector":".account .block.block-reviews-dashboard .block-content .items .item","color":"","background":"","border":"#e5e5e5"},"_1634831751065_65":{"title":"Account Page Table Column","selector":".account .block.block-reviews-dashboard .block-content .items .item > *:not(:last-child)","color":"","background":"","border":"#e5e5e5"},"_1634832508569_569":{"title":"Account Order Title","selector":".account .orders-history .table-order-items .table-caption","color":"#000000","background":"","border":""},"_1637723897447_447":{"title":"Account Review Title","selector":".customer-review .review-details .title","color":"#000000","background":"","border":""},"_1637724253070_70":{"title":"Account Review Title Review","selector":".customer-review .review-details .review-title","color":"#000000","background":"","border":""},"_1637725045545_545":{"title":"Account Review Product Name","selector":".customer-review.view .product-details .product-info .product-name a","color":"#ffffff","background":"","border":""},"_1637725385991_991":{"title":"Account Review Product Name Hover","selector":".customer-review.view .product-details .product-info .product-name a:hover","color":"#868686","background":"","border":""},"_1637725071065_65":{"title":"Account Review Link","selector":".customer-review.view .product-reviews-summary .reviews-actions a","color":"#ffffff","background":"","border":""},"_1637725136826_826":{"title":"Account Review Link","selector":".customer-review.view .product-reviews-summary .reviews-actions a:hover","color":"#868686","background":"","border":""},"_1637226620789_789":{"title":"Testimonial Page Item ","selector":".testimonial-container .magiccart-testimonials-grid .magiccart-testimonials-grid-right","color":"","background":"","border":"#e5e5e5"},"_1637226642227_227":{"title":"Testimonial Page Avatar ","selector":".testimonial-container .magiccart-testimonials-grid .magiccart-testimonial-avatar","color":"","background":"#ffffff","border":""},"_1637226723642_642":{"title":"Testimonial Page Author","selector":".testimonial-container .magiccart-testimonials-grid .magiccart-testimonial-author","color":"#000000","background":"","border":""},"_1637226724627_627":{"title":"Testimonial Page Conpany","selector":".testimonial-container .magiccart-testimonials-grid .magiccart-testimonial-jobandcompany","color":"#868686","background":"","border":""},"_1637226922600_600":{"title":"Testimonial Page Action","selector":".testimonial-container .action.submit:hover","color":"#000000","background":"#ffffff","border":"#000000"},"_1637226941244_244":{"title":"Testimonial Page Add Hover","selector":".testimonial-container .action.submit:hover","color":"#ffffff","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1637226964078_78":{"title":"Testimonial Page Add Effect","selector":".testimonial-container .action.submit:hover:before","color":"","background":"#000000","border":""},"_1637227030119_119":{"title":"Testimonial Page Rating","selector":".testimonial-container .magiccart-testimonials-grid .magiccart-testimonial-rating .rating-box .rating:before","color":"#edc128","background":"","border":""},"_1637227530767_767":{"title":"Testimonial Page Submit Hover","selector":".alo-testimonial-submit .action.submit:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1637227487070_70":{"title":"Testimonial Page Submit Effect","selector":".alo-testimonial-submit .action.submit:before","color":"","background":"#ffffff","border":""},"_1637228407762_762":{"title":"Blog Page Read More","selector":".post-list .post-content .post-item-detail .post-read-more","color":"#000000","background":"#ffffff","border":"#000000"},"_1637228427743_743":{"title":"Blog Page Read More Hover","selector":".post-list .post-content .post-item-detail .post-read-more:hover","color":"#ffffff","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1637228437782_782":{"title":"Blog Page Read More Effect","selector":".post-list .post-content .post-item-detail .post-read-more:before","color":"","background":"#000000","border":""},"_1637231109628_628":{"title":"Blog Page Time","selector":".post-ftimg-hld .publish-date","color":"#000000","background":"#ffffff","border":"#ffffff"},"_1638866866102_102":{"title":"Blog View Item Detail","selector":".blog-category-view.page-layout-1column .post-list .post-item-detail","color":"","background":"","border":"#e5e5e5"},"_1638866865933_933":{"title":"Blog View Cate A","selector":".post-content .item.post-categories a","color":"#ffffff","background":"","border":""},"_1638866865772_772":{"title":"Blog View Cate A Hover","selector":".post-content .item.post-categories a:hover","color":"#000000","background":"","border":""},"_1638867124717_717":{"title":"Blog View Name","selector":".post-view .post-holder .post-ftimg-hld .post-header .post-title-holder .post-title .post-item-link","color":"#ffffff","background":"","border":""},"_1638867141959_959":{"title":"Blog View Info","selector":".post-view .post-holder .post-ftimg-hld .post-header .post-more-info","color":"#ffffff","background":"","border":""},"_1638867141301_301":{"title":"Blog View Info A","selector":".post-view .post-holder .post-ftimg-hld .post-header .post-more-info a","color":"#ffffff","background":"","border":""},"_1638866865608_608":{"title":"Blog View Time","selector":".post-view .post-holder .post-ftimg-hld .post-header .publish-date","color":"#ffffff","background":"rgba(0, 0, 0, 0)","border":""},"_1638867186479_479":{"title":"Blog View Bottom","selector":".post-view .post-bottom .post-nextprev-hld","color":"","background":"","border":"#e5e5e5"},"_1638867185916_916":{"title":"Blog View Related Title Line","selector":".block.related-post.related .block-title #block-relatedposts-heading:before","color":"","background":"#000000","border":""},"_1638866865037_37":{"title":"Blog View Comment Title Line","selector":".post-view .post-bottom .block.comments .c-count strong:before","color":"","background":"#000000","border":""},"_1638867269732_732":{"title":"Blog View Comment Textarea","selector":".c-replyform.no-active textarea","color":"","background":"","border":"#e5e5e5"},"_1638867269541_541":{"title":"Blog View Comment Box","selector":".post-view .post-bottom .block.comments .c-comments","color":"","background":"","border":"#e5e5e5"}}]]></value>
+    </config>
+    <config>
+      <path>alodesign/left/color</path>
+      <value><![CDATA[{"_1614570900589_589":{"title":"Sidebar Accordion","selector":".sidebar .accordion-container","color":"","background":"","border":"#e5e5e5"},"_1614572437922_922":{"title":"Sidebar Accordion Title","selector":".sidebar .accor-title","color":"#000000","background":"","border":""},"_1614587408036_36":{"title":"Sidebar Accordion Links","selector":".sidebar ul.nav-accordion li a","color":"#000000","background":"","border":""},"_1614587429490_490":{"title":"Sidebar Accordion Links Activities","selector":".sidebar ul.nav-accordion li a:hover, .sidebar ul.nav-accordion li a:focus","color":"#aaaaaa","background":"","border":""},"_1614572664337_337":{"title":"Filter","selector":".block.filter","color":"#000000","background":"","border":""},"_1615367611207_207":{"title":"Filter Block Content","selector":".block.filter .block-content","color":"","background":"#ffffff","border":""},"_1614573171959_959":{"title":"Filter Title","selector":".block.filter .block-title","color":"#000000","background":"","border":"#e5e5e5"},"_1615340966912_912":{"title":"Filter Title Strong","selector":".block.filter .block-title.filter-title strong","color":"#ffffff","background":"#ff6f00","border":"#ff6f00"},"_1615341011050_50":{"title":"Filter Title Strong Hover","selector":" .block.filter .block-title.filter-title strong:hover","color":"#ffffff","background":"#cc5900","border":"#cc5900"},"_1615341036881_881":{"title":"Filter Title Strong Focus, Visited","selector":".block.filter .block-title.filter-title strong:focus, .sidebar .block.filter .block-title.filter-title strong:visited","color":"#ffffff","background":"#ff6f00","border":"#ff6f00"},"_1615364118924_924":{"title":"Filter Active Title Strong","selector":".block.filter.active .block-title.filter-title strong","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1620819818989_989":{"title":"Slider Price","selector":".ui-slider-horizontal","color":"","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1620819820348_348":{"title":"Slider Price Active","selector":".ui-slider .ui-slider-range","color":"","background":"#000000","border":"#000000"},"_1620819820194_194":{"title":"Slider Price Dot","selector":".ui-slider-handle","color":"","background":"#ffffff","border":"#000000"},"_1620876600389_389":{"title":"Filter Price","selector":".block.filter .price","color":"#000000","background":"","border":""},"_1620876662158_158":{"title":"Filter Price Hover","selector":".block.filter .item a:hover .price","color":"#868686","background":"","border":""},"_1620873118888_888":{"title":"Swatch Color Hover","selector":".swatch-option.image:not(.disabled):hover, .swatch-option.color:not(.disabled):hover","color":"","background":"","border":"#e5e5e5"},"_1620871335130_130":{"title":"Swatch Color Border","selector":".swatch-attribute.color .swatch-option:before","color":"","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1620872107868_868":{"title":"Filter Size","selector":"body .swatch-attribute.size .swatch-option","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1632460430016_16":{"title":"Filter Size Hover","selector":"body .swatch-attribute.size .swatch-option-link-layered:hover .swatch-option","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1620872107603_603":{"title":"Filter Size Focus","selector":"body .swatch-attribute.size .swatch-option-link-layered:focus .swatch-option, body .swatch-attribute.size .swatch-option-link-layered:visited .swatch-option","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1639554843406_406":{"title":"Filter Not Color Seclect","selector":".swatch-attribute.size .swatch-option.selected, .swatch-attribute.manufacturer .swatch-option.selected","color":"#ffffff","background":"#000000","border":"#000000"},"_1620872107398_398":{"title":"Filter Current Title","selector":".block.filter .filter-current .filter-current-subtitle","color":"#000000","background":"","border":"#e5e5e5"},"_1615342432031_31":{"title":"Filter Mobile Active Close","selector":".block.filter.active .block-title.filter-title strong:after","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1615342802061_61":{"title":"Filter Mobile Title","selector":".block.filter .filter-subtitle","color":"","background":"#ffffff","border":"#e5e5e5"},"_1614572700736_736":{"title":"Filter Option","selector":".block.filter .filter-options-item","color":"","background":"","border":"#e5e5e5"},"_1615368123112_112":{"title":"Filter Option 1 Layout","selector":".page-layout-1column .block.filter .filter-options .filter-options-item","color":"","background":"","border":"#e5e5e5"},"_1614572462920_920":{"title":"Filter Option Title","selector":".block.filter .filter-options-title","color":"#000000","background":"","border":"#e5e5e5"},"_1620871113161_161":{"title":"Product Tag Title","selector":".block.block-tags .block-title","color":"#000000","background":"","border":"#e5e5e5"},"_1620871000370_370":{"title":"Product Tag","selector":".list-product-tags li","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1620871099426_426":{"title":"Product Tag Hover","selector":".list-product-tags li:hover","color":"","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1620820614442_442":{"title":"Product Tag A","selector":".list-product-tags li a","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1620820614357_357":{"title":"Product Tag A Hover","selector":".list-product-tags li a:hover","color":"#ffffff","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1614588548617_617":{"title":"Sidebar Filter Actions","selector":".sidebar .block.filter .filter-actions","color":"","background":"","border":"#e5e5e5"},"_1614588579969_969":{"title":"Sidebar Filter Actions Action","selector":".sidebar .block.filter .filter-actions .action","color":"#ffffff","background":"#222222","border":"#222222"},"_1614588618559_559":{"title":"Sidebar Filter Actions Action Hover","selector":".sidebar .block.filter .filter-actions .action:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1614932632637_637":{"title":"Sidebar Compare Action","selector":".sidebar.sidebar-additional .block-compare .action.compare","color":"#ffffff","background":"#222222","border":"#222222"},"_1614932655370_370":{"title":"Sidebar Compare Action Hover","selector":".sidebar.sidebar-additional .block-compare .action.compare:hover","color":"#ffffff","background":"#000000","border":"#000000"},"_1615343505978_978":{"title":"1 Column Shop By","selector":".page-layout-1column .block.filter .block-content","color":"","background":"","border":"#e5e5e5"},"_1615343535024_24":{"title":"1 Column Filter Option Content","selector":".page-layout-1column .block.filter .filter-options .filter-options-item .filter-options-content","color":"","background":"#ffffff","border":""},"_1633427377746_746":{"title":"Sidebar Product Item","selector":".sidebar .products.wrapper .product-item","color":"","background":"","border":"#e5e5e5"},"_1633427965133_133":{"title":"Sidebar Product Item Name","selector":".sidebar .products.wrapper.list .product-item-info .details-container .product-item-name","color":"#000000","background":"","border":""},"_1633427982797_797":{"title":"Sidebar Product Item Name Hover","selector":".sidebar .products.wrapper.list .product-item-info .details-container .product-item-name:hover","color":"#868686","background":"","border":""},"_1633427709343_343":{"title":"Sidebar Static Product Title","selector":".sidebar .sidebar-addition-products-title","color":"#000000","background":"","border":"#e5e5e5"},"_1615372673227_227":{"title":"Sidebar Tag Blog","selector":".sidebar.sidebar-additional .block-tagclaud .tagclaud-hld > span a","color":"#888888","background":"","border":"#e5e5e5"},"_1615372696705_705":{"title":"Sidebar Tag Blog Hover","selector":".sidebar.sidebar-additional .block-tagclaud .tagclaud-hld > span a:hover","color":"#ffffff","background":"rgba(0, 0, 0, 0)","border":"#e5e5e5"},"_1621389670220_220":{"title":"Sidebar Tag Blog Hover Background","selector":".sidebar.sidebar-additional .block-tagclaud .tagclaud-hld > span a:hover:before","color":"","background":"#000000","border":"#000000"},"_1621349880597_597":{"title":"Sidebar Blog Search Action","selector":".sidebar .widget.blog-search .action.search","color":"#868686","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1621349905859_859":{"title":"Sidebar Blog Search Action","selector":".sidebar .widget.blog-search .action.search:hover:before","color":"#000000","background":"","border":""},"_1621350426834_834":{"title":"Sidebar Blog Block Title","selector":".sidebar .widget.block .block-title","color":"#000000","background":"","border":"#e5e5e5"},"_1621350538159_159":{"title":"Sidebar Blog Block Title Underline","selector":".sidebar .widget.block .block-title:before","color":"","background":"#000000","border":""},"_1621350838625_625":{"title":"Sidebar Blog Accordion A Hover","selector":".sidebar .widget.block .accordion li a:hover","color":"#000000","background":"","border":""},"_1638851678012_12":{"title":"Sidebar Newsletter Input Focus","selector":".sidebar .cms-newsletter-sidebar .block-subscribe .form.subscribe .block-content .field.newsletter .visible .input-text:focus","color":"","background":"","border":"#e5e5e5"},"_1638851454219_219":{"title":"Sidebar Newsletter Action Hover","selector":".sidebar .cms-newsletter-sidebar .block-subscribe .form.subscribe .block-content .field.newsletter .visible .actions .action:hover","color":"#ffffff","background":"rgba(0, 0, 0, 0)","border":"#000000"},"_1638851454027_27":{"title":"Sidebar Newsletter Action Effect","selector":".sidebar .cms-newsletter-sidebar .block-subscribe .form.subscribe .block-content .field.newsletter .visible .actions .action:before","color":"","background":"#000000","border":"#000000"},"_1621408905091_91":{"title":"Sidebar Block Item","selector":".widget.block-categories li, .sidebar .widget.block-recent-posts .item, .widget.block-archive .item, .tagclaud-hld span","color":"","background":"","border":"#e5e5e5"},"_1621418071579_579":{"title":"Sidebar Recent Link Hover","selector":".sidebar .widget.block.block-recent-posts .block-content > .item .post-item-content .post-item-link:hover","color":"#000000","background":"","border":""},"_1621389291794_794":{"title":"Sidebar Newsletter","selector":".sidebar .cms-newsletter-sidebar","color":"","background":"","border":"#1f1f1f"},"_1621389318953_953":{"title":"Sidebar Newsletter Input","selector":".sidebar .cms-newsletter-sidebar .block-subscribe .form.subscribe .block-content .field.newsletter .visible .input-text","color":"","background":"","border":"#1f1f1f"},"_1621522120505_505":{"title":"Sidebar Account Menu Title","selector":".sidebar .block.block-collapsible-nav .title","color":"#000000","background":"","border":"#e5e5e5"},"_1621522143219_219":{"title":"Sidebar Account Menu Title Line","selector":".sidebar .block.block-collapsible-nav .title:before","color":"","background":"#000000","border":""},"_1621522663198_198":{"title":"Sidebar Account Menu Item","selector":".sidebar .block.account-nav .content .items .item","color":"","background":"","border":"#e5e5e5"},"_1621560950900_900":{"title":"Sidebar Account Menu Item Current","selector":".block-collapsible-nav .item.current a, .block-collapsible-nav .item.current strong","color":"#000000","background":"","border":""},"_1622049378507_507":{"title":"Sidebar Shop Brand Search Action","selector":".sidebar .form-search-sidebar-brand .field.search .actions .action","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"},"_1622049400767_767":{"title":"Sidebar Shop Brand Search Action Hover","selector":".sidebar .form-search-sidebar-brand .field.search .actions .action:hover","color":"#000000","background":"rgba(0, 0, 0, 0)","border":"rgba(0, 0, 0, 0)"}}]]></value>
+    </config>
+    <config>
+      <path>alodesign/right/color</path>
+      <value><![CDATA[[]]]></value>
+    </config>
+    <config>
+      <path>alosocial/social/instagram_title</path>
+      <value><![CDATA[@davici on instagram]]></value>
+    </config>
+    <config>
+      <path>alosocial/social/effect</path>
+      <value><![CDATA[swing]]></value>
+    </config>
+    <config>
+      <path>alosocial/messenger/enabled</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>alosocial/messenger/page_id</path>
+      <value><![CDATA[117236163524109]]></value>
+    </config>
+    <config>
+      <path>alosocial/messenger/app_id</path>
+      <value><![CDATA[586744609186307]]></value>
+    </config>
+    <config>
+      <path>alosocial/messenger/theme_color</path>
+      <value><![CDATA[#00FFFF]]></value>
+    </config>
+    <config>
+      <path>alosocial/instagram/username</path>
+      <value><![CDATA[binhadobe]]></value>
+    </config>
+    <config>
+      <path>alosocial/instagram/accessToken</path>
+      <value><![CDATA[IGQVJWNHpJSjM1eXFLMnBsTDd5UFRWc1huem43VFBBTnZALejBzcFZAucmRreGUxYmpzVE1uemRRSFdNckhrdVl1d083MWFkeHVDYno3ZAVJrMGYtN2gyTF9MOU0zRlByOHlwOEVudnN0d0oxeHlsUVlxMAZDZD]]></value>
+    </config>
+    <config>
+      <path>alosocial/instagram/limit</path>
+      <value><![CDATA[12]]></value>
+    </config>
+    <config>
+      <path>alosocial/pinterest/limit</path>
+      <value><![CDATA[8]]></value>
+    </config>
+    <config>
+      <path>alosocial/flickr/limit</path>
+      <value><![CDATA[8]]></value>
+    </config>
+    <config>
+      <path>alosocial/picasa/limit</path>
+      <value><![CDATA[8]]></value>
+    </config>
+    <config>
+      <path>alosocial/general/enabled</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magicmenu/general/dropdown</path>
+      <value><![CDATA[281,292,333,334,335,336,331,332,337,362]]></value>
+    </config>
+    <config>
+      <path>magicmenu/topmenu/notIncludeNav</path>
+      <value><![CDATA[281,293,320,333,334,335,336,331,332,337,362]]></value>
+    </config>
+    <config>
+      <path>magicmenu/vmenu/enabled</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magicmenu/vmenu/home</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magicmenu/vmenu/notIncludeNav</path>
+      <value><![CDATA[256,292]]></value>
+    </config>
+    <config>
+      <path>magicmenu/vmenu/demo</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>magicmenu/accordion/enabled</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>magicmenu/amenu/enabled</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/title</path>
+      <value><![CDATA[Brand we offer]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/autoplay</path>
+      <value><![CDATA[false]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/rows</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/padding</path>
+      <value><![CDATA[10]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/tablet</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/notebook</path>
+      <value><![CDATA[4]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/laptop</path>
+      <value><![CDATA[4]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/desktop</path>
+      <value><![CDATA[6]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/widescreen</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/visible</path>
+      <value><![CDATA[5]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/arrows</path>
+      <value><![CDATA[true]]></value>
+    </config>
+    <config>
+      <path>shopbrand/general/margin</path>
+      <value><![CDATA[30]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/slide</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/infinite</path>
+      <value><![CDATA[false]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/autoplay</path>
+      <value><![CDATA[false]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/rows</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/landscape</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/tablet</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/notebook</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/laptop</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/visible</path>
+      <value><![CDATA[4]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/margin</path>
+      <value><![CDATA[15]]></value>
+    </config>
+    <config>
+      <path>shopbrand/product/arrows</path>
+      <value><![CDATA[true]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/per_page</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/infinite</path>
+      <value><![CDATA[false]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/autoplay</path>
+      <value><![CDATA[false]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/arrows</path>
+      <value><![CDATA[true]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/dots</path>
+      <value><![CDATA[true]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/fade</path>
+      <value><![CDATA[false]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/rows</path>
+      <value><![CDATA[1]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/adaptive_height</path>
+      <value><![CDATA[true]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/padding</path>
+      <value><![CDATA[0]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/notebook</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/laptop</path>
+      <value><![CDATA[2]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/desktop</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/widescreen</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/visible</path>
+      <value><![CDATA[3]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/margin</path>
+      <value><![CDATA[30]]></value>
+    </config>
+    <config>
+      <path>testimonial/general/subtitle</path>
+      <value><![CDATA[Pellentesque commodo eros a enim]]></value>
+    </config>
+    <config>
+      <path>web/default/front</path>
+      <value>cms</value>
+    </config>
+    <config>
+      <path>web/default/cms_home_page</path>
+      <value>funio8</value>
+    </config>
+    <config>
+      <path>web/default/cms_no_route</path>
+      <value>no-route</value>
+    </config>
+  </system>
+  <theme>Alothemes/funio8</theme>
+</root>

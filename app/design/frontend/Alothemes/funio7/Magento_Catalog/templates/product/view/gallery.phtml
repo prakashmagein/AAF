@@ -1,0 +1,101 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Product media data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Gallery
+ */
+?>
+<?php
+$_aloHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
+$_product   = $block->getProduct();
+$product_label = $_aloHelper->getLabels($_product); 
+echo $product_label ? '<div class="product-label">' . $product_label . '</div>' : ''; 
+?>
+<?php
+$images = $block->getGalleryImages()->getItems();
+$mainImage = current(array_filter($images, function ($img) use ($block) {
+    return $block->isMainImage($img);
+}));
+
+if (!empty($images) && empty($mainImage)) {
+    $mainImage = $block->getGalleryImages()->getFirstItem();
+}
+
+$helper = $block->getData('imageHelper');
+$mainImageData = $mainImage ?
+    $mainImage->getData('medium_image_url') :
+    $helper->getDefaultPlaceholderUrl('image');
+
+?>
+
+<div class="gallery-placeholder _block-content-loading" data-gallery-role="gallery-placeholder">
+    <img
+        alt="main product photo"
+        class="gallery-placeholder__image"
+        src="<?= /* @noEscape */ $mainImageData ?>"
+    />
+ <div class="custom-wishlist">
+     
+     <div class="wish-list-section">
+        <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()) : ?>
+            <a href="#" class="action towishlist link-wishlist" title="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>" aria-label="<?php echo $block->escapeHtml(__('Add to Wish List')); ?>" data-post='<?php /* @escapeNotVerified */ echo $block->getAddToWishlistParams($_product); ?>' data-action="add-to-wishlist" role="button">
+            <div class="custom-wishlist-image"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M9.465 15.6075C9.21 15.6975 8.79 15.6975 8.535 15.6075C6.36 14.865 1.5 11.7675 1.5 6.51751C1.5 4.20001 3.3675 2.32501 5.67 2.32501C7.035 2.32501 8.2425 2.98501 9 4.00501C9.7575 2.98501 10.9725 2.32501 12.33 2.32501C14.6325 2.32501 16.5 4.20001 16.5 6.51751C16.5 11.7675 11.64 14.865 9.465 15.6075Z" stroke="#7E828B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg></div>    
+            </a>
+        <?php endif; ?>
+    </div>
+ </div>   
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "[data-gallery-role=gallery-placeholder]": {
+            "mage/gallery/gallery": {
+                "mixins":["magnifier/magnify"],
+                "magnifierOpts": <?= /* @noEscape */ $block->getMagnifier() ?>,
+                "data": <?= /* @noEscape */ $block->getGalleryImagesJson() ?>,
+                "options": <?= /* @noEscape */ $block->getGalleryOptions()->getOptionsJson() ?>,
+                "fullscreen": <?= /* @noEscape */ $block->getGalleryOptions()->getFSOptionsJson() ?>,
+                 "breakpoints": <?= /* @noEscape */ $block->getBreakpoints() ?>
+            }
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        $(document).ready(function () {
+            if($(window).width() > 991){
+            var stickyImage = $('.product.media.product-img-box');
+            var wrapper = $('.catalog-product-view .page-wrapper');
+            var originalOffset = stickyImage.offset().top;
+            var productDetails = $('.product-info-main');
+
+            $(window).scroll(function () {
+                var bottomOffset = productDetails.offset().top + productDetails.height();
+
+                if ($(window).scrollTop() > originalOffset && $(window).scrollTop() < bottomOffset) {
+                    stickyImage.addClass('sticky');
+                    wrapper.addClass('product-details-sticky');
+                } else {
+                    stickyImage.removeClass('sticky');
+                    wrapper.addClass('product-details-sticky');
+                }
+            });
+            }
+
+                // Js for the twice breadcrumb
+                $(document).ready(function() {
+                    $("#custom-menu .section-item-content .nav-mobile .nav-1.hasChild").remove();
+                });
+            
+
+        });
+    });
+</script>

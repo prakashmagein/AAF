@@ -1,0 +1,33 @@
+a:18:{s:4:"name";s:12:"Facebook XML";s:8:"filename";s:8:"Facebook";s:9:"feed_type";s:3:"xml";s:13:"template_code";s:12:"facebook_xml";s:9:"is_active";s:1:"1";s:8:"store_id";s:1:"1";s:12:"execute_mode";s:6:"manual";s:21:"format_price_currency";s:3:"USD";s:10:"xml_header";s:197:"<?xml version="1.0"?><rss version="2.0" xmlns:g="http://base.google.com/ns/1.0"><channel>  <title>My Store</title><link>http://www.example.com</link><description>Facebook Feed Example</description>";s:8:"xml_item";s:4:"item";s:11:"xml_content";s:3108:"<g:item_group_id>{attribute="basic|sku" format="as_is" parent="strict" optional="yes" modify="html_escape"}</g:item_group_id>
+<g:id>{attribute="basic|sku" format="as_is" parent="no" optional="no" modify="html_escape"}</g:id>
+< placeholder: gtin >
+< placeholder: mpn >
+<g:title>{attribute="product|name" format="as_is" parent="no" optional="no" modify="html_escape"}</g:title>
+<g:description>{attribute="product|short_description" format="as_is" parent="no" optional="no" modify="html_escape|length:9999"}</g:description>
+<g:rich_text_description>{attribute="product|description" format="as_is" parent="no" optional="yes" modify="google_html_escape|length:9999"}</g:rich_text_description>
+<g:link>{attribute="url|short" format="as_is" parent="no" optional="no" modify="html_escape"}</g:link>
+<g:image_link>{attribute="image|thumbnail" format="as_is" parent="no" optional="no" modify="html_escape"}</g:image_link>
+<g:additional_image_link>{attribute="gallery|image_1" format="as_is" parent="no" optional="yes" modify=":gallery|image_1"}</g:additional_image_link>
+<g:additional_image_link>{attribute="gallery|image_2" format="as_is" parent="no" optional="yes" modify=":gallery|image_2"}</g:additional_image_link>
+<g:additional_image_link>{attribute="gallery|image_3" format="as_is" parent="no" optional="yes" modify=":gallery|image_3"}</g:additional_image_link>
+<g:additional_image_link>{attribute="gallery|image_4" format="as_is" parent="no" optional="yes" modify=":gallery|image_4"}</g:additional_image_link>
+<g:additional_image_link>{attribute="gallery|image_5" format="as_is" parent="no" optional="yes" modify=":gallery|image_5"}</g:additional_image_link>
+<g:condition>new</g:condition>
+<g:availability>{attribute="inventory|is_in_stock" format="as_is" parent="no" optional="no" modify="replace:1^In Stock|replace:0^Out of Stock"}</g:availability>
+<g:brand>{attribute="product|manufacturer" format="as_is" parent="no" optional="no" modify="html_escape"}</g:brand>
+< placeholder: google_product_category >
+<g:price>{attribute="price|final_price" format="price" parent="no" optional="no" modify=""}</g:price>
+<g:sale_price>{attribute="price|special_price" format="price" parent="no" optional="yes" modify=""}</g:sale_price>
+<g:sale_price_effective_date>{attribute="product|special_to_date" format="date" parent="no" optional="yes" modify=""}</g:sale_price_effective_date>
+<g:product_type>{attribute="category_path|category" format="as_is" parent="no" optional="yes" modify="html_escape"}</g:product_type>
+<g:shipping>
+ <g:country>US</g:country>
+ <g:price>0 USD</g:price>
+</g:shipping>
+< placeholder: expiration_date >
+<color>{attribute="product|color" format="as_is" parent="no" optional="yes" modify="html_escape"}</color>
+<gender>{attribute="product|gender" format="as_is" parent="no" optional="yes" modify="html_escape"}</gender>
+< placeholder: age_group >
+< placeholder: pattern >
+<size>{attribute="product|size" format="as_is" parent="no" optional="yes" modify="html_escape"}</size>
+<material>{attribute="product|material" format="as_is" parent="no" optional="yes" modify="google_html_escape"}</material>";s:10:"xml_footer";s:16:"</channel></rss>";s:26:"format_price_currency_show";s:1:"1";s:21:"format_price_decimals";s:3:"two";s:26:"format_price_decimal_point";s:3:"dot";s:32:"format_price_thousands_separator";s:5:"comma";s:11:"format_date";s:5:"Y-m-d";s:21:"conditions_serialized";s:146:"{"type":"Amasty\\Feed\\Model\\Rule\\Condition\\Combine","attribute":null,"operator":null,"value":"1","is_value_processed":null,"aggregator":"all"}";}

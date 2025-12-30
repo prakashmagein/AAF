@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * config
+ *
+ * @copyright Copyright © 2020 Magepow. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <magepow_onestepcheckout>
+            <general>
+                <enabled>1</enabled>
+                <title>One Step Checkout</title>
+                <description> </description>
+                <allow_guest_checkout>1</allow_guest_checkout>
+                <show_billing_address>1</show_billing_address>
+                <auto_detect_address> </auto_detect_address>
+                <google_api_key>AIzaSyDorkShHO1xhw2zbjz-OZdSKP-xQ65AS0</google_api_key>
+            </general>
+            <display_configuration>
+                <display_foothead>0</display_foothead>
+                <enabled_login_link>1</enabled_login_link>
+                <enabled_review_cart_section>1</enabled_review_cart_section>
+                <show_item_list_toggle>1</show_item_list_toggle>
+                <show_product_image>1</show_product_image>
+                <show_coupon>1</show_coupon>
+                <enabled_gift_message>0</enabled_gift_message>
+                <enabled_gift_message_items>0</enabled_gift_message_items>
+                <checked_newsletter>1</checked_newsletter>
+                <enabled_date>1</enabled_date>
+                <enabled_comments>1</enabled_comments>
+                <enabled_order_comments>1</enabled_order_comments>
+                <show_toc>1</show_toc>
+            </display_configuration>
+
+            <design_configuration>
+                <page_design>default</page_design>
+                <heading_background>#ffffff</heading_background>
+                <heading_text>#333333</heading_text>
+                <place_order_button>#1979c3</place_order_button>
+                <place_order_color>#333333</place_order_color>
+            </design_configuration>
+            <geoip_configuration>
+                <enable_geoip>0</enable_geoip>
+            </geoip_configuration>
+            <field>
+                <position>[{"code":"firstname","colspan":6},{"code":"lastname","colspan":6},{"code":"street","colspan":12},{"code":"country_id","colspan":6},{"code":"city","colspan":6},{"code":"postcode","colspan":6},{"code":"region_id","colspan":6},{"code":"company","colspan":6},{"code":"telephone","colspan":6}]</position>
+            </field>
+        </magepow_onestepcheckout>
+    </default>
+</config>

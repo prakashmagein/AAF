@@ -1,0 +1,19 @@
+<?php
+$escaper = $block->escaper();
+?>
+<?php if ($block->getListItems()): ?>
+    <script class="gwl_add_payment_info">
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            event: "add_payment_info",
+            ecommerce: {
+                currency: "<?=$escaper->escapeHtml($block->getCurrencyCode())?>",
+                value: "<?=$escaper->escapeHtml($block->getValue())?>",
+                coupon: "<?=$escaper->escapeHtml($block->getCouponCode())?>",
+                gift_card: "<?=$escaper->escapeHtml($block->getAppliedGiftCards())?>",
+                payment_type: "<?=$escaper->escapeHtml($block->getPaymentType())?>",
+                items: <?= /** @noEscape */ $block->serializeItem($block->getListItems()) ?>
+            }
+        });
+    </script>
+<?php endif; ?>

@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_register_success">
+        <observer name="custom_customer_register" instance="Gwl\Datalayerevents\Observer\CustomerRegisterSuccess"/>
+    </event>
+    <event name="customer_login">
+        <observer name="add_customer_login" instance="Gwl\Datalayerevents\Observer\CustomerLoginObserver" />
+    </event>
+    <event name="customer_logout">
+        <observer name="gwl_customer_logout" instance="Gwl\Datalayerevents\Observer\CustomerLogoutObserver" />
+    </event>
+    <event name="checkout_cart_product_add_after">
+        <observer name="custom_cart_product_add_after" instance="Gwl\Datalayerevents\Observer\CartProductAddAfter" />
+    </event>
+    <event name="checkout_onepage_controller_failure_action">
+        <observer name="add_payment_failure_to_datalayer" instance="Vendor\Module\Observer\PaymentFailure" />
+    </event>
+    <event name="wishlist_add_product">
+        <observer name="wishlist_add_to_datalayer" instance="Gwl\Datalayerevents\Observer\AddToWishlist" />
+    </event>
+    <event name="sales_quote_remove_item">
+        <observer name="gwl_event_remove_item" instance="Gwl\Datalayerevents\Observer\RemoveItem" />
+    </event>
+</config>

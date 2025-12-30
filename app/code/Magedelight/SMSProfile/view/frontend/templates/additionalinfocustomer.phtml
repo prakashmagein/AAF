@@ -1,0 +1,161 @@
+<?php
+ /**
+  * Magedelight
+  * Copyright (C) 2022 Magedelight <info@magedelight.com>
+  *
+  * @category  Magedelight
+  * @package   Magedelight_SMSProfile
+  * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+  * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+  * @author    Magedelight <info@magedelight.com>
+  */
+
+ $smsProfileHelper = $block->getData('view_model');
+ $smsProfileHelper = $smsProfileHelper->getHelperData();
+ $validateClass = '';
+ $required = 0;
+ $enableModule = $smsProfileHelper->getModuleStatus();
+ $autoVerifyOTP = $smsProfileHelper->getAutoGenerateLogin();
+ $mobileNumberLimit = $smsProfileHelper->getMobileNumberLimit();
+ $required = $smsProfileHelper->getSmsProfilePhoneRequiredOnSignUp();
+ $validateClass = $smsProfileHelper->getSmsProfilePhoneValidationClass();
+ $resendLimitEnable=$smsProfileHelper->getOTPResendLimitEnable();
+ $resendLimit=$smsProfileHelper->getOTPResendLimit();
+ $resendLimitTime=$smsProfileHelper->getResendTime();
+
+ $phoneValidation = $smsProfileHelper->getPhoneValidation();
+
+ $mobileNumberFieldClass = 10;
+    if(!$smsProfileHelper->isCustomerCountryEnabled()){
+        for ($i=0; $i < count($phoneValidation); $i++) { 
+            if ($phoneValidation[$i]['country']=='default') {
+                $mobileNumberFieldClass = $phoneValidation[$i]['digit'];
+            }  
+        }
+    }
+ ?>
+ <?php if ($enableModule):?>
+    <fieldset class="fieldset create account" data-hasrequired="<?= __('* Required Fields') ?>">
+        <legend class="legend">
+            <span><?= __('Additional Information') ?></span>
+        </legend>
+        <input type='hidden' name='mobile_number_limit' id="mobile_number_limit" value='<?php echo $mobileNumberLimit ?>'/>
+        <input type='hidden' name='auto_verify_otp' id="auto_verify_otp" value="<?= $escaper->escapeHtmlAttr($autoVerifyOTP) ?>"/>
+        <input type='hidden' name='resend_limit' id="resend_limit" value='<?= $escaper->escapeHtmlAttr($resendLimit) ?>'/>
+        <input type='hidden' name='resend_limit_time' id="resend_limit_time" value='<?= $escaper->escapeHtmlAttr($resendLimitTime) ?>'/>
+        <input type='hidden' id="phone_validation" name="phone_validation" value="<?= $escaper->escapeHtmlAttr(json_encode($phoneValidation)) ?>"/>
+        <?php if(!$smsProfileHelper->isCustomerCountryEnabled()):?>
+            <input type="hidden" id="default_mobile_validation" value="<?= $escaper->escapeHtmlAttr($mobileNumberFieldClass);?>" />
+        <?php endif;?>
+        <div class="field customer_mobile <?php if ($required) {echo 'required'; }?>">
+            <div class="control">
+                <?php if ($smsProfileHelper->isCustomerCountryEnabled()): ?>
+                    
+                        <input type="hidden" value="<?= $escaper->escapeHtmlAttr($block->getCountryCode()) ?>" id="countryreg" name="countryreg" />
+                        <input type="hidden" value="" id="countryregcode" name="countryregcode" />
+                   
+                    
+                    
+                    <input type="text" name="customer_mobile" id="login_mobile"
+                    title="<?= __('Customer Mobile') ?>" class="input-text <?php if ($required) {echo 'required-entry ';} ?>"
+                    <?php if ($required) {echo 'data-validate="{required:true}"';}?> autocomplete="off"
+                    value='<?= $block->getCountryCode(); ?><?= $block->getMobile(); ?>' 
+                    data-mage-init='{"validation":{}}' />
+                    <?php else: ?>
+                      <input type="text" name="customer_mobile" id="login_mobile"
+                      title="<?= __('Customer Mobile') ?>" class="validate-number input-text <?php if ($required) {echo 'required-entry ';} ?>"
+                      <?php if ($required) {echo 'data-validate="{required:true}"';}?> autocomplete="off"
+                      value='<?= $block->getMobile(); ?>' data-mage-init='{"validation":{}}' />
+                  <?php endif; ?>
+                  <label for="customer_mobile" class="label">
+                <span><?= /* @escapeNotVerified */ __('Customer Mobile') ?></span>
+            </label>
+                  <div class="profile-notice-phone">
+                    <span><?= $smsProfileHelper->getPhoneNote(); ?></span>
+                </div> 
+            </div>
+            <div class="field">    
+                <button class="send_otp_login action primary" style="margin-top: 15px;display:none;" type="button">
+                    <?= __("Generate OTP"); ?>
+                </button>
+                <span class="otp_generatenote">&nbsp;</span>
+                <span class="smserror" style="color: red;">&nbsp;</span>
+                <div class="resendotp-block resendotp-block" style="display: none">
+                    <?php if ($resendLimitEnable == 1) { ?>
+                        <p class="resend-wait">
+                            <?= __('Resend In:'); ?>
+                            <span class="time"><?= ' '.$resendLimitTime; ?></span> <?= __('Seconds'); ?>
+                        </p>
+                        <div class="resendlink" style="display: none">
+                            <button class="resendotp"  type="button"><?= __('Resend OTP');?></button>
+                        </div>
+                        <div class="resend-link-attempt" style="display: none"></div>
+                    <?php } ?>    
+                    <div class="field field-name-otp required">
+                        <label class="label" for="otp">
+                            <span><?= __('Please enter verification code here'); ?></span>
+                        </label>
+                        <div class="control">
+                            <input id="otp" name="otp" value="" title="otp"
+                            class="input-text required-entry" data-validate="{required:true}"
+                            autocomplete="off" aria-required="true" type="text"
+                            novalidate="novalidate" style="width: 200px;">
+
+                            <button class="verif_otp_login action primary"
+                            type="button"><?= __('Verify OTP'); ?></button>
+                        </div>
+                    </div>
+                </div>
+                <span class="otp_text"></span>
+            </div>
+        </div>
+        <?php $recaptchaStatus = $smsProfileHelper->getRecaptchaStatus();
+    $recaptchaForms  = $smsProfileHelper->getRecaptchaForms();
+?>
+<?php if($recaptchaStatus && in_array('edit', $recaptchaForms)):?>
+    <!-- Google reCAPTCHA widget -->
+    <div id="edit-captcha"></div>
+    <input type="hidden" id="captcha-response" name="captcha-response" />
+    <input type="hidden" id="captcha-widget-id" name="captcha-widget-id" />
+<?php endif;?>
+    </fieldset>
+    <?php
+    echo "<input type='hidden' name='form_type' id='form_type' value='edit'/>";
+
+    if ($block->getMagentoEdition() !='Community') {
+       $sendOtpUrl = $block->getUrl('smsprofile/otp/send');
+       $verifyOtpUrl = $block->getUrl('smsprofile/otp/verify');
+       echo "<input type='hidden' class='note' value='".$smsProfileHelper->getPhoneNote()."'/>";
+    }
+    ?>
+    <?php if ($block->getMagentoEdition() !=='Community'): ?>
+            <style type="text/css">
+              .field-customer_mobile, .field-countryreg{ display: none; }
+          </style>
+        <?php endif; ?>
+    <?php if ($smsProfileHelper->isCustomerCountryEnabled()): ?>
+        
+        <script type="text/x-magento-init">
+            {
+                "input[name='customer_mobile']": {
+                    "Magedelight_SMSProfile/js/intlTelephoneInput":
+                    {
+                        "nationalMode":true,
+                        "separateDialCode": true,
+                        "utilsScript":"<?= $this->getViewFileUrl('Magedelight_SMSProfile::js/utils.js'); ?>",
+                        "preferredCountries":["<?= $smsProfileHelper->getDefaultCustomerCountry(); ?>"],
+                        "onlyCountries":[<?= $smsProfileHelper->getAvailableCountries(); ?>]
+                    }
+                }
+            }   
+        </script>
+    <?php endif; ?>
+    <script type="text/x-magento-init">
+        {
+            "*": {
+            "Magedelight_SMSProfile/js/custom-login" : {
+        }
+    }
+    }
+    </script>
+<?php endif;?>

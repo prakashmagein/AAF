@@ -1,0 +1,39 @@
+<?php
+$escaper = $block->escaper();
+
+// var_dump($block->serializeItem($block->getItem()));
+// die("dsdssdd");
+?>
+
+<?php if ($previous = $block->getPreviousUrl()): ?>
+<script>
+    var isNavigate = window.performance.getEntriesByType('navigation').some(nav => nav.type === 'navigate');
+    if (isNavigate) {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'select_item',
+            'ecommerce': {
+                'curruncy': "<?=$escaper->escapeHtml($block->getCurrencyCode())?>",
+                'value': "<?=$escaper->escapeHtml($block->getItemPrice())?>",
+                'item_img': "<?=$escaper->escapeHtml($block->getProductImage())?>",
+                'item_list_id': "<?=$escaper->escapeHtml($previous['item_list_id'])?>",
+                'item_list_name': "<?=$escaper->escapeHtml($previous['item_list_name'])?>",
+                'items': [<?=/** @noEscape */$block->serializeItem($block->getItem())?>]
+            }
+        });
+    }
+</script>
+<?php endif;?>
+
+
+<?php
+$productcollection = $block->getProductCollection();
+?>
+
+<!-- Product Item -->
+<?php if ($productcollection): ?>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        dataLayer.push(<?= json_encode($productcollection, JSON_HEX_TAG); ?>);
+    </script>
+<?php endif; ?>

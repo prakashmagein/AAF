@@ -1,0 +1,78 @@
+diff --git a/Model/Export/SubmitedData/Pdf/PdfResultRenderer.php b/Model/Export/SubmitedData/Pdf/PdfResultRenderer.php
+index cec5af4..d502fa8 100644
+--- a/Model/Export/SubmitedData/Pdf/PdfResultRenderer.php
++++ b/Model/Export/SubmitedData/Pdf/PdfResultRenderer.php
+@@ -11,6 +11,7 @@ use Amasty\Customform\ViewModel\Export\Pdf\SubmittedData\DocumentFactory;
+ use Amasty\Customform\ViewModel\Export\Pdf\SubmittedData\ExternalCssProvider;
+ use Magento\Framework\View\Element\BlockFactory;
+ use Magento\Framework\View\Element\Template;
++use ArPHP\I18N\Arabic;
+ 
+ class PdfResultRenderer implements ResultRendererInterface
+ {
+@@ -41,11 +42,17 @@ class PdfResultRenderer implements ResultRendererInterface
+      */
+     private $externalCssProvider;
+ 
++    /**
++     * @var Arabic
++     */
++    private $arabic;
++
+     public function __construct(
+         PdfGeneratorFactory $pdfGeneratorFactory,
+         BlockFactory $blockFactory,
+         DocumentFactory $documentViewModelFactory,
+         ExternalCssProvider $externalCssProvider,
++        Arabic $arabic,
+         $pdfTemplate = self::DEFAULT_TEMPLATE
+     ) {
+         $this->pdfGeneratorFactory = $pdfGeneratorFactory;
+@@ -53,6 +60,7 @@ class PdfResultRenderer implements ResultRendererInterface
+         $this->documentViewModelFactory = $documentViewModelFactory;
+         $this->pdfTemplate = $pdfTemplate;
+         $this->externalCssProvider = $externalCssProvider;
++        $this->arabic = $arabic;
+     }
+ 
+     public function render(AnswerInterface $answer): string
+@@ -75,6 +83,15 @@ class PdfResultRenderer implements ResultRendererInterface
+         );
+         $block->setTemplate($this->pdfTemplate);
+ 
+-        return $block->toHtml();
++        $arabicHtml = $block->toHtml();
++
++        $p = $this->arabic->arIdentify($arabicHtml);
++
++        for ($i = count($p)-1; $i >= 0; $i-=2) {
++            $utf8ar = $this->arabic->utf8Glyphs(substr($arabicHtml, $p[$i-1], $p[$i] - $p[$i-1]));
++            $arabicHtml = substr_replace($arabicHtml, $utf8ar, $p[$i-1], $p[$i] - $p[$i-1]);
++        }
++
++        return $arabicHtml;
+     }
+ }
+diff --git a/view/base/web/css/external/export/pdf/external_styles.css b/view/base/web/css/external/export/pdf/external_styles.css
+index e384a20..d2ca99c 100644
+--- a/view/base/web/css/external/export/pdf/external_styles.css
++++ b/view/base/web/css/external/export/pdf/external_styles.css
+@@ -83,3 +83,18 @@ body {
+     margin: 0;
+ }
+ 
++@font-face {
++    font-family: amiri;
++    src: url(https://github.com/aliftype/amiri/blob/main/Amiri-Regular.ttf?raw=true) format('truetype');
++}
++
++@font-face {
++    font-family: amiri;
++    font-weight: bold;
++    src: url(https://github.com/aliftype/amiri/blob/main/Amiri-Bold.ttf?raw=true) format('truetype');
++}
++
++* {
++    font-family: amiri !important;
++}
++

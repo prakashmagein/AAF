@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+* FME Extensions
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the fmeextensions.com license that is
+* available through the world-wide-web at this URL:
+* https://www.fmeextensions.com/LICENSE.txt
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this extension to newer
+* version in the future.
+*
+* @category  FME
+* @author    Hassan <support@fmeextensions.com>
+* @package   FME_Refund
+* @copyright Copyright (c) 2021 FME (http://fmeextensions.com/)
+* @license   https://fmeextensions.com/LICENSE.txt
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <request_manage>
+            <general>
+                <enable>1</enable>
+                <enableemail>0</enableemail>
+                 <time>2</time>
+                 <adminEmail>hassan.zamir@unitedsol.net</adminEmail>
+            </general>
+            <grecaptcha>
+                <recaptcha>1</recaptcha>
+                <sitekey>6Lc60jAdAAAAANlq5hBUm6By4EtksTk91hKLDlqx</sitekey>
+                <secretkey>6Lc60jAdAAAAAGPF45iZqnADCkobu2ksJ7MSoE_N</secretkey>
+            </grecaptcha>
+            <popup>
+                <enablepopup>1</enablepopup>
+                <title>Refund Request</title>
+                 <description>1</description>
+            </popup>
+        </request_manage>
+    </default>
+</config>

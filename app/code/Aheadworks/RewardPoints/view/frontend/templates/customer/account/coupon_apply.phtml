@@ -1,0 +1,31 @@
+<?php
+/**
+ * Coupon apply form
+ *
+ * @var Magento\Framework\View\Element\Template $block
+ * @var Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="coupon-apply">
+    <form action="<?= $escaper->escapeUrl($block->getUrl('*/coupon/apply')) ?>"
+          method="post"
+          data-mage-init='{"validation": {}}'>
+        <fieldset class="fieldset">
+            <div class="field required">
+                <label class="label" for="coupon">
+                    <span><?= $escaper->escapeHtml(__('Enter coupon code')) ?></span>
+                </label>
+                <div class="control-wrapper">
+                    <div class="control">
+                        <input type="text" id="coupon" name="coupon" data-validate="{required: true}"/>
+                    </div>
+                    <button type="submit"
+                            class="action primary"
+                            title="<?= $escaper->escapeHtmlAttr(__('Apply coupon')) ?>">
+                        <span><?= $escaper->escapeHtml(__('Apply coupon')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

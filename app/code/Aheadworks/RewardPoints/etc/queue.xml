@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/queue.xsd">
+    <broker topic="aw_reward_points.coupons_generate" exchange="magento">
+        <queue name="aw_reward_points.coupons_generate"
+               consumer="aw_reward_points.coupons_generate"
+               handler="Aheadworks\RewardPoints\Model\Coupon\Generate\Consumer::process"/>
+    </broker>
+</config>

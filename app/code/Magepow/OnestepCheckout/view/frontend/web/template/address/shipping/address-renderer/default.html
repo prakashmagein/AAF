@@ -1,0 +1,38 @@
+<div class="shipping-address-item" data-bind="css: isSelected() ? 'selected-item' : 'not-selected-item', click: selectAddress">
+    <!-- ko text: address().prefix --><!-- /ko --> <!-- ko text: address().firstname --><!-- /ko -->
+    <!-- ko text: address().lastname --><!-- /ko --> <!-- ko text: address().suffix --><!-- /ko --><br/>
+    <!-- ko text: address().street --><!-- /ko --><br/>
+    <!-- ko text: address().city --><!-- /ko -->, <!-- ko text: address().region --><!-- /ko --> <!-- ko text: address().postcode --><!-- /ko --><br/>
+    <!-- ko text: getCountryName(address().countryId) --><!-- /ko --><br/>
+    <!-- ko text: address().telephone --><!-- /ko --><br/>
+    <!-- ko if: (address().isEditable()) -->
+
+    <each args="data: address().customAttributes, as: 'element'">
+        <each args="data: Object.keys(element), as: 'attribute'">
+            <if args="typeof element[attribute] === 'object'">
+                <if args="element[attribute].label">
+                    <text args="element[attribute].label"/>
+                </if>
+                <ifnot args="element[attribute].label">
+                    <if args="element[attribute].value">
+                        <text args="element[attribute].value"/>
+                    </if>
+                </ifnot>
+                <br/>
+            </if>
+            <if args="typeof element[attribute] === 'string'">
+                <if args="attribute == 'value'">
+                    <text args="element[attribute]"/>
+                    <br/>
+                </if>
+            </if>
+        </each>
+    </each>
+
+    <button type="button"
+            class="action edit-address-link"
+            data-bind="click: editAddress, visible: address().isEditable()">
+        <span data-bind="i18n: 'Edit'"></span>
+    </button>
+    <!-- /ko -->
+</div>

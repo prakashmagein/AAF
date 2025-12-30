@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Custom Reports Builder for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Amasty_ReportBuilder:etc/entity_scheme.xsd">
+    <amasty_report_builder_entities>
+        <entity name="order_payment">
+            <main_table>sales_order_payment</main_table>
+            <title>Order Payment</title>
+            <hidden>true</hidden>
+
+            <columns>
+                <column name="entity_id" primary="true" />
+                <column name="method">
+                    <title>Payment Method</title>
+                    <source_model>Magento\Payment\Ui\Component\Listing\Column\Method\Options</source_model>
+                </column>
+            </columns>
+
+            <relations>
+                <relation name="order" type="column">
+                    <column>parent_id</column>
+                    <reference_column>entity_id</reference_column>
+                    <relationship_type>many_to_one</relationship_type>
+                </relation>
+            </relations>
+        </entity>
+    </amasty_report_builder_entities>
+</config>

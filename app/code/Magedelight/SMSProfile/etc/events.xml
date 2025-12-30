@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!--
+/**
+ * Magedelight
+ * Copyright (C) 2022 Magedelight <info@magedelight.com>
+ *
+ * @category Magedelight
+ * @package Magedelight_SMSProfile
+ * @copyright Copyright (c) 2022 Mage Delight (http://www.magedelight.com/)
+ * @license http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author Magedelight <info@magedelight.com>
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">    
+    <event name="payment_method_assign_data_cashondelivery">
+        <observer name="vault_data_assigner" instance="Magedelight\SMSProfile\Observer\CodValidationAssigner" />
+    </event>
+     <event name="customer_register_success">
+        <observer name="sMSHandleCustomerSaveAfter" instance="Magedelight\SMSProfile\Observer\CustomerRegisterObserver" />
+    </event>
+    <!-- <event name="layout_generate_blocks_after">
+        <observer name="magedelight_smsprofile_remove_block" instance="Magedelight\SMSProfile\Observer\RemoveBlock" />
+    </event> -->
+</config>

@@ -1,0 +1,5 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Vendor_Module/etc/di.xsd">
+    <type name="Magento\Shipping\Model\Shipping">
+        <plugin name="Galaxyweblinks_Liltshipping_shipping_calculation" type="Galaxyweblinks\Liltshipping\Plugin\ShippingPlugin" sortOrder="10"/>
+    </type>
+</config>

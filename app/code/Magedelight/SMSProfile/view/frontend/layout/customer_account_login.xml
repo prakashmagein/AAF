@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+ <!-- 
+/**
+ * Magedelight
+ * Copyright (C) 2023 Magedelight <info@magedelight.com>
+ *
+ * @category  Magedelight
+ * @package   Magedelight_SMSProfile
+ * @copyright Copyright (c) 2023 Mage Delight (http://www.magedelight.com/)
+ * @license   http://opensource.org/licenses/gpl-3.0.html GNU General Public License,version 3 (GPL-3.0)
+ * @author    Magedelight <info@magedelight.com>
+ */ 
+ -->
+ 
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="md-login-popup" remove="true" />
+        <referenceContainer name="customer.login.container">
+            <container name="sm.customer.login.container.left" htmlTag="div" htmlClass="login-left" />
+            <container name="sm.customer.login.container.right" htmlTag="div" htmlClass="login-right" />
+            <referenceBlock name = "customer_form_login">
+                <action method="setTemplate" ifconfig="magedelightsmsprofile/general/enable">
+                    <argument name="template" xsi:type="string">Magedelight_SMSProfile::smsprofile-login-mobile.phtml</argument>
+                </action>
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Magedelight\SMSProfile\ViewModel\Modelhelper</argument>
+                </arguments>
+            </referenceBlock> 
+        </referenceContainer> 
+        <move element="customer_form_login" destination="sm.customer.login.container.left" after="sm-login-mobile"/>
+        <move element="customer.new" destination="sm.customer.login.container.right" after="-"/>
+    </body>
+</page>    

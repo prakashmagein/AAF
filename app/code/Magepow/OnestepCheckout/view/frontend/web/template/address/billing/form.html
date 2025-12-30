@@ -1,0 +1,46 @@
+<!--ko if: window.checkoutConfig.mageConfig.showBillingAddress == 1 -->
+    <div class="billing-address-same-as-shipping-block field choice" data-bind="visible: canUseShippingAddress()">
+        <input type="checkbox" name="billing-address-same-as-shipping" value="billingAddress"
+               data-bind="checked: isAddressSameAsShipping, click: useShippingAddress, attr: {id: 'billing-address-same-as-shipping-' + getCode($parent)}"/>
+        <label data-bind="attr: {for: 'billing-address-same-as-shipping-' + getCode($parent)}"><span
+                data-bind="i18n: 'My billing and shipping address are the same'"></span></label>
+    </div>
+
+<div class="billing-address-form" data-bind="visible: !isAddressSameAsShipping()">
+    <!-- ko foreach: getRegion('before-fields') -->
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <!--/ko-->
+
+    <div class="billing-address-details-mgp" style="display: none;">
+        <div class="billing-address-detail-child"></div>
+        <button type="button" class="action action-edit-address" data-bind="click: editAddressBilling">
+            <span data-bind="i18n: 'Edit'"></span>
+        </button>
+    </div>
+    <form data-bind="attr: {'data-hasrequired': $t('* Required Fields')}" class="form-mgp-billing-address">
+        <fieldset class="fieldset address" data-form="billing-new-address">
+            <!-- ko foreach: getRegion('additional-fieldsets') -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+
+            <div class="choice field">
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <button class="action action-update"
+                                type="button"
+                                click="updateAddress" data-bind="attr: {for: 'billing-save-in-address-book-' + getCode($parent)}">
+                            <span translate="'Update'"></span>
+                        </button>
+                        <button class="action action-cancel"
+                                type="button" data-bind="click: cancelAddressEdit, visible: canUseShippingAddress()">
+                            <span translate="'Cancel'"></span>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+            
+        </fieldset>
+    </form>
+</div>
+<!--/ko-->

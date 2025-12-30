@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<!--
+/**
+* FME Extensions
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the fmeextensions.com license that is
+* available through the world-wide-web at this URL:
+* https://www.fmeextensions.com/LICENSE.txt
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this extension to newer
+* version in the future.
+*
+* @category  FME
+* @author    Hassan <support@fmeextensions.com>
+* @package   FME_Refund
+* @copyright Copyright (c) 2021 FME (http://fmeextensions.com/)
+* @license   https://fmeextensions.com/LICENSE.txt
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="fmeextensions" translate="label" sortOrder="10">
+            <label>FME Extension</label>
+        </tab>
+        <section id="request_manage" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>store-separator</class>
+            <label> Manage Requests </label>
+            <tab>fmeextensions</tab>
+            <resource>FME_Refund::refund</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration</label>
+                
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Enable Extension ? </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="time" translate="label" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Refund Time (days)  </label>
+                    <validate>required-entry validate-digits validate-not-negative-number validate-digits-range digits-range-0-100</validate>
+                <comment> Days in which order can be refunded. </comment>
+                </field>
+
+                <field id="enableemail" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label> Enable Email Notifications ? </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="adminEmail" translate="label" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Admin Email </label>
+                     <validate>validate-email</validate>
+                    <comment> Enter admin email to recieve notifications </comment>
+                </field>
+
+            </group>
+
+        <group id="popup" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label> Request Popup Configuration </label>
+
+                <field id="enablepopup" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Enable Popup ? </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                
+                <field id="title" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Popup Title  </label>
+                </field>
+
+                <field id="description" translate="label" type="select" sortOrder="4" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Enable Refund Description ? </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+        </group>
+        
+        <group id="grecaptcha" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                
+               <label> Recaptcha Configuration </label>
+                <field id="recaptcha" translate="label" type="select" sortOrder="3" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Enable Google Recaptcha ? </label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="sitekey" translate="label" sortOrder="6" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Recaptcha Site Key </label>
+                    <comment> Enter Google Recaptcha Site Key </comment>
+                </field>
+
+                <field id="secretkey" translate="label" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label> Recaptcha Secret Key </label>
+                    <comment> Enter Google Recaptcha Secret Key </comment>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>

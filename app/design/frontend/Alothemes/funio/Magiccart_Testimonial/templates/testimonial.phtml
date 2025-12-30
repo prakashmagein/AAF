@@ -1,0 +1,46 @@
+<?php
+if (!$this->getEnabled()) return;
+$selector = 'alo-content-' . uniqid();
+$testimonials = $this->getTestimonials();
+if (!count($testimonials)) return;
+?>
+<div class="<?php /* @escapeNotVerified */ echo $selector ?>" data-mage-init='{"gridSlider": {}}'>
+	<div class="block-testimonial">
+
+		<div class="block-heading">
+			<?php echo $this->getTitle() ? '<h3 class="title item">' . '<span>' . $this->escapeHtml($this->getTitle()) . '</span>' . '</h3>' : '' ?>
+			<?php echo $this->getSubtitle() ? '<p class="sub-title">' . $this->getSubtitle() . '</p>' : '' ?>
+		</div>
+		<div class="block-content">
+			<div class="testimonial grid-slider" <?php foreach ($this->getFrontendCfg() as $opt) : ?> data-<?php /* @escapeNotVerified */ echo $opt ?>='<?php /* @escapeNotVerified */ echo $this->getData($opt) ?>' <?php endforeach; ?>>
+				<?php $i = 0;
+				foreach ($testimonials as $testimonial) : ?>
+					<div class="item">
+						<div class="item-info">
+							<div class="item-info-images">
+								<div class="avatar">
+									<img class="img-responsive" src="<?php echo $this->escapeUrl($this->getImage($testimonial)) ?>" alt="<?php echo __($this->escapeHtml($testimonial->getName())) ?>" title="<?php echo __($this->escapeHtml($testimonial->getName())) ?>" />
+								</div>
+								<div class="customer-info">
+									<a class="name title-name" href="<?php echo $this->getUrl('testimonial'); ?>"><?php echo $this->escapeHtml($testimonial->getName()); ?></a>
+									<p class="job title-job"><?php echo $this->escapeHtml($testimonial->getJob()); ?></p>
+								</div>
+							</div>
+
+							<div class="item-info-detail">
+								<span class="funio-straight-quotes quote-icon"></span>
+								<div class="rating-summary">
+									<div class="rating-result" title="<?= $this->escapeHtmlAttr($testimonial->getRating_summary() * 20); ?>%">
+										<span style="width:<?= $this->escapeHtmlAttr($testimonial->getRating_summary() * 20); ?>%"><span><?= $this->escapeHtmlAttr($testimonial->getRating_summary() * 20); ?>%</span></span>
+									</div>
+								</div>
+								<a class="company" href="<?php echo $this->escapeHtml($testimonial->getWebsite()); ?>"><?php echo $this->escapeHtml($testimonial->getCompany()) ?></a>
+								<div class="content sub-text"><?php echo $this->escapeHtml($testimonial->getText()); ?></div>
+							</div>
+						</div>
+					</div>
+				<?php endforeach ?>
+			</div>
+		</div>
+	</div>
+</div>

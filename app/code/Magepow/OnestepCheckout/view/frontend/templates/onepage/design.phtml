@@ -1,0 +1,55 @@
+<?php
+/**
+* design
+*
+* @copyright Copyright © 2020 Magepow. All rights reserved.
+* @author    @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+* @license <https://www.magepow.com/license-agreement.html>
+* @Author: magepow<support@magepow.com>
+* @github: <https://github.com/magepow>
+*/
+?>
+<?php
+/**
+ * @var $block \Magepow\OnestepCheckout\Block\LayoutOnestep\Design
+ */
+?>
+
+<?php if ($block->isEnableGoogleApi() && $block->getGoogleApiKey()): ?>
+    <script type="text/javascript" defer src="https://maps.googleapis.com/maps/api/js?key=<?= $block->getGoogleApiKey() ?>&libraries=places"></script>
+<?php endif; ?>
+
+<?php
+$design            = $block->getDesignConfiguration();
+$headingBackground = '#' . trim($design['heading_background'], '#');
+$headingText       = '#' . trim($design['heading_text'], '#');
+$placeOrder        = '#' . trim($design['place_order_button'], '#');
+$placeTextColor    = '#' . trim($design['place_order_color'], '#');
+$customCss         =  empty($design['custom_css']) ? '' :  $design['custom_css'];
+
+?>
+
+<style type="text/css">
+<?= $customCss ?>
+
+    .onestepcheckout-index-index .step-title
+    {
+        background-color: <?php echo $headingBackground ?>;
+        font-weight: bold;
+        color: <?php echo $headingText ?>;
+    }
+    .onestepcheckout-index-index .form-discount .actions-toolbar .primary .action-apply,
+    .onestepcheckout-index-index .onestepcheckout-place-order-wrapper .place-order-primary button.primary.checkout
+    {
+        background-color: <?php echo $placeOrder ?>;
+        border-color: <?php echo $placeOrder ?>;
+        color: <?php echo $placeTextColor ?>;
+    }
+    .onestepcheckout-index-index .billing-address-same-as-shipping-block{
+        display: block !important;
+    }
+</style>
+
+
+
+

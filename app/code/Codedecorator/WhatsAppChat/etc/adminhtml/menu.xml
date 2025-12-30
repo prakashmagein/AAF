@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add
+            id="Codedecorator_WhatsAppChat::config"
+            title="WhatsApp Chat Configuration"
+            module="Codedecorator_WhatsAppChat"
+            sortOrder="504"
+            action="adminhtml/system_config/edit/section/whatsappchat"
+            resource="Codedecorator_WhatsAppChat::config"
+        />
+    </menu>
+</config>

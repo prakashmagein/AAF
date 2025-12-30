@@ -1,0 +1,186 @@
+// /**
+//  * Copyright © 2021 Aloteam. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+
+& when (@media-common =true) {
+
+    .characters{
+        .filter {
+            padding: 0;
+            .char {
+                a{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    .shop-by-brand {
+        .block {
+            &.block-search {
+                .form-search {
+                    border: 0;
+                    box-shadow: none;
+
+                    .field {
+                        &.search {
+                            .actions {
+                                .action {
+                                    .search-button();
+                                    .round-borders(0);
+
+                                    &:before {
+                                        font-size: 2.2rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .shopbrand {
+        margin-bottom: 50px;
+
+        .brand-list {
+            overflow: hidden;
+
+            >.item {
+                margin-bottom: 40px;
+
+                .image {
+                    margin-bottom: 20px;
+                    border-width: 1px;
+                    border-style: solid;
+                    padding: 10px;
+                    .transition(all .3s ease);
+                    overflow: hidden;
+                }
+
+                &:hover {
+                    .image {
+                        img {
+                            .jello-horizontal();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .brand-view {
+        margin-bottom: 20px;
+        .dflex();
+
+        .image{
+            display: inline-block;
+            padding: 10px;
+            border-width: 1px;
+            border-style: solid;
+        }
+
+        .detail{
+            flex: 1;
+            padding-left: 20px;
+        }
+    }
+
+    .shopbrand-brand-view {
+        .column {
+            &.main {
+                >.title {
+                    font-size: 2.4rem;
+                    margin-bottom: 40px;
+                    padding-bottom: 10px;
+                    position: relative;
+                    &:before{
+                        content:"";
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        width: 60px;
+                        height: 2px;
+                    }
+                }
+            }
+        }
+    }
+
+    /* responsive */
+
+    @media screen and (max-width: (@screen__xm - 1)) {
+        .shopbrand-brand-view {
+            .column {
+                &.main {
+                    padding-top: 65px !important;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: @screen__xs ) {
+        .shopbrand-brand-view {
+            .column.main {
+                > .title{
+                    font-size: 2rem;
+                    margin-bottom: 30px;
+                    padding-bottom: 10px;
+                }
+            }
+        }
+    }
+
+    /* rtl */
+    .rtl {
+        .block-search{
+            &.brand-search {
+                .form-search {
+                    .field{
+                        &.search {
+                            .control-search {
+                                input{
+                                    padding-right: 15px;
+                                    padding-left: 40px;
+                                }
+                            }
+                            .actions{
+                                right: auto;
+                                left: 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .shopbrand-brand-view {
+            .column.main {
+                > .title{
+                    &:before{
+                        left: auto;
+                        right: 0;
+                    }
+                }
+            }
+        }
+
+        .brand-view {    
+            .brand-description{
+                padding-left: 0;
+                padding-right: 20px;
+            }
+        }
+    
+    }
+}

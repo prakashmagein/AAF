@@ -1,0 +1,36 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * @var \Magento\Customer\Block\Account\AuthorizationLink $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$dataPostParam = '';
+if ($block->isLoggedIn()) {
+    $dataPostParam = sprintf(" data-post='%s'", $block->getPostParams());
+}
+?>
+<li class="custom-customer-login-lnk link authorization-link" data-label="<?= $escaper->escapeHtml(__('or')) ?>">
+    <a class="custom-login-link-atag" <?= /* @noEscape */ $block->getLinkAttributes() ?>
+        <?= /* @noEscape */ $dataPostParam ?>><?= $escaper->escapeHtml($block->getLabel()) ?></a>
+</li>
+
+
+<script>
+    require([ 'jquery', 'jquery/ui'], function($){
+    $(document).ready(function(){
+        $('.custom-customer-login-lnk .custom-login-link-atag').each(function(){ 
+            var oldUrl = $(this).attr("href"); // Get current url
+            var searchString = "/customer/account/login/";
+            if (oldUrl.indexOf(searchString) !== -1) {
+                var index = oldUrl.indexOf(searchString);
+                var newUrl = oldUrl.slice(0, index + searchString.length);
+                $(this).attr("href", newUrl); // Set herf value
+            }            
+        });
+      });
+    });
+</script>

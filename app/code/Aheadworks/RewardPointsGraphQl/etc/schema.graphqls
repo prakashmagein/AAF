@@ -1,0 +1,19 @@
+type Query {
+    rewardPointsCartMetadata: RewardPointsCartMetadata @resolver(class: "\\Aheadworks\\RewardPointsGraphQl\\Model\\Resolver\\RewardPointsCartMetadata") @doc(description: "Retrieve current cart metadata regarding reward points.")
+}
+
+type Mutation {
+    applyRewardPoints(quantity: Int!): Boolean @resolver(class: "\\Aheadworks\\RewardPointsGraphQl\\Model\\Resolver\\ApplyRewardPoints") @doc(description: "Apply specified amount of reward points to the current cart.")
+    applyRewardPointsCoupon(code: String!): Boolean @resolver(class: "\\Aheadworks\\RewardPointsGraphQl\\Model\\Resolver\\ApplyRewardPointsCoupon") @doc(description: "Apply reward points coupon with specified code.")
+    removeRewardPoints: Boolean @resolver(class: "\\Aheadworks\\RewardPointsGraphQl\\Model\\Resolver\\RemoveRewardPoints") @doc(description: "Remove reward points from the current cart.")
+}
+
+type RewardPointsCartMetadata {
+    reward_points_balance_qty: Int
+    can_apply_reward_points: Boolean
+    reward_points_max_allowed_qty_to_apply: Int
+    reward_points_conversion_rate_point_to_currency_value: Float
+    are_reward_points_applied: Boolean
+    applied_reward_points_qty: Int
+    applied_reward_points_amount: Float
+}

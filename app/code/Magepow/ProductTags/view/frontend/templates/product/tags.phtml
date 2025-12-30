@@ -1,0 +1,41 @@
+<?php
+//Tags in product details
+$helper = $this->helper('Magepow\ProductTags\Helper\Data');
+if(!$helper->getConfigModule('general/enabled')) return;
+$title  = $helper->getConfigModule("general/product_tag_title");
+$tags   = $this->getTagCollection();
+if(!$tags->getSize()) return;
+$show_number_products = $helper->getConfigModule("general/show_number_products");
+$count = 0;
+?>
+<div class="block block-tags block-product-tags">
+	<?php if($title) : ?>
+		<div class="block-title"><h2><?php echo __($title); ?></h2></div>
+	<?php endif ?>
+	<div class="block-content">
+		<ul class="list-tags  list-product-tags">
+			<?php foreach($tags as $tag): ?>
+				<?php 
+				if(!$helper->getTagModel($tag)){
+					continue;
+				}
+				$count++;
+				?>
+				<li><a href="javascript:void(0);">
+	            <?php 
+					echo $tag->getTagTitle();
+					if($show_number_products) echo " (".$block->getProductCount($tag).")";
+				?>
+	            </a>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+</div>
+<?php if($count == 0): ?>
+	<style>
+		.product-info-main .block.block-tags.block-product-tags{
+			display: none;
+		}
+	</style>
+<?php endif; ?>

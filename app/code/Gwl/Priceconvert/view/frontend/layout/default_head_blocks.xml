@@ -1,0 +1,6 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="Gwl_Priceconvert::js/custom.js"/>
+        <css src="Gwl_Priceconvert::css/currency.css"/>
+    </head>
+</page>

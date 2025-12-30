@@ -1,0 +1,483 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Custom Reports Builder for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\ReportBuilder\Api\Data\ReportInterface"
+                type="Amasty\ReportBuilder\Model\Report"/>
+    <preference for="Amasty\ReportBuilder\Api\ReportRepositoryInterface"
+                type="Amasty\ReportBuilder\Model\ReportRepository"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Command\DuplicateInterface"
+                type="Amasty\ReportBuilder\Model\Report\Command\Duplicate"/>
+    <preference for="Amasty\ReportBuilder\Api\EntityInterface"
+                type="Amasty\ReportBuilder\Model\EntityScheme\Entity"/>
+    <preference for="Amasty\ReportBuilder\Api\ColumnInterface"
+                type="Amasty\ReportBuilder\Model\EntityScheme\Column"/>
+    <preference for="Amasty\ReportBuilder\Api\RelationInterface"
+                type="Amasty\ReportBuilder\Model\EntityScheme\Relation"/>
+    <preference for="Amasty\ReportBuilder\Api\EntityScheme\SchemeInterface"
+                type="Amasty\ReportBuilder\Model\EntityScheme"/>
+    <preference for="Amasty\ReportBuilder\Api\EntityScheme\ProviderInterface"
+                type="Amasty\ReportBuilder\Model\EntityScheme\Provider"/>
+    <preference for="Amasty\ReportBuilder\Api\SelectResolverInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterApplierInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterApplier"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\ColumnExpressionResolverInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\ColumnExpressionResolver"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterConditionResolverInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterConditionResolver"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterModifierInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterModifier"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterResolverInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterResolver"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterStorageInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterStorage"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnOrder\OrderModifierInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnOrder\OrderModifier"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnOrder\OrderStorageInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnOrder\OrderStorage"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnOrder\OrderApplierInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnOrder\OrderApplier"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\RelationStorageInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\RelationStorage"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\RelationResolverInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\RelationResolver"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\RelationBuilderInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\RelationBuilder"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\MainTableBuilderInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\MainTableBuilder"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\ColumnStorageInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\ColumnStorage"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\ColumnResolverInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\ColumnResolver"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilderInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\EntitiesDataModifierInterface"
+                type="Amasty\ReportBuilder\Model\Report\EntitiesDataModifierComposite"/>
+    <preference for="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Entity\IsTableExistInterface"
+                type="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Entity\IsTableExist"/>
+    <preference for="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Column\IsColumnExistInterface"
+                type="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Column\IsColumnExist"/>
+    <preference for="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Relation\IsRelationExistInterface"
+                type="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Relation\IsRelationExist"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\RelationValidatorInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\RelationValidator"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\RelationValidator\IsRelationValidInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\RelationValidator\IsRelationValid"/>
+    <preference for="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Validator\IsColumnValidInterface"
+                type="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Validator\IsColumnValid"/>
+    <preference for="Amasty\ReportBuilder\Api\Data\ReportColumnInterface"
+                type="Amasty\ReportBuilder\Model\Report\Column"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Chart\Command\SaveInterface"
+                type="Amasty\ReportBuilder\Model\Report\Chart\Command\Save"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Chart\Query\GetByIdInterface"
+                type="Amasty\ReportBuilder\Model\Report\Chart\Query\GetByIdCache"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Chart\Query\GetByReportIdInterface"
+                type="Amasty\ReportBuilder\Model\Report\Chart\Query\GetByReportId"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Chart\Query\GetNewInterface"
+                type="Amasty\ReportBuilder\Model\Report\Chart\Query\GetNew"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Chart\Axis\Query\GetAxisListInterface"
+                type="Amasty\ReportBuilder\Model\Report\Chart\Axis\Query\GetAxisList"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Chart\Axis\Query\GetByIdInterface"
+                type="Amasty\ReportBuilder\Model\Report\Chart\Axis\Query\GetByIdCache"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Chart\Axis\Query\GetNewInterface"
+                type="Amasty\ReportBuilder\Model\Report\Chart\Axis\Query\GetNew"/>
+    <preference for="Amasty\ReportBuilder\Model\Report\Chart\Axis\Command\SaveMultipleInterface"
+                type="Amasty\ReportBuilder\Model\Report\Chart\Axis\Command\SaveMultiple"/>
+    <preference for="Amasty\ReportBuilder\Model\Chart\AxisInterface"
+                type="Amasty\ReportBuilder\Model\Chart\Axis"/>
+
+    <type name="Amasty\ReportBuilder\Ui\Component\Listing\View\Columns\ConfigAdapter">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="scheme" sortOrder="10"
+                      xsi:type="object">Amasty\ReportBuilder\Ui\Component\Listing\View\Columns\Adapter\SchemeColumnAdapter
+                </item>
+                <item name="aggregationType" sortOrder="20"
+                      xsi:type="object">Amasty\ReportBuilder\Ui\Component\Listing\View\Columns\Adapter\AggregationDataType
+                </item>
+                <item name="date" sortOrder="30"
+                      xsi:type="object">Amasty\ReportBuilder\Ui\Component\Listing\View\Columns\Adapter\DateAdapter
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\EntityScheme\Builder">
+        <arguments>
+            <argument name="builderPool" xsi:type="array">
+                <item name="filterBuilder" sortOrder="10" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\FilterBuilder</item>
+                <item name="dbBuilder" sortOrder="20" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Db</item>
+                <item name="foreignBuilder" sortOrder="30" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Foreign</item>
+                <item name="eavBuilder" sortOrder="40" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Eav</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Column\IsColumnExist">
+        <arguments>
+            <argument name="isColumnExistDefault" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Column\IsSimpleColumnExist</argument>
+            <argument name="isColumnExistPool" xsi:type="array">
+                <item name="eav" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Column\IsEavAttributeExist</item>
+                <item name="foreign" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Column\IsForeignColumnExist</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Column\IsForeignColumnExist">
+        <arguments>
+            <argument name="isColumnExist" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Column\IsSimpleColumnExist</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Relation\IsRelationExist">
+        <arguments>
+            <argument name="isRelationExistDefault" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Relation\IsSimpleRelationExist</argument>
+            <argument name="isRelationExistPool" xsi:type="array">
+                <item name="many_to_many" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Filter\Relation\IsManyToManyRelationExist</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\RelationValidator\IsRelationValid">
+        <arguments>
+            <argument name="isRelationValidDefault" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\RelationValidator\IsSimpleRelationValid</argument>
+            <argument name="validatorPool" xsi:type="array">
+                <item name="many_to_many" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\RelationValidator\IsManyToManyRelationValid</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\RelationValidator\IsManyToManyRelationValid">
+        <arguments>
+            <argument name="isSimpleRelationValid" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\RelationValidator\IsSimpleRelationValid</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Validator\IsColumnValid">
+        <arguments>
+            <argument name="isColumnValidDefault" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Validator\IsSimpleColumnValid</argument>
+            <argument name="validatorPool" xsi:type="array">
+                <item name="foreign" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Validator\IsForeignColumnValid</item>
+                <item name="eav" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Validator\IsEavAttributeValid</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="amReportBuilderResourceConnection" type="Magento\Framework\App\ResourceConnection">
+        <arguments>
+            <argument name="deploymentConfig" xsi:type="object">Magento\Framework\App\DeploymentConfig</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="amReportBuilderReader" type="Magento\Framework\Setup\Declaration\Schema\Db\MySQL\DbSchemaReader">
+        <arguments>
+            <argument name="resourceConnection" xsi:type="object">amReportBuilderResourceConnection</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\ReportBuilder\Model\EntityScheme\Builder\Db">
+        <arguments>
+            <argument name="dbSchemaReader" xsi:type="object">amReportBuilderReader</argument>
+            <argument name="columnModifiers" xsi:type="array">
+                <item name="boolean" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Column\BooleanModifier</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\EntityScheme\Builder\Foreign">
+        <arguments>
+            <argument name="dbSchemaReader" xsi:type="object">amReportBuilderReader</argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="amasty_reportbuilder_report_listing_data_source"
+                      xsi:type="string">Amasty\ReportBuilder\Model\ResourceModel\Report\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\ColumnBuilder">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="simple" sortOrder="10"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\SimpleEntitiesAdapter
+                </item>
+                <item name="eav" sortOrder="20"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\EavEntitiesAdapter
+                </item>
+                <item name="foreign" sortOrder="30"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\ForeignAdapter
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\DataProvider">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="aggregation" sortOrder="20"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Modifier\SimpleAggregationModifier
+                </item>
+                <item name="aggregation-complex" sortOrder="30"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Modifier\ComplexAggregationModifier
+                </item>
+                <item name="use_aggregation" sortOrder="40"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Modifier\AggregationUsageModifier
+                </item>
+                <item name="expression" sortOrder="50"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Modifier\ExpressionModifier
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Modifier\ExpressionModifier">
+        <arguments>
+            <argument name="customModifiers" xsi:type="array">
+                <item name="zero_or_one"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\Adapter\Modifier\Expression\ZeroOrOne
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\RelationResolver">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="0" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\RelationModifiers\OneToOneModifier</item>
+                <item name="2" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\RelationModifiers\OneToManyModifier</item>
+                <item name="3" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\RelationModifiers\TypeTableModifier</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\RelationBuilder">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="0" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\RelationBuilder\SimpleJoinModifier</item>
+                <item name="1" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\RelationBuilder\SubselectJoinModifier</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\EntityScheme\Builder\Xml\Reader\Converter\NodeParser">
+        <arguments>
+            <argument name="parsers" xsi:type="array">
+                <item name="columns" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Xml\Reader\Converter\NodeParser\ColumnParser</item>
+                <item name="relations" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Xml\Reader\Converter\NodeParser\RelationsParser</item>
+                <item name="expressions" xsi:type="object">Amasty\ReportBuilder\Model\EntityScheme\Builder\Xml\Reader\Converter\NodeParser\ExpressionsParser</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="default" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder\SimpleEntity</item>
+                <item name="eav" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder\Eav</item>
+                <item name="foreign" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder\Foreign</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder\Eav\RelationResolver">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="default" xsi:type="object" sortOrder="10">Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder\Eav\Relation\NonStoreDataBuilder</item>
+                <item name="defaultStore" xsi:type="object" sortOrder="20">Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder\Eav\Relation\DefaultDataBuilder</item>
+                <item name="store" xsi:type="object" sortOrder="30">Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder\Eav\Relation\StoreDataBuilder</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Catalog\Model\Product">
+        <plugin name="Amasty_ReportBuilder::addReindexRowCallback"
+                type="Amasty\ReportBuilder\Plugin\Catalog\Model\ProductPlugin"/>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\ColumnBuilder\Eav\SubSelectRelationBuilder">
+        <arguments>
+            <argument name="entitiesWithRowId" xsi:type="array">
+                <item name="catalog_product" xsi:type="string">Magento\Catalog\Api\Data\ProductInterface</item>
+                <item name="catalog_category" xsi:type="string">Magento\Catalog\Api\Data\CategoryInterface</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\InternalFilterApplier">
+        <arguments>
+            <argument name="filtersPool" xsi:type="array">
+                <item name="default" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\InternalFilterApplier\DefaultFilter</item>
+                <item name="eav" xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\InternalFilterApplier\EavFilter</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\Indexer\Stock\Table\GetTable">
+        <arguments>
+            <argument name="columnResolvers" xsi:type="array">
+                <item name="static" xsi:type="object">Amasty\ReportBuilder\Model\Indexer\Stock\Table\Column\GetStaticColumns</item>
+                <item name="msi" xsi:type="object">Amasty\ReportBuilder\Model\Indexer\Stock\Table\Column\GetMsiColumns</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\Indexer\Stock\Indexer">
+        <arguments>
+            <argument name="strategies" xsi:type="array">
+                <item name="simple" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Strategy\SimpleStrategy</item>
+                <item name="composite" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Strategy\CompositeStrategy</item>
+                <item name="disabled" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Strategy\DisabledStrategy</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Strategy\SimpleStrategy">
+        <arguments>
+            <argument name="selectBuilders" xsi:type="array">
+                <item name="default_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\DefaultSimpleBuilder</item>
+                <item name="msi_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\MsiBuilder</item>
+                <item name="total_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\TotalQtyBuilder</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Strategy\CompositeStrategy">
+        <arguments>
+            <argument name="selectBuilders" xsi:type="array">
+                <item name="default_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\DefaultAggregateBuilder</item>
+                <item name="msi_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\MsiBuilder</item>
+                <item name="total_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\TotalQtyBuilder</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Strategy\DisabledStrategy">
+        <arguments>
+            <argument name="selectBuilders" xsi:type="array">
+                <item name="default_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\DefaultDisabledBuilder</item>
+                <item name="msi_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\MsiBuilder</item>
+                <item name="total_builder" xsi:type="object">Amasty\ReportBuilder\Model\ResourceModel\Indexer\Stock\Select\TotalQtyBuilder</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\ReportBuilder\Model\Product\CompositeTypes">
+        <arguments>
+            <argument name="types" xsi:type="array">
+                <item name="configurable" xsi:type="const">Magento\ConfigurableProduct\Model\Product\Type\Configurable::TYPE_CODE</item>
+                <item name="bundle" xsi:type="const">Magento\Bundle\Model\Product\Type::TYPE_CODE</item>
+                <item name="grouped" xsi:type="const">Magento\GroupedProduct\Model\Product\Type\Grouped::TYPE_CODE</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="reindex-report-stock" xsi:type="object">Amasty\ReportBuilder\Console\Command\ReindexStockCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterApplier">
+        <arguments>
+            <argument name="conditionPreprocessors" xsi:type="array">
+                <item name="dropdown" sortOrder="10"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\ConditionPreprocessor\DropdownPreprocessor
+                </item>
+                <item name="date" sortOrder="15"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\ConditionPreprocessor\DatePreprocessor
+                </item>
+                <item name="default" sortOrder="100"
+                      xsi:type="object">Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\ConditionPreprocessor\DefaultPreprocessor
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Ui\DataProvider\Form\Report\Modifier\Columns">
+        <arguments>
+            <argument name="extractors" xsi:type="array">
+                <item name="scheme" sortOrder="10"
+                      xsi:type="object">Amasty\ReportBuilder\Ui\DataProvider\Form\Report\Modifier\Columns\SchemeModifier
+                </item>
+                <item name="default" sortOrder="20"
+                      xsi:type="object">Amasty\ReportBuilder\Ui\DataProvider\Form\Report\Modifier\Columns\ReportColumnMapModifier
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\CatalogInventory\Model\Indexer\Stock">
+        <plugin name="Amasty_ReportBuilder::reindex-stock-data" type="Amasty\ReportBuilder\Plugin\CatalogInventory\Model\Indexer\Stock\ReindexStockData" />
+    </type>
+    <type name="Magento\InventoryIndexer\Indexer\Stock\Strategy\Sync">
+        <plugin name="Amasty_ReportBuilder::reindex-stock-data" type="Amasty\ReportBuilder\Plugin\InventoryIndexer\Indexer\Stock\Strategy\Sync\ReindexStockData" sortOrder="-1" />
+    </type>
+
+    <type name="Magento\Framework\Setup\Declaration\Schema\Operations\CreateTable">
+        <arguments>
+            <argument name="triggers" xsi:type="array">
+                <item name="migrateReportBuilderCharts"
+                      xsi:type="object">Amasty\ReportBuilder\Setup\Schema\Triggers\MigrateCharts</item>
+                <item name="migrateReportBuilderAxis"
+                      xsi:type="object">Amasty\ReportBuilder\Setup\Schema\Triggers\MigrateAxis</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\ReportRepository">
+        <plugin name="Amasty_ReportBuilder::add-chart"
+                type="Amasty\ReportBuilder\Plugin\ReportBuilder\Model\ReportRepository\AddChartExtension" />
+        <plugin name="Amasty_ReportBuilder::save-chart"
+                type="Amasty\ReportBuilder\Plugin\ReportBuilder\Model\ReportRepository\SaveChart" />
+    </type>
+
+    <type name="Magento\Deploy\Config\BundleConfig">
+        <plugin name="Amasty_ReportBuilder::exclude-js-vendor-directory-from-bundling"
+                type="Amasty\ReportBuilder\Plugin\Deploy\Config\ExcludeVendorDirectory"/>
+    </type>
+
+
+    <type name="Amasty\ReportBuilder\Model\Chart\IsChartTypeAvailable">
+        <arguments>
+            <argument name="availableChartTypes" xsi:type="array">
+                <item name="0" xsi:type="const">Amasty\ReportBuilder\Model\Chart\GetAvailableChartTypes::LINEAR</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\Indexer\Stock\IndexerPool">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="stock_indexer" xsi:type="object"
+                      sortOrder="10">Amasty\ReportBuilder\Model\Indexer\Stock\Indexer</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\SelectColumn\ColumnStorage" shared="true" />
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\RelationStorage" shared="true" />
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\ColumnOrder\OrderStorage" shared="true" />
+    <type name="Amasty\ReportBuilder\Model\SelectResolver\ColumnFilter\FilterStorage" shared="true" />
+
+    <type name="Amasty\Reports\Model\Source\Reports">
+        <plugin name="Amasty_ReportBuilder::addReportsFromBuilder"
+                type="Amasty\ReportBuilder\Plugin\Reports\Model\Source\Reports\AddReportsFromBuilder"/>
+    </type>
+
+    <type name="Amasty\Reports\Model\Source\Reports">
+        <plugin name="Amasty_ReportBuilder::getLabel"
+                type="\Amasty\ReportBuilder\Plugin\Reports\Model\Source\Reports\GetLabel"/>
+    </type>
+
+    <type name="Amasty\Reports\Model\Email\ReportContent">
+        <plugin name="Amasty_ReportBuilder::getContent"
+                type="Amasty\ReportBuilder\Plugin\Reports\Model\Email\ReportContent\GetContent"/>
+    </type>
+
+    <type name="Amasty\Reports\Api\NotificationRepositoryInterface">
+        <plugin name="Amasty_ReportBuilder::ValidateNotificationSave"
+                type="Amasty\ReportBuilder\Plugin\Reports\Api\NotificationRepositoryInterface\ValidateSave"/>
+    </type>
+</config>

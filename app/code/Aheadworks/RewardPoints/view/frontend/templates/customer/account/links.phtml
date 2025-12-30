@@ -1,0 +1,18 @@
+<?php
+/**
+ * Action links
+ *
+ * @var Magento\Customer\Block\Account\Dashboard $block
+ * @var Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="actions-toolbar">
+    <div class="secondary">
+        <a class="action edit-email-preferences" href="<?= $escaper->escapeUrl($block->getManageNewsletterUrl()) ?>">
+            <span><?= $escaper->escapeHtml(__('Edit Email Preferences')) ?></span>
+        </a>
+        <a class="action back" href="<?= $escaper->escapeUrl($block->getBackUrl()) ?>">
+            <span><?= $escaper->escapeHtml(__('Back')) ?></span>
+        </a>
+    </div>
+</div>

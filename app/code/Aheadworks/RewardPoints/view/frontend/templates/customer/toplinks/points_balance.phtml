@@ -1,0 +1,24 @@
+<?php
+use Aheadworks\RewardPoints\Block\Customer\RewardPointsBalance\Toplink;
+use Magento\Framework\Escaper;
+
+/** @var Toplink $block */
+/** @var Escaper $escaper */
+
+$class = $block->customerLoggedIn() ? 'customer-welcome' : '';
+$canShow = true;
+if (!$block->isAjax()): ?>
+    <?php $canShow = false ?>
+    <li class="nav item <?php /* @noEscape */ echo $class ?>" data-aw-reward-points-block-name="<?php /* @noEscape */ echo $block->getNameInLayout() ?>"></li>
+<?php endif; ?>
+
+<?php if ($canShow && $block->canShow()): ?>
+    <li class="nav item <?php /* @noEscape */ echo $class ?>">
+        <a href="<?php echo $escaper->escapeUrl($this->getUrl('aw_rewardpoints/info')) ?>">
+            <span>
+                <?php echo $escaper->escapeHtml(__('You have %1 %2 (%3)', $block->getCustomerRewardPointsBalance(), $block->getLabelNameRewardPoints(), $block->getFormattedCustomerBalanceCurrency())) ?>
+            </span>
+        </a>
+    </li>
+<?php endif; ?>
+

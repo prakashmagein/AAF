@@ -1,0 +1,76 @@
+//
+//  Amasty Report Builder Wrapper Component
+//  ______________________________________________
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .amrepbuilder-wrapper {
+        & {
+            .amrepbuilder-flex(space-between, flex-start);
+
+            margin: 0 auto;
+            padding: @amrepbuilder__indent__l * 2 0 0;
+            max-width: 900px;
+        }
+    }
+
+    .amrepbuilder-column-type {
+        &.-text .amrepbuilder-type {
+            background: #cce8fd;
+            color: @amrepbuilder-color__hover;
+        }
+
+        &.-int .amrepbuilder-type {
+            background: #cff5cf;
+            color: #029d00;
+        }
+
+        &.-timestamp .amrepbuilder-type {
+            background: #c1f5f3;
+            color: #009d8b;
+        }
+
+        &.-smallint .amrepbuilder-type {
+            background: #3ec129;
+            color: #d9f6d9;
+        }
+
+        &.-decimal .amrepbuilder-type {
+            background: #fee7d2;
+            color: #e36d00;
+        }
+
+        &.-mediumblob .amrepbuilder-type {
+            background: #fef8d2;
+            color: #e3a300;
+        }
+
+        &.-datetime .amrepbuilder-type {
+            background: #e4dbfb;
+            color: #602feb;
+        }
+
+        &.-date .amrepbuilder-type {
+            background: #dbdffb;
+            color: #2f7aeb;
+        }
+
+        &.-varchar .amrepbuilder-type {
+            background: #eedbfb;
+            color: #8d2feb;
+        }
+
+        &.-static .amrepbuilder-type {
+            background: #eedbfb;
+            color: #4b2feb;
+        }
+
+        &.-virtual .amrepbuilder-type {
+            background: #d4cff5;
+            color: #00239d;
+        }
+    }
+}

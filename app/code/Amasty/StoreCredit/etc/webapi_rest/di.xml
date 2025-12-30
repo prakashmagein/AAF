@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Store Credit & Refund for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Api\OrderRepositoryInterface">
+        <plugin sortOrder="1" name="AmastyStoreCredit::OrderRepository" type="Amasty\StoreCredit\Plugin\Sales\Model\OrderRepositoryPlugin"/>
+    </type>
+
+    <type name="Amasty\StoreCredit\Model\Total\Quote\MaxStoreCredit\RetrieveStrategyPool">
+        <arguments>
+            <argument name="retrievers" xsi:type="array">
+                <item name="1" xsi:type="object">Amasty\StoreCredit\Model\Total\Quote\MaxStoreCredit\RestrictStrategy\Proxy</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

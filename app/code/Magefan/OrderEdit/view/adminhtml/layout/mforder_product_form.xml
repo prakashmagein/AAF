@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magefan (support@magefan.com). All rights reserved.
+ * Please visit Magefan.com for license details (https://magefan.com/end-user-license-agreement).
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="sales_order_create_item_price"/>
+    <body>
+        <referenceContainer name="after.body.start">
+            <block class="Magento\Catalog\Block\Adminhtml\Product\Composite\Configure" name="after.body.start.product_composite_configure" template="Magento_Catalog::catalog/product/composite/configure.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="js">
+            <block class="Magento\Backend\Block\Template" template="Magento_Sales::order/create/js.phtml" name="create"/>
+        </referenceContainer>
+        <referenceBlock name="content">
+            <block class="Magefan\OrderEdit\Block\Adminhtml\Order\Form" name="order_create_form" as="form">
+                <block class="Magento\Sales\Block\Adminhtml\Order\Create\Data" template="Magefan_OrderEdit::order/create/dataForOneTypeChange.phtml" name="data">
+                    <block class="Magefan\OrderEdit\Block\Adminhtml\Order\Product\TaxRates" name="tax_rates" template="Magefan_OrderEdit::order/create/taxRates.phtml"/>
+                    <block class="Magento\Sales\Block\Adminhtml\Order\Create\Search" template="Magento_Sales::order/create/abstract.phtml" name="search">
+                        <block class="Magefan\OrderEdit\Block\Adminhtml\Order\Product\Search\Grid" name="search_grid" as="grid"/>
+                    </block>
+                    <block class="Magento\Sales\Block\Adminhtml\Order\Create\Items" template="Magento_Sales::order/create/items.phtml" name="items">
+                        <block class="Magento\Sales\Block\Adminhtml\Order\Create\Items\Grid" template="Magento_Sales::order/create/items/grid.phtml" name="items_grid">
+                            <block class="Magento\Sales\Block\Adminhtml\Order\Create\Coupons" template="Magento_Sales::order/create/coupons/form.phtml" name="coupons">
+                                <block class="Magento\Sales\Block\Adminhtml\Order\Create\Coupons\Form" template="Magento_Sales::order/create/coupons/form.phtml" name="order_create_coupons_form" as="form"/>
+                            </block>
+                        </block>
+                    </block>
+                    <block class="Magento\Framework\View\Element\Text\ListText" name="order_item_extra_info"/>
+                </block>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

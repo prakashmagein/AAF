@@ -1,0 +1,55 @@
+//
+//  Chosen Block Component
+//  ______________________________________________
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .amrepbuilder-chosen-block {
+        & {
+            padding: 0 0 @amrepbuilder__indent__m;
+        }
+
+        .amrepbuilder-link.-howto {
+            margin: 0 0 @amrepbuilder__indent__xl * 2;
+        }
+
+        .amrepbuilder-chosen {
+            & {
+                ._amrepbuilder-dnd-block;
+                .amrepbuilder-flex(none, none);
+
+                position: relative;
+                align-content: flex-start;
+                flex-direction: column;
+                flex-grow: 1;
+                padding: @amrepbuilder__indent__m;
+                width: 100%;
+            }
+
+            &.-overlay:before {
+                ._amrepbuilder-overlay;
+
+                cursor: default;
+            }
+        }
+
+        .amrepbuilder-chosen .amrepbuilder-column-block {
+            cursor: default;
+        }
+
+        .amrepbuilder-button.-clearall {
+            display: inline-flex;
+            justify-self: flex-end;
+            margin: 0 0 0 auto;
+            font-weight: 600;
+        }
+
+        .amrepbuilder-columns-list {
+            flex-grow: 1;
+            min-height: 110px;
+        }
+    }
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * webapi
+ *
+ * @copyright Copyright © 2020 Magepow. All rights reserved.
+ * @author    @copyright Copyright (c) 2014 Magepow (<https://www.magepow.com>)
+ * @license <https://www.magepow.com/license-agreement.html>
+ * @Author: magepow<support@magepow.com>
+ * @github: <https://github.com/magepow>
+ */
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/guest-carts/:cartId/update-item" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\GuestCheckoutManagementInterface" method="updateItemQty"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carts/mine/update-item" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\CheckoutManagementInterface" method="updateItemQty"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/guest-carts/:cartId/remove-item" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\GuestCheckoutManagementInterface" method="removeItemById"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carts/mine/remove-item" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\CheckoutManagementInterface" method="removeItemById"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/guest-carts/:cartId/payment-total-information" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\GuestCheckoutManagementInterface" method="getPaymentTotalInformation"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carts/mine/payment-total-information" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\CheckoutManagementInterface" method="getPaymentTotalInformation"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/guest-carts/:cartId/checkout-information" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\GuestCheckoutManagementInterface" method="saveCheckoutInformation"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carts/mine/checkout-information" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\CheckoutManagementInterface" method="saveCheckoutInformation"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+    <route url="/V1/guest-carts/:cartId/save-email-to-quote" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\GuestCheckoutManagementInterface" method="saveEmailToQuote"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/guest-carts/:cartId/isEmailAvailable" method="POST">
+        <service class="Magepow\OnestepCheckout\Api\GuestCheckoutManagementInterface" method="isEmailAvailable"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+</routes>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="customer_account"/>
+    <body>
+        <referenceContainer name="content">
+            <block name="customer_aw_rewardpoints_info"
+                   class="Aheadworks\RewardPoints\Block\Customer\RewardPointsBalance\Account"
+                   template="Aheadworks_RewardPoints::customer/account/info.phtml"
+                   cacheable="false">
+                <block name="customer_aw_rewardpoints_coupon_apply"
+                       template="Aheadworks_RewardPoints::customer/account/coupon_apply.phtml"/>
+            </block>
+            <block name="customer_aw_rewardpoints_transaction"
+                   class="Aheadworks\RewardPoints\Block\Customer\RewardPointsBalance\Account\Transaction"
+                   template="Aheadworks_RewardPoints::customer/account/transaction.phtml"
+                   cacheable="false"/>
+            <block name="customer_aw_rewardpoints_links"
+                   class="Magento\Customer\Block\Account\Dashboard"
+                   template="Aheadworks_RewardPoints::customer/account/links.phtml"
+                   cacheable="false"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <lookbook>
+    <item>
+      <title><![CDATA[Lookbook]]></title>
+      <identifier><![CDATA[lookbook]]></identifier>
+      <type_id><![CDATA[1]]></type_id>
+      <link><![CDATA[#]]></link>
+      <image><![CDATA[magiccart/lookbook/l/o/lookbook-2_1.jpg]]></image>
+      <options><![CDATA[{"magic_pin":{"0":{"content":"Big Thicket Beard Oil Feature(#3)","undefined":"Save pin","product_id":"3","classes":"","coords":{"lat":"455","long":"377"}},"1":{"content":"Easy Chair Bundle(#347)","undefined":"Save pin","product_id":"347","classes":"","coords":{"lat":"122","long":"423"}},"2":{"content":"Corona classic chair(#342)","undefined":"Save pin","product_id":"342","classes":"","coords":{"lat":"806","long":"440"}},"canvas":{"src":"https://magiccart.io/davici/media/magiccart/lookbook/l/o/lookbook-2_1.jpg","width":980,"height":700}}}]]></options>
+      <stores><![CDATA[0]]></stores>
+      <order><![CDATA[0]]></order>
+      <status><![CDATA[1]]></status>
+    </item>
+    <item>
+      <title><![CDATA[Lookbook Home 7]]></title>
+      <identifier><![CDATA[lookbook7]]></identifier>
+      <type_id><![CDATA[1]]></type_id>
+      <link><![CDATA[https://magiccart.io/davici/english_2/shop/home-decor/tables.html]]></link>
+      <image><![CDATA[magiccart/lookbook/l/o/lookbook7.jpg]]></image>
+      <options><![CDATA[{"magic_pin":{"0":{"content":"Necklace Neclace Designs(#73)","undefined":"Save pin","product_id":"73","classes":"","coords":{"lat":"699.5","long":"364"}},"1":{"content":"Faux Suede Oxfords Brown(#12)","undefined":"Save pin","product_id":"12","classes":"","coords":{"lat":"125.5","long":"562"}},"2":{"content":"Brighton Dining Chair(#1)","undefined":"Save pin","product_id":"1","classes":"","coords":{"lat":"449.5","long":"384.719"}},"canvas":{"src":"https://magiccart.io/funio/media/magiccart/lookbook/l/o/lookbook7.jpg","width":960,"height":798}}}]]></options>
+      <stores><![CDATA[0]]></stores>
+      <order><![CDATA[0]]></order>
+      <status><![CDATA[1]]></status>
+    </item>
+    <item>
+      <title><![CDATA[Lookbook Home 7.2]]></title>
+      <identifier><![CDATA[lookbook7-2]]></identifier>
+      <type_id><![CDATA[1]]></type_id>
+      <link><![CDATA[]]></link>
+      <image><![CDATA[magiccart/lookbook/l/o/lookbook7-2.jpg]]></image>
+      <options><![CDATA[{"magic_pin":{"0":{"content":"Fashion full width Chair(#139)","undefined":"Save pin","product_id":"139","classes":"","coords":{"lat":"289.5","long":"327"}},"2":{"content":"Butler Step Configurable(#368)","undefined":"Save pin","product_id":"368","classes":"","coords":{"lat":"477.5","long":"496"}},"canvas":{"src":"https://magiccart.io/funio/media/magiccart/lookbook/l/o/lookbook7-2.jpg","width":680,"height":618}}}]]></options>
+      <stores><![CDATA[0]]></stores>
+      <order><![CDATA[0]]></order>
+      <status><![CDATA[1]]></status>
+    </item>
+    <item>
+      <title><![CDATA[Kitchen.]]></title>
+      <identifier><![CDATA[kitchen-7-2]]></identifier>
+      <type_id><![CDATA[1]]></type_id>
+      <link><![CDATA[]]></link>
+      <image><![CDATA[magiccart/lookbook/l/o/lookbook-2_2.jpg]]></image>
+      <options><![CDATA[{"magic_pin":{"0":{"content":"Ipsum dolor sit amet(#288)","undefined":"Save pin","product_id":"288","classes":"","coords":{"lat":"1068.75","long":"525"}},"1":{"content":"Fashion full width Chair(#139)","undefined":"Save pin","product_id":"139","classes":"","coords":{"lat":"424.75","long":"536"}},"2":{"content":"Plant Organic Essential Glass(#138)","undefined":"Save pin","product_id":"138","classes":"","coords":{"lat":"1327.75","long":"233"}},"canvas":{"src":"https://magiccart.io/davici/media/magiccart/lookbook/l/o/lookbook-2_2.jpg","width":"1920","height":"947"}}}]]></options>
+      <stores><![CDATA[13,14]]></stores>
+      <order><![CDATA[0]]></order>
+      <status><![CDATA[1]]></status>
+    </item>
+  </lookbook>
+</root>

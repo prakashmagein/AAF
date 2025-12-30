@@ -1,0 +1,42 @@
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_GoogleMapPinAddress
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+var config = {
+    map: {
+        '*': {
+            mapjs: 'Webkul_GoogleMapPinAddress/js/mapJs',
+            'Magento_Checkout/js/model/checkout-data-resolver': 'Webkul_GoogleMapPinAddress/js/model/checkout-data-resolver',
+            'Magento_Checkout/js/view/shipping': 'Webkul_GoogleMapPinAddress/js/view/shippingjs',
+            'Webkul_RegionUpload/js/action/create-shipping-address-mixin': 'Webkul_GoogleMapPinAddress/js/action/create-shipping-address-mixin'
+
+        }
+    },
+    config: {
+        mixins: {
+            'Magento_Checkout/js/action/set-billing-address': {
+                'Webkul_GoogleMapPinAddress/js/action/set-billing-address-mixin': true
+            },
+            'Magento_Checkout/js/action/set-shipping-information': {
+                'Webkul_GoogleMapPinAddress/js/action/set-shipping-information-mixin': true
+            },
+            'Magento_Checkout/js/action/create-shipping-address': {
+                'Webkul_GoogleMapPinAddress/js/action/create-shipping-address-mixin': true
+            },
+            'Magento_Checkout/js/action/place-order': {
+                'Webkul_GoogleMapPinAddress/js/action/set-billing-address-mixin': true
+            },
+            'Magento_Checkout/js/action/create-billing-address': {
+                'Webkul_GoogleMapPinAddress/js/action/set-billing-address-mixin': true
+            },
+            'Webkul_RegionUpload/js/action/create-shipping-address-mixin': {
+                'Webkul_GoogleMapPinAddress/js/action/create-shipping-address-mixin': true
+            }
+        }
+    }
+};

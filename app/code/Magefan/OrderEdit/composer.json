@@ -1,0 +1,17 @@
+{
+    "name": "magefan/module-order-edit",
+    "description": "Magefan order edit for Magento 2",
+    "require": {
+        "magefan/module-community" : ">=2.2.2"
+    },
+    "type": "magento2-module",
+    "version": "2.3.4",
+    "autoload": {
+        "psr-4": {
+            "Magefan\\OrderEdit\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

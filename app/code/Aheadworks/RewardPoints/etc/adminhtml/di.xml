@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\DataProcessor" type="Aheadworks\RewardPoints\Model\Data\Processor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="status" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\DataProcessor\Status</item>
+                <item name="discardSubsequentRules" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\DataProcessor\DiscardSubsequentRules</item>
+                <item name="website" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\DataProcessor\Website</item>
+                <item name="customerGroup" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\DataProcessor\CustomerGroup</item>
+                <item name="action" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\DataProcessor\Action</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\DataProcessor" type="Aheadworks\RewardPoints\Model\Data\Processor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="status" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\DataProcessor\Status</item>
+                <item name="discardSubsequentRules" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\DataProcessor\DiscardSubsequentRules</item>
+                <item name="website" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\DataProcessor\Website</item>
+                <item name="customerGroup" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\DataProcessor\CustomerGroup</item>
+                <item name="action" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\DataProcessor\Action</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\MetaProcessor" type="Aheadworks\RewardPoints\Model\Data\Processor" />
+    <type name="Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\FormDataProvider">
+        <arguments>
+            <argument name="dataProcessor" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\DataProcessor</argument>
+            <argument name="metaProcessor" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\EarnRule\MetaProcessor</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\MetaProcessor" type="Aheadworks\RewardPoints\Model\Meta\Processor" />
+
+    <type name="Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\FormDataProvider">
+        <arguments>
+            <argument name="dataProcessor" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\DataProcessor</argument>
+            <argument name="metaProcessor" xsi:type="object">Aheadworks\RewardPoints\Ui\DataProvider\SpendRule\MetaProcessor</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="aw_reward_points_attributes" xsi:type="array">
+                    <item name="class" xsi:type="string">Aheadworks\RewardPoints\Ui\DataProvider\Product\Form\Modifier\RewardPointsAttributes</item>
+                    <item name="sortOrder" xsi:type="number">15</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="Aheadworks\RewardPoints\Controller\Adminhtml\Earning\Rules\PostDataProcessor" type="Aheadworks\RewardPoints\Model\Data\Processor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="website" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Earning\Rules\PostDataProcessor\Website</item>
+                <item name="customerGroup" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Earning\Rules\PostDataProcessor\CustomerGroup</item>
+                <item name="fromToDates" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Earning\Rules\PostDataProcessor\Date</item>
+                <item name="condition" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Earning\Rules\PostDataProcessor\Condition</item>
+                <item name="action" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Earning\Rules\PostDataProcessor\Action</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Aheadworks\RewardPoints\Controller\Adminhtml\Earning\Rules\Save">
+        <arguments>
+            <argument name="postDataProcessor" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Earning\Rules\PostDataProcessor</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Aheadworks\RewardPoints\Controller\Adminhtml\Spending\Rules\PostDataProcessor" type="Aheadworks\RewardPoints\Model\Data\Processor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="website" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Spending\Rules\PostDataProcessor\Website</item>
+                <item name="customerGroup" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Spending\Rules\PostDataProcessor\CustomerGroup</item>
+                <item name="fromToDates" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Spending\Rules\PostDataProcessor\Date</item>
+                <item name="condition" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Spending\Rules\PostDataProcessor\Condition</item>
+                <item name="action" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Spending\Rules\PostDataProcessor\Action</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Aheadworks\RewardPoints\Controller\Adminhtml\Spending\Rules\Save">
+        <arguments>
+            <argument name="postDataProcessor" xsi:type="object">Aheadworks\RewardPoints\Controller\Adminhtml\Spending\Rules\PostDataProcessor</argument>
+        </arguments>
+    </type>
+
+    <type name="Aheadworks\RewardPoints\Controller\Adminhtml\Transactions\Save">
+        <arguments>
+            <argument name="createCommand" xsi:type="object">Aheadworks\RewardPoints\Model\Data\Command\Transaction\Create</argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\RewardPoints\Model\Data\Processor\Post\Transaction\Processor">
+        <arguments>
+            <argument name="processors" xsi:type="array">
+                <item name="expiration_date" xsi:type="object">Aheadworks\RewardPoints\Model\Data\Processor\Post\Transaction\ExpirationDate</item>
+            </argument>
+            <argument name="filters" xsi:type="array">
+                <item name="0" xsi:type="object">Aheadworks\RewardPoints\Model\Data\Filter\Transaction\Comments</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Aheadworks\RewardPoints\Model\ResourceModel\Coupon\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">aw_rp_coupon</argument>
+        </arguments>
+    </type>
+
+    <type name="Aheadworks\RewardPoints\Controller\Adminhtml\Coupons\MassAction">
+        <arguments>
+            <argument name="massActions" xsi:type="array">
+                <item name="delete" xsi:type="object">Aheadworks\RewardPoints\Model\Coupon\MassAction\Delete</item>
+                <item name="enable" xsi:type="object">Aheadworks\RewardPoints\Model\Coupon\MassAction\Enable</item>
+                <item name="disable" xsi:type="object">Aheadworks\RewardPoints\Model\Coupon\MassAction\Disable</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Aheadworks\RewardPoints\Controller\Adminhtml\Coupons\Generate\Generate">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="quantity" xsi:type="object">
+                    Aheadworks\RewardPoints\Model\Coupon\Generate\Validator\Quantity
+                </item>
+                <item name="length" xsi:type="object">
+                    Aheadworks\RewardPoints\Model\Coupon\Generate\Validator\Length
+                </item>
+                <item name="balance" xsi:type="object">
+                    Aheadworks\RewardPoints\Model\Coupon\Generate\Validator\Balance
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

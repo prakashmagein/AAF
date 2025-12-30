@@ -1,0 +1,66 @@
+// /**
+//  * Copyright © 2021 Aloteam. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+
+& when (@media-common = true) {
+    [class*="alo-lookbook-"]{
+        .title {
+            &.item{
+                display: none;
+            }
+        }
+    }
+    .page__lookbook__items{
+        p{
+            margin: 0;
+        }
+
+        .block__title{
+            font-size: 3.6rem;
+            margin-bottom: 0;
+        }
+        .block__description{
+            margin-bottom: 30px;
+        }
+
+        .block__action{
+            a{
+                .button-base();
+                .round-borders(0);
+            }
+        }
+    }
+    
+    /* responsive */
+    @media screen and (max-width: (@screen__xm - 1)){
+        .page__lookbook__items{
+            .item__content{
+                margin-bottom: 30px;
+            }
+            .item__images{
+                margin-bottom: 30px;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xs - 1)){
+        .page__lookbook__items {
+            .block__title{
+                font-size: 2.5rem;
+            }
+            .block__sub{
+                font-size: 1.3rem;
+            }
+        }
+    }
+}

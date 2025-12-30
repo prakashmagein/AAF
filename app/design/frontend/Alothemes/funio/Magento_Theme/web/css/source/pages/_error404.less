@@ -1,0 +1,95 @@
+// /**
+//  * Copyright © 2021 Aloteam. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Blank theme overrides
+//  _____________________________________________
+
+//  Theme file should contain declarations (overrides) ONLY OF EXISTING variables
+//  Otherwise this theme won't be available for parent nesting
+//  All new variables should be placed in local theme lib or local theme files
+
+
+& when (@media-common = true) {
+    .page--404{
+
+        .pagebuilder-column-group{
+            .dflex;
+            padding-top: 65px;
+            padding-bottom: 65px;
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .block__title{
+            font-size: 5rem;
+        }
+
+        .block__subtitle{
+            font-weight: 400;
+        }
+
+        .block__description{
+            ul{
+                .column-count(2);
+                max-width: 300px;
+                li{
+                    a{
+                        text-decoration: none;
+                        font-size: 1.5rem;
+                    }
+                    .fa{
+                        .transition(all .2s ease);
+                    }
+                    &:hover{
+                        .fa{
+                            .transform(scale(1.2));
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    /* responsive */
+    @media screen and (max-width: (@screen__m - 1)){
+        .page--404{
+            .pagebuilder-column-group{
+                padding-top: 20px;
+                padding-bottom: 20px;
+            }
+            
+            .item__content{
+                text-align: center;
+            }
+            
+            .block__description {
+                ul{
+                    margin: 0 auto;
+                    text-align: initial;
+                }
+            }
+
+            .item__images{
+                background-size: calc(~"100% - 30px") !important;
+            }
+        }
+    }
+
+    @media screen and (max-width: (@screen__xs - 1)){
+        .page--404{
+            .item__content{
+                text-align: initial;
+            }
+            .block__description {
+                ul{
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+}
