@@ -8,21 +8,24 @@
 <?php
     $image_hover_cfg   = 'category_page_list';
     $_imageHelper      = $this->helper('Magento\Catalog\Helper\Image');
-    $objectManager     = \Magento\Framework\App\ObjectManager::getInstance();
-    $_product          = $objectManager->create('Magento\Catalog\Model\Product')->load($block->getProductId());
-    $images            = $_product->getMediaGalleryImages();
+    $_product          = $block->getProduct();
     $imageUrl          = $block->getImageUrl();
     $imageUrlHover     = '';
-    foreach ($images as $imagehv) {
-        if($imagehv){
-            $imagehv = $imagehv->getFile();
-            $hoverImage = $_imageHelper->init($_product, $image_hover_cfg)->setImageFile($imagehv)->resize($block->getWidth(), $block->getHeight());
-            $imageUrlHover = $hoverImage->getUrl();
-        }
-        if ( basename($imageUrl) == basename($imageUrlHover) ){
-            $imageUrlHover = '';
-        } else {
-            break; 
+
+    if ($_product && $_product->getId()) {
+        $images = $_product->getMediaGalleryImages();
+        if ($images && $images->getSize()) {
+            foreach ($images as $imagehv) {
+                $hoverImage = $_imageHelper->init($_product, $image_hover_cfg)
+                    ->setImageFile($imagehv->getFile())
+                    ->resize($block->getWidth(), $block->getHeight());
+                $imageUrlHover = $hoverImage->getUrl();
+
+                if (basename($imageUrl) !== basename($imageUrlHover)) {
+                    break;
+                }
+                $imageUrlHover = '';
+            }
         }
     }
     // $blankImage    = $this->getViewFileUrl('images/loader-1.gif'); // default magento
@@ -47,6 +50,8 @@
             src="<?= /* @escapeNotVerified */ $imageUrl ?>"
             width="<?= /* @escapeNotVerified */ $block->getWidth() ?>"
             height="<?= /* @escapeNotVerified */ $block->getHeight() ?>"
+            loading="lazy"
+            decoding="async"
             alt="<?= /* @escapeNotVerified */ $block->stripTags($block->getLabel(), null, true) ?>"/>
         <?php if( $imageUrlHover ) : ?>
         <img class="<?= /* @escapeNotVerified */ $block->getClass() ?> lazyload thumbnail hover-img"
@@ -54,7 +59,9 @@
             src="<?= /* @escapeNotVerified */ $imageUrlHover ?>"
             width="<?= /* @escapeNotVerified */ $block->getWidth() ?>"
             height="<?= /* @escapeNotVerified */ $block->getHeight() ?>"
-            alt="<?= /* @escapeNotVerified */ $block->stripTags($hoverImage->getLabel(), null, true) ?>"/>
+            loading="lazy"
+            decoding="async"
+            alt="<?= /* @escapeNotVerified */ isset($hoverImage) ? $block->stripTags($hoverImage->getLabel(), null, true) : $block->stripTags($block->getLabel(), null, true) ?>"/>
         <?php endif; ?>
     </span>
 </span>
