@@ -69,15 +69,19 @@ $_alobHelper = $this->helper('Magiccart\Alothemes\Helper\Data');
                 </div>
                 <?php $content .= '<div class="data item content" id="'.$alias.'" data-role="content">'.$html.'</div>' ?>
             <?php endforeach;?>
+<?php
+                if (!empty($attributeTabs)) {
+                    $blockAttribute = $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes');
+                    $_product = $blockAttribute->getProduct();
+                    $dataAttribute  = $blockAttribute->getAdditionalData();
+                }
+?>
             <?php foreach ($attributeTabs as $tab):?>
-                <?php 
+                <?php
                     if( !isset($tab['enabled']) ) {
                         continue;
                     }
                     $alias   = $tab['attribute'];
-                    $blockAttribute = $this->getLayout()->createBlock('Magento\Catalog\Block\Product\View\Attributes');
-                    $_product = $blockAttribute->getProduct();
-                    $dataAttribute  = $blockAttribute->getAdditionalData();
                     $html = '';
                     if(isset($dataAttribute[$alias])) :
                         $_data = $dataAttribute[$alias];
